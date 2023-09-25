@@ -15,7 +15,8 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
         "pragmarx/google2fa": "^8.0",
-        "simplesoftwareio/simple-qrcode": "*"
+        "simplesoftwareio/simple-qrcode": "*",
+        "spatie/laravel-permission": "^5.11"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
