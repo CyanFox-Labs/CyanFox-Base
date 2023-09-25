@@ -39,6 +39,10 @@ class AuthController extends Controller
 
     public function checkTwoFactorKey($user, $key)
     {
+        if ($key == null || $key == '') {
+            return false;
+        }
+
         $recovery_codes_array = decrypt($user->two_factor_recovery_codes);
         $recovery_codes = json_decode($recovery_codes_array, true);
 

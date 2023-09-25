@@ -55,7 +55,7 @@
 
                         <div class="flex items-center space-x-2 w-full">
                             <a href="/login"
-                               class="btn btn-warning w-1/2">
+                               class="btn btn-neutral w-1/2">
                                 {{ __('Back') }}
                             </a>
                             <button type="submit"
