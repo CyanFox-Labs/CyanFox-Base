@@ -1,0 +1,16 @@
+.sidebar {
+    width: 60px;
+    transition: width 0.3s ease;
+}
+
+.sidebar.expanded {
+    width: 200px;
+}
+
+.sidebar.expanded .text-hidden {
+    display: block;
+}
+
+.text-hidden {
+    display: none;
+}
