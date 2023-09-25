@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Auth\Login;
+use App\Livewire\Home;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,12 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', Home::class);
 });
 
 
 Route::middleware('web', 'throttle:100,1')->group(function () {
     Route::get('/login', Login::class)->name('login');
+
+
+    Route::get('/logout', function () {
+        auth()->logout();
+        return redirect()->route('login');
+    })->name('logout');
 });
