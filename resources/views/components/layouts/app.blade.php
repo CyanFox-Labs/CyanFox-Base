@@ -9,6 +9,8 @@
     @livewireStyles
 </head>
 <body>
+
+<x-navigation.sidebar></x-navigation.sidebar>
 {{ $slot }}
 
 @livewireScripts

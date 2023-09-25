@@ -18,7 +18,8 @@
 </nav>
 <div x-data="{ sidebarOpen: false, pinned: $persist(false) }" class="relative">
     <!-- Sidebar -->
-    <div :class="{'expanded': sidebarOpen || pinned}" @mouseover="sidebarOpen = true" @mouseleave="sidebarOpen = false"
+    <div x-bind:class="{'expanded': sidebarOpen || pinned, 'pinned': pinned}" @mouseover="sidebarOpen = true"
+         @mouseleave="sidebarOpen = false"
          class="flex flex-col items-center w-40 fixed top-0 left-0 h-full sidebar overflow-hidden text-gray-400 bg-gray-900 shadow-lg transform transition-transform"
          x-transition:enter="transition-transform transition-width ease-out duration-300"
          x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
@@ -51,11 +52,15 @@
                 </a>
             </div>
         </div>
-        <a @click="pinned = !pinned"
+        <a @click="pinned = !pinned" id="pinBtn"
            class="flex items-center justify-center w-full h-16 mt-auto rounded hover:bg-gray-700 hover:text-gray-300">
             <i :class="[pinned ? 'bx bxs-pin bx-rotate-90' : 'bx bxs-pin']"></i>
             <span class="ml-2 text-sm font-medium text-hidden">Pin</span>
         </a>
     </div>
-</div>
+    <!-- Content -->
+    <div :class="{'ml-14': !pinned, 'ml-52': pinned}"
+         class="content transition-all duration-200 ease-in-out transform pt-20 px-2 md:px-5 pb-4">
+
+
 

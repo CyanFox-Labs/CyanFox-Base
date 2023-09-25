@@ -2,6 +2,7 @@
 
 use App\Livewire\Auth\Login;
 use App\Livewire\Home;
+use App\Livewire\Profile;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', Home::class);
+    Route::get('/', Home::class)->name('home');
+    Route::get('/profile', Profile::class)->name('profile');
+    Route::get('/admin', function () {})->name('admin');
 });
 
 
