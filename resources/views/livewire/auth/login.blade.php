@@ -6,7 +6,7 @@
         <p class="flex items-center mb-6 text-2xl font-semibold">
             <img class="w-32 h-32 mr-2" src="{{ asset("/img/Logo.png") }}" alt="logo">
             <span
-                class="text-4xl font-bold brand-text lg:block hidden">{{ env('APP_NAME') }}</span>
+                class="text-4xl font-bold brand-text lg:block hidden" wire:ignore>{{ env('APP_NAME') }}</span>
         </p>
         <div
             class="card glass sm:w-96 w-auto">
@@ -47,7 +47,7 @@
                     @if($two_factor_enabled)
                         <div>
                             <label for="two_factor_code"
-                                   class="block mb-2 text-sm font-medium">{{ __('2FA Code / Recovery Code') }}</label>
+                                   class="block mb-2 text-sm font-medium" wire:ignore>{{ __('2FA Code / Recovery Code') }}</label>
                             <input type="text" name="two_factor_code" id="two_factor_code"
                                    class="input input-bordered w-full"
                                    required="" wire:model="two_factor_code">
@@ -69,7 +69,7 @@
                         <div>
                             <div class="form-control w-full">
                                 <label class="label" for="username">
-                                    <span class="label-text">{{ __('Username') }}</span>
+                                    <span class="label-text" wire:ignore>{{ __('Username') }}</span>
                                 </label>
                                 <input type="text" id="username"
                                        class="input input-bordered w-full" wire:model="username"
@@ -79,7 +79,7 @@
                         <div>
                             <div class="form-control w-full">
                                 <label class="label" for="password">
-                                    <span class="label-text">{{ __('Password') }}</span>
+                                    <span class="label-text" wire:ignore>{{ __('Password') }}</span>
                                 </label>
                                 <input type="password" id="password"
                                        class="input input-bordered w-full" wire:model="password"/>
@@ -87,14 +87,14 @@
                         </div>
                         <div class="form-control">
                             <label class="label cursor-pointer">
-                                <span class="label-text">{{ __('Remember me') }}</span>
+                                <span class="label-text" wire:ignore>{{ __('Remember me') }}</span>
                                 <input type="checkbox" checked="checked" class="checkbox"
                                        wire:model="remember_me"/>
                             </label>
                         </div>
                         <button type="submit"
                                 class="w-full btn btn-primary"
-                                wire:click="attemptLogin">
+                                wire:click="attemptLogin" wire:ignore>
                             {{ __('Login') }}
                         </button>
                     @endif

@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('theme')->default('light');
+            $table->string('locale')->default('en');
             $table->boolean('two_factor_enabled')->default(false);
             $table->string('two_factor_secret')->nullable();
             $table->string('two_factor_recovery_codes', 2048)->nullable();
