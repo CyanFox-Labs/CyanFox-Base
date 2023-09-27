@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./resources/**/*.blade.php", "./resources/**/*.js", "./resources/**/*.vue",],
-    theme: {
+    content: ["./resources/**/*.blade.php", "./resources/**/*.js", "./resources/**/*.vue",], theme: {
         extend: {
             colors: {
                 navigation: {
@@ -9,6 +8,7 @@ module.exports = {
                 }
             }
         },
+    }, plugins: [require("daisyui")], daisyui: {
+        themes: ["light", "dark"],
     },
-    plugins: [require("daisyui")],
 }

@@ -54,9 +54,7 @@ class Login extends Component
             return;
         }
 
-        $auth = new AuthController();
-
-        if ($auth->checkTwoFactorKey($this->user, $this->two_factor_code)) {
+        if (AuthController::checkTwoFactorKey($this->user, $this->two_factor_code)) {
             Auth::login($this->user);
             return redirect('/');
         }

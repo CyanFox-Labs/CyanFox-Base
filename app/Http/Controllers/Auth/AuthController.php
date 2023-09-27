@@ -9,15 +9,20 @@ use PragmaRX\Google2FA\Google2FA;
 
 class AuthController extends Controller
 {
+    public static function regenerateRememberToken($user)
+    {
+        $user->setRememberToken(bin2hex(random_bytes(32)));
+        $user->save();
+    }
 
-    public function generateTwoFactorSecret($user)
+    public static function generateTwoFactorSecret($user)
     {
         $two_factor = new Google2FA();
         $user->two_factor_secret = encrypt($two_factor->generateSecretKey());
         $user->save();
     }
 
-    public function generateRecoveryKeys($user)
+    public static function generateRecoveryKeys($user)
     {
 
         $recovery_codes = [];
@@ -28,7 +33,7 @@ class AuthController extends Controller
         $user->save();
     }
 
-    public function removeRecoveryKey($user, $key)
+    public static function removeRecoveryKey($user, $key)
     {
         $recovery_codes_array = decrypt($user->two_factor_recovery_codes);
         $recovery_codes = json_decode($recovery_codes_array, true);
@@ -37,18 +42,28 @@ class AuthController extends Controller
         $user->save();
     }
 
-    public function checkTwoFactorKey($user, $key)
+    public static function checkTwoFactorKey($user, $key, $checkRecovery = true)
     {
         if ($key == null || $key == '') {
             return false;
         }
 
-        $recovery_codes_array = decrypt($user->two_factor_recovery_codes);
-        $recovery_codes = json_decode($recovery_codes_array, true);
+        if ($user->two_factor_recovery_codes == null || $user->two_factor_recovery_codes == '') {
+            self::generateRecoveryKeys($user);
+        }
 
-        if (in_array($key, $recovery_codes)) {
-            $this->removeRecoveryKey($user, $key);
-            return true;
+        if ($user->two_factor_secret == null || $user->two_factor_secret == '') {
+            self::generateTwoFactorSecret($user);
+        }
+
+        if ($checkRecovery) {
+            $recovery_codes_array = decrypt($user->two_factor_recovery_codes);
+            $recovery_codes = json_decode($recovery_codes_array, true);
+
+            if (in_array($key, $recovery_codes)) {
+                self::removeRecoveryKey($user, $key);
+                return true;
+            }
         }
 
         $two_factor = new Google2FA();
