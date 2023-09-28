@@ -123,10 +123,10 @@ class Profile extends Component
     }
 
     /* Profile Information */
-    public $first_name = '';
-    public $last_name = '';
-    public $username = '';
-    public $email = '';
+    public $first_name;
+    public $last_name;
+    public $username;
+    public $email;
 
     public function updateProfileInfos()
     {
@@ -221,7 +221,8 @@ class Profile extends Component
         }
     }
 
-    public function disableTwoFactor() {
+    public function disableTwoFactor()
+    {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->passwords['disable2fa']])) {
             $this->alert('error', 'Wrong password!');
@@ -237,7 +238,8 @@ class Profile extends Component
         }
     }
 
-    public function showRecoveryKeys() {
+    public function showRecoveryKeys()
+    {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->passwords['showRecoveryKeys']])) {
             $this->alert('error', 'Wrong password!');
@@ -258,6 +260,13 @@ class Profile extends Component
     }
 
 
+    public function mount()
+    {
+        $this->first_name = Auth::user()->first_name;
+        $this->last_name = Auth::user()->last_name;
+        $this->username = Auth::user()->username;
+        $this->email = Auth::user()->email;
+    }
 
     #[Title('Profile')]
     public function render()

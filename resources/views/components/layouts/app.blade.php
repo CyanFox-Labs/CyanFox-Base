@@ -6,7 +6,9 @@
 
     <title>{{ $title ?? 'Page Title' }}</title>
 
-    @vite('resources/css/app.css')
+    <link rel="icon" type="image/png" href="{{ asset('img/Logo.png') }}">
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
 </head>
 <body>

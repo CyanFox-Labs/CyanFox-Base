@@ -128,7 +128,7 @@
                                 <label class="label" for="first_name">
                                     <span class="label-text">First Name</span>
                                 </label>
-                                <input id="first_name" type="text" value="{{ auth()->user()->first_name }}"
+                                <input id="first_name" type="text"
                                        class="input input-bordered w-full" wire:model="first_name"/>
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                                 <label class="label" for="last_name">
                                     <span class="label-text">Last Name</span>
                                 </label>
-                                <input id="last_name" type="text" value="{{ auth()->user()->last_name }}"
+                                <input id="last_name" type="text"
                                        class="input input-bordered w-full" wire:model="last_name"/>
                             </div>
                         </div>
@@ -146,7 +146,7 @@
                                 <label class="label" for="username">
                                     <span class="label-text">Username</span>
                                 </label>
-                                <input id="username" type="text" value="{{ auth()->user()->username }}"
+                                <input id="username" type="text"
                                        class="input input-bordered w-full" wire:model="username"/>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                                 <label class="label" for="email">
                                     <span class="label-text">E-Mail</span>
                                 </label>
-                                <input id="email" type="text" value="{{ auth()->user()->email }}"
+                                <input id="email" type="text"value="{{ auth()->user()->email }}"
                                        class="input input-bordered w-full" wire:model="email"/>
                             </div>
                         </div>
@@ -212,7 +212,8 @@
                                             Disable 2FA
                                         </button>
                                         <button type="submit"
-                                                class="btn btn-accent" onclick="show_two_factor_recovery_keys.showModal()">
+                                                class="btn btn-accent"
+                                                onclick="show_two_factor_recovery_keys.showModal()">
                                             Show Recovery Codes
                                         </button>
                                     @else
@@ -230,189 +231,12 @@
         </div>
     </div>
 
-    <dialog id="show_profile_infos" class="modal">
-        <div class="modal-box">
-
-            <div class="text-center">
-                <h2 class="text-2xl font-bold mb-4">Update Profile Information?</h2>
-                <p class="mb-3">Please enter your password to confirm you would like to update your Profile Information.</p>
-
-                <div class="flex justify-center">
-                    <div class="form-control w-full max-w-xs">
-                        <label class="label" for="logout_sessions_password">
-                            <span class="label-text">Password</span>
-                        </label>
-                        <input type="password" id="logout_sessions_password"
-                               class="input input-bordered w-full max-w-xs mb-4"
-                               wire:model="passwords.updateProfileInfos"/>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-center modal-action">
-                <form method="dialog" class="space-x-2">
-                    <button class="btn btn-neutral">Cancel</button>
-                    <button class="btn btn-success" wire:click="updateProfileInfos">Update</button>
-                </form>
-            </div>
-        </div>
-    </dialog>
-
-    <dialog id="disable_two_factor" class="modal">
-        <div class="modal-box">
-
-            <div class="text-center">
-                <h2 class="text-2xl font-bold mb-4">Disable Two-Factor</h2>
-                <p class="mb-3">To disable Two-Factor, please enter your password </p>
-
-                <div class="flex justify-center">
-                    <div class="form-control w-full max-w-xs">
-                        <label class="label" for="disable_two_factor_password">
-                            <span class="label-text">Password</span>
-                        </label>
-                        <input type="password" id="disable_two_factor_password"
-                               class="input input-bordered w-full max-w-xs mb-4"
-                               wire:model="passwords.disable2fa"/>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-center modal-action">
-                <form method="dialog" class="space-x-2">
-                    <button class="btn btn-neutral">Cancel</button>
-                    <button class="btn btn-success" wire:click="disableTwoFactor">Disable Two-Factor</button>
-                </form>
-            </div>
-        </div>
-    </dialog>
-
-    <dialog id="logout" class="modal">
-        <div class="modal-box">
-
-            <div class="text-center">
-                <h2 class="text-2xl font-bold mb-4">Logout?</h2>
-                <p class="mb-3">You clicked on your own session. Do you want to log out?</p>
-            </div>
-            <div class="flex justify-center modal-action">
-                <form method="dialog" class="space-x-2">
-                    <button class="btn btn-neutral">Cancel</button>
-                    <a href="{{ route('logout') }}" role="button" class="btn btn-success">Yes</a>
-                </form>
-            </div>
-        </div>
-    </dialog>
-
-    <dialog id="logout_sessions" class="modal">
-        <div class="modal-box">
-
-            <div class="text-center">
-                <h2 class="text-2xl font-bold mb-4">Logout other Sessions?</h2>
-                <p class="mb-3">Please enter your password to confirm you would like to log out other sessions.</p>
-
-                <div class="flex justify-center">
-                    <div class="form-control w-full max-w-xs">
-                        <label class="label" for="logout_sessions_password">
-                            <span class="label-text">Password</span>
-                        </label>
-                        <input type="password" id="logout_sessions_password"
-                               class="input input-bordered w-full max-w-xs mb-4"
-                               wire:model="passwords.logoutAllSessions"/>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-center modal-action">
-                <form method="dialog" class="space-x-2">
-                    <button class="btn btn-neutral">Cancel</button>
-                    <button class="btn btn-success" wire:click="logoutAllSessions">Logout other Sessions</button>
-                </form>
-            </div>
-        </div>
-    </dialog>
-
-    <dialog id="activate_two_factor" class="modal">
-        <div class="modal-box">
-
-            <div class="flex justify-center">
-
-                <img src="data:image/svg+xml;base64,{{ $twoFactorImage }}" alt="Two Factor Image"
-                     class="border-4 border-white mr-6">
-
-                <div class="space-y-4">
-                    <div class="form-control w-full max-w-xs">
-                        <label class="label" for="two_factor_key">
-                            <span class="label-text">Two-Factor Key</span>
-                        </label>
-                        <input type="number" id="two_factor_key" class="input input-bordered w-full max-w-xs"
-                               wire:model="two_factor_key"/>
-                    </div>
-
-                    <div class="form-control w-full max-w-xs">
-                        <label class="label" for="two_factor_password">
-                            <span class="label-text">Password</span>
-                        </label>
-                        <input type="password" id="two_factor_password" class="input input-bordered w-full max-w-xs"
-                               wire:model="passwords.enable2fa"/>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="modal-action">
-                <form method="dialog" class="space-x-2">
-                    <button class="btn btn-neutral">Cancel</button>
-                    <button class="btn btn-success" wire:click="activateTwoFactor">Activate Two-Factor</button>
-                </form>
-            </div>
-        </div>
-    </dialog>
-
-    <dialog id="show_two_factor_recovery_keys" class="modal">
-        <div class="modal-box">
-
-            <div class="text-center">
-                <h2 class="text-2xl font-bold mb-4">Show 2FA Recovery Keys</h2>
-                <p class="mb-3">Please enter your password to see the 2FA Recovery Keys</p>
-
-                <div class="flex justify-center">
-                    <div class="form-control w-full max-w-xs">
-                        <label class="label" for="logout_sessions_password">
-                            <span class="label-text">Password</span>
-                        </label>
-                        <input type="password" id="logout_sessions_password"
-                               class="input input-bordered w-full max-w-xs mb-4"
-                               wire:model="passwords.showRecoveryKeys"/>
-                    </div>
-                </div>
-            </div>
-            <div class="flex justify-center modal-action">
-                <form method="dialog" class="space-x-2">
-                    <button class="btn btn-neutral">Cancel</button>
-                    <button class="btn btn-success" wire:click="showRecoveryKeys">Show Recovery Keys</button>
-                </form>
-            </div>
-        </div>
-    </dialog>
-
-    @if(session()->has('recovery_codes'))
-        <dialog id="recovery_codes" class="modal">
-            <div class="modal-box">
-
-                <div class="text-center">
-                    <h2 class="text-2xl font-bold mb-4">2FA Recovery Keys</h2>
-
-                        @foreach(session('recovery_codes') as $recovery_code)
-                            <p class="mb-3">{{ $recovery_code }}</p>
-                        @endforeach
-                </div>
-                <div class="flex justify-center modal-action">
-                    <form method="dialog" class="space-x-2">
-                        <button class="btn btn-neutral">Close</button>
-                    </form>
-                </div>
-            </div>
-        </dialog>
-        <script>
-            recovery_codes.showModal();
-        </script>
-    @endif
+    <x-profile.update_profile_infos></x-profile.update_profile_infos>
+    <x-profile.disable_2fa></x-profile.disable_2fa>
+    <x-profile.logout></x-profile.logout>
+    <x-profile.logout_all_sessions></x-profile.logout_all_sessions>
+    <x-profile.activate_2fa twoFactorImage="{{ $twoFactorImage }}"></x-profile.activate_2fa>
+    <x-profile.recovery_codes_password></x-profile.recovery_codes_password>
+    <x-profile.recovery_codes></x-profile.recovery_codes>
 </div>
 

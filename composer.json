@@ -17,10 +17,12 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
         "pragmarx/google2fa": "^8.0",
+        "robsontenorio/mary": "^0.38.4",
         "simplesoftwareio/simple-qrcode": "*",
         "spatie/laravel-permission": "^5.11"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.9",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",

@@ -18,13 +18,3 @@
     margin-top: 0 !important;
 }
 
-.btn-error,
-.btn-success,
-.btn-warning,
-.btn-info {
-    color: hsl(var(--ac) / var(--tw-text-opacity));
-}
-
-.btn-outline:hover {
-    color: hsl(var(--ac) / var(--tw-text-opacity)) !important;
-}
