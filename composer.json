@@ -10,13 +10,16 @@
     "require": {
         "php": "^8.1",
         "danharrin/livewire-rate-limiting": "^1.1",
+        "filament/notifications": "^3.0-stable",
         "guzzlehttp/guzzle": "^7.2",
-        "jantinnerezo/livewire-alert": "^3.0",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^10.10",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
+        "openspout/openspout": "^4.18",
+        "power-components/livewire-powergrid": "^5.1",
         "pragmarx/google2fa": "^8.0",
+        "rappasoft/laravel-livewire-tables": "dev-v3-develop",
         "robsontenorio/mary": "^0.38.4",
         "simplesoftwareio/simple-qrcode": "*",
         "spatie/laravel-permission": "^5.11"
@@ -46,7 +49,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

@@ -3,10 +3,10 @@
 namespace App\Livewire;
 
 use App\Http\Controllers\Auth\AuthController;
+use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Jenssegers\Agent\Agent;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -15,8 +15,6 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Profile extends Component
 {
-
-    use LivewireAlert;
 
     public $passwords = [
         'logoutAllSessions' => '',
@@ -38,9 +36,16 @@ class Profile extends Component
         Auth::user()->language = $lang;
 
         if (Auth::user()->save()) {
-            $this->flash('success', 'Language changed successfully!', [], route('profile'));
+            Notification::make()
+                ->title('Language changed successfully!')
+                ->success()
+                ->send();
+            return redirect()->route('profile');
         } else {
-            $this->alert('error', 'Something went wrong!');
+            Notification::make()
+                ->title('Something went wrong!')
+                ->danger()
+                ->send();
         }
     }
 
@@ -53,9 +58,16 @@ class Profile extends Component
         Auth::user()->theme = $theme;
 
         if (Auth::user()->save()) {
-            $this->flash('success', 'Theme changed successfully!', [], route('profile'));
+            Notification::make()
+                ->title('Theme changed successfully!')
+                ->success()
+                ->send();
+            return redirect()->route('profile');
         } else {
-            $this->alert('error', 'Something went wrong!');
+            Notification::make()
+                ->title('Something went wrong!')
+                ->danger()
+                ->send();
         }
     }
 
@@ -65,22 +77,34 @@ class Profile extends Component
     public function logoutSession($sessionId)
     {
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->passwordLogoutSession[$sessionId]])) {
-            $this->alert('error', 'Wrong password!');
+            Notification::make()
+                ->title('Wrong password!')
+                ->danger()
+                ->send();
             return;
         }
 
         AuthController::regenerateRememberToken(Auth::user());
         DB::table('sessions')->where('id', $sessionId)->delete();
-        $this->flash('success', 'Session logged out successfully!', [], route('profile'));
+        Notification::make()
+            ->title('Session logged out successfully!')
+            ->success()
+            ->send();
     }
 
     public function logoutAllSessions()
     {
         try {
             Auth::logoutOtherDevices($this->passwords['logoutAllSessions']);
-            $this->flash('success', 'All sessions logged out successfully!', [], route('profile'));
+            Notification::make()
+                ->title('All sessions logged out successfully!')
+                ->success()
+                ->send();
         } catch (\Exception $e) {
-            $this->alert('error', 'Wrong password!');
+            Notification::make()
+                ->title('Wrong password!')
+                ->danger()
+                ->send();
             return;
         }
     }
@@ -131,7 +155,10 @@ class Profile extends Component
     public function updateProfileInfos()
     {
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->passwords['updateProfileInfos']])) {
-            $this->alert('error', 'Wrong password!');
+            Notification::make()
+                ->title('Wrong password!')
+                ->danger()
+                ->send();
             return;
         }
 
@@ -143,7 +170,10 @@ class Profile extends Component
                 'email' => 'required|email'
             ]);
         } catch (ValidationException $e) {
-            $this->alert('error', 'Please fill all fields correctly!');
+            Notification::make()
+                ->title('Please fill all fields correctly!')
+                ->danger()
+                ->send();
             return;
         }
 
@@ -153,9 +183,15 @@ class Profile extends Component
         Auth::user()->email = $this->email;
 
         if (Auth::user()->save()) {
-            $this->flash('success', 'Profile updated successfully!', [], route('profile'));
+            Notification::make()
+                ->title('Profile updated successfully!')
+                ->success()
+                ->send();
         } else {
-            $this->alert('error', 'Something went wrong!');
+            Notification::make()
+                ->title('Something went wrong!')
+                ->danger()
+                ->send();
         }
     }
 
@@ -168,7 +204,10 @@ class Profile extends Component
     {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->current_password])) {
-            $this->alert('error', 'Wrong password!');
+            Notification::make()
+                ->title('Wrong password!')
+                ->danger()
+                ->send();
             return;
         }
 
@@ -178,21 +217,33 @@ class Profile extends Component
                 'confirm_password' => 'required'
             ]);
         } catch (ValidationException $e) {
-            $this->alert('error', 'Please fill all fields correctly!');
+            Notification::make()
+                ->title('Please fill all fields correctly!')
+                ->danger()
+                ->send();
             return;
         }
 
         if ($this->new_password !== $this->confirm_password) {
-            $this->alert('error', 'Passwords do not match!');
+            Notification::make()
+                ->title('Passwords do not match!')
+                ->danger()
+                ->send();
             return;
         }
 
         Auth::user()->password = bcrypt($this->new_password);
 
         if (Auth::user()->save()) {
-            $this->flash('success', 'Password updated successfully!', [], route('profile'));
+            Notification::make()
+                ->title('Password updated successfully!')
+                ->success()
+                ->send();
         } else {
-            $this->alert('error', 'Something went wrong!');
+            Notification::make()
+                ->title('Something went wrong!')
+                ->danger()
+                ->send();
         }
     }
 
@@ -203,21 +254,33 @@ class Profile extends Component
     {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->passwords['enable2fa']])) {
-            $this->alert('error', 'Wrong password!');
+            Notification::make()
+                ->title('Wrong password!')
+                ->danger()
+                ->send();
             return;
         }
 
         if (!AuthController::checkTwoFactorKey(Auth::user(), $this->two_factor_key, false)) {
-            $this->alert('error', 'Wrong key');
+            Notification::make()
+                ->title('Wrong key!')
+                ->danger()
+                ->send();
             return;
         }
 
         Auth::user()->two_factor_enabled = true;
 
         if (Auth::user()->save()) {
-            $this->flash('success', 'Two Factor Authentication activated successfully!', [], route('profile'));
+            Notification::make()
+                ->title('Two Factor Authentication enabled successfully!')
+                ->success()
+                ->send();
         } else {
-            $this->alert('error', 'Something went wrong!');
+            Notification::make()
+                ->title('Something went wrong!')
+                ->danger()
+                ->send();
         }
     }
 
@@ -225,16 +288,25 @@ class Profile extends Component
     {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->passwords['disable2fa']])) {
-            $this->alert('error', 'Wrong password!');
+            Notification::make()
+                ->title('Wrong password!')
+                ->danger()
+                ->send();
             return;
         }
 
         Auth::user()->two_factor_enabled = false;
 
         if (Auth::user()->save()) {
-            $this->flash('success', 'Two Factor Authentication disabled successfully!', [], route('profile'));
+            Notification::make()
+                ->title('Two Factor Authentication disabled successfully!')
+                ->success()
+                ->send();
         } else {
-            $this->alert('error', 'Something went wrong!');
+            Notification::make()
+                ->title('Something went wrong!')
+                ->danger()
+                ->send();
         }
     }
 
@@ -242,7 +314,11 @@ class Profile extends Component
     {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->passwords['showRecoveryKeys']])) {
-            $this->alert('error', 'Wrong password!');
+            Notification::make()
+                ->title('Wrong password!')
+                ->danger()
+                ->send();
+            return;
         }
 
         $recovery_codes_array = decrypt(Auth::user()->two_factor_recovery_codes);

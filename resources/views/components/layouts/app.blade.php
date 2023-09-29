@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ auth()->user()->theme }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ auth()->user()->theme }}" @if(auth()->user()->theme == 'dark') class="dark" @endif>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +8,28 @@
 
     <link rel="icon" type="image/png" href="{{ asset('img/Logo.png') }}">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @filamentStyles
+    @vite(['resources/css/app.css'])
     @livewireStyles
+
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
 </head>
-<body>
+<body class="antialiased">
+@livewire('notifications')
 
 <x-navigation.sidebar></x-navigation.sidebar>
+<x-main>
+    <x-slot:content>
+        {{ $slot }}
+    </x-slot:content>
+</x-main>
 
-{{ $slot }}
 
+<!-- Scripts -->
 @livewireScripts
-
-@if(auth()->user()->theme != 'light') <link href="{{ asset('css/sweetalert.dark.css') }}" rel="stylesheet"> @endif
-<script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-<script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
-<x-livewire-alert::flash />
+@filamentScripts
+@vite('resources/js/app.js')
 </body>
 </html>

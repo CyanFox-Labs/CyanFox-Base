@@ -26,13 +26,13 @@
                     </div>
                 @elseif($username !== null)
                     @if(!session('error'))
-                        <x-alert type="error" icon="bx bxs-error"
-                                 class="alert-error">{{ __('User not found') }}</x-alert>
+                        <x-custom.alert icon="bx bxs-error"
+                                 class="alert-error">{{ __('User not found') }}</x-custom.alert>
                     @endif
                 @endif
 
                 @if(session('error') !== null)
-                    <x-alert type="error" icon="bx bxs-error" class="alert-error">{{ session('error') }}</x-alert>
+                    <x-custom.alert type="error" icon="bx bxs-error" class="alert-error">{{ session('error') }}</x-custom.alert>
                 @endif
 
                 @if ($rateLimitTime > 1)
