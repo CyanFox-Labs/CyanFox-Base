@@ -5,12 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>{{ $title ?? 'Page Title' }}</title>
-    @vite('resources/css/app.css')
+
+    <link rel="icon" type="image/png" href="{{ asset('img/Logo.png') }}">
+
+    @filamentStyles
+    @vite(['resources/css/app.css'])
     @livewireStyles
+
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 </head>
-<body>
+<body class="antialiased">
+@livewire('notifications')
+
 {{ $slot }}
 
+
+<!-- Scripts -->
 @livewireScripts
+@filamentScripts
+@vite('resources/js/app.js')
 </body>
 </html>

@@ -1,10 +1,10 @@
 <section class="h-screen flex flex-col justify-between">
-    <link rel="stylesheet" href="{{ asset("/css/sites/login.css") }}">
-    <script src="{{ asset("/js/sites/login.js") }}"></script>
+    <link rel="stylesheet" href="{{ asset("css/sites/login.css") }}">
+    <script src="{{ asset("js/sites/login.js") }}"></script>
 
     <div class="flex flex-col items-center justify-center px-6 mx-auto py-6">
         <p class="flex items-center mb-6 text-2xl font-semibold">
-            <img class="w-32 h-32 mr-2" src="{{ asset("/img/Logo.png") }}" alt="logo">
+            <img class="w-32 h-32 mr-2" src="{{ asset("img/Logo.png") }}" alt="logo">
             <span
                 class="text-4xl font-bold brand-text lg:block hidden" wire:ignore>{{ env('APP_NAME') }}</span>
         </p>
@@ -19,15 +19,14 @@
                                 src="https://source.boringavatars.com/beam/120/{{ $user->username }}"
                                 alt="Avatar"
                                 class="rounded-full w-8 h-8 m-1">
-                            <p>{{ $user->username }}</p>
-
+                            <p id="username">{{ $user->username }}</p>
                         </div>
 
                     </div>
                 @elseif($username !== null)
                     @if(!session('error'))
                         <x-custom.alert icon="bx bxs-error"
-                                 class="alert-error">{{ __('User not found') }}</x-custom.alert>
+                                 class="alert-error">{{ __('pages/login.not_found') }}</x-custom.alert>
                     @endif
                 @endif
 
@@ -37,9 +36,9 @@
 
                 @if ($rateLimitTime > 1)
                     <div wire:poll.1s="setRateLimit">
-                        <x-alert type="error" icon="bx bxs-error"
-                                 class="alert-error">{{ __('Too many login attempts. Please try again in :seconds seconds.', ['seconds' => $rateLimitTime]) }}
-                        </x-alert>
+                        <x-custom.alert type="error" icon="bx bxs-error"
+                                 class="alert-error">{{ __('pages/login.rate_limit', ['seconds' => $rateLimitTime]) }}
+                        </x-custom.alert>
                     </div>
                 @endif
                 <form class="space-y-4 md:space-y-6" onsubmit="event.preventDefault()">
@@ -47,7 +46,7 @@
                     @if($two_factor_enabled)
                         <div>
                             <label for="two_factor_code"
-                                   class="block mb-2 text-sm font-medium" wire:ignore>{{ __('2FA Code / Recovery Code') }}</label>
+                                   class="block mb-2 text-sm font-medium" id="two_factor_code_label" wire:ignore>{{ __('pages/login.two_factor') }}</label>
                             <input type="text" name="two_factor_code" id="two_factor_code"
                                    class="input input-bordered w-full"
                                    required="" wire:model="two_factor_code">
@@ -56,12 +55,12 @@
                         <div class="flex items-center space-x-2 w-full">
                             <a href="/login"
                                class="btn btn-neutral w-1/2">
-                                {{ __('Back') }}
+                                {{ __('messages.back') }}
                             </a>
                             <button type="submit"
                                     class="btn btn-primary w-1/2"
                                     wire:click="checkTwoFactorCode">
-                                {{ __('Login') }}
+                                {{ __('pages/login.login') }}
                             </button>
                         </div>
 
@@ -69,17 +68,18 @@
                         <div>
                             <div class="form-control w-full">
                                 <label class="label" for="username">
-                                    <span class="label-text" wire:ignore>{{ __('Username') }}</span>
+                                    <span class="label-text" wire:ignore>{{ __('pages/login.username') }}</span>
                                 </label>
                                 <input type="text" id="username"
                                        class="input input-bordered w-full" wire:model="username"
-                                       wire:blur="checkIfUserExits($event.target.value)"/>
+                                       wire:blur="checkIfUserExits($event.target.value)"
+                                />
                             </div>
                         </div>
                         <div>
                             <div class="form-control w-full">
                                 <label class="label" for="password">
-                                    <span class="label-text" wire:ignore>{{ __('Password') }}</span>
+                                    <span class="label-text" wire:ignore>{{ __('messages.password') }}</span>
                                 </label>
                                 <input type="password" id="password"
                                        class="input input-bordered w-full" wire:model="password"/>
@@ -87,23 +87,33 @@
                         </div>
                         <div class="form-control">
                             <label class="label cursor-pointer">
-                                <span class="label-text" wire:ignore>{{ __('Remember me') }}</span>
+                                <span class="label-text" wire:ignore>{{ __('pages/login.remember_me') }}</span>
                                 <input type="checkbox" checked="checked" class="checkbox"
                                        wire:model="remember_me"/>
                             </label>
                         </div>
-                        <button type="submit"
-                                class="w-full btn btn-primary"
-                                wire:click="attemptLogin" wire:ignore>
-                            {{ __('Login') }}
-                        </button>
+                        <div class="flex justify-between items-center">
+                            <button type="submit"
+                                    class="flex-1 mr-2 btn btn-primary"
+                                    wire:click="attemptLogin" wire:ignore>
+                                {{ __('pages/login.login') }}
+                            </button>
+
+                            <details class="dropdown ">
+                                <summary class="m-1 btn">{{ __('messages.language') }}</summary>
+                                <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-32">
+                                    <li><a wire:click="setLanguage('de')">{{ __('messages.languageType.de') }}</a></li>
+                                    <li><a wire:click="setLanguage('en')">{{ __('messages.languageType.en') }}</a></li>
+                                </ul>
+                            </details>
+                        </div>
                     @endif
                 </form>
             </div>
         </div>
     </div>
     <div class="pl-6 pb-4" wire:ignore>
-        <span class="text-sm" wire:ignore><a id="photo">{{ __('Photo') }}</a>, <a id="author"></a>, <a
+        <span class="text-sm" wire:ignore><a id="photo">{{ __('pages/login.photo') }}</a>, <a id="author"></a>, <a
                 href="https://unaplash.com/utm_source=CyanFox&utm_medium=referral">Unsplash</a></span>
     </div>
 </section>

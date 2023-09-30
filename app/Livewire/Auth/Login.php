@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Models\User;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
+use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -22,6 +23,18 @@ class Login extends Component
     public $two_factor_code = null;
 
     public $rateLimitTime;
+
+    public function setLanguage($language)
+    {
+        cookie()->queue(cookie()->forget('language'));
+        cookie()->queue(cookie()->forever('language', $language));
+
+        Notification::make()
+            ->title(__('messages.language_changed'))
+            ->success()
+            ->send();
+        return redirect()->route('login');
+    }
 
     public function setRateLimit()
     {
@@ -46,6 +59,7 @@ class Login extends Component
         if ($this->user == null) {
             $this->user = false;
         }
+        $this->dispatch('userExists');
     }
 
     public function checkTwoFactorCode()
@@ -59,7 +73,7 @@ class Login extends Component
             return redirect('/');
         }
 
-        session()->flash('error', __('Invalid two factor code.'));
+        session()->flash('error', __('pages/login.invalid_two_factor'));
     }
 
     public function attemptLogin()
@@ -83,7 +97,7 @@ class Login extends Component
                 $this->redirect('/');
             }
         } else {
-            session()->flash('error', __('Invalid password.'));
+            session()->flash('error', __('messages.invalid_password'));
         }
     }
 

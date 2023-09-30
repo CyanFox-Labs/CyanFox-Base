@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ auth()->user()->theme }}" @if(auth()->user()->theme == 'dark') class="dark" @endif>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ auth()->user()->theme }}"
+      @if(auth()->user()->theme == 'dark') class="dark" @endif>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,18 +14,17 @@
     @livewireStyles
 
     <style>
-        [x-cloak] { display: none !important; }
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
 </head>
 <body class="antialiased">
 @livewire('notifications')
 
 <x-navigation.sidebar></x-navigation.sidebar>
-<x-main>
-    <x-slot:content>
-        {{ $slot }}
-    </x-slot:content>
-</x-main>
+
+{{ $slot }}
 
 
 <!-- Scripts -->

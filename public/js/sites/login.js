@@ -1,3 +1,5 @@
+let imagePath = "";
+let brightnessThreshold = 150;
 
 function changeBackground() {
     fetch("/api/v1/unsplash", {
@@ -5,8 +7,7 @@ function changeBackground() {
     })
         .then((response) => response.json())
         .then((response) => {
-            let imagePath = response.urls.raw;
-            let brightnessThreshold = 150;
+            imagePath = response.urls.raw;
             let photo = response.links.html;
             let author = response.user.name;
             let authorLink = response.user.links.html;
@@ -15,26 +16,45 @@ function changeBackground() {
             document.getElementById("author").href = authorLink + credit;
             document.getElementById("author").innerHTML = author;
 
-            let spans = document.getElementsByTagName("span");
+            setTextColorFromImageBrightness();
 
-            isImageBright(imagePath, brightnessThreshold, function (isBright) {
-                if (isBright) {
-                    for (let i = 0; i < spans.length; i++) {
-                        spans[i].classList.remove("text-white");
-                        spans[i].classList.add("text-black");
-                    }
-                } else {
-                    for (let i = 0; i < spans.length; i++) {
-                        spans[i].classList.remove("text-black");
-                        spans[i].classList.add("text-white");
-                    }
-                }
-            });
             document.body.style = `background-image: url(${imagePath}); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed; background-color: #000000;`;
         }).catch((error) => {
         console.error('Error:', error);
     });
 
+}
+
+function setTextColorFromImageBrightness() {
+    let spans = document.getElementsByTagName("span");
+
+    isImageBright(imagePath, brightnessThreshold, function (isBright) {
+        if (isBright) {
+            if (document.getElementById("username") === null) {
+                document.getElementById("username").classList.add("text-black");
+            }
+            if (document.getElementById("two_factor_code_label") !== null) {
+                document.getElementById("two_factor_code_label").classList.add("text-black");
+            }
+
+            for (let i = 0; i < spans.length; i++) {
+                spans[i].classList.remove("text-white");
+                spans[i].classList.add("text-black");
+            }
+        } else {
+            if (document.getElementById("username") === null) {
+                document.getElementById("username").classList.add("text-white");
+            }
+            if (document.getElementById("two_factor_code_label") !== null) {
+                document.getElementById("two_factor_code_label").classList.add("text-white");
+            }
+
+            for (let i = 0; i < spans.length; i++) {
+                spans[i].classList.remove("text-black");
+                spans[i].classList.add("text-white");
+            }
+        }
+    });
 }
 
 function isImageBright(imageUrl, brightnessThreshold, callback) {
@@ -74,4 +94,7 @@ function isImageBright(imageUrl, brightnessThreshold, callback) {
 
 document.addEventListener("DOMContentLoaded", function () {
     changeBackground();
+    window.addEventListener('userExists', event => {
+        setTextColorFromImageBrightness();
+    });
 });

@@ -16,19 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth')->group(function () {
-    Route::get('/', Home::class)->name('home');
-    Route::get('/profile', Profile::class)->name('profile');
-    Route::get('/admin', function () {})->name('admin');
-});
+Route::middleware(['setLanguage'])->group(function () {
+    Route::middleware('auth')->group(function () {
+        Route::get('/', Home::class)->name('home');
+        Route::get('/profile', Profile::class)->name('profile');
+        Route::get('/admin', function () {})->name('admin');
+    });
 
 
-Route::middleware('web', 'throttle:100,1')->group(function () {
-    Route::get('/login', Login::class)->name('login');
+    Route::middleware('web', 'throttle:100,1')->group(function () {
+        Route::get('/login', Login::class)->name('login');
 
 
-    Route::get('/logout', function () {
-        auth()->logout();
-        return redirect()->route('login');
-    })->name('logout');
+        Route::get('/logout', function () {
+            auth()->logout();
+            return redirect()->route('login');
+        })->name('logout');
+    });
+
 });

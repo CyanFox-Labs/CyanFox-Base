@@ -9,7 +9,7 @@
             <div class="space-y-4">
                 <div class="form-control w-full max-w-xs">
                     <label class="label" for="two_factor_key">
-                        <span class="label-text">Two-Factor Key</span>
+                        <span class="label-text">{{ __('pages/profile.modal.activate_2fa.key') }}</span>
                     </label>
                     <input type="number" id="two_factor_key" class="input input-bordered w-full max-w-xs"
                            wire:model="two_factor_key"/>
@@ -17,10 +17,10 @@
 
                 <div class="form-control w-full max-w-xs">
                     <label class="label" for="two_factor_password">
-                        <span class="label-text">Password</span>
+                        <span class="label-text">{{ __('messages.password') }}</span>
                     </label>
                     <input type="password" id="two_factor_password" class="input input-bordered w-full max-w-xs"
-                           wire:model="passwords.enable2fa"/>
+                           wire:model="password"/>
                 </div>
             </div>
 
@@ -29,8 +29,8 @@
 
         <div class="modal-action">
             <form method="dialog" class="space-x-2">
-                <button class="btn btn-neutral">Cancel</button>
-                <button class="btn btn-success" wire:click="activateTwoFactor">Activate Two-Factor</button>
+                <button class="btn btn-neutral">{{ __('messages.cancel') }}</button>
+                <button class="btn btn-success" wire:click="activateTwoFactor">{{ __('pages/profile.modal.activate_2fa.activate') }}</button>
             </form>
         </div>
     </div>

@@ -2,9 +2,9 @@
     <div class="ml-2 mb-5">
         <div class="text-sm breadcrumbs">
             <ul>
-                <li><a href="{{ route('home') }}"><i class="bx bxs-home mr-2"></i> Home</a></li>
+                <li><a href="{{ route('home') }}"><i class="bx bxs-home mr-2"></i> {{ __('breadcrumbs.home') }}</a></li>
                 <li><img src="https://source.boringavatars.com/beam/120/{{ auth()->user()->username }}"
-                         alt="Profile" class="h-7 w-7 rounded-3xl mr-2"> Profile
+                         alt="Profile" class="h-7 w-7 rounded-3xl mr-2"> {{ __('breadcrumbs.profile') }}
                 </li>
             </ul>
         </div>
@@ -25,32 +25,32 @@
             </div>
             <div class="card bg-base-100 shadow-xl">
                 <div class="card-body">
-                    <span class="font-bold text-xl">Language & Theme</span>
+                    <span class="font-bold text-xl">{{ __('pages/profile.language_theme') }}</span>
                     <div class="divider"></div>
                     <div class="form-control w-full">
                         <label class="label" for="language">
-                            <span class="label-text font-bold">Select Language</span>
+                            <span class="label-text font-bold">{{ __('pages/profile.select_language') }}</span>
                         </label>
                         <select class="select select-bordered" id="language"
                                 wire:blur="changeLanguage($event.target.value)">
-                            <option value="en" @if(auth()->user()->language == 'en') selected @endif>English</option>
-                            <option value="de" @if(auth()->user()->language == 'de') selected @endif>German</option>
+                            <option value="en" @if(auth()->user()->language == 'de') selected @endif>{{ __('messages.languageType.de') }}</option>
+                            <option value="de" @if(auth()->user()->language == 'en') selected @endif>{{ __('messages.languageType.en') }}</option>
                         </select>
                     </div>
                     <div class="form-control w-full">
                         <label class="label" for="theme">
-                            <span class="label-text font-bold">Select Theme</span>
+                            <span class="label-text font-bold">{{ __('pages/profile.select_theme') }}</span>
                         </label>
                         <select class="select select-bordered" id="theme" wire:blur="changeTheme($event.target.value)">
-                            <option value="light" @if(auth()->user()->theme == 'light') selected @endif>Light</option>
-                            <option value="dark" @if(auth()->user()->theme == 'dark') selected @endif>Dark</option>
+                            <option value="light" @if(auth()->user()->theme == 'light') selected @endif>{{ __('pages/profile.themeType.light') }}</option>
+                            <option value="dark" @if(auth()->user()->theme == 'dark') selected @endif>{{ __('pages/profile.themeType.dark') }}</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="card bg-base-100 shadow-xl">
                 <div class="card-body">
-                    <span class="font-bold text-xl">Sessions</span>
+                    <span class="font-bold text-xl">{{ __('pages/profile.sessions') }}</span>
                     <div class="divider"></div>
                     <div class="grid grid-cols-4 items-center gap-x-4 overflow-x-auto">
                         @foreach ($sessionData as $session)
@@ -73,48 +73,47 @@
                             </div>
                             <div class="col-span-1 text-end">
                                 @if ($session['isCurrentSession'])
-                                    <button class="btn btn-ghost" onclick="logout.showModal()">Current</button>
+                                    <button class="btn btn-ghost" onclick="logout.showModal()">{{ __('pages/profile.current_session') }}</button>
                                 @else
+                                    <dialog id="logout_session_{{ $session['id'] }}" class="modal">
+                                        <div class="modal-box">
+
+                                            <div class="text-center">
+                                                <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modal.logout_specific.title') }}</h2>
+                                                <p class="mb-3">{{ __('pages/profile.modal.logout_specific.description') }}</p>
+                                            </div>
+                                            <div class="flex justify-center">
+                                                <div class="form-control w-full max-w-xs">
+                                                    <label class="label" for="logout_session_{{ $session['id'] }}">
+                                                        <span class="label-text">{{ __('messages.password') }}</span>
+                                                    </label>
+                                                    <input type="password" id="logout_session_{{ $session['id'] }}"
+                                                           wire:model="passwordLogoutSession.{{ $session['id'] }}"
+                                                           class="input input-bordered w-full max-w-xs mb-4"/>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-center modal-action">
+                                                <form method="dialog">
+                                                    <button class="btn btn-neutral">{{ __('messages.cancel') }}</button>
+                                                    <button class="btn btn-success"
+                                                            wire:click="logoutSession('{{ $session['id'] }}')">{{ __('pages/profile.modal.logout.logout') }}
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </dialog>
+
                                     <button class="btn btn-ghost text-warning"
-                                            onclick="logout_session_{{ $session['id'] }}.showModal()">
-                                        Revoke
+                                            onclick="document.getElementById('logout_session_{{ $session['id'] }}').showModal()">
+                                        {{ __('pages/profile.revoke_session') }}
                                     </button>
                                 @endif
                             </div>
-
-                            <dialog id="logout_session_{{ $session['id'] }}" class="modal">
-                                <div class="modal-box">
-
-                                    <div class="text-center">
-                                        <h2 class="text-2xl font-bold mb-4">Log Session out?</h2>
-                                        <p class="mb-3">Please enter your password to confirm you would like to log out
-                                            the session.</p>
-                                    </div>
-                                    <div class="flex justify-center">
-                                        <div class="form-control w-full max-w-xs">
-                                            <label class="label" for="disable_two_factor_password">
-                                                <span class="label-text">Password</span>
-                                            </label>
-                                            <input type="password" id="disable_two_factor_password"
-                                                   wire:model="passwordLogoutSession.{{ $session['id'] }}"
-                                                   class="input input-bordered w-full max-w-xs mb-4"/>
-                                        </div>
-                                    </div>
-                                    <div class="flex justify-center modal-action">
-                                        <form method="dialog">
-                                            <button class="btn btn-neutral">Cancel</button>
-                                            <button class="btn btn-success"
-                                                    wire:click="logoutSession('{{ $session['id'] }}')">Yes
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </dialog>
                         @endforeach
                     </div>
                     <div class="divider"></div>
                     <button class="btn btn-error btn-outline w-1/3" onclick="logout_sessions.showModal()">
-                        Logout Sessions
+                        {{ __('pages/profile.logout_sessions') }}
                     </button>
                 </div>
             </div>
@@ -122,11 +121,11 @@
         <div class="col-span-2 space-y-4">
             <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
                 <div class="card-body">
-                    <form class="grid grid-cols-2 gap-4" onsubmit="event.preventDefault()">
+                    <form class="grid grid-cols-2 gap-4" wire:submit="updateProfile">
                         <div>
                             <div class="form-control w-full">
                                 <label class="label" for="first_name">
-                                    <span class="label-text">First Name</span>
+                                    <span class="label-text">{{ __('pages/profile.first_name') }}</span>
                                 </label>
                                 <input id="first_name" type="text"
                                        class="input input-bordered w-full" wire:model="first_name"/>
@@ -135,7 +134,7 @@
                         <div>
                             <div class="form-control w-full">
                                 <label class="label" for="last_name">
-                                    <span class="label-text">Last Name</span>
+                                    <span class="label-text">{{ __('pages/profile.last_name') }}</span>
                                 </label>
                                 <input id="last_name" type="text"
                                        class="input input-bordered w-full" wire:model="last_name"/>
@@ -144,7 +143,7 @@
                         <div>
                             <div class="form-control w-full">
                                 <label class="label" for="username">
-                                    <span class="label-text">Username</span>
+                                    <span class="label-text">{{ __('pages/profile.username') }}</span>
                                 </label>
                                 <input id="username" type="text"
                                        class="input input-bordered w-full" wire:model="username"/>
@@ -153,16 +152,16 @@
                         <div>
                             <div class="form-control w-full">
                                 <label class="label" for="email">
-                                    <span class="label-text">E-Mail</span>
+                                    <span class="label-text">{{ __('pages/profile.email') }}</span>
                                 </label>
-                                <input id="email" type="text"value="{{ auth()->user()->email }}"
+                                <input id="email" type="text"
                                        class="input input-bordered w-full" wire:model="email"/>
                             </div>
                         </div>
                         <div class="col-span-1 mt-6">
                             <button type="submit"
-                                    class="btn btn-primary w-24" onclick="show_profile_infos.showModal()">
-                                Update
+                                    class="btn btn-primary">
+                                {{ __('messages.update') }}
                             </button>
                         </div>
                     </form>
@@ -171,11 +170,11 @@
             <div class="col-span-2 space-y-4">
                 <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
                     <div class="card-body">
-                        <form class="" onsubmit="event.preventDefault()">
+                        <form wire:submit="updatePassword">
                             <div class="w-full">
                                 <div class="form-control w-full">
                                     <label class="label" for="current_password">
-                                        <span class="label-text">Current Password</span>
+                                        <span class="label-text">{{ __('pages/profile.current_password') }}</span>
                                     </label>
                                     <input id="current_password" type="password"
                                            class="input input-bordered w-full" wire:model="current_password"/>
@@ -185,7 +184,7 @@
                                 <div>
                                     <div class="form-control w-full">
                                         <label class="label" for="new_password">
-                                            <span class="label-text">New Password</span>
+                                            <span class="label-text">{{ __('pages/profile.new_password') }}</span>
                                         </label>
                                         <input id="new_password" type="password"
                                                class="input input-bordered w-full" wire:model="new_password"/>
@@ -194,7 +193,7 @@
                                 <div>
                                     <div class="form-control w-full">
                                         <label class="label" for="confirm_password">
-                                            <span class="label-text">Confirm Password</span>
+                                            <span class="label-text">{{ __('pages/profile.confirm_password') }}</span>
                                         </label>
                                         <input id="confirm_password" type="password"
                                                class="input input-bordered w-full" wire:model="confirm_password"/>
@@ -202,24 +201,24 @@
                                 </div>
                                 <div class="col-span-1 mt-6 space-x-2 space-y-2">
                                     <button type="submit"
-                                            class="btn btn-primary w-24" wire:click="updatePassword">
-                                        Update
+                                            class="btn btn-primary">
+                                        {{ __('messages.update') }}
                                     </button>
 
                                     @if(auth()->user()->two_factor_enabled)
-                                        <button type="submit"
+                                        <button type="button"
                                                 class="btn btn-error" onclick="disable_two_factor.showModal()">
-                                            Disable 2FA
+                                            {{ __('pages/profile.disable_2fa') }}
                                         </button>
-                                        <button type="submit"
+                                        <button type="button"
                                                 class="btn btn-accent"
-                                                onclick="show_two_factor_recovery_keys.showModal()">
-                                            Show Recovery Codes
+                                                onclick="show_two_factor_recovery_codes.showModal()">
+                                            {{ __('pages/profile.show_recovery_codes') }}
                                         </button>
                                     @else
-                                        <button type="submit"
+                                        <button type="button"
                                                 class="btn btn-accent" onclick="activate_two_factor.showModal()">
-                                            Enable 2FA
+                                            {{ __('pages/profile.enable_2fa') }}
                                         </button>
                                     @endif
                                 </div>
@@ -231,12 +230,11 @@
         </div>
     </div>
 
-    <x-profile.update_profile_infos></x-profile.update_profile_infos>
-    <x-profile.disable_2fa></x-profile.disable_2fa>
-    <x-profile.logout></x-profile.logout>
-    <x-profile.logout_all_sessions></x-profile.logout_all_sessions>
-    <x-profile.activate_2fa twoFactorImage="{{ $twoFactorImage }}"></x-profile.activate_2fa>
-    <x-profile.recovery_codes_password></x-profile.recovery_codes_password>
-    <x-profile.recovery_codes></x-profile.recovery_codes>
+
+    @livewire('components.modals.profile.activate-two-factor')
+    @livewire('components.modals.profile.disable-two-factor')
+    @livewire('components.modals.profile.logout')
+    @livewire('components.modals.profile.logout-all-sessions')
+    @livewire('components.modals.profile.recovery-codes')
 </div>
 

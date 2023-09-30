@@ -42,12 +42,12 @@
                  src="https://source.boringavatars.com/beam/120/{{ auth()->user()->username }}" alt="Profile"
                  class="w-9 h-9">
             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a href="{{ route('profile') }}"><i class='bx bxs-user-circle'></i> Profile</a></li>
+                <li><a href="{{ route('profile') }}"><i class='bx bxs-user-circle'></i> {{ __('navigation.profile') }}</a></li>
                 @hasrole('Super Admin')
-                <li><a href="{{ route('admin') }}"><i class='bx bxs-cog'></i> Admin</a></li>
+                <li><a href="{{ route('admin') }}"><i class='bx bxs-cog'></i> {{ __('navigation.admin') }}</a></li>
                 <div class="divider"></div>
                 @endhasrole
-                <li><a href="{{ route('logout') }}"><i class='bx bxs-log-out'></i> Logout</a></li>
+                <li><a href="{{ route('logout') }}"><i class='bx bxs-log-out'></i> {{ __('navigation.logout') }}</a></li>
             </ul>
         </div>
     </div>
