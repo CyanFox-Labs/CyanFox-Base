@@ -178,7 +178,7 @@ class Profile extends Component
                 ->title(__('messages.invalid_password'))
                 ->danger()
                 ->send();
-            return;
+            return false;
         }
 
         try {
@@ -191,7 +191,7 @@ class Profile extends Component
                 ->title(__('messages.fill_all_fields_correctly'))
                 ->danger()
                 ->send();
-            return;
+            return false;
         }
 
         if ($this->new_password !== $this->confirm_password) {

@@ -19,7 +19,6 @@
         "openspout/openspout": "^4.18",
         "power-components/livewire-powergrid": "^5.1",
         "pragmarx/google2fa": "^8.0",
-        "robsontenorio/mary": "^0.38.4",
         "simplesoftwareio/simple-qrcode": "*",
         "spatie/laravel-permission": "^5.11"
     },

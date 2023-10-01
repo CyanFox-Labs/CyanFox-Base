@@ -112,7 +112,7 @@
                         @endforeach
                     </div>
                     <div class="divider"></div>
-                    <button class="btn btn-error btn-outline w-1/3" onclick="logout_sessions.showModal()">
+                    <button class="btn btn-error btn-outline w-1/3" onclick="logout_all_sessions.showModal()">
                         {{ __('pages/profile.logout_sessions') }}
                     </button>
                 </div>
@@ -170,7 +170,7 @@
             <div class="col-span-2 space-y-4">
                 <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
                     <div class="card-body">
-                        <form wire:submit="updatePassword">
+                        <form onclick="event.preventDefault()">
                             <div class="w-full">
                                 <div class="form-control w-full">
                                     <label class="label" for="current_password">
@@ -200,7 +200,7 @@
                                     </div>
                                 </div>
                                 <div class="col-span-1 mt-6 space-x-2 space-y-2">
-                                    <button type="submit"
+                                    <button type="submit" wire:click="updatePassword"
                                             class="btn btn-primary">
                                         {{ __('messages.update') }}
                                     </button>
