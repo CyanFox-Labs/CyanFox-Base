@@ -3,5 +3,5 @@
     @if(!$disableIcon || $disableIcon == 'false')
         <i class="{{ $icon }}"></i>
     @endif
-    <span>{{ $slot }}</span>
+    <p>{{ $slot }}</p>
 </div>

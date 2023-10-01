@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02d47284d6377b3273d424880ce75e8a",
+    "content-hash": "3b8895dfe0be1c704967982f4f83d4db",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1132,16 +1132,16 @@
         },
         {
             "name": "filament/actions",
-            "version": "v3.0.62",
+            "version": "v3.0.63",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/actions.git",
-                "reference": "bdb469056fe3b8265ce5b7c7f115338783cedb5c"
+                "reference": "7533ade9edf0ca07d9fccc3c49f41318c8aadb1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/actions/zipball/bdb469056fe3b8265ce5b7c7f115338783cedb5c",
-                "reference": "bdb469056fe3b8265ce5b7c7f115338783cedb5c",
+                "url": "https://api.github.com/repos/filamentphp/actions/zipball/7533ade9edf0ca07d9fccc3c49f41318c8aadb1c",
+                "reference": "7533ade9edf0ca07d9fccc3c49f41318c8aadb1c",
                 "shasum": ""
             },
             "require": {
@@ -1178,20 +1178,20 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2023-09-25T19:23:47+00:00"
+            "time": "2023-09-30T14:07:50+00:00"
         },
         {
             "name": "filament/forms",
-            "version": "v3.0.62",
+            "version": "v3.0.63",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/forms.git",
-                "reference": "78bec0ef90965d0da8c61a18b2ca2065aca7070c"
+                "reference": "65166c53015f0bee0abac491aaed2311ca4d083a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/forms/zipball/78bec0ef90965d0da8c61a18b2ca2065aca7070c",
-                "reference": "78bec0ef90965d0da8c61a18b2ca2065aca7070c",
+                "url": "https://api.github.com/repos/filamentphp/forms/zipball/65166c53015f0bee0abac491aaed2311ca4d083a",
+                "reference": "65166c53015f0bee0abac491aaed2311ca4d083a",
                 "shasum": ""
             },
             "require": {
@@ -1234,11 +1234,11 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2023-09-25T19:23:44+00:00"
+            "time": "2023-09-30T14:07:48+00:00"
         },
         {
             "name": "filament/infolists",
-            "version": "v3.0.62",
+            "version": "v3.0.63",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/infolists.git",
@@ -1289,16 +1289,16 @@
         },
         {
             "name": "filament/notifications",
-            "version": "v3.0.62",
+            "version": "v3.0.63",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/notifications.git",
-                "reference": "f9eb47d71e53f3f31af995ce09facb895fe605d4"
+                "reference": "bcca58686b750084d9052bfc71b56ff2d0defa6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/notifications/zipball/f9eb47d71e53f3f31af995ce09facb895fe605d4",
-                "reference": "f9eb47d71e53f3f31af995ce09facb895fe605d4",
+                "url": "https://api.github.com/repos/filamentphp/notifications/zipball/bcca58686b750084d9052bfc71b56ff2d0defa6f",
+                "reference": "bcca58686b750084d9052bfc71b56ff2d0defa6f",
                 "shasum": ""
             },
             "require": {
@@ -1337,20 +1337,20 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2023-09-25T19:23:46+00:00"
+            "time": "2023-09-30T14:07:48+00:00"
         },
         {
             "name": "filament/support",
-            "version": "v3.0.62",
+            "version": "v3.0.63",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filamentphp/support.git",
-                "reference": "48f4aa87829678bfe50a6e18a81a6428b47b5948"
+                "reference": "d4f1fd574969a628c691c1603115769f438f4618"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filamentphp/support/zipball/48f4aa87829678bfe50a6e18a81a6428b47b5948",
-                "reference": "48f4aa87829678bfe50a6e18a81a6428b47b5948",
+                "url": "https://api.github.com/repos/filamentphp/support/zipball/d4f1fd574969a628c691c1603115769f438f4618",
+                "reference": "d4f1fd574969a628c691c1603115769f438f4618",
                 "shasum": ""
             },
             "require": {
@@ -1394,7 +1394,7 @@
                 "issues": "https://github.com/filamentphp/filament/issues",
                 "source": "https://github.com/filamentphp/filament"
             },
-            "time": "2023-09-25T19:24:07+00:00"
+            "time": "2023-09-30T14:08:13+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -5084,80 +5084,6 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
-        },
-        {
-            "name": "rappasoft/laravel-livewire-tables",
-            "version": "dev-v3-develop",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rappasoft/laravel-livewire-tables.git",
-                "reference": "9cdf451f3173659d57bc9a89055c69fca0866485"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rappasoft/laravel-livewire-tables/zipball/9cdf451f3173659d57bc9a89055c69fca0866485",
-                "reference": "9cdf451f3173659d57bc9a89055c69fca0866485",
-                "shasum": ""
-            },
-            "require": {
-                "blade-ui-kit/blade-heroicons": "^2.1",
-                "illuminate/contracts": "^10.0|^11.0",
-                "livewire/livewire": "^3.0|dev-main",
-                "php": "^8.1|^8.2"
-            },
-            "require-dev": {
-                "brianium/paratest": "^5.0|^6.0|^7.0|^8.0",
-                "ext-sqlite3": "*",
-                "laravel/pint": "^1.10",
-                "nunomaduro/collision": "^6.0|^7.0|^8.0",
-                "nunomaduro/larastan": "^2.6",
-                "orchestra/testbench": "^7.0|^8.0|^9.0",
-                "phpunit/phpunit": "^9.0|^10.0|^11.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Rappasoft\\LaravelLivewireTables\\LaravelLivewireTablesServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Rappasoft\\LaravelLivewireTables\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Anthony Rappa",
-                    "email": "rappa819@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A dynamic table component for Laravel Livewire",
-            "homepage": "https://github.com/rappasoft/laravel-livewire-tables",
-            "keywords": [
-                "datatables",
-                "laravel",
-                "livewire",
-                "rappasoft",
-                "tables"
-            ],
-            "support": {
-                "issues": "https://github.com/rappasoft/laravel-livewire-tables/issues",
-                "source": "https://github.com/rappasoft/laravel-livewire-tables/tree/v3-develop"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/rappasoft",
-                    "type": "github"
-                }
-            ],
-            "time": "2023-09-28T20:53:22+00:00"
         },
         {
             "name": "robsontenorio/mary",
@@ -10823,9 +10749,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "rappasoft/laravel-livewire-tables": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

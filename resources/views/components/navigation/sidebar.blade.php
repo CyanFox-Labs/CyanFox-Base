@@ -1,23 +1,24 @@
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
-<!-- Navbar -->
-<nav class="bg-navigation flex items-center justify-between p-3">
-    <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
-        <span role="button" tabindex="0" class="mr-2 text-white">{{ auth()->user()->username }}</span>
-        <img tabindex="0" role="button"
-             src="https://source.boringavatars.com/beam/120/{{ auth()->user()->username }}" alt="Profile"
-             class="w-9 h-9 mr-6">
-        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a href="{{ route('profile') }}"><i class='bx bxs-user-circle'></i> {{ __('navigation.profile') }}</a>
-            </li>
-            @hasrole('Super Admin')
-            <li><a href="{{ route('admin') }}"><i class='bx bxs-cog'></i> {{ __('navigation.admin') }}</a></li>
-            <div class="divider"></div>
-            @endhasrole
-            <li><a href="{{ route('logout') }}"><i class='bx bxs-log-out'></i> {{ __('navigation.logout') }}</a></li>
-        </ul>
-    </div>
-</nav>
 <div x-data="{ sidebarOpen: false, pinned: $persist(false) }" class="relative">
+    <!-- Navbar -->
+    <nav class="bg-navigation flex items-center justify-between p-3">
+        <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
+            <span role="button" tabindex="0" class="mr-2 text-white">{{ auth()->user()->username }}</span>
+            <img tabindex="0" role="button"
+                 src="https://source.boringavatars.com/beam/120/{{ auth()->user()->username }}" alt="Profile"
+                 class="w-9 h-9 mr-6">
+            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                <li><a href="{{ route('profile') }}"><i class='bx bxs-user-circle'></i> {{ __('navigation.profile') }}</a>
+                </li>
+                @hasrole('Super Admin')
+                <li><a href="{{ route('admin') }}"><i class='bx bxs-cog'></i> {{ __('navigation.admin') }}</a></li>
+                <div class="divider"></div>
+                @endhasrole
+                <li><a href="{{ route('logout') }}"><i class='bx bxs-log-out'></i> {{ __('navigation.logout') }}</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- Sidebar -->
     <div x-bind:class="{'expanded': sidebarOpen || pinned, 'pinned': pinned}" @mouseover="sidebarOpen = true"
          @mouseleave="sidebarOpen = false"
@@ -69,6 +70,6 @@
     </div>
     <!-- Content -->
     <div :class="{'ml-14': !pinned, 'ml-52': pinned}"
-         class="content transition-all duration-200 ease-in-out transform pt-7 px-2 md:px-5 pb-4">
+         class="content transition-all duration-200 ease-in-out pt-7 px-2 md:px-5 pb-4">
 
 

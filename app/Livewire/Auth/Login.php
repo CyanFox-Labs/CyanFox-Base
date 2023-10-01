@@ -9,6 +9,7 @@ use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class Login extends Component
@@ -101,7 +102,7 @@ class Login extends Component
         }
     }
 
-    #[Layout('components.layouts.guest')]
+    #[Layout('components.layouts.guest'), Title('Login')]
     public function render()
     {
         return view('livewire.auth.login');
