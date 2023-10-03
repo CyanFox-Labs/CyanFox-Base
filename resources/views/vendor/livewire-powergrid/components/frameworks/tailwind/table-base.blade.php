@@ -4,7 +4,7 @@
 >
     <div
         id="power-grid-table-container"
-        class="-my-2 overflow-x-auto"
+        class="-mt-2 overflow-hidden"
     >
         <div
             id="power-grid-table-base"
@@ -34,11 +34,7 @@
             @endif
 
             <div
-                @class([
-                    'overflow-auto' => $readyToLoad,
-                    'overflow-hidden' => !$readyToLoad,
-                    $theme->table->divClass,
-                ])
+                class="overflow-x-auto"
                 style="{{ $theme->table->divStyle }}"
             >
                 @include($table)

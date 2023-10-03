@@ -18,7 +18,14 @@ function changeBackground() {
 
             setTextColorFromImageBrightness();
 
-            document.body.style = `background-image: url(${imagePath}); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed; background-color: #000000;`;
+            document.body.style = `
+                background-image: url(${imagePath});
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-attachment: fixed;
+                background-color: #000000;
+            `;
         }).catch((error) => {
         console.error('Error:', error);
     });

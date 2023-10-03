@@ -1,4 +1,4 @@
-<section class="h-screen flex flex-col justify-between">
+<div class="flex flex-col justify-between min-h-screen">
     <link rel="stylesheet" href="{{ asset("css/sites/login.css") }}">
     <script src="{{ asset("js/sites/login.js") }}"></script>
 
@@ -8,8 +8,7 @@
             <span
                 class="text-4xl font-bold brand-text lg:block hidden" wire:ignore>{{ env('APP_NAME') }}</span>
         </p>
-        <div
-            class="card glass sm:w-96 w-auto">
+        <div class="card glass sm:w-96 w-auto">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 
                 @if($user)
@@ -26,18 +25,19 @@
                 @elseif($username !== null)
                     @if(!session('error'))
                         <x-custom.alert icon="bx bxs-error"
-                                 class="alert-error">{{ __('pages/login.not_found') }}</x-custom.alert>
+                                        class="alert-error">{{ __('pages/login.not_found') }}</x-custom.alert>
                     @endif
                 @endif
 
                 @if(session('error') !== null)
-                    <x-custom.alert type="error" icon="bx bxs-error" class="alert-error">{{ session('error') }}</x-custom.alert>
+                    <x-custom.alert type="error" icon="bx bxs-error"
+                                    class="alert-error">{{ session('error') }}</x-custom.alert>
                 @endif
 
                 @if ($rateLimitTime > 1)
                     <div wire:poll.1s="setRateLimit">
                         <x-custom.alert type="error" icon="bx bxs-error"
-                                 class="alert-error">{{ __('pages/login.rate_limit', ['seconds' => $rateLimitTime]) }}
+                                        class="alert-error">{{ __('pages/login.rate_limit', ['seconds' => $rateLimitTime]) }}
                         </x-custom.alert>
                     </div>
                 @endif
@@ -46,7 +46,8 @@
                     @if($two_factor_enabled)
                         <div>
                             <label for="two_factor_code"
-                                   class="block mb-2 text-sm font-medium" id="two_factor_code_label" wire:ignore>{{ __('pages/login.two_factor') }}</label>
+                                   class="block mb-2 text-sm font-medium" id="two_factor_code_label"
+                                   wire:ignore>{{ __('pages/login.two_factor') }}</label>
                             <input type="text" name="two_factor_code" id="two_factor_code"
                                    class="input input-bordered w-full"
                                    required="" wire:model="two_factor_code">
@@ -116,4 +117,4 @@
         <span class="text-sm" wire:ignore><a id="photo">{{ __('pages/login.photo') }}</a>, <a id="author"></a>, <a
                 href="https://unaplash.com/utm_source=CyanFox&utm_medium=referral">Unsplash</a></span>
     </div>
-</section>
+</div>

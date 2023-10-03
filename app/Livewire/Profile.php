@@ -232,6 +232,8 @@ class Profile extends Component
     {
         return view('livewire.profile', [
             'sessionData' => $this->getSessionData(),
+        ])->layout('components.layouts.app', [
+            'title' => __('titles.profile')
         ]);
     }
 }

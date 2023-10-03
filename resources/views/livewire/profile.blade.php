@@ -33,8 +33,8 @@
                         </label>
                         <select class="select select-bordered" id="language"
                                 wire:blur="changeLanguage($event.target.value)">
-                            <option value="en" @if(auth()->user()->language == 'de') selected @endif>{{ __('messages.languageType.de') }}</option>
-                            <option value="de" @if(auth()->user()->language == 'en') selected @endif>{{ __('messages.languageType.en') }}</option>
+                            <option value="de" @if(auth()->user()->language == 'de') selected @endif>{{ __('messages.languageType.de') }}</option>
+                            <option value="en" @if(auth()->user()->language == 'en') selected @endif>{{ __('messages.languageType.en') }}</option>
                         </select>
                     </div>
                     <div class="form-control w-full">
