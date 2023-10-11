@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="flex justify-center modal-action">
-            <form method="dialog" class="space-x-2">
+            <form method="dialog">
                 <button class="btn btn-neutral">{{ __('messages.cancel') }}</button>
                 <button class="btn btn-success" wire:click="disableTwoFactor">{{ __('pages/profile.modal.disable_2fa.disable') }}</button>
             </form>

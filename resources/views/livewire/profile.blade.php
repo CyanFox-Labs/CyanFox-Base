@@ -75,7 +75,7 @@
                                 @if ($session['isCurrentSession'])
                                     <button class="btn btn-ghost" onclick="logout.showModal()">{{ __('pages/profile.current_session') }}</button>
                                 @else
-                                    <dialog id="logout_session_{{ $session['id'] }}" class="modal">
+                                    <dialog id="logout_session_{{ $session['id'] }}" class="modal modal-bottom sm:modal-middle">
                                         <div class="modal-box">
 
                                             <div class="text-center">
@@ -112,7 +112,7 @@
                         @endforeach
                     </div>
                     <div class="divider"></div>
-                    <button class="btn btn-error btn-outline w-1/3" onclick="logout_all_sessions.showModal()">
+                    <button class="btn btn-error btn-outline" onclick="logout_all_sessions.showModal()">
                         {{ __('pages/profile.logout_sessions') }}
                     </button>
                 </div>
@@ -199,7 +199,7 @@
                                                class="input input-bordered w-full" wire:model="confirm_password"/>
                                     </div>
                                 </div>
-                                <div class="col-span-1 mt-6 space-x-2 space-y-2">
+                                <div class="col-span-1 mt-6 space-y-2">
                                     <button type="submit" wire:click="updatePassword"
                                             class="btn btn-primary">
                                         {{ __('messages.update') }}

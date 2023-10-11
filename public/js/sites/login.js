@@ -1,24 +1,35 @@
 let imagePath = "";
 let brightnessThreshold = 150;
+let photo = "";
+let author = "";
+let authorLink = "";
+let credit = '?utm_source=CyanFox&utm_medium=referral'
 
-function changeBackground() {
-    fetch("/api/v1/unsplash", {
-        cache: "no-store"
+async function getImage() {
+    await fetch("/api/v1/unsplash", {
+        cache: "no-store",
     })
         .then((response) => response.json())
         .then((response) => {
-            imagePath = response.urls.raw;
-            let photo = response.links.html;
-            let author = response.user.name;
-            let authorLink = response.user.links.html;
-            let credit = '?utm_source=CyanFox&utm_medium=referral'
-            document.getElementById("photo").href = photo + credit;
-            document.getElementById("author").href = authorLink + credit;
-            document.getElementById("author").innerHTML = author;
+            imagePath = response.urls.full;
+            photo = response.links.html;
+            author = response.user.name;
+            authorLink = response.user.links.html;
 
-            setTextColorFromImageBrightness();
 
-            document.body.style = `
+        }).catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+function setImageAsBackground() {
+
+    setTextColorFromImageBrightness();
+    document.getElementById("photo").href = photo + credit;
+    document.getElementById("author").href = authorLink + credit;
+    document.getElementById("author").innerHTML = author;
+
+    document.body.style = `
                 background-image: url(${imagePath});
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -26,40 +37,23 @@ function changeBackground() {
                 background-attachment: fixed;
                 background-color: #000000;
             `;
-        }).catch((error) => {
-        console.error('Error:', error);
-    });
 
 }
 
 function setTextColorFromImageBrightness() {
-    let spans = document.getElementsByTagName("span");
-
     isImageBright(imagePath, brightnessThreshold, function (isBright) {
         if (isBright) {
-            if (document.getElementById("username") === null) {
-                document.getElementById("username").classList.add("text-black");
-            }
-            if (document.getElementById("two_factor_code_label") !== null) {
-                document.getElementById("two_factor_code_label").classList.add("text-black");
-            }
+            document.getElementById('logo_text').classList.remove('text-white');
+            document.getElementById('logo_text').classList.add('text-black');
 
-            for (let i = 0; i < spans.length; i++) {
-                spans[i].classList.remove("text-white");
-                spans[i].classList.add("text-black");
-            }
+            document.getElementById('credits').classList.remove('text-white');
+            document.getElementById('credits').classList.add('text-black');
         } else {
-            if (document.getElementById("username") === null) {
-                document.getElementById("username").classList.add("text-white");
-            }
-            if (document.getElementById("two_factor_code_label") !== null) {
-                document.getElementById("two_factor_code_label").classList.add("text-white");
-            }
+            document.getElementById('logo_text').classList.remove('text-black');
+            document.getElementById('logo_text').classList.add('text-white');
 
-            for (let i = 0; i < spans.length; i++) {
-                spans[i].classList.remove("text-black");
-                spans[i].classList.add("text-white");
-            }
+            document.getElementById('credits').classList.remove('text-black');
+            document.getElementById('credits').classList.add('text-white');
         }
     });
 }
@@ -98,9 +92,10 @@ function isImageBright(imageUrl, brightnessThreshold, callback) {
 
     img.src = imageUrl;
 }
+getImage().then(r =>
+    setImageAsBackground());
 
 document.addEventListener("DOMContentLoaded", function () {
-    changeBackground();
     window.addEventListener('userExists', event => {
         setTextColorFromImageBrightness();
     });

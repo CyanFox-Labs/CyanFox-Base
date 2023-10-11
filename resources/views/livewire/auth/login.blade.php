@@ -6,9 +6,9 @@
         <p class="flex items-center mb-6 text-2xl font-semibold">
             <img class="w-32 h-32 mr-2" src="{{ asset("img/Logo.png") }}" alt="logo">
             <span
-                class="text-4xl font-bold brand-text lg:block hidden" wire:ignore>{{ env('APP_NAME') }}</span>
+                class="text-4xl font-bold brand-text lg:block hidden" id="logo_text" wire:ignore>{{ env('APP_NAME') }}</span>
         </p>
-        <div class="card glass sm:w-96 w-auto">
+        <div class="bg-neutral rounded-box sm:w-96 w-auto">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 
                 @if($user)
@@ -18,7 +18,7 @@
                                 src="https://source.boringavatars.com/beam/120/{{ $user->username }}"
                                 alt="Avatar"
                                 class="rounded-full w-8 h-8 m-1">
-                            <p id="username">{{ $user->username }}</p>
+                            <p>{{ $user->username }}</p>
                         </div>
 
                     </div>
@@ -46,7 +46,7 @@
                     @if($two_factor_enabled)
                         <div>
                             <label for="two_factor_code"
-                                   class="block mb-2 text-sm font-medium" id="two_factor_code_label"
+                                   class="block mb-2 text-sm font-medium"
                                    wire:ignore>{{ __('pages/login.two_factor') }}</label>
                             <input type="text" name="two_factor_code" id="two_factor_code"
                                    class="input input-bordered w-full"
@@ -114,7 +114,7 @@
         </div>
     </div>
     <div class="pl-6 pb-4" wire:ignore>
-        <span class="text-sm" wire:ignore><a id="photo">{{ __('pages/login.photo') }}</a>, <a id="author"></a>, <a
+        <span class="text-sm" id="credits" wire:ignore><a id="photo">{{ __('pages/login.photo') }}</a>, <a id="author"></a>, <a
                 href="https://unaplash.com/utm_source=CyanFox&utm_medium=referral">Unsplash</a></span>
     </div>
 </div>

@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="flex justify-center modal-action">
-            <form method="dialog" class="space-x-2">
+            <form method="dialog">
                 <button class="btn btn-neutral">{{ __('messages.cancel') }}</button>
                 <button class="btn btn-success"
                         wire:click="showRecoveryKeys">{{ __('pages/profile.modal.recovery_codes_password.show') }}</button>

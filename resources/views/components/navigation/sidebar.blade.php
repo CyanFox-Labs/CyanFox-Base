@@ -63,7 +63,7 @@
             </div>
         </div>
         <a @click="pinned = !pinned" id="pinBtn" role="button"
-           class="flex items-center justify-center w-full h-16 mt-auto rounded hover:bg-gray-700 hover:text-gray-300">
+           class="flex items-center justify-center w-full h-16 mt-auto rounded hover:bg-gray-700 hover:text-gray-300 sm:inline-flex hidden">
             <i :class="[pinned ? 'bx bxs-pin bx-rotate-90' : 'bx bxs-pin']"></i>
             <span class="ml-2 text-sm font-medium text-hidden">Pin</span>
         </a>

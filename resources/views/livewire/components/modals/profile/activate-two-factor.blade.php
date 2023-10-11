@@ -27,7 +27,7 @@
 
 
     <div class="modal-action">
-        <form method="dialog" class="space-x-2">
+        <form method="dialog">
             <button class="btn btn-neutral">{{ __('messages.cancel') }}</button>
             <button class="btn btn-success"
                     wire:click="activateTwoFactor">{{ __('pages/profile.modal.activate_2fa.activate') }}</button>
