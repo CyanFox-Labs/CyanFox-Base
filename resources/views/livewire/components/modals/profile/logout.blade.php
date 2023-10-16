@@ -1,4 +1,4 @@
-<x-custom.modal name="logout">
+<x-modal id="logout" class="modal-bottom sm:modal-middle">
     <div class="text-center">
         <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modal.logout.title') }}</h2>
         <p class="mb-3">{{ __('pages/profile.modal.logout.description') }}</p>
@@ -10,5 +10,5 @@
                class="btn btn-success">{{ __('pages/profile.modal.logout.logout') }}</a>
         </form>
     </div>
-</x-custom.modal>
+</x-modal>
 

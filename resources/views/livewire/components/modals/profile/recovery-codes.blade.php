@@ -1,6 +1,6 @@
 <div>
     @if(session()->has('recovery_codes'))
-        <x-custom.modal name="recovery_codes">
+        <x-modal id="recovery_codes" class="modal-bottom sm:modal-middle">
 
             <div class="text-center">
                 <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modal.recovery_codes.title') }}</h2>
@@ -17,12 +17,12 @@
                             wire:click="download">{{ __('pages/profile.modal.recovery_codes.save') }}</button>
                 </form>
             </div>
-        </x-custom.modal>
+        </x-modal>
         <script>
             document.getElementById('recovery_codes').showModal();
         </script>
     @endif
-    <x-custom.modal name="show_two_factor_recovery_codes">
+    <x-modal id="show_two_factor_recovery_codes" class="modal-bottom sm:modal-middle">
 
         <div class="text-center">
             <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modal.recovery_codes_password.title') }}</h2>
@@ -46,6 +46,6 @@
                         wire:click="showRecoveryKeys">{{ __('pages/profile.modal.recovery_codes_password.show') }}</button>
             </form>
         </div>
-    </x-custom.modal>
+    </x-modal>
 
 </div>

@@ -1,4 +1,4 @@
-<x-custom.modal name="logout_all_sessions">
+<x-modal id="logout_all_sessions" class="modal-bottom sm:modal-middle">
 
         <div class="text-center">
             <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modal.logout_all.title') }}</h2>
@@ -21,4 +21,4 @@
                 <button class="btn btn-success" wire:click="logoutAllSessions">{{ __('pages/profile.modal.logout_all.logout') }}</button>
             </form>
         </div>
-</x-custom.modal>
+</x-modal>

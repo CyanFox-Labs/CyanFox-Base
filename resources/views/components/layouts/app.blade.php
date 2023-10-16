@@ -12,6 +12,7 @@
     @filamentStyles
     @vite(['resources/css/app.css'])
     @livewireStyles
+    @livewireScripts
 
     <style>
         [x-cloak] {
@@ -28,7 +29,6 @@
 
 
 <!-- Scripts -->
-@livewireScripts
 @filamentScripts
 @vite('resources/js/app.js')
 </body>

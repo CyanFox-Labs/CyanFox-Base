@@ -1,4 +1,4 @@
-<x-custom.modal name="disable_two_factor">
+<x-modal id="disable_two_factor" class="modal-bottom sm:modal-middle">
 
         <div class="text-center">
             <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modal.disable_2fa.title') }}</h2>
@@ -21,4 +21,4 @@
                 <button class="btn btn-success" wire:click="disableTwoFactor">{{ __('pages/profile.modal.disable_2fa.disable') }}</button>
             </form>
         </div>
-</x-custom.modal>
+</x-modal>

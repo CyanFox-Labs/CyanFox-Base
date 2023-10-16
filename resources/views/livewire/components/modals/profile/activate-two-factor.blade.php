@@ -1,4 +1,4 @@
-<x-custom.modal name="activate_two_factor">
+<x-modal id="activate_two_factor" class="modal-bottom sm:modal-middle">
 
     <div class="flex justify-center">
 
@@ -33,4 +33,4 @@
                     wire:click="activateTwoFactor">{{ __('pages/profile.modal.activate_2fa.activate') }}</button>
         </form>
     </div>
-</x-custom.modal>
+</x-modal>
