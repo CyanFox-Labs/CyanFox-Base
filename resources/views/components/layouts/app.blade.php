@@ -22,6 +22,7 @@
 </head>
 <body class="antialiased">
 @livewire('notifications')
+@livewire('wire-elements-modal')
 
 <x-navigation.sidebar></x-navigation.sidebar>
 

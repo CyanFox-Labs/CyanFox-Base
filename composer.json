@@ -21,7 +21,8 @@
         "pragmarx/google2fa": "^8.0",
         "robsontenorio/mary": "^0.40.0",
         "simplesoftwareio/simple-qrcode": "*",
-        "spatie/laravel-permission": "^5.11"
+        "spatie/laravel-permission": "^5.11",
+        "wire-elements/modal": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",
