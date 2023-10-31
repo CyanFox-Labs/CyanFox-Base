@@ -34,15 +34,19 @@
         </div>
 
         <div class="w-full px-2 mt-4">
-            <div class="flex flex-col items-center w-full mt-3">
+            <div class="flex flex-col items-center w-full mt-3 mb-3">
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-gray-700 hover:text-gray-300 {{ request()->routeIs('home') ? 'text-gray-300 bg-gray-700' : '' }}"
                    href="{{ route('home') }}">
                     <i class="bx bxs-home"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation.sidebar.home') }}</span>
                 </a>
             </div>
+
+            <div class="relative flex items-center">
+                <div class="flex-grow border-t-2 rounded-2xl border-gray-500"></div>
+            </div>
+
             <div class="flex flex-col items-center w-full mt-2">
-                <div class="divider"></div>
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-gray-700 hover:text-gray-300 {{ request()->routeIs('profile') ? 'text-gray-300 bg-gray-700' : '' }}"
                    href="{{ route('profile') }}">
                     <i class="bx bxs-user"></i>

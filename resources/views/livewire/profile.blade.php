@@ -19,6 +19,8 @@
                         <div>
                             <p class="font-bold">{{ auth()->user()->username }}</p>
                             <p>{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>
+                            <div class="divider"></div>
+                            <p>{{ auth()->user()->getRoleNames()->implode(', ') }}</p>
                         </div>
                     </div>
                 </div>
@@ -73,14 +75,14 @@
                             </div>
                             <div class="col-span-1 text-end">
                                 @if ($session['isCurrentSession'])
-                                    <button class="btn btn-ghost" onclick="logout.showModal()">{{ __('pages/profile.current_session') }}</button>
+                                    <button class="btn btn-ghost" wire:click="$dispatch('openModal', { component: 'components.modals.profile.logout' })">{{ __('pages/profile.current_session') }}</button>
                                 @else
                                     <dialog id="logout_session_{{ $session['id'] }}" class="modal modal-bottom sm:modal-middle">
                                         <div class="modal-box">
 
                                             <div class="text-center">
-                                                <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modal.logout_specific.title') }}</h2>
-                                                <p class="mb-3">{{ __('pages/profile.modal.logout_specific.description') }}</p>
+                                                <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modals.logout_specific.title') }}</h2>
+                                                <p class="mb-3">{{ __('pages/profile.modals.logout_specific.description') }}</p>
                                             </div>
                                             <div class="flex justify-center">
                                                 <div class="form-control w-full max-w-xs">
@@ -96,7 +98,7 @@
                                                 <form method="dialog">
                                                     <button class="btn btn-neutral">{{ __('messages.cancel') }}</button>
                                                     <button class="btn btn-success"
-                                                            wire:click="logoutSession('{{ $session['id'] }}')">{{ __('pages/profile.modal.logout.logout') }}
+                                                            wire:click="logoutSession('{{ $session['id'] }}')">{{ __('pages/profile.modals.logout.logout') }}
                                                     </button>
                                                 </form>
                                             </div>
@@ -112,7 +114,7 @@
                         @endforeach
                     </div>
                     <div class="divider"></div>
-                    <button class="btn btn-error btn-outline" onclick="logout_all_sessions.showModal()">
+                    <button class="btn btn-error btn-outline" wire:click="$dispatch('openModal', { component: 'components.modals.profile.logout-all-sessions' })">
                         {{ __('pages/profile.logout_sessions') }}
                     </button>
                 </div>
@@ -207,17 +209,17 @@
 
                                     @if(auth()->user()->two_factor_enabled)
                                         <button type="button"
-                                                class="btn btn-error" onclick="disable_two_factor.showModal()">
+                                                class="btn btn-error" wire:click="$dispatch('openModal', { component: 'components.modals.profile.disable-two-factor' })">
                                             {{ __('pages/profile.disable_2fa') }}
                                         </button>
                                         <button type="button"
                                                 class="btn btn-accent"
-                                                onclick="show_two_factor_recovery_codes.showModal()">
+                                                wire:click="$dispatch('openModal', { component: 'components.modals.profile.recovery-codes' })">
                                             {{ __('pages/profile.show_recovery_codes') }}
                                         </button>
                                     @else
                                         <button type="button"
-                                                class="btn btn-accent" onclick="activate_two_factor.showModal()">
+                                                class="btn btn-accent" wire:click="$dispatch('openModal', { component: 'components.modals.profile.activate-two-factor' })">
                                             {{ __('pages/profile.enable_2fa') }}
                                         </button>
                                     @endif
@@ -229,12 +231,5 @@
             </div>
         </div>
     </div>
-
-
-    @livewire('components.modals.profile.activate-two-factor')
-    @livewire('components.modals.profile.disable-two-factor')
-    @livewire('components.modals.profile.logout')
-    @livewire('components.modals.profile.logout-all-sessions')
-    @livewire('components.modals.profile.recovery-codes')
 </div>
 

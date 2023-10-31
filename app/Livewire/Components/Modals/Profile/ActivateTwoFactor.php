@@ -6,10 +6,11 @@ use App\Http\Controllers\Auth\AuthController;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 use PragmaRX\Google2FA\Google2FA;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-class ActivateTwoFactor extends Component
+class ActivateTwoFactor extends ModalComponent
 {
     public $two_factor_key = '';
 
@@ -57,11 +58,17 @@ class ActivateTwoFactor extends Component
         return base64_encode(QrCode::format('svg')->size(200)->generate($qr_code));
     }
 
+    public function getTwoFactorSecret()
+    {
+        return decrypt(Auth::user()->two_factor_secret);
+    }
+
 
     public function render()
     {
         return view('livewire.components.modals.profile.activate-two-factor', [
-            'twoFactorImage' => $this->getTwoFactorImage()
+            'twoFactorImage' => $this->getTwoFactorImage(),
+            'twoFactorSecret' => $this->getTwoFactorSecret()
         ]);
     }
 }

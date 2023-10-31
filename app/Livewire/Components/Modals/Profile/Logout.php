@@ -2,11 +2,10 @@
 
 namespace App\Livewire\Components\Modals\Profile;
 
-use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 
-class Logout extends Component
+class Logout extends ModalComponent
 {
-
     public function render()
     {
         return view('livewire.components.modals.profile.logout');

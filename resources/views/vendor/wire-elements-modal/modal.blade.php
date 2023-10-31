@@ -25,6 +25,7 @@
                 id="modal-container"
                 x-trap.noscroll.inert="show && showActiveComponent"
                 aria-modal="true"
+                style="position: fixed; z-index: 9999;"
             >
                 @forelse($components as $id => $component)
                     <div x-show.immediate="activeComponent == '{{ $id }}'" x-ref="{{ $id }}" wire:key="{{ $id }}">

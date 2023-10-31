@@ -46,7 +46,7 @@ return [
         'logged_out' => 'Logged out from all sessions successfully!',
     ],
 
-    'modal' => [
+    'modals' => [
         'logout_all' => [
             'title' => 'Logout from all devices',
             'description' => 'Please enter your password to confirm that you want to log out from all devices.',

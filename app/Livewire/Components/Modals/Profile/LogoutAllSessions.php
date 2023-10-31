@@ -5,8 +5,9 @@ namespace App\Livewire\Components\Modals\Profile;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 
-class LogoutAllSessions extends Component
+class LogoutAllSessions extends ModalComponent
 {
 
     public $password;

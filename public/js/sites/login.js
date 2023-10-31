@@ -11,7 +11,7 @@ async function getImage() {
     })
         .then((response) => response.json())
         .then((response) => {
-            imagePath = response.urls.full;
+            imagePath = response.urls.regular;
             photo = response.links.html;
             author = response.user.name;
             authorLink = response.user.links.html;
@@ -19,79 +19,37 @@ async function getImage() {
 
         }).catch((error) => {
             console.error('Error:', error);
+            document.getElementById('unsplashCredits').classList.add('hidden');
+            document.body.style = `
+            background: rgb(2,0,36);
+            background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
+            `;
+            return error;
         });
 }
 
 function setImageAsBackground() {
 
-    setTextColorFromImageBrightness();
+    if (imagePath === "" || imagePath === undefined || imagePath === null) {
+        return;
+    }
+
     document.getElementById("photo").href = photo + credit;
     document.getElementById("author").href = authorLink + credit;
     document.getElementById("author").innerHTML = author;
 
-    document.body.style = `
-                background-image: url(${imagePath});
+    document.getElementById('bg_image').style = `
+                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${imagePath});
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: center;
                 background-attachment: fixed;
                 background-color: #000000;
+                filter: blur(5px);
             `;
 
 }
 
-function setTextColorFromImageBrightness() {
-    isImageBright(imagePath, brightnessThreshold, function (isBright) {
-        if (isBright) {
-            document.getElementById('logo_text').classList.remove('text-white');
-            document.getElementById('logo_text').classList.add('text-black');
-
-            document.getElementById('credits').classList.remove('text-white');
-            document.getElementById('credits').classList.add('text-black');
-        } else {
-            document.getElementById('logo_text').classList.remove('text-black');
-            document.getElementById('logo_text').classList.add('text-white');
-
-            document.getElementById('credits').classList.remove('text-black');
-            document.getElementById('credits').classList.add('text-white');
-        }
-    });
-}
-
-function isImageBright(imageUrl, brightnessThreshold, callback) {
-    var img = new Image();
-    img.crossOrigin = 'Anonymous';
-
-    img.onload = function () {
-        var canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-
-        var ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-
-        var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        var data = imageData.data;
-        var brightness = 0;
-
-        for (var i = 0; i < data.length; i += 4) {
-            var r = data[i];
-            var g = data[i + 1];
-            var b = data[i + 2];
-
-            // https://www.w3.org/TR/AERT/#color-contrast
-            brightness += (0.299 * r + 0.587 * g + 0.114 * b);
-        }
-
-        brightness = brightness / (img.width * img.height);
-
-        var isBright = brightness > brightnessThreshold;
-
-        callback(isBright);
-    };
-
-    img.src = imageUrl;
-}
 getImage().then(r =>
     setImageAsBackground());
 

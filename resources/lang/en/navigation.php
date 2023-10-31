@@ -12,5 +12,10 @@ return [
     'sidebar' => [
         'home' => 'Home',
         'pin' => 'Pin',
+        'admin' => [
+            'dashboard' => 'Dashboard',
+            'users' => 'Users',
+            'groups' => 'Groups',
+        ]
     ]
 ];

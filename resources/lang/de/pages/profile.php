@@ -46,7 +46,7 @@ return [
         'logged_out' => 'Alle Sitzungen wurden erfolgreich beendet!',
     ],
 
-    'modal' => [
+    'modals' => [
         'logout_all' => [
             'title' => 'Von allen Geräten abmelden',
             'description' => 'Bitte gebe dein Passwort ein, um dich von allen Geräten abzumelden.',

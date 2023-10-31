@@ -20,6 +20,7 @@
 </head>
 <body class="antialiased">
 @livewire('notifications')
+@livewire('wire-elements-modal')
 
 {{ $slot }}
 

@@ -1,4 +1,6 @@
-<div class="flex flex-col justify-between min-h-screen">
+<div class="flex flex-col justify-between min-h-screen relative">
+    <div wire:ignore id="bg_image" class="absolute inset-0 z-[-1]">
+    </div>
     <link rel="stylesheet" href="{{ asset("css/sites/login.css") }}">
     <script src="{{ asset("js/sites/login.js") }}"></script>
 
@@ -113,7 +115,7 @@
             </div>
         </div>
     </div>
-    <div class="pl-6 pb-4" wire:ignore>
+    <div class="pl-6 pb-4" id="unsplashCredits" wire:ignore>
         <span class="text-sm" id="credits" wire:ignore><a id="photo">{{ __('pages/login.photo') }}</a>, <a id="author"></a>, <a
                 href="https://unaplash.com/utm_source=CyanFox&utm_medium=referral">Unsplash</a></span>
     </div>

@@ -1,6 +1,6 @@
 <div>
     @if(session()->has('recovery_codes'))
-        <x-modal id="recovery_codes" class="modal-bottom sm:modal-middle">
+        <x-modal class="modal-bottom sm:modal-middle">
 
             <div class="text-center">
                 <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modal.recovery_codes.title') }}</h2>
@@ -12,21 +12,18 @@
             </div>
             <div class="flex justify-center modal-action">
                 <form method="dialog" class="space-x-2">
-                    <button class="btn btn-neutral">{{ __('messages.close') }}</button>
+                    <button class="btn btn-neutral" wire:click="$dispatch('closeModal')">{{ __('messages.close') }}</button>
                     <button class="btn btn-accent"
                             wire:click="download">{{ __('pages/profile.modal.recovery_codes.save') }}</button>
                 </form>
             </div>
         </x-modal>
-        <script>
-            document.getElementById('recovery_codes').showModal();
-        </script>
     @endif
-    <x-modal id="show_two_factor_recovery_codes" class="modal-bottom sm:modal-middle">
+    <x-modal class="modal-bottom sm:modal-middle">
 
         <div class="text-center">
-            <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modal.recovery_codes_password.title') }}</h2>
-            <p class="mb-3">{{ __('pages/profile.modal.recovery_codes_password.description') }}</p>
+            <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modals.recovery_codes_password.title') }}</h2>
+            <p class="mb-3">{{ __('pages/profile.modals.recovery_codes_password.description') }}</p>
 
             <div class="flex justify-center">
                 <div class="form-control w-full max-w-xs">
@@ -41,9 +38,9 @@
         </div>
         <div class="flex justify-center modal-action">
             <form method="dialog">
-                <button class="btn btn-neutral">{{ __('messages.cancel') }}</button>
+                <button class="btn btn-neutral" wire:click="$dispatch('closeModal')">{{ __('messages.cancel') }}</button>
                 <button class="btn btn-success"
-                        wire:click="showRecoveryKeys">{{ __('pages/profile.modal.recovery_codes_password.show') }}</button>
+                        wire:click="showRecoveryKeys">{{ __('pages/profile.modals.recovery_codes_password.show') }}</button>
             </form>
         </div>
     </x-modal>

@@ -2,7 +2,7 @@
 
 return [
     'not_found' => 'Benutzer nicht gefunden.',
-    'rate_limit' => 'Zu viele Anmeldeversuche. Bitte versuchen Sie es in :seconds Sekunden erneut.',
+    'rate_limit' => 'Zu viele Anmeldeversuche. Bitte versuche es in :seconds Sekunden erneut.',
     'two_factor' => '2FA Code / Wiederherstellungscode',
     'login' => 'Anmelden',
     'username' => 'Benutzername',

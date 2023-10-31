@@ -15,14 +15,14 @@
         wire:key="{{ md5('checkbox-all') }}"
     >
         <div class="{{ $theme->divClass }}">
-            <!--<label class="{{ $theme->labelClass }}">
+            <label class="{{ $theme->labelClass }}">
                 <input
                     class="{{ $theme->inputClass }}"
                     type="checkbox"
                     wire:click="selectCheckboxAll"
                     wire:model="checkboxAll"
                 >
-            </label>-->
+            </label>
         </div>
     </th>
 </div>
