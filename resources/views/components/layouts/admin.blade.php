@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ auth()->user()->theme }}"
+      @if(auth()->user()->theme == 'dark') class="dark" @endif>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     @filamentStyles
     @vite(['resources/css/app.css'])
     @livewireStyles
+    @livewireScripts
 
     <style>
         [x-cloak] {
@@ -22,11 +24,12 @@
 @livewire('notifications')
 @livewire('wire-elements-modal')
 
+<x-navigation.admin.sidebar></x-navigation.admin.sidebar>
+
 {{ $slot }}
 
 
 <!-- Scripts -->
-@livewireScripts
 @filamentScripts
 @vite('resources/js/app.js')
 

@@ -14,6 +14,7 @@ return [
     'fill_all_fields_correctly' => 'Please fill all fields correctly!',
     'password' => 'Password',
     'invalid_password' => 'Invalid password!',
+    'invalid_captcha' => 'Please confirm that you are not a robot!',
 
     'language' => 'Language',
     'language_changed' => 'Language changed successfully!',

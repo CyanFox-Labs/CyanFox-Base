@@ -4,9 +4,12 @@ namespace App\Console\Commands;
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Models\User;
+use Exception;
 use Illuminate\Console\Command;
+use Spatie\Permission\Models\Role;
 use function Laravel\Prompts\password;
 use function Laravel\Prompts\text;
+use function Laravel\Prompts\confirm;
 
 class CreateUser extends Command
 {
@@ -35,6 +38,7 @@ class CreateUser extends Command
         $username = text('What is the username?');
         $email = text('What is the email?');
         $password = password('What is the password?');
+        $super_admin = confirm('Is this user a super admin?');
 
         $user = new User();
         $user->first_name = $first_name;
@@ -46,6 +50,16 @@ class CreateUser extends Command
         if ($user->save()) {
             $authController = new AuthController();
             $authController->generateTwoFactorSecret($user);
+
+            try {
+                $role = Role::create(['name' => 'Super Admin']);
+            }catch (Exception $e) {
+                $role = Role::findByName('Super Admin');
+            }
+
+            if ($super_admin == 'y') {
+                $user->assignRole($role);
+            }
 
             $this->info('User created successfully.');
         } else {

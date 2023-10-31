@@ -2,13 +2,14 @@
     <div wire:ignore id="bg_image" class="absolute inset-0 z-[-1]">
     </div>
     <link rel="stylesheet" href="{{ asset("css/sites/login.css") }}">
-    <script src="{{ asset("js/sites/login.js") }}"></script>
+    <script src="{{ asset("js/sites/background.js") }}"></script>
 
     <div class="flex flex-col items-center justify-center px-6 mx-auto py-6">
         <p class="flex items-center mb-6 text-2xl font-semibold">
             <img class="w-32 h-32 mr-2" src="{{ asset("img/Logo.png") }}" alt="logo">
             <span
-                class="text-4xl font-bold brand-text lg:block hidden" id="logo_text" wire:ignore>{{ env('APP_NAME') }}</span>
+                class="text-4xl font-bold brand-text lg:block hidden" id="logo_text"
+                wire:ignore>{{ env('APP_NAME') }}</span>
         </p>
         <div class="bg-neutral rounded-box sm:w-96 w-auto">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -102,7 +103,7 @@
                                 {{ __('pages/login.login') }}
                             </button>
 
-                            <details class="dropdown ">
+                            <details class="dropdown">
                                 <summary class="m-1 btn">{{ __('messages.language') }}</summary>
                                 <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-32">
                                     <li><a wire:click="setLanguage('de')">{{ __('messages.languageType.de') }}</a></li>
@@ -110,13 +111,29 @@
                                 </ul>
                             </details>
                         </div>
+                        <div
+                            class="grid @if(env('ENABLE_REGISTRATION') && env('ENABLE_FORGOT_PASSWORD')) md:grid-cols-2 @endif gap-4 mt-4">
+                            @if(env('ENABLE_FORGOT_PASSWORD'))
+                                <a href="{{ route('forgot-password', [""]) }}"
+                                   class="btn btn-ghost">
+                                    {{ __('pages/login.forgot_password') }}
+                                </a>
+                            @endif
+                            @if(env('ENABLE_REGISTRATION'))
+                                <a href="{{ route('register') }}"
+                                   class="btn btn-ghost">
+                                    {{ __('pages/login.register') }}
+                                </a>
+                            @endif
+                        </div>
                     @endif
                 </form>
             </div>
         </div>
     </div>
     <div class="pl-6 pb-4" id="unsplashCredits" wire:ignore>
-        <span class="text-sm" id="credits" wire:ignore><a id="photo">{{ __('pages/login.photo') }}</a>, <a id="author"></a>, <a
+        <span class="text-sm" id="credits" wire:ignore><a id="photo">{{ __('pages/login.photo') }}</a>, <a
+                id="author"></a>, <a
                 href="https://unaplash.com/utm_source=CyanFox&utm_medium=referral">Unsplash</a></span>
     </div>
 </div>

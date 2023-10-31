@@ -23,6 +23,9 @@ return new class extends Migration
             $table->boolean('two_factor_enabled')->default(false);
             $table->string('two_factor_secret')->nullable();
             $table->string('two_factor_recovery_codes', 2048)->nullable();
+            $table->boolean('change_password')->default(false);
+            $table->boolean('activate_two_factor')->default(false);
+            $table->string('password_reset_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

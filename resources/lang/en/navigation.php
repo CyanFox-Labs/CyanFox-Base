@@ -15,7 +15,7 @@ return [
         'admin' => [
             'dashboard' => 'Dashboard',
             'users' => 'Users',
-            'groups' => 'Groups',
+            'roles' => 'Roles',
         ]
     ]
 ];

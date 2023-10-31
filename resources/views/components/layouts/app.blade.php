@@ -32,5 +32,7 @@
 <!-- Scripts -->
 @filamentScripts
 @vite('resources/js/app.js')
+
+<script src="{{ asset('js/hcaptcha.js') }}"></script>
 </body>
 </html>

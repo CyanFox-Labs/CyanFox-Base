@@ -53,8 +53,3 @@ function setImageAsBackground() {
 getImage().then(r =>
     setImageAsBackground());
 
-document.addEventListener("DOMContentLoaded", function () {
-    window.addEventListener('userExists', event => {
-        setTextColorFromImageBrightness();
-    });
-});
