@@ -2,9 +2,10 @@
 
 namespace App\Livewire\Components\Modals\Profile;
 
+use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
+use Illuminate\Validation\ValidationException;
 use LivewireUI\Modal\ModalComponent;
 
 class LogoutAllSessions extends ModalComponent
@@ -21,12 +22,10 @@ class LogoutAllSessions extends ModalComponent
                 ->success()
                 ->send();
             $this->redirect(route('profile'));
-        } catch (\Exception $e) {
-            Notification::make()
-                ->title(__('messages.invalid_password'))
-                ->danger()
-                ->send();
-            return;
+        } catch (Exception $e) {
+            throw ValidationException::withMessages([
+                'password' => __('messages.invalid_password'),
+            ]);
         }
     }
 

@@ -13,73 +13,73 @@
         <div class="bg-neutral rounded-box sm:w-96 w-auto">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 
-                <form class="space-y-4 md:space-y-6" onsubmit="event.preventDefault()">
-                    @csrf
-                    @if($resetToken == null)
+
+                @if($resetToken == null)
+                    <x-form class="space-y-2 md:space-y-6" wire:submit="sendLink">
+                        @csrf
                         <div class="form-control w-full">
-                            <label class="label" for="email">
-                                <span class="label-text"
-                                      wire:ignore>{{ __('pages/account/forgot-password.email') }}</span>
-                            </label>
-                            <input type="email" id="email"
-                                   class="input input-bordered w-full" wire:model="email"/>
-                        </div>
-                    @else
-                        <div class="form-control w-full">
-                            <label class="label" for="password">
-                                <span class="label-text"
-                                      wire:ignore>{{ __('pages/account/forgot-password.password') }}</span>
-                            </label>
-                            <input type="password" id="password"
-                                   class="input input-bordered w-full" wire:model="password"/>
+                            <x-input label="{{ __('pages/account/forgot-password.email') }}"
+                                     type="email"
+                                     class="input input-bordered w-full" wire:model="email"/>
                         </div>
 
-                        <div class="form-control w-full">
-                            <label class="label" for="password_confirm">
-                                <span class="label-text"
-                                      wire:ignore>{{ __('pages/account/forgot-password.password_confirm') }}</span>
-                            </label>
-                            <input type="password" id="password_confirm"
-                                   class="input input-bordered w-full" wire:model="password_confirm"/>
-                        </div>
-                    @endif
-
-                    <div class="flex justify-between items-center">
-                        @if($resetToken == null)
-                            <button type="submit"
-                                    class="flex-1 mr-2 btn btn-primary"
-                                    wire:click="sendLink" wire:ignore>
+                        <div class="flex justify-between items-center">
+                            <x-button type="submit"
+                                      class="flex-1 mr-2 btn btn-primary" spinner="sendLink">
                                 {{ __('pages/account/forgot-password.send_link') }}
-                            </button>
-                        @else
-                            <button type="submit"
-                                    class="flex-1 mr-2 btn btn-primary"
-                                    wire:click="resetPassword" wire:ignore>
-                                {{ __('pages/account/forgot-password.reset') }}
-                            </button>
-                        @endif
+                            </x-button>
 
-                        <details class="dropdown">
-                            <summary class="m-1 btn">{{ __('messages.language') }}</summary>
-                            <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-32">
-                                <li><a wire:click="setLanguage('de')">{{ __('messages.languageType.de') }}</a></li>
-                                <li><a wire:click="setLanguage('en')">{{ __('messages.languageType.en') }}</a></li>
-                            </ul>
-                        </details>
-                    </div>
-                    <div
-                        class="grid gap-4 mt-4">
-                        <a href="{{ route('login') }}"
-                           class="btn btn-ghost">
-                            {{ __('pages/account/forgot-password.login') }}
-                        </a>
-                    </div>
-                </form>
+                            <details class="dropdown">
+                                <summary class="m-1 btn">{{ __('messages.language') }}</summary>
+                                <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-32">
+                                    <li><a wire:click="setLanguage('de')">{{ __('messages.languageType.de') }}</a></li>
+                                    <li><a wire:click="setLanguage('en')">{{ __('messages.languageType.en') }}</a></li>
+                                </ul>
+                            </details>
+                        </div>
+                    </x-form>
+                @else
+                    <x-form class="space-y-2 md:space-y-6" wire:submit="resetPassword">
+                        <div class="form-control w-full">
+                            <x-input label="{{ __('pages/account/forgot-password.password') }}"
+                                     type="password"
+                                     class="input input-bordered w-full" wire:model="password"/>
+                        </div>
+
+                        <div class="form-control w-full">
+                            <x-input label="{{ __('pages/account/forgot-password.password_confirm') }}"
+                                     type="password"
+                                     class="input input-bordered w-full" wire:model="password_confirm"/>
+                        </div>
+
+                        <div class="flex justify-between items-center">
+                            <x-button type="submit"
+                                      class="flex-1 mr-2 btn btn-primary" spinner="resetPassword">
+                                {{ __('pages/account/forgot-password.reset') }}
+                            </x-button>
+
+                            <details class="dropdown">
+                                <summary class="m-1 btn">{{ __('messages.language') }}</summary>
+                                <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-32">
+                                    <li><a wire:click="setLanguage('de')">{{ __('messages.languageType.de') }}</a></li>
+                                    <li><a wire:click="setLanguage('en')">{{ __('messages.languageType.en') }}</a></li>
+                                </ul>
+                            </details>
+                        </div>
+                    </x-form>
+                @endif
+                <div
+                    class="grid gap-4 mt-4">
+                    <a href="{{ route('login') }}"
+                       class="btn btn-ghost">
+                        {{ __('pages/account/forgot-password.login') }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>
     <div class="pl-6 pb-4" id="unsplashCredits" wire:ignore>
-        <span class="text-sm" id="credits" wire:ignore><a id="photo">{{ __('messages.photo') }}</a>, <a
+        <span class="text-sm" id="credits" wire:ignore><a id="photo" data-trans="{{ __('messages.photo') }}"></a>, <a
                 id="author"></a>, <a
                 href="https://unaplash.com/utm_source=CyanFox&utm_medium=referral">Unsplash</a></span>
     </div>

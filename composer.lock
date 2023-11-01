@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92074766bb716001263d04e51c4a4268",
+    "content-hash": "8fffb7f517f216686e5a25325795a096",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2621,23 +2621,23 @@
         },
         {
             "name": "laravel/prompts",
-            "version": "v0.1.10",
+            "version": "v0.1.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "37ed55f6950d921a87d5beeab16d03f8de26b060"
+                "reference": "e1379d8ead15edd6cc4369c22274345982edc95a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/37ed55f6950d921a87d5beeab16d03f8de26b060",
-                "reference": "37ed55f6950d921a87d5beeab16d03f8de26b060",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/e1379d8ead15edd6cc4369c22274345982edc95a",
+                "reference": "e1379d8ead15edd6cc4369c22274345982edc95a",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "illuminate/collections": "^10.0|^11.0",
                 "php": "^8.1",
-                "symfony/console": "^6.2"
+                "symfony/console": "^6.2|^7.0"
             },
             "conflict": {
                 "illuminate/console": ">=10.17.0 <10.25.0",
@@ -2672,9 +2672,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
-                "source": "https://github.com/laravel/prompts/tree/v0.1.10"
+                "source": "https://github.com/laravel/prompts/tree/v0.1.13"
             },
-            "time": "2023-09-29T07:26:07+00:00"
+            "time": "2023-10-27T13:53:59+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -5200,22 +5200,17 @@
         },
         {
             "name": "robsontenorio/mary",
-            "version": "0.40.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/robsontenorio/mary.git",
-                "reference": "ab5c83c2bfc1b50b6cc0fddabc4c1019c575fc92"
-            },
+            "version": "dev-main",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/robsontenorio/mary/zipball/ab5c83c2bfc1b50b6cc0fddabc4c1019c575fc92",
-                "reference": "ab5c83c2bfc1b50b6cc0fddabc4c1019c575fc92",
-                "shasum": ""
+                "type": "path",
+                "url": "./packages/mary",
+                "reference": "97592663081a77f66f743d0803603508083678b5"
             },
             "require": {
                 "blade-ui-kit/blade-heroicons": "^2.1",
                 "illuminate/support": "~10",
-                "jfcherng/php-diff": "^6.15"
+                "jfcherng/php-diff": "^6.15",
+                "laravel/prompts": "^0.1.13"
             },
             "require-dev": {
                 "orchestra/testbench": "^8.5",
@@ -5237,7 +5232,11 @@
                     "Mary\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Mary\\Tests\\": "tests"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -5251,24 +5250,17 @@
             "description": "Laravel blade components for Livewire 3",
             "homepage": "https://mary-ui.com",
             "keywords": [
+                "Blade",
+                "Components",
+                "Laravel",
+                "Livewire",
                 "Mary",
-                "blade",
-                "components",
-                "laravel",
-                "livewire",
-                "ui"
+                "UI"
             ],
-            "support": {
-                "issues": "https://github.com/robsontenorio/mary/issues",
-                "source": "https://github.com/robsontenorio/mary/tree/0.40.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/robsontenorio",
-                    "type": "github"
-                }
-            ],
-            "time": "2023-10-09T17:09:56+00:00"
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "ryangjchandler/blade-capture-directive",
@@ -10919,7 +10911,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,

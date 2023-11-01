@@ -5,6 +5,7 @@ namespace App\Livewire\Account;
 use App\Models\User;
 use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
@@ -16,34 +17,25 @@ class ChangePassword extends Component
     public $new_password_confirm;
 
 
-    public function changePassword() {
-        try {
-            $this->validate([
-                'current_password' => 'required',
-                'new_password' => 'required',
-            ]);
-        }catch (ValidationException $e) {
-            Notification::make()
-                ->title(__('messages.fill_all_fields_correctly'))
-                ->danger()
-                ->send();
-            return;
-        }
+    public function changePassword()
+    {
+        $this->validate([
+            'current_password' => 'required',
+            'new_password' => 'required',
+            'new_password_confirm' => 'required',
+        ]);
 
-        if (!Hash::check($this->current_password, auth()->user()->password)) {
-            Notification::make()
-                ->title(__('pages/account/change-password.invalid_current_password'))
-                ->danger()
-                ->send();
-            return;
+        if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->password])) {
+            throw ValidationException::withMessages([
+                'current_password' => __('pages/account/change-password.invalid_current_password'),
+            ]);
         }
 
         if ($this->new_password !== $this->new_password_confirm) {
-            Notification::make()
-                ->title(__('pages/account/change-password.passwords_not_match'))
-                ->danger()
-                ->send();
-            return;
+            throw ValidationException::withMessages([
+                'new_password' => __('pages/account/change-password.passwords_not_match'),
+                'new_password_confirm' => __('pages/account/change-password.passwords_not_match'),
+            ]);
         }
 
         $user = User::find(auth()->user()->id);
@@ -52,7 +44,7 @@ class ChangePassword extends Component
 
         try {
             $user->save();
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
                 ->danger()

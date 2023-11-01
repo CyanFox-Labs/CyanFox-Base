@@ -9,6 +9,7 @@ return [
     'update' => 'Update',
     'yes' => 'Yes',
     'no' => 'No',
+    'loading' => 'Loading...',
 
     'something_went_wrong' => 'Something went wrong!',
     'fill_all_fields_correctly' => 'Please fill all fields correctly!',

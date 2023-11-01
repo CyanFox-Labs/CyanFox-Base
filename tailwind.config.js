@@ -22,16 +22,7 @@ module.exports = {
         './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
 
         './vendor/robsontenorio/mary/src/View/Components/**/*.php'
-    ], theme: {
-        extend: {
-            colors: {
-                "pg-primary": colors.gray,
-                navigation: {
-                    DEFAULT: "#171717",
-                }
-            }
-        },
-    },
+    ],
     plugins: [require("daisyui")],
     daisyui: {
         themes: [

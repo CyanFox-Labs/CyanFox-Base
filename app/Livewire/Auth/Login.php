@@ -8,6 +8,7 @@ use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -59,7 +60,11 @@ class Login extends Component
         $this->user = User::where('username', $username)->first();
         if ($this->user == null) {
             $this->user = false;
+            throw ValidationException::withMessages([
+                'username' => __('pages/login.not_found'),
+            ]);
         }
+        $this->resetErrorBag('username');
         $this->dispatch('userExists');
     }
 
@@ -98,7 +103,9 @@ class Login extends Component
                 $this->redirect('/');
             }
         } else {
-            session()->flash('error', __('messages.invalid_password'));
+            throw ValidationException::withMessages([
+                'password' => __('messages.invalid_password'),
+            ]);
         }
     }
 

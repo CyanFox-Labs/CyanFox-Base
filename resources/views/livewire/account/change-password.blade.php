@@ -13,48 +13,41 @@
         <div class="bg-neutral rounded-box sm:w-full w-auto">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 
-                <form class="space-y-4 md:space-y-6" onsubmit="event.preventDefault()">
+                <x-form class="space-y-4 md:space-y-6" wire:submit="changePassword">
                     @csrf
 
                     <div class="form-control w-full">
-                        <label class="label" for="current_password">
-                            <span class="label-text">{{ __('pages/account/change-password.current_password') }}</span>
-                        </label>
-                        <input id="current_password" type="password"
-                               class="input input-bordered w-full" wire:model="current_password"/>
+                        <x-input label="{{ __('pages/account/change-password.current_password') }}"
+                                 type="password"
+                                 class="input input-bordered w-full" wire:model="current_password"/>
                     </div>
 
 
                     <div class="grid md:grid-cols-2 gap-4 mt-4">
                         <div class="form-control w-full">
-                            <label class="label" for="new_password">
-                                <span class="label-text">{{ __('pages/account/change-password.new_password') }}</span>
-                            </label>
-                            <input id="new_password" type="password"
-                                   class="input input-bordered w-full" wire:model="new_password"/>
+                            <x-input label="{{ __('pages/account/change-password.new_password') }}"
+                                     type="password"
+                                     class="input input-bordered w-full" wire:model="new_password"/>
                         </div>
                         <div class="form-control w-full">
-                            <label class="label" for="new_password_confirm">
-                                <span class="label-text">{{ __('pages/account/change-password.new_password_confirm') }}</span>
-                            </label>
-                            <input id="new_password_confirm" type="password"
-                                   class="input input-bordered w-full" wire:model="new_password_confirm"/>
+                            <x-input label="{{ __('pages/account/change-password.new_password_confirm') }}"
+                                     type="password"
+                                     class="input input-bordered w-full" wire:model="new_password_confirm"/>
                         </div>
                     </div>
 
                     <div class="flex justify-between items-center">
-                        <button type="submit"
-                                class="flex-1 mr-2 btn btn-primary"
-                                wire:click="changePassword" wire:ignore>
+                        <x-button type="submit"
+                                class="flex-1 mr-2 btn btn-primary" spinner="changePassword">
                             {{ __('pages/account/change-password.change_password') }}
-                        </button>
+                        </x-button>
                     </div>
-                </form>
+                </x-form>
             </div>
         </div>
     </div>
     <div class="pl-6 pb-4" id="unsplashCredits" wire:ignore>
-        <span class="text-sm" id="credits" wire:ignore><a id="photo">{{ __('messages.photo') }}</a>, <a
+        <span class="text-sm" id="credits" wire:ignore><a id="photo" data-trans="{{ __('messages.photo') }}"></a>, <a
                 id="author"></a>, <a
                 href="https://unaplash.com/utm_source=CyanFox&utm_medium=referral">Unsplash</a></span>
     </div>

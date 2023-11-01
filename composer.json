@@ -15,12 +15,13 @@
         "jackiedo/dotenv-editor": "^2.1",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^10.10",
+        "laravel/prompts": "^0.1.13",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0",
         "openspout/openspout": "^4.18",
         "power-components/livewire-powergrid": "^5.1",
         "pragmarx/google2fa": "^8.0",
-        "robsontenorio/mary": "^0.40.0",
+        "robsontenorio/mary": "dev-main",
         "simplesoftwareio/simple-qrcode": "*",
         "spatie/laravel-permission": "^5.11",
         "wire-elements/modal": "^2.0"
@@ -77,6 +78,15 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "repositories": {
+        "robsontenorio/mary": {
+            "type": "path",
+            "url": "./packages/mary",
+            "options": {
+                "symlink": true
+            }
+        }
+    },
+    "minimum-stability": "dev",
     "prefer-stable": true
 }

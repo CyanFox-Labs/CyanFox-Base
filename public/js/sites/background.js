@@ -1,5 +1,4 @@
 let imagePath = "";
-let brightnessThreshold = 150;
 let photo = "";
 let author = "";
 let authorLink = "";
@@ -38,7 +37,9 @@ function setImageAsBackground(imagePath, photo, credit, authorLink, author) {
     const authorElement = document.getElementById("author");
     const photoElement = document.getElementById("photo");
 
-    function setHref(element, url, text) {
+    let translatedPhotoMessage = photoElement.dataset.trans;
+
+    function setSafeHref(element, url, text) {
         let a = document.createElement('a');
         let txt = document.createTextNode(text);
 
@@ -47,9 +48,8 @@ function setImageAsBackground(imagePath, photo, credit, authorLink, author) {
         element.parentElement.replaceChild(a, element);
     }
 
-    setHref(photoElement, `${photo}${credit}`, '');
-    setHref(authorElement, `${authorLink}${credit}`, author);
-
+    setSafeHref(photoElement, `${photo}${credit}`, translatedPhotoMessage);
+    setSafeHref(authorElement, `${authorLink}${credit}`, author);
 
     bgImageElement.style.backgroundImage = 'url('+encodeURI(imagePath)+')';
     bgImageElement.style.backgroundSize = 'cover';
@@ -58,11 +58,10 @@ function setImageAsBackground(imagePath, photo, credit, authorLink, author) {
     bgImageElement.style.backgroundAttachment = 'fixed';
     bgImageElement.style.backgroundColor =  '#000000';
     bgImageElement.style.filter = "blur(5px)";
-
 }
 
 getImage().then(() =>
-    setImageAsBackground()
+    setImageAsBackground(imagePath, photo, credit, authorLink, author)
 ).catch((error) => {
     console.error('Error:', error);
     document.getElementById('unsplashCredits').classList.add('hidden');

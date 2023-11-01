@@ -6,19 +6,19 @@
 
         <div class="flex justify-center">
             <div class="form-control w-full max-w-xs">
-                <label class="label" for="disable_two_factor_password">
-                    <span class="label-text">{{ __('messages.password') }}</span>
-                </label>
-                <input type="password" id="disable_two_factor_password"
-                       class="input input-bordered w-full max-w-xs mb-4"
-                       wire:model="password"/>
+                <x-input label="{{ __('messages.password') }}"
+                         type="password"
+                         class="input input-bordered w-full max-w-xs mb-4"
+                         wire:model="password"/>
             </div>
         </div>
     </div>
     <div class="flex justify-center modal-action">
-        <form method="dialog">
-            <button class="btn btn-neutral" wire:click="$dispatch('closeModal')">{{ __('messages.cancel') }}</button>
-            <button class="btn btn-success" wire:click="disableTwoFactor">{{ __('pages/profile.modals.disable_2fa.disable') }}</button>
+        <form method="dialog" class="flex gap-2" wire:submit="disableTwoFactor">
+            <button class="btn btn-neutral" type="button"
+                    wire:click="$dispatch('closeModal')">{{ __('messages.cancel') }}</button>
+            <x-button class="btn btn-success"
+                    type="submit" spinner="disableTwoFactor">{{ __('pages/profile.modals.disable_2fa.disable') }}</x-button>
         </form>
     </div>
 </x-modal>

@@ -4,6 +4,7 @@ namespace App\Livewire\Components\Modals\Profile;
 
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
@@ -15,11 +16,9 @@ class DisableTwoFactor extends ModalComponent
     {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->password])) {
-            Notification::make()
-                ->title(__('messages.invalid_password'))
-                ->danger()
-                ->send();
-            return;
+            throw ValidationException::withMessages([
+                'password' => __('messages.invalid_password'),
+            ]);
         }
 
         Auth::user()->two_factor_enabled = false;

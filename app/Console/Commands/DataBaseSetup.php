@@ -55,7 +55,7 @@ class DataBaseSetup extends Command
             $this->call('migrate');
             $this->info('Database migrated!');
 
-            $permissions = ['test', 'test2', 'test3'];
+            $permissions = [];
             $roles = ['Super Admin'];
 
             foreach ($permissions as $permission) {

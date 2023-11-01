@@ -50,21 +50,15 @@ class Register extends Component
 
     public function register()
     {
-        try {
-            $this->validate([
-                'first_name' => 'required|string',
-                'last_name' => 'required|string',
-                'username' => 'required|string|unique:users',
-                'email' => 'required|email|unique:users',
-                'password' => 'required|string',
-            ]);
-        } catch (ValidationException $e) {
-            Notification::make()
-                ->title(__('messages.fill_all_fields_correctly'))
-                ->danger()
-                ->send();
-            return;
-        }
+        $this->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'username' => 'required|string|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|string',
+            'password_confirm' => 'required|string',
+        ]);
+
 
         if (env('ENABLE_HCAPTCHA')) {
             try {
@@ -79,11 +73,10 @@ class Register extends Component
         }
 
         if ($this->password != $this->password_confirm) {
-            Notification::make()
-                ->title(__('pages/register.password_not_match'))
-                ->danger()
-                ->send();
-            return;
+            throw ValidationException::withMessages([
+                'password' => __('pages/register.password_not_match'),
+                'password_confirm' => __('pages/register.password_not_match'),
+            ]);
         }
 
         $user = new User();

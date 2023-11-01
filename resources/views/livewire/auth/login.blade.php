@@ -25,83 +25,66 @@
                         </div>
 
                     </div>
-                @elseif($username !== null)
-                    @if(!session('error'))
-                        <x-alert icon="o-exclamation-triangle"
-                                 class="alert-error">{{ __('pages/login.not_found') }}</x-alert>
-                    @endif
                 @endif
 
                 @if(session('error') !== null)
-                    <x-custom.alert type="error" icon="bx bxs-error"
-                                    class="alert-error">{{ session('error') }}</x-custom.alert>
+                    <x-alert icon="o-exclamation-triangle"
+                             class="alert-error">{{ session('error') }}</x-alert>
                 @endif
 
                 @if ($rateLimitTime > 1)
                     <div wire:poll.1s="setRateLimit">
-                        <x-custom.alert type="error" icon="bx bxs-error"
-                                        class="alert-error">{{ __('pages/login.rate_limit', ['seconds' => $rateLimitTime]) }}
-                        </x-custom.alert>
+                        <x-alert icon="o-exclamation-triangle"
+                                 class="alert-error">{{ __('pages/login.rate_limit', ['seconds' => $rateLimitTime]) }}
+                        </x-alert>
                     </div>
                 @endif
-                <form class="space-y-4 md:space-y-6" onsubmit="event.preventDefault()">
-                    @csrf
-                    @if($two_factor_enabled)
-                        <div>
-                            <label for="two_factor_code"
-                                   class="block mb-2 text-sm font-medium"
-                                   wire:ignore>{{ __('pages/login.two_factor') }}</label>
-                            <input type="text" name="two_factor_code" id="two_factor_code"
-                                   class="input input-bordered w-full"
-                                   required="" wire:model="two_factor_code">
-                        </div>
+
+                @if($two_factor_enabled)
+                    <x-form class="space-y-2 md:space-y-6" wire:submit="checkTwoFactorCode">
+                        @csrf
+                        <x-input label="{{ __('pages/login.two_factor') }}"
+                                 class="input input-bordered w-full"
+                                 required="" wire:model="two_factor_code"/>
 
                         <div class="flex items-center space-x-2 w-full">
-                            <a href="/login"
+                            <a href="{{ route('login') }}"
                                class="btn btn-neutral w-1/2">
                                 {{ __('messages.back') }}
                             </a>
-                            <button type="submit"
-                                    class="btn btn-primary w-1/2"
-                                    wire:click="checkTwoFactorCode">
+                            <x-button type="submit"
+                                    class="btn btn-primary w-1/2" spinner="checkTwoFactorCode">
                                 {{ __('pages/login.login') }}
-                            </button>
+                            </x-button>
                         </div>
-
-                    @else
+                    </x-form>
+                @else
+                    <x-form class="space-y-4 md:space-y-6" wire:submit="attemptLogin">
+                        @csrf
                         <div>
                             <div class="form-control w-full">
-                                <label class="label" for="username">
-                                    <span class="label-text" wire:ignore>{{ __('pages/login.username') }}</span>
-                                </label>
-                                <input type="text" id="username"
-                                       class="input input-bordered w-full" wire:model="username"
-                                       wire:blur="checkIfUserExits($event.target.value)"
-                                />
+                                <x-input label="{{ __('pages/login.username') }}"
+                                         wire:model="username"
+                                         wire:blur="checkIfUserExits($event.target.value)" required/>
                             </div>
                         </div>
                         <div>
                             <div class="form-control w-full">
-                                <label class="label" for="password">
-                                    <span class="label-text" wire:ignore>{{ __('messages.password') }}</span>
-                                </label>
-                                <input type="password" id="password"
-                                       class="input input-bordered w-full" wire:model="password"/>
+                                <x-input type="password" label="{{ __('messages.password') }}" wire:model="password"
+                                         required/>
                             </div>
                         </div>
                         <div class="form-control">
                             <label class="label cursor-pointer">
-                                <span class="label-text" wire:ignore>{{ __('pages/login.remember_me') }}</span>
-                                <input type="checkbox" checked="checked" class="checkbox"
-                                       wire:model="remember_me"/>
+                                <x-checkbox label="{{ __('pages/login.remember_me') }}"
+                                       wire:model="remember_me" class="mt-3 font-semibold" right bottom />
                             </label>
                         </div>
                         <div class="flex justify-between items-center">
-                            <button type="submit"
-                                    class="flex-1 mr-2 btn btn-primary"
-                                    wire:click="attemptLogin" wire:ignore>
+                            <x-button type="submit"
+                                      class="flex-1 mr-2 btn btn-primary" spinner="attemptLogin">
                                 {{ __('pages/login.login') }}
-                            </button>
+                            </x-button>
 
                             <details class="dropdown">
                                 <summary class="m-1 btn">{{ __('messages.language') }}</summary>
@@ -111,28 +94,28 @@
                                 </ul>
                             </details>
                         </div>
-                        <div
-                            class="grid @if(env('ENABLE_REGISTRATION') && env('ENABLE_FORGOT_PASSWORD')) md:grid-cols-2 @endif gap-4 mt-4">
-                            @if(env('ENABLE_FORGOT_PASSWORD'))
-                                <a href="{{ route('forgot-password', [""]) }}"
-                                   class="btn btn-ghost">
-                                    {{ __('pages/login.forgot_password') }}
-                                </a>
-                            @endif
-                            @if(env('ENABLE_REGISTRATION'))
-                                <a href="{{ route('register') }}"
-                                   class="btn btn-ghost">
-                                    {{ __('pages/login.register') }}
-                                </a>
-                            @endif
-                        </div>
-                    @endif
-                </form>
+                    </x-form>
+                    <div
+                        class="grid @if(env('ENABLE_REGISTRATION') && env('ENABLE_FORGOT_PASSWORD')) md:grid-cols-2 @endif gap-4 mt-4">
+                        @if(env('ENABLE_FORGOT_PASSWORD'))
+                            <a href="{{ route('forgot-password', [""]) }}"
+                               class="btn btn-ghost">
+                                {{ __('pages/login.forgot_password') }}
+                            </a>
+                        @endif
+                        @if(env('ENABLE_REGISTRATION'))
+                            <a href="{{ route('register') }}"
+                               class="btn btn-ghost">
+                                {{ __('pages/login.register') }}
+                            </a>
+                        @endif
+                    </div>
+                @endif
             </div>
         </div>
     </div>
     <div class="pl-6 pb-4" id="unsplashCredits" wire:ignore>
-        <span class="text-sm" id="credits" wire:ignore><a id="photo">{{ __('messages.photo') }}</a>, <a
+        <span class="text-sm" id="credits" wire:ignore><a id="photo" data-trans="{{ __('messages.photo') }}"></a>, <a
                 id="author"></a>, <a
                 href="https://unaplash.com/utm_source=CyanFox&utm_medium=referral">Unsplash</a></span>
     </div>

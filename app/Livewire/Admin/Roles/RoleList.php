@@ -10,7 +10,7 @@ class RoleList extends Component
     {
         return view('livewire.admin.roles.role-list')
             ->layout('components.layouts.admin', [
-                'title' => __('titles.admin.groups')
+                'title' => __('titles.admin.roles.list')
             ]);
     }
 }

@@ -35,7 +35,7 @@
 
         <div class="w-full px-2 mt-4">
             <div class="flex flex-col items-center w-full mt-3 mb-3">
-                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-gray-700 hover:text-gray-300 {{ request()->routeIs('home') ? 'text-gray-300 bg-gray-700' : '' }}"
+                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('home') ? 'bg-base-300' : '' }}"
                    href="{{ route('home') }}">
                     <i class="bx bxs-home"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation.sidebar.home') }}</span>
@@ -47,19 +47,19 @@
             </div>
 
             <div class="flex flex-col items-center w-full mt-2">
-                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-gray-700 hover:text-gray-300 {{ request()->routeIs('profile') ? 'text-gray-300 bg-gray-700' : '' }}"
+                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('profile') ? 'bg-base-300' : '' }}"
                    href="{{ route('profile') }}">
                     <i class="bx bxs-user"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation.profile') }}</span>
                 </a>
                 @hasrole('Super Admin')
-                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-gray-700 hover:text-gray-300 {{ request()->routeIs('admin') ? 'text-gray-300 bg-gray-700' : '' }}"
+                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin') ? 'bg-base-300' : '' }}"
                    href="{{ route('admin') }}">
                     <i class="bx bxs-cog"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation.admin') }}</span>
                 </a>
                 @endhasrole
-                <a class="relative flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-gray-700 hover:text-gray-300 {{ request()->routeIs('logout') ? 'text-gray-300 bg-gray-700' : '' }}"
+                <a class="relative flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('logout') ? 'bg-base-300' : '' }}"
                    href="{{ route('logout') }}">
                     <i class="bx bxs-log-out"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation.logout') }}</span>
@@ -67,7 +67,8 @@
             </div>
         </div>
         <a @click="pinned = !pinned" id="pinBtn" role="button"
-           class="flex items-center justify-center w-full h-16 mt-auto rounded hover:bg-gray-700 hover:text-gray-300 sm:inline-flex hidden">
+           class="flex items-center justify-center w-full h-16 mt-auto rounded hover:bg-base-300 sm:inline-flex hidden"
+           :class="[pinned ? 'bg-base-300' : '']">
             <i :class="[pinned ? 'bx bxs-pin bx-rotate-90' : 'bx bxs-pin']"></i>
             <span class="ml-2 text-sm font-medium text-hidden">Pin</span>
         </a>

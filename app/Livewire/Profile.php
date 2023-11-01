@@ -2,8 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Http\Controllers\Auth\AuthController;
-use App\Livewire\Components\Modals\Profile\UpdateProfile;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +9,6 @@ use Illuminate\Validation\ValidationException;
 use Jenssegers\Agent\Agent;
 use Livewire\Attributes\Title;
 use Livewire\Component;
-use Livewire\Livewire;
 
 class Profile extends Component
 {
@@ -25,20 +22,13 @@ class Profile extends Component
     public function updateProfile()
     {
 
-        try {
-            $this->validate([
-                'first_name' => 'required',
-                'last_name' => 'required',
-                'username' => 'required',
-                'email' => 'required|email'
-            ]);
-        } catch (ValidationException $e) {
-            Notification::make()
-                ->title(__('messages.fill_all_fields_correctly'))
-                ->danger()
-                ->send();
-            return;
-        }
+        $this->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'username' => 'required',
+            'email' => 'required|email'
+        ]);
+
 
         Auth::user()->first_name = $this->first_name;
         Auth::user()->last_name = $this->last_name;
@@ -106,31 +96,11 @@ class Profile extends Component
     }
 
     /* Sessions */
-    public $passwordLogoutSession = [];
-
-    public function logoutSession($sessionId)
-    {
-        if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->passwordLogoutSession[$sessionId]])) {
-            Notification::make()
-                ->title(__('messages.invalid_password'))
-                ->danger()
-                ->send();
-            return;
-        }
-
-        AuthController::regenerateRememberToken(Auth::user());
-        DB::table('sessions')->where('id', $sessionId)->delete();
-        Notification::make()
-            ->title(__('pages/profile.session_logged_out'))
-            ->success()
-            ->send();
-    }
-
+    public $sessionData = [];
 
     public function getSessionData()
     {
         $userSessions = DB::table('sessions')->where('user_id', Auth::user()->getAuthIdentifier())->get();
-        $sessionData = [];
 
         foreach ($userSessions as $session) {
 
@@ -149,19 +119,17 @@ class Profile extends Component
 
             $ip = $session->ip_address;
 
-            $sessionData[] = [
+            $this->sessionData[] = [
                 'id' => $session->id,
                 'ip' => $ip,
-                'agent' => $agent,
+                'agent' => $agent->getUserAgent(),
                 'platform' => $platform,
                 'deviceType' => $deviceType,
                 'isCurrentSession' => $isCurrentSession
             ];
         }
 
-        usort($sessionData, fn($a, $b) => $b['isCurrentSession'] <=> $a['isCurrentSession']);
-
-        return $sessionData;
+        usort($this->sessionData, fn($a, $b) => $b['isCurrentSession'] <=> $a['isCurrentSession']);
     }
 
 
@@ -174,32 +142,22 @@ class Profile extends Component
     {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->current_password])) {
-            Notification::make()
-                ->title(__('messages.invalid_password'))
-                ->danger()
-                ->send();
-            return false;
+            throw ValidationException::withMessages([
+                'current_password' => __('messages.invalid_password')
+            ]);
         }
 
-        try {
-            $this->validate([
-                'new_password' => 'required',
-                'confirm_password' => 'required'
-            ]);
-        } catch (ValidationException $e) {
-            Notification::make()
-                ->title(__('messages.fill_all_fields_correctly'))
-                ->danger()
-                ->send();
-            return false;
-        }
+        $this->validate([
+            'new_password' => 'required',
+            'confirm_password' => 'required'
+        ]);
+
 
         if ($this->new_password !== $this->confirm_password) {
-            Notification::make()
-                ->title(__('pages/profile.password_not_match'))
-                ->danger()
-                ->send();
-            return;
+            throw ValidationException::withMessages([
+                'new_password' => __('pages/profile.password_not_match'),
+                'confirm_password' => __('pages/profile.password_not_match')
+            ]);
         }
 
         Auth::user()->password = bcrypt($this->new_password);
@@ -225,15 +183,15 @@ class Profile extends Component
         $this->last_name = Auth::user()->last_name;
         $this->username = Auth::user()->username;
         $this->email = Auth::user()->email;
+        $this->getSessionData();
     }
 
     #[Title('Profile')]
     public function render()
     {
-        return view('livewire.profile', [
-            'sessionData' => $this->getSessionData(),
-        ])->layout('components.layouts.app', [
-            'title' => __('titles.profile')
-        ]);
+        return view('livewire.profile')
+            ->layout('components.layouts.app', [
+                'title' => __('titles.profile')
+            ]);
     }
 }

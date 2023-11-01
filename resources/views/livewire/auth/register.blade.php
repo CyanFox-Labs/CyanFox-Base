@@ -15,56 +15,38 @@
 
                 @if ($rateLimitTime > 1)
                     <div wire:poll.1s="setRateLimit">
-                        <x-custom.alert type="error" icon="bx bxs-error"
-                                        class="alert-error">{{ __('pages/register.rate_limit', ['seconds' => $rateLimitTime]) }}
-                        </x-custom.alert>
+                        <x-alert icon="o-exclamation-triangle"
+                                 class="alert-error">{{ __('pages/login.rate_limit', ['seconds' => $rateLimitTime]) }}
+                        </x-alert>
                     </div>
                 @endif
-                <form class="space-y-4 md:space-y-6" onsubmit="event.preventDefault()">
+                    <x-form class="space-y-2 md:space-y-6" wire:submit="register">
                     @csrf
                     <div class="grid md:grid-cols-2 gap-4 mt-4">
                         <div class="form-control w-full">
-                            <label class="label" for="first_name">
-                                <span class="label-text">{{ __('pages/register.first_name') }}</span>
-                            </label>
-                            <input id="first_name" type="text"
+                            <x-input label="{{ __('pages/register.first_name') }}"
                                    class="input input-bordered w-full" wire:model="first_name"/>
                         </div>
                         <div class="form-control w-full">
-                            <label class="label" for="last_name">
-                                <span class="label-text">{{ __('pages/register.last_name') }}</span>
-                            </label>
-                            <input id="last_name" type="text"
+                            <x-input label="{{ __('pages/register.last_name') }}"
                                    class="input input-bordered w-full" wire:model="last_name"/>
                         </div>
 
                         <div class="form-control w-full">
-                            <label class="label" for="username">
-                                <span class="label-text">{{ __('pages/register.username') }}</span>
-                            </label>
-                            <input id="username" type="text"
+                            <x-input label="{{ __('pages/register.username') }}"
                                    class="input input-bordered w-full" wire:model="username"/>
                         </div>
                         <div class="form-control w-full">
-                            <label class="label" for="email">
-                                <span class="label-text">{{ __('pages/register.email') }}</span>
-                            </label>
-                            <input id="email" type="email"
+                            <x-input label="{{ __('pages/register.email') }}"
                                    class="input input-bordered w-full" wire:model="email"/>
                         </div>
 
                         <div class="form-control w-full">
-                            <label class="label" for="password">
-                                <span class="label-text">{{ __('pages/register.password') }}</span>
-                            </label>
-                            <input id="password" type="password"
+                            <x-input label="{{ __('pages/register.password') }}" type="password"
                                    class="input input-bordered w-full" wire:model="password"/>
                         </div>
                         <div class="form-control w-full">
-                            <label class="label" for="password_confirm">
-                                <span class="label-text">{{ __('pages/register.password_confirm') }}</span>
-                            </label>
-                            <input id="password_confirm" type="password"
+                            <x-input label="{{ __('pages/register.password_confirm') }}" type="password"
                                    class="input input-bordered w-full" wire:model="password_confirm"/>
                         </div>
                     </div>
@@ -74,11 +56,10 @@
                     @endif
 
                     <div class="flex justify-between items-center">
-                        <button type="submit"
-                                class="flex-1 mr-2 btn btn-primary"
-                                wire:click="register" wire:ignore>
+                        <x-button type="submit"
+                                class="flex-1 mr-2 btn btn-primary" spinner="register">
                             {{ __('pages/register.register') }}
-                        </button>
+                        </x-button>
 
                         <details class="dropdown ">
                             <summary class="m-1 btn">{{ __('messages.language') }}</summary>
@@ -95,12 +76,12 @@
                             {{ __('pages/register.login') }}
                         </a>
                     </div>
-                </form>
+                    </x-form>
             </div>
         </div>
     </div>
     <div class="pl-6 pb-4" id="unsplashCredits" wire:ignore>
-        <span class="text-sm" id="credits" wire:ignore><a id="photo">{{ __('messages.photo') }}</a>, <a
+        <span class="text-sm" id="credits" wire:ignore><a id="photo" data-trans="{{ __('messages.photo') }}"></a>, <a
                 id="author"></a>, <a
                 href="https://unaplash.com/utm_source=CyanFox&utm_medium=referral">Unsplash</a></span>
     </div>

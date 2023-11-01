@@ -5,7 +5,8 @@
     </div>
     <div class="flex justify-center modal-action">
         <form method="dialog">
-            <button class="btn btn-neutral" wire:click="$dispatch('closeModal')">{{ __('messages.cancel') }}</button>
+            <button class="btn btn-neutral" type="button"
+                    wire:click="$dispatch('closeModal')">{{ __('messages.cancel') }}</button>
             <a href="{{ route('logout') }}" role="button"
                class="btn btn-success">{{ __('pages/profile.modals.logout.logout') }}</a>
         </form>

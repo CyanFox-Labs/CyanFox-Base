@@ -4,6 +4,7 @@ namespace App\Livewire\Components\Modals\Profile;
 
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
@@ -11,6 +12,7 @@ class RecoveryCodes extends ModalComponent
 {
 
     public $password;
+    public $recovery_codes = [];
 
     public function download()
     {
@@ -33,18 +35,15 @@ class RecoveryCodes extends ModalComponent
     {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->password])) {
-            Notification::make()
-                ->title(__('messages.invalid_password'))
-                ->danger()
-                ->send();
-            return;
+            throw ValidationException::withMessages([
+                'password' => __('messages.invalid_password'),
+            ]);
         }
 
         $recovery_codes_array = decrypt(Auth::user()->two_factor_recovery_codes);
-        $recovery_codes = json_decode($recovery_codes_array, true);
+        $this->recovery_codes = json_decode($recovery_codes_array, true);
 
-        session()->flash('recovery_codes', $recovery_codes);
-        return redirect()->route('profile');
+        $this->dispatch('openModal', 'components.modals.profile.recovery-codes');
     }
 
     public function render()

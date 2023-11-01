@@ -54,7 +54,7 @@ class UserCreate extends Component
         $userExists = User::where('username', $this->username)->orWhere('email', $this->email)->first();
         if ($userExists != null) {
             Notification::make()
-                ->title(__('pages/admin/users/user-create.user_already_exists'))
+                ->title(__('pages/admin/users/all.user_already_exists'))
                 ->danger()
                 ->send();
             return;

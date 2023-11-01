@@ -5,6 +5,7 @@ namespace App\Livewire\Components\Modals\Profile;
 use App\Http\Controllers\Auth\AuthController;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 use PragmaRX\Google2FA\Google2FA;
@@ -20,19 +21,15 @@ class ActivateTwoFactor extends ModalComponent
     {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->password])) {
-            Notification::make()
-                ->title(__('messages.invalid_password'))
-                ->danger()
-                ->send();
-            return;
+            throw ValidationException::withMessages([
+                'password' => __('messages.invalid_password')
+            ]);
         }
 
         if (!AuthController::checkTwoFactorKey(Auth::user(), $this->two_factor_key, false)) {
-            Notification::make()
-                ->title(__('pages/profile.activate_two_factor.wrong_code'))
-                ->danger()
-                ->send();
-            return;
+            throw ValidationException::withMessages([
+                'two_factor_key' => __('pages/profile.activate_two_factor.wrong_code')
+            ]);
         }
 
         Auth::user()->two_factor_enabled = true;

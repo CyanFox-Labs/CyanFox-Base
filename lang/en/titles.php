@@ -13,11 +13,16 @@ return [
     ],
 
     'admin' => [
-        'dashboard' => 'Dashboard',
+        'dashboard' => 'Admin • Dashboard',
         'users' => [
-            'list' => 'Users',
-            'create' => 'Create User',
-            'edit' => 'Edit User',
+            'list' => 'Admin • Users',
+            'create' => 'Admin • Create User',
+            'edit' => 'Admin • Edit User',
+        ],
+        'roles' => [
+            'list' => 'Admin • Roles',
+            'create' => 'Admin • Create Role',
+            'edit' => 'Admin • Edit Role',
         ],
     ]
 ];
