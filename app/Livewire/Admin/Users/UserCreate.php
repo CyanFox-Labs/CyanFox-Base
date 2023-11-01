@@ -25,10 +25,10 @@ class UserCreate extends Component
     public $change_password;
     public $activate_two_factor;
 
-    #[On('updateSelectedRoles')]
-    public function updateSelectedRoles($selectedRoles): void
+    #[On('updateMultiSelect')]
+    public function updateMultiSelect($values): void
     {
-        $this->roles = $selectedRoles;
+        $this->roles = $values;
     }
 
     public function createUser() {

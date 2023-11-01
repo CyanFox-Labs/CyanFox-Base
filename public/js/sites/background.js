@@ -28,28 +28,48 @@ async function getImage() {
         });
 }
 
-function setImageAsBackground() {
+function setImageAsBackground(imagePath, photo, credit, authorLink, author) {
 
-    if (imagePath === "" || imagePath === undefined || imagePath === null) {
+    if (!imagePath) {
         return;
     }
 
-    document.getElementById("photo").href = photo + credit;
-    document.getElementById("author").href = authorLink + credit;
-    document.getElementById("author").innerHTML = author;
+    const bgImageElement = document.getElementById('bg_image');
+    const authorElement = document.getElementById("author");
+    const photoElement = document.getElementById("photo");
 
-    document.getElementById('bg_image').style = `
-                background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${imagePath});
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-position: center;
-                background-attachment: fixed;
-                background-color: #000000;
-                filter: blur(5px);
-            `;
+    function setHref(element, url, text) {
+        let a = document.createElement('a');
+        let txt = document.createTextNode(text);
+
+        a.appendChild(txt);
+        a.href = url;
+        element.parentElement.replaceChild(a, element);
+    }
+
+    setHref(photoElement, `${photo}${credit}`, '');
+    setHref(authorElement, `${authorLink}${credit}`, author);
+
+
+    bgImageElement.style.backgroundImage = 'url('+encodeURI(imagePath)+')';
+    bgImageElement.style.backgroundSize = 'cover';
+    bgImageElement.style.backgroundRepeat = 'no-repeat';
+    bgImageElement.style.backgroundPosition = 'center';
+    bgImageElement.style.backgroundAttachment = 'fixed';
+    bgImageElement.style.backgroundColor =  '#000000';
+    bgImageElement.style.filter = "blur(5px)";
 
 }
 
-getImage().then(r =>
-    setImageAsBackground());
+getImage().then(() =>
+    setImageAsBackground()
+).catch((error) => {
+    console.error('Error:', error);
+    document.getElementById('unsplashCredits').classList.add('hidden');
+    document.body.style = `
+            background: rgb(2,0,36);
+            background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
+            `;
+    return error;
+});
 

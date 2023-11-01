@@ -5,6 +5,9 @@ use App\Livewire\Account\ChangePassword;
 use App\Livewire\Account\ForgotPassword;
 use App\Livewire\Admin\Admin;
 use App\Livewire\Admin\Groups\GroupList;
+use App\Livewire\Admin\Roles\RoleCreate;
+use App\Livewire\Admin\Roles\RoleEdit;
+use App\Livewire\Admin\Roles\RoleList;
 use App\Livewire\Admin\Users\UserCreate;
 use App\Livewire\Admin\Users\UserEdit;
 use App\Livewire\Admin\Users\UserList;
@@ -27,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['setLanguage'])->group(function () {
     Route::middleware('auth')->group(function () {
-        Route::middleware(['mustActivateTwoFactor', 'mustChangePassword'])->group(function () {
+        Route::middleware(['mustActivateTwoFactor', 'mustChangePassword'])->group(callback: function () {
             Route::get('/', Home::class)->name('home');
             Route::get('/profile', Profile::class)->name('profile');
 
@@ -41,7 +44,9 @@ Route::middleware(['setLanguage'])->group(function () {
 
                 });
                 Route::group(['prefix' => '/roles'], function () {
-                    Route::get('/', GroupList::class)->name('admin-role-list');
+                    Route::get('/', RoleList::class)->name('admin-role-list');
+                    Route::get('/create', RoleCreate::class)->name('admin-role-create');
+                    Route::get('/edit/{roleId}', RoleEdit::class)->name('admin-role-edit');
                 });
             });
 

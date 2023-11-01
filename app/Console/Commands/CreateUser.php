@@ -18,7 +18,7 @@ class CreateUser extends Command
      *
      * @var string
      */
-    protected $signature = 'make:user';
+    protected $signature = 'cf:create-user';
 
     /**
      * The console command description.

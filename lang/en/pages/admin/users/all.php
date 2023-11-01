@@ -5,7 +5,6 @@ return [
     'last_name' => 'Last Name',
     'username' => 'Username',
     'email' => 'Email',
-    'password' => 'Password',
     'roles' => 'Roles',
     'change_password' => 'Change Password',
     'activate_two_factor' => 'Activate Two Factor',

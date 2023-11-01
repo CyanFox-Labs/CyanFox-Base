@@ -46,6 +46,33 @@
                         <select class="select select-bordered" id="theme" wire:blur="changeTheme($event.target.value)">
                             <option value="light" @if(auth()->user()->theme == 'light') selected @endif>{{ __('pages/profile.themeType.light') }}</option>
                             <option value="dark" @if(auth()->user()->theme == 'dark') selected @endif>{{ __('pages/profile.themeType.dark') }}</option>
+                            <option value="cupcake" @if(auth()->user()->theme == 'cupcake') selected @endif>{{ __('pages/profile.themeType.cupcake') }}</option>
+                            <option value="bumblebee" @if(auth()->user()->theme == 'bumblebee') selected @endif>{{ __('pages/profile.themeType.bumblebee') }}</option>
+                            <option value="emerald" @if(auth()->user()->theme == 'emerald') selected @endif>{{ __('pages/profile.themeType.emerald') }}</option>
+                            <option value="corporate" @if(auth()->user()->theme == 'corporate') selected @endif>{{ __('pages/profile.themeType.corporate') }}</option>
+                            <option value="synthwave" @if(auth()->user()->theme == 'synthwave') selected @endif>{{ __('pages/profile.themeType.synthwave') }}</option>
+                            <option value="retro" @if(auth()->user()->theme == 'retro') selected @endif>{{ __('pages/profile.themeType.retro') }}</option>
+                            <option value="cyberpunk" @if(auth()->user()->theme == 'cyberpunk') selected @endif>{{ __('pages/profile.themeType.cyberpunk') }}</option>
+                            <option value="valentine" @if(auth()->user()->theme == 'valentine') selected @endif>{{ __('pages/profile.themeType.valentine') }}</option>
+                            <option value="halloween" @if(auth()->user()->theme == 'halloween') selected @endif>{{ __('pages/profile.themeType.halloween') }}</option>
+                            <option value="garden" @if(auth()->user()->theme == 'garden') selected @endif>{{ __('pages/profile.themeType.garden') }}</option>
+                            <option value="forest" @if(auth()->user()->theme == 'forest') selected @endif>{{ __('pages/profile.themeType.forest') }}</option>
+                            <option value="aqua" @if(auth()->user()->theme == 'aqua') selected @endif>{{ __('pages/profile.themeType.aqua') }}</option>
+                            <option value="lofi" @if(auth()->user()->theme == 'lofi') selected @endif>{{ __('pages/profile.themeType.lofi') }}</option>
+                            <option value="pastel" @if(auth()->user()->theme == 'pastel') selected @endif>{{ __('pages/profile.themeType.pastel') }}</option>
+                            <option value="fantasy" @if(auth()->user()->theme == 'fantasy') selected @endif>{{ __('pages/profile.themeType.fantasy') }}</option>
+                            <option value="wireframe" @if(auth()->user()->theme == 'wireframe') selected @endif>{{ __('pages/profile.themeType.wireframe') }}</option>
+                            <option value="black" @if(auth()->user()->theme == 'black') selected @endif>{{ __('pages/profile.themeType.black') }}</option>
+                            <option value="luxury" @if(auth()->user()->theme == 'luxury') selected @endif>{{ __('pages/profile.themeType.luxury') }}</option>
+                            <option value="dracula" @if(auth()->user()->theme == 'dracula') selected @endif>{{ __('pages/profile.themeType.dracula') }}</option>
+                            <option value="cmyk" @if(auth()->user()->theme == 'cmyk') selected @endif>{{ __('pages/profile.themeType.cmyk') }}</option>
+                            <option value="autumn" @if(auth()->user()->theme == 'autumn') selected @endif>{{ __('pages/profile.themeType.autumn') }}</option>
+                            <option value="business" @if(auth()->user()->theme == 'business') selected @endif>{{ __('pages/profile.themeType.business') }}</option>
+                            <option value="acid" @if(auth()->user()->theme == 'acid') selected @endif>{{ __('pages/profile.themeType.acid') }}</option>
+                            <option value="lemonade" @if(auth()->user()->theme == 'lemonade') selected @endif>{{ __('pages/profile.themeType.lemonade') }}</option>
+                            <option value="night" @if(auth()->user()->theme == 'night') selected @endif>{{ __('pages/profile.themeType.night') }}</option>
+                            <option value="coffee" @if(auth()->user()->theme == 'coffee') selected @endif>{{ __('pages/profile.themeType.coffee') }}</option>
+                            <option value="winter" @if(auth()->user()->theme == 'winter') selected @endif>{{ __('pages/profile.themeType.winter') }}</option>
                         </select>
                     </div>
                 </div>
@@ -75,7 +102,7 @@
                             </div>
                             <div class="col-span-1 text-end">
                                 @if ($session['isCurrentSession'])
-                                    <button class="btn btn-ghost" wire:click="$dispatch('openModal', { component: 'components.modals.profile.logout' })">{{ __('pages/profile.current_session') }}</button>
+                                    <button class="btn btn-outline btn-ghost" wire:click="$dispatch('openModal', { component: 'components.modals.profile.logout' })">{{ __('pages/profile.current_session') }}</button>
                                 @else
                                     <dialog id="logout_session_{{ $session['id'] }}" class="modal modal-bottom sm:modal-middle">
                                         <div class="modal-box">
@@ -97,7 +124,7 @@
                                             <div class="flex justify-center modal-action">
                                                 <form method="dialog">
                                                     <button class="btn btn-neutral">{{ __('messages.cancel') }}</button>
-                                                    <button class="btn btn-success"
+                                                    <button class="btn btn-danger"
                                                             wire:click="logoutSession('{{ $session['id'] }}')">{{ __('pages/profile.modals.logout.logout') }}
                                                     </button>
                                                 </form>
@@ -105,7 +132,7 @@
                                         </div>
                                     </dialog>
 
-                                    <button class="btn btn-ghost text-warning"
+                                    <button class="btn btn-outline btn-error"
                                             onclick="document.getElementById('logout_session_{{ $session['id'] }}').showModal()">
                                         {{ __('pages/profile.revoke_session') }}
                                     </button>

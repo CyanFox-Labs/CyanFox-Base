@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <div x-data="{ sidebarOpen: false, pinned: $persist(false) }" class="relative">
     <!-- Navbar -->
-    <nav class="bg-navigation flex items-center justify-between p-3">
+    <nav class="bg-base-200 flex items-center justify-between p-3">
         <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
-            <span role="button" tabindex="0" class="mr-2 text-white">{{ auth()->user()->username }}</span>
+            <span role="button" tabindex="0" class="mr-2">{{ auth()->user()->username }}</span>
             <img tabindex="0" role="button"
                  src="https://source.boringavatars.com/beam/120/{{ auth()->user()->username }}" alt="Profile"
                  class="w-9 h-9 mr-6">
@@ -22,7 +22,7 @@
     <!-- Sidebar -->
     <div x-bind:class="{'expanded': sidebarOpen || pinned, 'pinned': pinned}" @mouseover="sidebarOpen = true"
          @mouseleave="sidebarOpen = false"
-         class="flex flex-col items-center w-40 fixed top-0 left-0 h-full sidebar overflow-hidden text-gray-400 bg-navigation shadow-lg transform transition-transform"
+         class="flex flex-col items-center w-40 fixed top-0 left-0 h-full sidebar overflow-hidden bg-base-200 shadow-lg transform transition-transform"
          x-transition:enter="transition-transform transition-width ease-out duration-300"
          x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
          x-transition:leave="transition-transform transition-width ease-in duration-300"
@@ -30,7 +30,7 @@
         <!-- Brand-Image with Text -->
         <div class="flex items-center justify-center w-full h-16 mt-2">
             <img src="{{ asset('img/Logo.png') }}" alt="Logo" class="w-8 h-8">
-            <span class="ml-2 text-sm font-bold text-white text-hidden">{{ env('APP_NAME') }}</span>
+            <span class="ml-2 text-sm font-bold text-hidden">{{ env('APP_NAME') }}</span>
         </div>
 
         <div class="w-full px-2 mt-4">

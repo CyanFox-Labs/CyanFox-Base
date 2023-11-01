@@ -1,5 +1,5 @@
 <div>
-    <script src="{{ asset('js/sites/admin/users/roles.js') }}"></script>
+    <script src="{{ asset('js/sites/multiselect.js') }}"></script>
     <div class="ml-2 mb-5">
         <div class="text-sm breadcrumbs">
             <ul>
@@ -8,7 +8,7 @@
                 <li><a href="{{ route('admin-user-list') }}"><i
                             class="bx bxs-user-account mr-2"></i> {{ __('breadcrumbs.admin.users.list') }}</a></li>
                 <li><a href="{{ route('admin-user-edit', [$userId]) }}"><i
-                            class="bx bxs-plus-circle mr-2"></i> {{ __('breadcrumbs.admin.users.edit') }}</a></li>
+                            class="bx bxs-edit-alt mr-2"></i> {{ __('breadcrumbs.admin.users.edit') }}</a></li>
             </ul>
         </div>
     </div>
@@ -52,7 +52,7 @@
                 <div class="grid md:grid-cols-2 gap-4 mt-4">
                     <div class="form-control w-full">
                         <label class="label" for="password">
-                            <span class="label-text">{{ __('pages/admin/users/all.password') }}</span>
+                            <span class="label-text">{{ __('messages.password') }}</span>
                         </label>
                         <input id="password" type="password"
                                class="input input-bordered w-full" wire:model="password"/>

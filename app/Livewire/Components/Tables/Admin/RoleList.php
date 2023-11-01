@@ -2,22 +2,19 @@
 
 namespace App\Livewire\Components\Tables\Admin;
 
-use App\Models\User;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
-use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use Spatie\Permission\Models\Role;
 
-final class UserList extends PowerGridComponent
+final class RoleList extends PowerGridComponent
 {
     use WithExport;
 
@@ -39,59 +36,42 @@ final class UserList extends PowerGridComponent
     public function header(): array
     {
         return [
-            Button::add('new-member')
-                ->slot('<i class="bx bxs-plus-circle"></i> ' . __('pages/admin/users/user-list.create'))
+            Button::add('new-role')
+                ->slot('<i class="bx bxs-plus-circle"></i> ' . __('pages/admin/roles/role-list.create'))
                 ->class('btn btn-accent')
-                ->dispatch('new-user', [])
+                ->dispatch('new-role', [])
         ];
     }
 
     public function datasource(): Builder
     {
-        return User::query();
-    }
-
-    public function relationSearch(): array
-    {
-        return [];
+        return Role::query();
     }
 
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('first_name')
-            ->addColumn('last_name')
-            ->addColumn('username')
-            ->addColumn('email')
-            ->addColumn('created_at_formatted', fn(User $model) => Carbon::parse($model->created_at)->format('d.m.Y H:i:s'))
-            ->addColumn('updated_at_formatted', fn(User $model) => Carbon::parse($model->updated_at)->format('d.m.Y H:i:s'));
+            ->addColumn('name')
+            ->addColumn('guard_name');
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
-            Column::make('First name', 'first_name')
-                ->sortable()
-                ->searchable(),
-            Column::make('Last name', 'last_name')
-                ->sortable()
-                ->searchable(),
-            Column::make('Username', 'username')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Email', 'email')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
-            Column::make('Updated at', 'updated_at_formatted', 'updated_at')
+            Column::make(__('pages/admin/roles/role-list.id'), 'id')
+                ->searchable()
                 ->sortable(),
 
-            Column::action('Action')
+            Column::make(__('pages/admin/roles/all.name'), 'name')
+                ->searchable()
+                ->sortable(),
+
+            Column::make(__('pages/admin/roles/all.guard_name'), 'guard_name')
+                ->searchable()
+                ->sortable(),
+
+            Column::action(__('pages/admin/roles/role-list.actions'))
         ];
     }
 
@@ -103,22 +83,22 @@ final class UserList extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->redirect(route('admin-user-edit', [$rowId]));
+        $this->redirect(route('admin-role-edit', [$rowId]));
     }
 
     #[\Livewire\Attributes\On('delete')]
     public function delete($rowId): void
     {
-        $this->dispatch('openModal', 'components.modals.admin.user-delete', ['userId' => $rowId]);
+        $this->dispatch('openModal', 'components.modals.admin.role-delete', ['roleId' => $rowId]);
     }
 
-    #[\Livewire\Attributes\On('new-user')]
-    public function createUser(): void
+    #[\Livewire\Attributes\On('new-role')]
+    public function createRole(): void
     {
-        $this->redirect(route('admin-user-create'));
+        $this->redirect(route('admin-role-create'));
     }
 
-    public function actions(User $row): array
+    public function actions(Role $row): array
     {
         return [
             Button::add('edit')
@@ -131,15 +111,6 @@ final class UserList extends PowerGridComponent
                 ->id()
                 ->class('btn btn-error btn-sm')
                 ->dispatch('delete', ['rowId' => $row->id]),
-        ];
-    }
-
-    public function actionRules(): array
-    {
-        return [
-            Rule::button('delete')
-                ->when(fn(User $model) => $model->id == auth()->user()->id)
-                ->hide(),
         ];
     }
 }

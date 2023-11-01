@@ -29,9 +29,9 @@ class SetLanguage
             app()->setLocale($language);
             return $next($request);
         }else{
-            app()->setLocale('en');
+            app()->setLocale(env('APP_LANG', 'en'));
             return $next($request)
-                ->withCookie(cookie()->forever('language', 'en'));
+                ->withCookie(cookie()->forever('language', env('APP_LANG', 'en')));
         }
     }
 }

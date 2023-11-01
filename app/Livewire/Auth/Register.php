@@ -66,14 +66,16 @@ class Register extends Component
             return;
         }
 
-        try {
-            $this->validate(['hcaptcha' => ['required', new HCaptchaValidator()]]);
-        }catch (ValidationException $e) {
-            Notification::make()
-                ->title(__('messages.invalid_captcha'))
-                ->danger()
-                ->send();
-            return;
+        if (env('ENABLE_HCAPTCHA')) {
+            try {
+                $this->validate(['hcaptcha' => ['required', new HCaptchaValidator()]]);
+            } catch (ValidationException $e) {
+                Notification::make()
+                    ->title(__('messages.invalid_captcha'))
+                    ->danger()
+                    ->send();
+                return;
+            }
         }
 
         if ($this->password != $this->password_confirm) {
@@ -93,7 +95,7 @@ class Register extends Component
 
         try {
             $user->save();
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
