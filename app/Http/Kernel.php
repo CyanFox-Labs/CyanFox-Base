@@ -70,5 +70,8 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+        'redirectIfAuthenticated' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'mustChangePassword' => \App\Http\Middleware\MustChangePassword::class,
+        'mustActivateTwoFactor' => \App\Http\Middleware\MustActivateTwoFactor::class,
     ];
 }

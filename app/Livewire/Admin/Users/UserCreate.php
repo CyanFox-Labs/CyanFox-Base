@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Users;
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Logger;
 use App\Models\User;
 use Exception;
@@ -79,6 +80,9 @@ class UserCreate extends Component
                 ->send();
             return;
         }
+
+        $authController = new AuthController();
+        $authController->generateTwoFactorSecret($user);
 
         if ($this->roles != null) {
             $user->assignRole($this->roles);

@@ -15,6 +15,7 @@ return [
     'password' => 'Password',
     'invalid_password' => 'Invalid password!',
     'invalid_captcha' => 'Please confirm that you are not a robot!',
+    'photo' => 'Photo',
 
     'language' => 'Language',
     'language_changed' => 'Language changed successfully!',

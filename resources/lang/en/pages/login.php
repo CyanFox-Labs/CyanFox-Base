@@ -7,7 +7,6 @@ return [
     'login' => 'Login',
     'username' => 'Username',
     'remember_me' => 'Remember Me',
-    'photo' => 'Photo',
     'invalid_two_factor' => 'Invalid two factor code.',
     'register' => 'Register',
     'forgot_password' => 'Forgot your password?',

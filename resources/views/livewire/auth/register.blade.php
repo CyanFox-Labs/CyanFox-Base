@@ -13,11 +13,6 @@
         <div class="bg-neutral rounded-box sm:w-full w-auto">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 
-                @if(session('error') !== null)
-                    <x-custom.alert type="error" icon="bx bxs-error"
-                                    class="alert-error">{{ session('error') }}</x-custom.alert>
-                @endif
-
                 @if ($rateLimitTime > 1)
                     <div wire:poll.1s="setRateLimit">
                         <x-custom.alert type="error" icon="bx bxs-error"
@@ -105,7 +100,7 @@
         </div>
     </div>
     <div class="pl-6 pb-4" id="unsplashCredits" wire:ignore>
-        <span class="text-sm" id="credits" wire:ignore><a id="photo">{{ __('pages/login.photo') }}</a>, <a
+        <span class="text-sm" id="credits" wire:ignore><a id="photo">{{ __('messages.photo') }}</a>, <a
                 id="author"></a>, <a
                 href="https://unaplash.com/utm_source=CyanFox&utm_medium=referral">Unsplash</a></span>
     </div>
