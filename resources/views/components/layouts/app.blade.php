@@ -20,7 +20,7 @@
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased flex flex-col min-h-screen">
 @livewire('notifications')
 @livewire('wire-elements-modal')
 
@@ -28,6 +28,9 @@
 
 {{ $slot }}
 
+</div>
+</div>
+<x-navigation.footer></x-navigation.footer>
 
 <!-- Scripts -->
 @filamentScripts
