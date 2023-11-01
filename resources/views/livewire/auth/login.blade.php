@@ -27,8 +27,8 @@
                     </div>
                 @elseif($username !== null)
                     @if(!session('error'))
-                        <x-custom.alert icon="bx bxs-error"
-                                        class="alert-error">{{ __('pages/login.not_found') }}</x-custom.alert>
+                        <x-alert icon="o-exclamation-triangle"
+                                 class="alert-error">{{ __('pages/login.not_found') }}</x-alert>
                     @endif
                 @endif
 
