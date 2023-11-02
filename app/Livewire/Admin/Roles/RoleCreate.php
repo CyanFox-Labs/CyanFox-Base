@@ -24,18 +24,10 @@ class RoleCreate extends Component
 
     public function createRole()
     {
-        try {
-            $this->validate([
-                'name' => 'required|string',
-                'guard_name' => 'required|string',
-            ]);
-        } catch (ValidationException $e) {
-            Notification::make()
-                ->title(__('messages.fill_all_fields_correctly'))
-                ->danger()
-                ->send();
-            return;
-        }
+        $this->validate([
+            'name' => 'required|string',
+            'guard_name' => 'required|string',
+        ]);
 
         try {
             $role = Role::create([

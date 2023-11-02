@@ -25,19 +25,12 @@ class RoleEdit extends Component
         $this->permissions = $values;
     }
 
-    public function updateRole() {
-        try {
-            $this->validate([
-                'name' => 'required|string',
-                'guard_name' => 'required|string',
-            ]);
-        } catch (ValidationException $e) {
-            Notification::make()
-                ->title(__('messages.fill_all_fields_correctly'))
-                ->danger()
-                ->send();
-            return;
-        }
+    public function updateRole()
+    {
+        $this->validate([
+            'name' => 'required|string',
+            'guard_name' => 'required|string',
+        ]);
 
         try {
             $role = Role::find($this->roleId);
@@ -63,7 +56,8 @@ class RoleEdit extends Component
         return redirect()->route('admin-role-list');
     }
 
-    public function mount() {
+    public function mount()
+    {
         $this->role = Role::find($this->roleId);
 
         $this->name = $this->role->name;

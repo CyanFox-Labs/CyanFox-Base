@@ -15,21 +15,15 @@
 
     <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
         <div class="card-body">
-            <form onsubmit="event.preventDefault()">
+            <x-form wire:submit="createRole">
                 <div class="grid md:grid-cols-2 gap-4 mt-4">
                     <div class="form-control w-full">
-                        <label class="label" for="name">
-                            <span class="label-text">{{ __('pages/admin/roles/all.name') }}</span>
-                        </label>
-                        <input id="name" type="text"
-                               class="input input-bordered w-full" wire:model="name" required/>
+                        <x-input label="{{ __('pages/admin/roles/all.name') }}"
+                                 class="input input-bordered w-full" wire:model="name" required/>
                     </div>
                     <div class="form-control w-full">
-                        <label class="label" for="guard_name">
-                            <span class="label-text">{{ __('pages/admin/roles/all.guard_name') }}</span>
-                        </label>
-                        <input id="guard_name" type="text"
-                               class="input input-bordered w-full" wire:model="guard_name" value="web" required/>
+                        <x-input label="{{ __('pages/admin/roles/all.guard_name') }}"
+                                 class="input input-bordered w-full" wire:model="guard_name" value="web" required/>
                     </div>
                 </div>
 
@@ -53,12 +47,12 @@
                        class="btn btn-error">
                         {{ __('messages.back') }}
                     </a>
-                    <button type="submit" wire:click="createRole"
-                            class="btn btn-primary">
+                    <x-button type="submit"
+                              class="btn btn-primary" spinner="createRole">
                         {{ __('pages/admin/roles/role-create.create') }}
-                    </button>
+                    </x-button>
                 </div>
-            </form>
+            </x-form>
         </div>
     </div>
 </div>

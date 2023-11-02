@@ -32,24 +32,17 @@ class UserEdit extends Component
         $this->roles = $values;
     }
 
-    public function updateUser() {
-        try {
-            $this->validate([
-                'first_name' => 'required|string',
-                'last_name' => 'required|string',
-                'username' => 'required|string',
-                'email' => 'required|email',
-                'change_password' => 'required|boolean',
-                'activate_two_factor' => 'required|boolean',
-            ]);
-        } catch (ValidationException $e) {
-            Log::error($e->getMessage());
-            Notification::make()
-                ->title(__('messages.fill_all_fields_correctly'))
-                ->danger()
-                ->send();
-            return;
-        }
+    public function updateUser()
+    {
+        $this->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'username' => 'required|string',
+            'email' => 'required|email',
+            'change_password' => 'required|boolean',
+            'activate_two_factor' => 'required|boolean',
+        ]);
+
 
         $user = User::find($this->userId);
         $user->first_name = $this->first_name;
@@ -62,7 +55,7 @@ class UserEdit extends Component
 
         try {
             $user->save();
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             Log::error($e->getMessage());
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
@@ -83,7 +76,8 @@ class UserEdit extends Component
         return redirect()->route('admin-user-list');
     }
 
-    public function mount() {
+    public function mount()
+    {
         $this->user = User::find($this->userId);
         if (!$this->user) {
             Notification::make()

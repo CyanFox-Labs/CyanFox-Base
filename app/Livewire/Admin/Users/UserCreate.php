@@ -31,25 +31,17 @@ class UserCreate extends Component
         $this->roles = $values;
     }
 
-    public function createUser() {
-        try {
-            $this->validate([
-                'first_name' => 'required|string',
-                'last_name' => 'required|string',
-                'username' => 'required|string',
-                'email' => 'required|email',
-                'password' => 'required|string',
-                'change_password' => 'required|boolean',
-                'activate_two_factor' => 'required|boolean',
-            ]);
-        } catch (ValidationException $e) {
-            Log::error($e->getMessage());
-            Notification::make()
-                ->title(__('messages.fill_all_fields_correctly'))
-                ->danger()
-                ->send();
-            return;
-        }
+    public function createUser()
+    {
+        $this->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'username' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required|string',
+            'change_password' => 'required|boolean',
+            'activate_two_factor' => 'required|boolean',
+        ]);
 
         $userExists = User::where('username', $this->username)->orWhere('email', $this->email)->first();
         if ($userExists != null) {
@@ -72,7 +64,7 @@ class UserCreate extends Component
 
         try {
             $user->save();
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             Log::error($e->getMessage());
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
