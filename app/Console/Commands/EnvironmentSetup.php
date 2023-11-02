@@ -53,8 +53,8 @@ class EnvironmentSetup extends Command
             'Do you want to enable HCaptcha?'
         );
 
-        $hcaptcha_site_key = '';
-        $hcaptcha_secret_key = '';
+        $hcaptcha_site_key = env('HCAPTCHA_SITE_KEY');
+        $hcaptcha_secret_key = env('HCAPTCHA_SECRET');
 
         if ($enable_hcaptcha) {
             $hcaptcha_site_key = text(
@@ -70,8 +70,8 @@ class EnvironmentSetup extends Command
             'Do you want to change the default Version URLs?', false
         );
 
-        $template_url = '';
-        $project_url = '';
+        $template_url = env('TEMPLATE_VERSION_URL');
+        $project_url = env('PROJECT_VERSION_URL');
 
         if ($change_urls) {
             $template_url = text(

@@ -1,6 +1,18 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ auth()->user()->theme }}"
-      @if(auth()->user()->theme == 'dark') class="dark" @endif>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+      data-theme="{{ auth()->user()->theme }}"
+      @if(
+    auth()->user()->theme == 'dark' ||
+    auth()->user()->theme == 'synthwave' ||
+    auth()->user()->theme == 'halloween' ||
+    auth()->user()->theme == 'forest' ||
+    auth()->user()->theme == 'black' ||
+    auth()->user()->theme == 'luxury' ||
+    auth()->user()->theme == 'business' ||
+    auth()->user()->theme == 'coffee' ||
+    auth()->user()->theme == 'night' ||
+    auth()->user()->theme == 'dracula'
+    ) class="dark" @endif>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

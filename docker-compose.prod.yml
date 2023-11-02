@@ -1,0 +1,55 @@
+version: "3"
+services:
+  template_app:
+    container_name: template_app
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    expose:
+      - 9000
+    volumes:
+      - .:/usr/src/app
+      - ./public:/usr/src/app/public
+    restart: always
+    networks:
+      - template
+
+  template_nginx:
+    container_name: template_nginx
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    volumes:
+      - ./public:/usr/src/app/public
+    depends_on:
+      - template_app
+    ports:
+      - 80:80
+    environment:
+      NGINX_FPM_HOST: template_app
+      NGINX_ROOT: /usr/src/app/public
+    restart: always
+    networks:
+      - template
+
+  template_db:
+    container_name: template_db
+    image: mysql
+    restart: always
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: template
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: template
+      MYSQL_PASSWORD: template
+    networks:
+      - template
+
+networks:
+  template:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local
