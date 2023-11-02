@@ -3,8 +3,8 @@
 
         <div class="text-center">
             @if($recovery_codes == null)
-                <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modals.recovery_codes_password.title') }}</h2>
-                <p class="mb-3">{{ __('pages/profile.modals.recovery_codes_password.description') }}</p>
+                <h2 class="text-2xl font-bold mb-4">{{ __('pages/account/modals.recovery_codes.password.title') }}</h2>
+                <p class="mb-3">{{ __('pages/account/modals.recovery_codes.password.description') }}</p>
 
                 <div class="flex justify-center">
                     <div class="form-control w-full max-w-xs">
@@ -21,13 +21,13 @@
                                 wire:click="$dispatch('closeModal')">{{ __('messages.cancel') }}</button>
                         <x-button class="btn btn-success"
                                   type="submit"
-                                  spinner="showRecoveryKeys">{{ __('pages/profile.modals.recovery_codes_password.show') }}</x-button>
+                                  spinner="showRecoveryKeys">{{ __('pages/account/modals.recovery_codes.password.buttons.show_recovery_codes') }}</x-button>
                     </form>
                 </div>
             @else
                 <div class="text-center">
-                    <h2 class="text-2xl font-bold mb-4">{{ __('pages/profile.modals.recovery_codes.title') }}</h2>
-                    <p class="mb-3">{{ __('pages/profile.modals.recovery_codes.description') }}</p>
+                    <h2 class="text-2xl font-bold mb-4">{{ __('pages/account/modals.recovery_codes.title') }}</h2>
+                    <p class="mb-3">{{ __('pages/account/modals.recovery_codes.description') }}</p>
 
                     @foreach($recovery_codes as $recovery_code)
                         <p class="mb-3">{{ $recovery_code }}</p>
@@ -38,7 +38,7 @@
                         <button class="btn btn-neutral" type="button"
                                 wire:click="$dispatch('closeModal')">{{ __('messages.close') }}</button>
                         <x-button class="btn btn-accent"
-                                type="submit" spinner="download">{{ __('pages/profile.modals.recovery_codes.save') }}</x-button>
+                                type="submit" spinner="download">{{ __('messages.save') }}</x-button>
                     </form>
                 </div>
             @endif

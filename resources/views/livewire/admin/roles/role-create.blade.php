@@ -3,12 +3,12 @@
     <div class="ml-2 mb-5">
         <div class="text-sm breadcrumbs">
             <ul>
-                <li><a href="{{ route('home') }}"><i class="bx bxs-cog mr-2"></i> {{ __('breadcrumbs.admin.admin') }}
+                <li><a href="{{ route('home') }}"><i class="bx bxs-cog mr-2"></i> {{ __('navigation/messages.admin') }}
                     </a></li>
                 <li><a href="{{ route('admin-role-list') }}"><i
-                            class="bx bxs-user-badge mr-2"></i> {{ __('breadcrumbs.admin.roles.list') }}</a></li>
+                            class="bx bxs-user-badge mr-2"></i> {{ __('messages.roles') }}</a></li>
                 <li><a href="{{ route('admin-role-create') }}"><i
-                            class="bx bxs-plus-circle mr-2"></i> {{ __('breadcrumbs.admin.roles.create') }}</a></li>
+                            class="bx bxs-plus-circle mr-2"></i> {{ __('navigation/breadcrumbs.admin.roles.create') }}</a></li>
             </ul>
         </div>
     </div>
@@ -18,11 +18,11 @@
             <x-form wire:submit="createRole">
                 <div class="grid md:grid-cols-2 gap-4 mt-4">
                     <div class="form-control w-full">
-                        <x-input label="{{ __('pages/admin/roles/all.name') }}"
+                        <x-input label="{{ __('messages.name') }}"
                                  class="input input-bordered w-full" wire:model="name" required/>
                     </div>
                     <div class="form-control w-full">
-                        <x-input label="{{ __('pages/admin/roles/all.guard_name') }}"
+                        <x-input label="{{ __('pages/admin/roles/messages.guard_name') }}"
                                  class="input input-bordered w-full" wire:model="guard_name" value="web" required/>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
 
                 <div class="form-control w-full mt-4" wire:ignore>
                     <label class="label" for="permissions">
-                        <span class="label-text">{{ __('pages/admin/roles/all.permissions') }}</span>
+                        <span class="label-text">{{ __('messages.permissions') }}</span>
                     </label>
                     <select x-data="multiselect" id="permissions" class="select select-bordered"
                             wire:model="permissions" multiple>
@@ -49,7 +49,7 @@
                     </a>
                     <x-button type="submit"
                               class="btn btn-primary" spinner="createRole">
-                        {{ __('pages/admin/roles/role-create.create') }}
+                        {{ __('pages/admin/roles/role-create.buttons.create_role') }}
                     </x-button>
                 </div>
             </x-form>

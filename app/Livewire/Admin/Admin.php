@@ -13,6 +13,7 @@ class Admin extends Component
     public $remoteTemplateVersion;
     public $isProjectUpToDate;
     public $isTemplateUpToDate;
+    public $isDevVersion;
 
     public function mount()
     {
@@ -22,6 +23,7 @@ class Admin extends Component
         $this->remoteTemplateVersion = VersionController::getRemoteTemplateVersion();
         $this->isProjectUpToDate = VersionController::isProjectUpToDate();
         $this->isTemplateUpToDate = VersionController::isTemplateUpToDate();
+        $this->isDevVersion = VersionController::isDevVersion();
     }
 
     public function render()

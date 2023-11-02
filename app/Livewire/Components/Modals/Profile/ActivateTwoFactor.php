@@ -26,7 +26,7 @@ class ActivateTwoFactor extends ModalComponent
             ]);
         }
 
-        if (!AuthController::checkTwoFactorKey(Auth::user(), $this->two_factor_key, false)) {
+        if (!AuthController::checkTwoFactorCode(Auth::user(), $this->two_factor_key, false)) {
             throw ValidationException::withMessages([
                 'two_factor_key' => __('pages/profile.activate_two_factor.wrong_code')
             ]);

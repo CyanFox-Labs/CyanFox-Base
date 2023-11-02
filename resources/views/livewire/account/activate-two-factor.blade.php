@@ -26,7 +26,7 @@
 
                         <div class="space-y-4">
                             <div class="form-control w-full max-w-xs">
-                                <x-input label="{{ __('pages/account/activate-two-factor.two_factor_key') }}"
+                                <x-input label="{{ __('messages.two_factor_code') }}"
                                          type="number" class="input input-bordered w-full max-w-xs"
                                          wire:model="two_factor_key"/>
                             </div>
@@ -43,7 +43,7 @@
                     <div class="flex justify-between items-center">
                         <x-button type="submit"
                                 class="flex-1 mr-2 btn btn-primary" spinner="activateTwoFactor">
-                            {{ __('pages/account/activate-two-factor.activate_two_factor') }}
+                            {{ __('pages/account/messages.buttons.activate_two_factor') }}
                         </x-button>
                     </div>
                 </x-form>

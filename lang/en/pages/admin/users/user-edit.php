@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'update' => 'Update user',
-    'updated' => 'User successfully updated',
+    'buttons' => [
+        'update_user' => 'Update User',
+    ]
 ];

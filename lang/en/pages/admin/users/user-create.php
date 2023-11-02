@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'create' => 'Create User',
-    'created' => 'User successfully created!',
-
+    'buttons' => [
+        'create_user' => 'Create User',
+    ]
 ];

@@ -37,5 +37,6 @@
 @vite('resources/js/app.js')
 
 <script src="{{ asset('js/hcaptcha.js') }}"></script>
+<script src="{{ asset('js/error_log.js') }}"></script>
 </body>
 </html>

@@ -18,7 +18,7 @@
                     <x-form class="space-y-2 md:space-y-6" wire:submit="sendLink">
                         @csrf
                         <div class="form-control w-full">
-                            <x-input label="{{ __('pages/account/forgot-password.email') }}"
+                            <x-input label="{{ __('messages.email') }}"
                                      type="email"
                                      class="input input-bordered w-full" wire:model="email"/>
                         </div>
@@ -26,14 +26,14 @@
                         <div class="flex justify-between items-center">
                             <x-button type="submit"
                                       class="flex-1 mr-2 btn btn-primary" spinner="sendLink">
-                                {{ __('pages/account/forgot-password.send_link') }}
+                                {{ __('pages/account/forgot-password.buttons.send_link') }}
                             </x-button>
 
                             <details class="dropdown">
                                 <summary class="m-1 btn">{{ __('messages.language') }}</summary>
                                 <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-32">
-                                    <li><a wire:click="setLanguage('de')">{{ __('messages.languageType.de') }}</a></li>
-                                    <li><a wire:click="setLanguage('en')">{{ __('messages.languageType.en') }}</a></li>
+                                    <li><a wire:click="setLanguage('de')">{{ __('messages.language_types.de') }}</a></li>
+                                    <li><a wire:click="setLanguage('en')">{{ __('messages.language_types.en') }}</a></li>
                                 </ul>
                             </details>
                         </div>
@@ -41,13 +41,13 @@
                 @else
                     <x-form class="space-y-2 md:space-y-6" wire:submit="resetPassword">
                         <div class="form-control w-full">
-                            <x-input label="{{ __('pages/account/forgot-password.password') }}"
+                            <x-input label="{{ __('messages.password') }}"
                                      type="password"
                                      class="input input-bordered w-full" wire:model="password"/>
                         </div>
 
                         <div class="form-control w-full">
-                            <x-input label="{{ __('pages/account/forgot-password.password_confirm') }}"
+                            <x-input label="{{ __('messages.confirm_password') }}"
                                      type="password"
                                      class="input input-bordered w-full" wire:model="password_confirm"/>
                         </div>
@@ -55,14 +55,14 @@
                         <div class="flex justify-between items-center">
                             <x-button type="submit"
                                       class="flex-1 mr-2 btn btn-primary" spinner="resetPassword">
-                                {{ __('pages/account/forgot-password.reset') }}
+                                {{ __('pages/account/forgot-password.buttons.reset_password') }}
                             </x-button>
 
                             <details class="dropdown">
                                 <summary class="m-1 btn">{{ __('messages.language') }}</summary>
                                 <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-32">
-                                    <li><a wire:click="setLanguage('de')">{{ __('messages.languageType.de') }}</a></li>
-                                    <li><a wire:click="setLanguage('en')">{{ __('messages.languageType.en') }}</a></li>
+                                    <li><a wire:click="setLanguage('de')">{{ __('messages.language_types.de') }}</a></li>
+                                    <li><a wire:click="setLanguage('en')">{{ __('messages.language_types.en') }}</a></li>
                                 </ul>
                             </details>
                         </div>
@@ -72,7 +72,7 @@
                     class="grid gap-4 mt-4">
                     <a href="{{ route('login') }}"
                        class="btn btn-ghost">
-                        {{ __('pages/account/forgot-password.login') }}
+                        {{ __('pages/auth/messages.buttons.back_to_login') }}
                     </a>
                 </div>
             </div>

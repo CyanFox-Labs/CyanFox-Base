@@ -1,29 +1,43 @@
 <?php
 
 return [
-    'back' => 'Back',
-    'cancel' => 'Cancel',
-    'close' => 'Close',
-    'confirm' => 'Confirm',
-    'delete' => 'Delete',
-    'update' => 'Update',
-    'yes' => 'Yes',
-    'no' => 'No',
-    'loading' => 'Loading...',
-
-    'something_went_wrong' => 'Something went wrong!',
-    'fill_all_fields_correctly' => 'Please fill all fields correctly!',
+    'name' => 'Name',
+    'first_name' => 'First Name',
+    'last_name' => 'Last Name',
+    'username' => 'Username',
+    'email' => 'Email',
     'password' => 'Password',
-    'invalid_password' => 'Invalid password!',
-    'invalid_captcha' => 'Please confirm that you are not a robot!',
+    'confirm_password' => 'Confirm Password',
+    'new_password' => 'New Password',
+    'confirm_new_password' => 'Confirm New Password',
+    'current_password' => 'Current Password',
+    'two_factor_code' => 'Two Factor Code',
+
+    'id' => 'ID',
+    'created_at' => 'Created At',
+    'updated_at' => 'Updated At',
+    'deleted_at' => 'Deleted At',
+    'actions' => 'Actions',
+
+    'language' => 'Language',
+    'theme' => 'Theme',
     'photo' => 'Photo',
     'page' => 'Page',
     'version' => 'Version',
+    'users' => 'Users',
+    'permissions' => 'Permissions',
+    'roles' => 'Roles',
+    'dashboard' => 'Dashboard',
 
-    'language' => 'Language',
-    'language_changed' => 'Language changed successfully!',
-    'languageType' => [
+    'yes' => 'Yes',
+    'no' => 'No',
+    'cancel' => 'Cancel',
+    'close' => 'Close',
+    'back' => 'Back',
+    'save' => 'Save',
+
+    'language_types' => [
         'en' => 'English',
         'de' => 'German',
-    ],
+    ]
 ];

@@ -26,7 +26,7 @@ class ActivateTwoFactor extends Component
             ]);
         }
 
-        if (!AuthController::checkTwoFactorKey(Auth::user(), $this->two_factor_key, false)) {
+        if (!AuthController::checkTwoFactorCode(Auth::user(), $this->two_factor_key, false)) {
             throw ValidationException::withMessages([
                 'two_factor_key' => __('pages/account/activate-two-factor.wrong_code')
             ]);

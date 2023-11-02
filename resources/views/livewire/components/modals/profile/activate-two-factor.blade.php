@@ -10,7 +10,7 @@
 
         <div class="space-y-4">
             <div class="form-control w-full max-w-xs">
-                <x-input label="{{ __('pages/profile.modals.activate_2fa.key') }}"
+                <x-input label="{{ __('messages.two_factor_code') }}"
                          type="number" class="input input-bordered w-full max-w-xs"
                          wire:model="two_factor_key"/>
             </div>
@@ -31,7 +31,7 @@
                     wire:click="$dispatch('closeModal')">{{ __('messages.cancel') }}</button>
             <x-button class="btn btn-success"
                       type="submit" spinner="activateTwoFactor">
-                {{ __('pages/profile.modals.activate_2fa.activate') }}
+                {{ __('pages/account/messages.buttons.activate_two_factor') }}
             </x-button>
         </form>
     </div>

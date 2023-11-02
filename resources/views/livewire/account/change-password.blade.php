@@ -17,7 +17,7 @@
                     @csrf
 
                     <div class="form-control w-full">
-                        <x-input label="{{ __('pages/account/change-password.current_password') }}"
+                        <x-input label="{{ __('messages.current_password') }}"
                                  type="password"
                                  class="input input-bordered w-full" wire:model="current_password"/>
                     </div>
@@ -25,12 +25,12 @@
 
                     <div class="grid md:grid-cols-2 gap-4 mt-4">
                         <div class="form-control w-full">
-                            <x-input label="{{ __('pages/account/change-password.new_password') }}"
+                            <x-input label="{{ __('messages.new_password') }}"
                                      type="password"
                                      class="input input-bordered w-full" wire:model="new_password"/>
                         </div>
                         <div class="form-control w-full">
-                            <x-input label="{{ __('pages/account/change-password.new_password_confirm') }}"
+                            <x-input label="{{ __('messages.confirm_new_password') }}"
                                      type="password"
                                      class="input input-bordered w-full" wire:model="new_password_confirm"/>
                         </div>
@@ -39,7 +39,7 @@
                     <div class="flex justify-between items-center">
                         <x-button type="submit"
                                 class="flex-1 mr-2 btn btn-primary" spinner="changePassword">
-                            {{ __('pages/account/change-password.change_password') }}
+                            {{ __('pages/account/messages.buttons.change_password') }}
                         </x-button>
                     </div>
                 </x-form>

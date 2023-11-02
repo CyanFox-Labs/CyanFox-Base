@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'created' => 'Role created successfully!',
-    'create' => 'Create Role',
+    'buttons' => [
+        'create_role' => 'Create Role',
+    ]
 ];

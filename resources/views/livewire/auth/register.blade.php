@@ -13,41 +13,34 @@
         <div class="bg-neutral rounded-box sm:w-full w-auto">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 
-                @if ($rateLimitTime > 1)
-                    <div wire:poll.1s="setRateLimit">
-                        <x-alert icon="o-exclamation-triangle"
-                                 class="alert-error">{{ __('pages/login.rate_limit', ['seconds' => $rateLimitTime]) }}
-                        </x-alert>
-                    </div>
-                @endif
-                    <x-form class="space-y-2 md:space-y-6" wire:submit="register">
+                <x-form class="space-y-2 md:space-y-6" wire:submit="register">
                     @csrf
                     <div class="grid md:grid-cols-2 gap-4 mt-4">
                         <div class="form-control w-full">
-                            <x-input label="{{ __('pages/register.first_name') }}"
-                                   class="input input-bordered w-full" wire:model="first_name"/>
+                            <x-input label="{{ __('messages.first_name') }}"
+                                     class="input input-bordered w-full" wire:model="first_name"/>
                         </div>
                         <div class="form-control w-full">
-                            <x-input label="{{ __('pages/register.last_name') }}"
-                                   class="input input-bordered w-full" wire:model="last_name"/>
-                        </div>
-
-                        <div class="form-control w-full">
-                            <x-input label="{{ __('pages/register.username') }}"
-                                   class="input input-bordered w-full" wire:model="username"/>
-                        </div>
-                        <div class="form-control w-full">
-                            <x-input label="{{ __('pages/register.email') }}"
-                                   class="input input-bordered w-full" wire:model="email"/>
+                            <x-input label="{{ __('messages.last_name') }}"
+                                     class="input input-bordered w-full" wire:model="last_name"/>
                         </div>
 
                         <div class="form-control w-full">
-                            <x-input label="{{ __('pages/register.password') }}" type="password"
-                                   class="input input-bordered w-full" wire:model="password"/>
+                            <x-input label="{{ __('messages.username') }}"
+                                     class="input input-bordered w-full" wire:model="username"/>
                         </div>
                         <div class="form-control w-full">
-                            <x-input label="{{ __('pages/register.password_confirm') }}" type="password"
-                                   class="input input-bordered w-full" wire:model="password_confirm"/>
+                            <x-input label="{{ __('messages.email') }}"
+                                     class="input input-bordered w-full" wire:model="email"/>
+                        </div>
+
+                        <div class="form-control w-full">
+                            <x-input label="{{ __('messages.password') }}" type="password"
+                                     class="input input-bordered w-full" wire:model="password"/>
+                        </div>
+                        <div class="form-control w-full">
+                            <x-input label="{{ __('messages.confirm_password') }}" type="password"
+                                     class="input input-bordered w-full" wire:model="password_confirm"/>
                         </div>
                     </div>
 
@@ -57,15 +50,15 @@
 
                     <div class="flex justify-between items-center">
                         <x-button type="submit"
-                                class="flex-1 mr-2 btn btn-primary" spinner="register">
-                            {{ __('pages/register.register') }}
+                                  class="flex-1 mr-2 btn btn-primary" spinner="register">
+                            {{ __('pages/auth/messages.buttons.register') }}
                         </x-button>
 
                         <details class="dropdown ">
                             <summary class="m-1 btn">{{ __('messages.language') }}</summary>
                             <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-32">
-                                <li><a wire:click="setLanguage('de')">{{ __('messages.languageType.de') }}</a></li>
-                                <li><a wire:click="setLanguage('en')">{{ __('messages.languageType.en') }}</a></li>
+                                <li><a wire:click="setLanguage('de')">{{ __('messages.language_types.de') }}</a></li>
+                                <li><a wire:click="setLanguage('en')">{{ __('messages.language_types.en') }}</a></li>
                             </ul>
                         </details>
                     </div>
@@ -73,10 +66,10 @@
                     <div class="grid gap-4 mt-4">
                         <a href="{{ route('login') }}"
                            class="btn btn-ghost">
-                            {{ __('pages/register.login') }}
+                            {{ __('pages/auth/messages.buttons.back_to_login') }}
                         </a>
                     </div>
-                    </x-form>
+                </x-form>
             </div>
         </div>
     </div>

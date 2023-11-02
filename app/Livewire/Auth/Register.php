@@ -23,7 +23,6 @@ class Register extends Component
     public $password_confirm;
     public $hcaptcha;
 
-    public $rateLimitTime;
 
     public function setLanguage($language)
     {
@@ -35,17 +34,6 @@ class Register extends Component
             ->success()
             ->send();
         return redirect()->route('register');
-    }
-
-    public function setRateLimit()
-    {
-        try {
-            $this->rateLimit(10);
-        } catch (TooManyRequestsException $exception) {
-            $this->rateLimitTime = $exception->secondsUntilAvailable;
-            return true;
-        }
-        return false;
     }
 
     public function register()

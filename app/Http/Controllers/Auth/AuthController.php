@@ -22,7 +22,7 @@ class AuthController extends Controller
         $user->save();
     }
 
-    public static function generateRecoveryKeys($user)
+    public static function generateRecoveryCodes($user)
     {
 
         $recovery_codes = [];
@@ -33,7 +33,7 @@ class AuthController extends Controller
         $user->save();
     }
 
-    public static function removeRecoveryKey($user, $key)
+    public static function removeRecoveryCode($user, $key)
     {
         $recovery_codes_array = decrypt($user->two_factor_recovery_codes);
         $recovery_codes = json_decode($recovery_codes_array, true);
@@ -42,14 +42,14 @@ class AuthController extends Controller
         $user->save();
     }
 
-    public static function checkTwoFactorKey($user, $key, $checkRecovery = true)
+    public static function checkTwoFactorCode($user, $key, $checkRecovery = true)
     {
         if ($key == null || $key == '') {
             return false;
         }
 
         if ($user->two_factor_recovery_codes == null || $user->two_factor_recovery_codes == '') {
-            self::generateRecoveryKeys($user);
+            self::generateRecoveryCodes($user);
         }
 
         if ($user->two_factor_secret == null || $user->two_factor_secret == '') {
@@ -61,7 +61,7 @@ class AuthController extends Controller
             $recovery_codes = json_decode($recovery_codes_array, true);
 
             if (in_array($key, $recovery_codes)) {
-                self::removeRecoveryKey($user, $key);
+                self::removeRecoveryCode($user, $key);
                 return true;
             }
         }

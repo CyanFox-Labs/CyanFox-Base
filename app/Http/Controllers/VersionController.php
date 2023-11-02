@@ -23,6 +23,14 @@ class VersionController extends Controller
         return $data['version']['project'] ?? null;
     }
 
+    public static function isDevVersion()
+    {
+        $file = base_path('version.json');
+        $data = json_decode(file_get_contents($file), true);
+
+        return $data['version']['dev'] ?? null;
+    }
+
     public static function getRemoteTemplateVersion()
     {
         if (env('TEMPLATE_VERSION_URL') == null) return true;

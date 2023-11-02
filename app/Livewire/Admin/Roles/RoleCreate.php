@@ -39,6 +39,7 @@ class RoleCreate extends Component
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+            $this->dispatch('sendToConsole', $e->getMessage());
             return;
         }
 

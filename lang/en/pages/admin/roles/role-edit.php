@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'update' => 'Update Role',
-    'updated' => 'Role successfully updated!',
+    'buttons' => [
+        'update_role' => 'Update Role',
+    ]
 ];
