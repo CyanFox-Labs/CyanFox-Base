@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Account;
 
 use Exception;
 use Filament\Notifications\Notification;
@@ -195,7 +195,7 @@ class Profile extends Component
     #[Title('Profile')]
     public function render()
     {
-        return view('livewire.profile')
+        return view('livewire.account.profile')
             ->layout('components.layouts.app', [
                 'title' => __('navigation/messages.profile')
             ]);

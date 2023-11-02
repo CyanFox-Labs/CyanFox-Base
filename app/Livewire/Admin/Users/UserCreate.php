@@ -50,7 +50,9 @@ class UserCreate extends Component
         $user->email = $this->email;
         $user->password = Hash::make($this->password);
         $user->change_password = $this->change_password;
-        $user->activate_two_factor = $this->activate_two_factor;
+        if (!$user->two_factor_enabled) {
+            $user->activate_two_factor = $this->activate_two_factor;
+        }
 
         try {
             $user->save();

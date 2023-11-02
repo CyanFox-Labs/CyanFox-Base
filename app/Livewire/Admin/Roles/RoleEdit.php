@@ -33,13 +33,12 @@ class RoleEdit extends Component
         ]);
 
         try {
-            $role = Role::find($this->roleId);
-            $role->update([
+            $this->role->update([
                 'name' => $this->name,
                 'guard_name' => $this->guard_name,
             ]);
 
-            $role->syncPermissions($this->permissions);
+            $this->role->syncPermissions($this->permissions);
         } catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.something_went_wrong'))

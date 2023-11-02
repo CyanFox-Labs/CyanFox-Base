@@ -3,6 +3,7 @@
 use App\Livewire\Account\ActivateTwoFactor;
 use App\Livewire\Account\ChangePassword;
 use App\Livewire\Account\ForgotPassword;
+use App\Livewire\Account\Profile;
 use App\Livewire\Admin\Admin;
 use App\Livewire\Admin\Groups\GroupList;
 use App\Livewire\Admin\Roles\RoleCreate;
@@ -14,7 +15,6 @@ use App\Livewire\Admin\Users\UserList;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Home;
-use App\Livewire\Profile;
 use Illuminate\Support\Facades\Route;
 
 /*

@@ -14,7 +14,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class ActivateTwoFactor extends Component
 {
 
-    public $two_factor_key = '';
+    public $two_factor_code = '';
 
     public $password;
 
@@ -27,7 +27,7 @@ class ActivateTwoFactor extends Component
             ]);
         }
 
-        if (!AuthController::checkTwoFactorCode(Auth::user(), $this->two_factor_key, false)) {
+        if (!AuthController::checkTwoFactorCode(Auth::user(), $this->two_factor_code, false)) {
             throw ValidationException::withMessages([
                 'two_factor_key' => __('validation.custom.two_factor_code')
             ]);
