@@ -1,0 +1,13 @@
+version: "3"
+services:
+  template_app:
+    container_name: template_app
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    expose:
+      - 9000
+    volumes:
+      - .:/usr/src/app
+      - ./public:/usr/src/app/public
+    restart: always

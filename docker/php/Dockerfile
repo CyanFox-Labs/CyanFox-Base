@@ -26,6 +26,7 @@ RUN apt-get update \
         unzip \
         zip \
         nodejs \
+        npm \
     && apt-get clean \
     && docker-php-ext-configure gd \
     && docker-php-ext-configure zip \

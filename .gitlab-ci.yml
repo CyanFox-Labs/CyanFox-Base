@@ -1,0 +1,12 @@
+stages:
+  - build
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375/
+
+build:
+  image: docker/compose:1.29.2
+  stage: build
+  script:
+    - docker-compose up -d
