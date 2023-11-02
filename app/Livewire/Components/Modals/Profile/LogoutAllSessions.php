@@ -18,13 +18,13 @@ class LogoutAllSessions extends ModalComponent
         try {
             Auth::logoutOtherDevices($this->password);
             Notification::make()
-                ->title(__('pages/profile.logout_all_sessions.logged_out'))
+                ->title(__('pages/account/messages.notifications.revoked_all_sessions'))
                 ->success()
                 ->send();
             $this->redirect(route('profile'));
         } catch (Exception $e) {
             throw ValidationException::withMessages([
-                'password' => __('messages.invalid_password'),
+                'password' => __('validation.current_password'),
             ]);
         }
     }

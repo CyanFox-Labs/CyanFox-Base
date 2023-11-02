@@ -164,9 +164,9 @@ return [
     */
 
     'custom' => [
-        'h-captcha-response' => [
-            'hcaptcha' => 'Please verify that you are human.',
-        ]
+        'two_factor_code' => 'Invalid two factor code.',
+        'passwords_not_match' => 'Passwords do not match.',
+        'invalid_captcha' => 'Please confirm that you are not a robot.',
     ],
 
     /*

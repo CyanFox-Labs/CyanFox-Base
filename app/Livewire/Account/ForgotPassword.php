@@ -26,8 +26,8 @@ class ForgotPassword extends Component
 
         if ($this->password != $this->password_confirm) {
             throw ValidationException::withMessages([
-                'password' => __('pages/account/forgot-password.passwords_not_match'),
-                'password_confirm' => __('pages/account/forgot-password.passwords_not_match'),
+                'password' => __('validation.custom.passwords_not_match'),
+                'password_confirm' => __('validation.custom.passwords_not_match'),
             ]);
         }
 
@@ -37,7 +37,7 @@ class ForgotPassword extends Component
         $user->save();
 
         Notification::make()
-            ->title(__('pages/account/forgot-password.password_resetted'))
+            ->title(__('pages/account/messages.notifications.password_resetted'))
             ->success()
             ->send();
 
@@ -51,6 +51,13 @@ class ForgotPassword extends Component
         ]);
 
         $user = User::where('email', $this->email)->first();
+
+        if ($user == null) {
+            throw ValidationException::withMessages([
+                'email' => __('pages/account/forgot-password.email_not_found'),
+            ]);
+        }
+
         $user->password_reset_token = bin2hex(random_bytes(32));
         $user->save();
 
@@ -61,7 +68,7 @@ class ForgotPassword extends Component
         });
 
         Notification::make()
-            ->title(__('pages/account/forgot-password.email_sent'))
+            ->title(__('pages/account/messages.notifications.password_reset_link_sent'))
             ->success()
             ->send();
     }
@@ -70,7 +77,7 @@ class ForgotPassword extends Component
     {
         return view('livewire.account.forgot-password')
             ->layout('components.layouts.guest', [
-                'title' => __('titles.forgot_password')
+                'title' => __('navigation/titles.forgot_password')
             ]);
     }
 }

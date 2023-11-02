@@ -37,8 +37,8 @@ class UserEdit extends Component
         $this->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'username' => 'required|string',
-            'email' => 'required|email',
+            'username' => 'required|string|unique:users,username,' . $this->userId,
+            'email' => 'required|email|unique:users,email,' . $this->userId,
             'change_password' => 'required|boolean',
             'activate_two_factor' => 'required|boolean',
         ]);
@@ -56,11 +56,12 @@ class UserEdit extends Component
         try {
             $user->save();
         } catch (Exception $e) {
-            Log::error($e->getMessage());
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            $this->dispatch('sendToConsole', $e->getMessage());
             return;
         }
 
@@ -69,7 +70,7 @@ class UserEdit extends Component
         }
 
         Notification::make()
-            ->title(__('pages/admin/users/user-edit.updated'))
+            ->title(__('pages/admin/users/messages.notifications.updated'))
             ->success()
             ->send();
 
@@ -80,12 +81,7 @@ class UserEdit extends Component
     {
         $this->user = User::find($this->userId);
         if (!$this->user) {
-            Notification::make()
-                ->title(__('messages.something_went_wrong'))
-                ->danger()
-                ->send();
-            $this->redirect(route('admin-user-list'));
-            return;
+            abort(404);
         }
 
         $this->first_name = $this->user->first_name;
@@ -101,7 +97,7 @@ class UserEdit extends Component
     {
         return view('livewire.admin.users.user-edit')
             ->layout('components.layouts.admin', [
-                'title' => __('titles.admin.users.edit')
+                'title' => __('navigation/titles.admin.users.edit')
             ]);
     }
 }

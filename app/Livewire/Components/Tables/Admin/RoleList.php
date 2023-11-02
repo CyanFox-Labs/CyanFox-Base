@@ -38,7 +38,7 @@ final class RoleList extends PowerGridComponent
     {
         return [
             Button::add('new-role')
-                ->slot('<i class="bx bxs-plus-circle"></i> ' . __('pages/admin/roles/role-list.create'))
+                ->slot('<i class="bx bxs-plus-circle"></i> ' . __('pages/admin/roles/role-list.buttons.new_role'))
                 ->class('btn btn-accent')
                 ->dispatch('new-role', [])
         ];
@@ -60,19 +60,19 @@ final class RoleList extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make(__('pages/admin/roles/role-list.id'), 'id')
+            Column::make(__('messages.id'), 'id')
                 ->searchable()
                 ->sortable(),
 
-            Column::make(__('pages/admin/roles/all.name'), 'name')
+            Column::make(__('messages.name'), 'name')
                 ->searchable()
                 ->sortable(),
 
-            Column::make(__('pages/admin/roles/all.guard_name'), 'guard_name')
+            Column::make(__('pages/admin/roles/messages.guard_name'), 'guard_name')
                 ->searchable()
                 ->sortable(),
 
-            Column::action(__('pages/admin/roles/role-list.actions'))
+            Column::action(__('messages.actions'))
         ];
     }
 

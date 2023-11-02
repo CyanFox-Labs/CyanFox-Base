@@ -12,6 +12,7 @@ return [
     'confirm_new_password' => 'Confirm New Password',
     'current_password' => 'Current Password',
     'two_factor_code' => 'Two Factor Code',
+    'something_went_wrong' => 'Something went wrong. Check Browser Console for more details.',
 
     'id' => 'ID',
     'created_at' => 'Created At',
@@ -35,6 +36,10 @@ return [
     'close' => 'Close',
     'back' => 'Back',
     'save' => 'Save',
+
+    'notifications' => [
+        'language_changed' => 'Language changed successfully.',
+    ],
 
     'language_types' => [
         'en' => 'English',

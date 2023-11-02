@@ -18,7 +18,7 @@ class RoleDelete extends ModalComponent
         $role->delete();
 
         Notification::make()
-            ->title(__('pages/admin/roles/role-list.modals.delete.deleted'))
+            ->title(__('pages/admin/roles/messages.notifications.deleted'))
             ->success()
             ->send();
 

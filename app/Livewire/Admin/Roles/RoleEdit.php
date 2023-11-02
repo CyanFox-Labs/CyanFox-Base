@@ -38,18 +38,21 @@ class RoleEdit extends Component
                 'name' => $this->name,
                 'guard_name' => $this->guard_name,
             ]);
+
+            $role->syncPermissions($this->permissions);
         } catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            $this->dispatch('sendToConsole', $e->getMessage());
             return;
         }
 
-        $role->syncPermissions($this->permissions);
 
         Notification::make()
-            ->title(__('pages/admin/roles/role-edit.updated'))
+            ->title(__('pages/admin/roles/messages.notifications.updated'))
             ->success()
             ->send();
 
@@ -59,6 +62,9 @@ class RoleEdit extends Component
     public function mount()
     {
         $this->role = Role::find($this->roleId);
+        if (!$this->role) {
+            abort(404);
+        }
 
         $this->name = $this->role->name;
         $this->guard_name = $this->role->guard_name;
@@ -68,7 +74,7 @@ class RoleEdit extends Component
     {
         return view('livewire.admin.roles.role-edit')
             ->layout('components.layouts.admin', [
-                'title' => __('titles.admin.roles.edit')
+                'title' => __('navigation/titles.admin.roles.edit')
             ]);
     }
 }

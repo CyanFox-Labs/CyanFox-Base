@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,8 +26,8 @@ class Profile extends Component
         $this->validate([
             'first_name' => 'required',
             'last_name' => 'required',
-            'username' => 'required',
-            'email' => 'required|email'
+            'username' => 'required|unique:users,username,' . Auth::user()->getAuthIdentifier() . ',id',
+            'email' => 'required|email|unique:users,email,' . Auth::user()->getAuthIdentifier() . ',id'
         ]);
 
 
@@ -37,7 +38,7 @@ class Profile extends Component
 
         if (Auth::user()->save()) {
             Notification::make()
-                ->title(__('pages/profile.profile_updated'))
+                ->title(__('pages/account/messages.notifications.profile_updated'))
                 ->success()
                 ->send();
             $this->redirect(route('profile'));
@@ -61,7 +62,7 @@ class Profile extends Component
 
         if (Auth::user()->save()) {
             Notification::make()
-                ->title(__('messages.language_changed'))
+                ->title(__('messages.notifications.language_changed'))
                 ->success()
                 ->send();
             return redirect()->route('profile');
@@ -81,18 +82,23 @@ class Profile extends Component
 
         Auth::user()->theme = $theme;
 
-        if (Auth::user()->save()) {
-            Notification::make()
-                ->title(__('pages/profile.theme_changed'))
-                ->success()
-                ->send();
-            return redirect()->route('profile');
-        } else {
+        try {
+            Auth::user()->save();
+        }catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            $this->dispatch('sendToConsole', $e->getMessage());
+            return;
         }
+
+        Notification::make()
+            ->title(__('pages/account/messages.notifications.theme_changed'))
+            ->success()
+            ->send();
+        return redirect()->route('profile');
     }
 
     /* Sessions */
@@ -143,7 +149,7 @@ class Profile extends Component
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->current_password])) {
             throw ValidationException::withMessages([
-                'current_password' => __('messages.invalid_password')
+                'current_password' => __('validation.current_password')
             ]);
         }
 
@@ -155,8 +161,8 @@ class Profile extends Component
 
         if ($this->new_password !== $this->confirm_password) {
             throw ValidationException::withMessages([
-                'new_password' => __('pages/profile.password_not_match'),
-                'confirm_password' => __('pages/profile.password_not_match')
+                'new_password' => __('validation.custom.passwords_not_match'),
+                'confirm_password' => __('validation.custom.passwords_not_match')
             ]);
         }
 
@@ -164,7 +170,7 @@ class Profile extends Component
 
         if (Auth::user()->save()) {
             Notification::make()
-                ->title(__('pages/profile.password_updated'))
+                ->title(__('pages/account/messages.notifications.password_changed'))
                 ->success()
                 ->send();
             $this->redirect(route('profile'));
@@ -191,7 +197,7 @@ class Profile extends Component
     {
         return view('livewire.profile')
             ->layout('components.layouts.app', [
-                'title' => __('titles.profile')
+                'title' => __('navigation/messages.profile')
             ]);
     }
 }

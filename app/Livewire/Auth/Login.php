@@ -32,7 +32,7 @@ class Login extends Component
         cookie()->queue(cookie()->forever('language', $language));
 
         Notification::make()
-            ->title(__('messages.language_changed'))
+            ->title(__('messages.notifications.language_changed'))
             ->success()
             ->send();
         return redirect()->route('login');
@@ -61,7 +61,7 @@ class Login extends Component
         if ($this->user == null) {
             $this->user = false;
             throw ValidationException::withMessages([
-                'username' => __('pages/login.not_found'),
+                'username' => __('pages/auth/login.user_not_found'),
             ]);
         }
         $this->resetErrorBag('username');
@@ -79,8 +79,10 @@ class Login extends Component
             return redirect('/');
         }
 
-        session()->flash('error', __('pages/login.invalid_two_factor'));
-    }
+        throw ValidationException::withMessages([
+            'two_factor_code' => __('validation.custom.two_factor_code'),
+        ]);
+   }
 
     public function attemptLogin()
     {
@@ -104,7 +106,7 @@ class Login extends Component
             }
         } else {
             throw ValidationException::withMessages([
-                'password' => __('messages.invalid_password'),
+                'password' => __('validation.current_password'),
             ]);
         }
     }
@@ -113,7 +115,7 @@ class Login extends Component
     {
         return view('livewire.auth.login')
             ->layout('components.layouts.guest', [
-                'title' => __('titles.login')
+                'title' => __('pages/auth/login.buttons.login')
             ]);
     }
 }

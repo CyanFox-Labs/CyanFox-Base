@@ -225,7 +225,7 @@
                                     {{ __('pages/account/messages.buttons.change_password') }}
                                 </x-button>
 
-                                @if(!auth()->user()->two_factor_enabled)
+                                @if(auth()->user()->two_factor_enabled)
                                     <button type="button"
                                             class="btn btn-error"
                                             wire:click="$dispatch('openModal', { component: 'components.modals.profile.disable-two-factor' })">

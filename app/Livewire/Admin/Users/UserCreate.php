@@ -36,22 +36,12 @@ class UserCreate extends Component
         $this->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
-            'username' => 'required|string',
-            'email' => 'required|email',
+            'username' => 'required|string|unique:users',
+            'email' => 'required|email|unique:users',
             'password' => 'required|string',
             'change_password' => 'required|boolean',
             'activate_two_factor' => 'required|boolean',
         ]);
-
-        $userExists = User::where('username', $this->username)->orWhere('email', $this->email)->first();
-        if ($userExists != null) {
-            Notification::make()
-                ->title(__('pages/admin/users/all.user_already_exists'))
-                ->danger()
-                ->send();
-            return;
-        }
-
 
         $user = new User();
         $user->first_name = $this->first_name;
@@ -65,11 +55,12 @@ class UserCreate extends Component
         try {
             $user->save();
         } catch (Exception $e) {
-            Log::error($e->getMessage());
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            $this->dispatch('sendToConsole', $e->getMessage());
             return;
         }
 
@@ -81,7 +72,7 @@ class UserCreate extends Component
         }
 
         Notification::make()
-            ->title(__('pages/admin/users/user-create.created'))
+            ->title(__('pages/admin/users/messages.notifications.created'))
             ->success()
             ->send();
 
@@ -92,7 +83,7 @@ class UserCreate extends Component
     {
         return view('livewire.admin.users.user-create')
             ->layout('components.layouts.admin', [
-                'title' => __('titles.admin.users.create')
+                'title' => __('navigation/titles.admin.users.create')
             ]);
     }
 }

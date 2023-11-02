@@ -18,7 +18,7 @@ class UserDelete extends ModalComponent
         $user->delete();
 
         Notification::make()
-            ->title(__('pages/admin/users/user-list.modals.delete.deleted'))
+            ->title(__('pages/admin/users/messages.notifications.deleted'))
             ->success()
             ->send();
 

@@ -10,7 +10,7 @@ class UserList extends Component
     {
         return view('livewire.admin.users.user-list')
             ->layout('components.layouts.admin', [
-                'title' => __('titles.admin.users.list')
+                'title' => __('navigation/titles.admin.users.list')
             ]);
     }
 }

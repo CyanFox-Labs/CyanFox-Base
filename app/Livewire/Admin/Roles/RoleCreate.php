@@ -34,6 +34,8 @@ class RoleCreate extends Component
                 'name' => $this->name,
                 'guard_name' => $this->guard_name,
             ]);
+
+            $role->syncPermissions($this->permissions);
         } catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
@@ -43,10 +45,9 @@ class RoleCreate extends Component
             return;
         }
 
-        $role->syncPermissions($this->permissions);
 
         Notification::make()
-            ->title(__('pages/admin/roles/role-create.created'))
+            ->title(__('pages/admin/roles/messages.notifications.created'))
             ->success()
             ->send();
 
@@ -63,7 +64,7 @@ class RoleCreate extends Component
     {
         return view('livewire.admin.roles.role-create')
             ->layout('components.layouts.admin', [
-                'title' => __('titles.admin.roles.create')
+                'title' => __('navigation/titles.admin.roles.create')
             ]);
     }
 }

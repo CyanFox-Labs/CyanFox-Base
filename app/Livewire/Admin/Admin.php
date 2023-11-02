@@ -30,7 +30,7 @@ class Admin extends Component
     {
         return view('livewire.admin.admin')
             ->layout('components.layouts.admin', [
-                'title' => __('titles.admin.dashboard')
+                'title' => __('navigation/titles.admin.dashboard')
             ]);
     }
 }

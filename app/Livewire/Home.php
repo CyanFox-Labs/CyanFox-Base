@@ -10,7 +10,7 @@ class Home extends Component
     {
         return view('livewire.home')
             ->layout('components.layouts.app', [
-                'title' => __('titles.home')
+                'title' => __('navigation/messages.home')
             ]);
     }
 }

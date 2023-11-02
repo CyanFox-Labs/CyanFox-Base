@@ -36,5 +36,8 @@ return [
         ],
         'title' => 'Recovery Codes',
         'description' => 'Recovery codes are used to access your account in the event you lose access to your two factor authentication device.',
+        'buttons' => [
+            'regenerate' => 'Regenerate',
+        ]
     ]
 ];

@@ -40,7 +40,7 @@ final class UserList extends PowerGridComponent
     {
         return [
             Button::add('new-member')
-                ->slot('<i class="bx bxs-plus-circle"></i> ' . __('pages/admin/users/user-list.create'))
+                ->slot('<i class="bx bxs-plus-circle"></i> ' . __('pages/admin/users/user-list.buttons.new_user'))
                 ->class('btn btn-accent')
                 ->dispatch('new-user', [])
         ];
@@ -71,27 +71,27 @@ final class UserList extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
-            Column::make('First name', 'first_name')
+            Column::make(__('messages.id'), 'id'),
+            Column::make(__('messages.first_name'), 'first_name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Last name', 'last_name')
+            Column::make(__('messages.last_name'), 'last_name')
                 ->sortable()
                 ->searchable(),
-            Column::make('Username', 'username')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Email', 'email')
+            Column::make(__('messages.username'), 'username')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Created at', 'created_at_formatted', 'created_at')
+            Column::make(__('messages.email'), 'email')
+                ->sortable()
+                ->searchable(),
+
+            Column::make(__('messages.created_at'), 'created_at_formatted', 'created_at')
                 ->sortable(),
-            Column::make('Updated at', 'updated_at_formatted', 'updated_at')
+            Column::make(__('messages.updated_at'), 'updated_at_formatted', 'updated_at')
                 ->sortable(),
 
-            Column::action('Action')
+            Column::action(__('messages.actions'))
         ];
     }
 

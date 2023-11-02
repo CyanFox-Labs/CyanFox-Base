@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="flex justify-center modal-action">
-                    <form method="dialog" class="flex gap-2" wire:submit="showRecoveryKeys">
+                    <form method="dialog" class="flex gap-2" wire:submit="showRecoveryCodes">
                         <button class="btn btn-neutral" type="button"
                                 wire:click="$dispatch('closeModal')">{{ __('messages.cancel') }}</button>
                         <x-button class="btn btn-success"
@@ -34,9 +34,11 @@
                     @endforeach
                 </div>
                 <div class="flex justify-center modal-action">
-                    <form method="dialog" class="space-x-2" wire:submit="download">
+                    <form method="dialog" class="flex gap-2 space-x-2" wire:submit="download">
                         <button class="btn btn-neutral" type="button"
                                 wire:click="$dispatch('closeModal')">{{ __('messages.close') }}</button>
+                        <x-button class="btn btn-warning"
+                                  type="button" wire:click="regenerate" spinner>{{ __('pages/account/modals.recovery_codes.buttons.regenerate') }}</x-button>
                         <x-button class="btn btn-accent"
                                 type="submit" spinner="download">{{ __('messages.save') }}</x-button>
                     </form>

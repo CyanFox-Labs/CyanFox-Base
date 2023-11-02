@@ -30,7 +30,7 @@ class Register extends Component
         cookie()->queue(cookie()->forever('language', $language));
 
         Notification::make()
-            ->title(__('messages.language_changed'))
+            ->title(__('messages.notifications.language_changed'))
             ->success()
             ->send();
         return redirect()->route('register');
@@ -53,7 +53,7 @@ class Register extends Component
                 $this->validate(['hcaptcha' => ['required', new HCaptchaValidator()]]);
             } catch (ValidationException $e) {
                 Notification::make()
-                    ->title(__('messages.invalid_captcha'))
+                    ->title(__('validation.custom.invalid_captcha'))
                     ->danger()
                     ->send();
                 return;
@@ -62,8 +62,8 @@ class Register extends Component
 
         if ($this->password != $this->password_confirm) {
             throw ValidationException::withMessages([
-                'password' => __('pages/register.password_not_match'),
-                'password_confirm' => __('pages/register.password_not_match'),
+                'password' => __('validation.custom.passwords_not_match'),
+                'password_confirm' => __('validation.custom.passwords_not_match'),
             ]);
         }
 
@@ -81,11 +81,13 @@ class Register extends Component
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            $this->dispatch('sendToConsole', $e->getMessage());
             return;
         }
 
         Notification::make()
-            ->title(__('pages/register.registered'))
+            ->title(__('pages/auth/messages.notifications.registration_successful'))
             ->success()
             ->send();
 
@@ -97,7 +99,7 @@ class Register extends Component
     {
         return view('livewire.auth.register')
             ->layout('components.layouts.guest', [
-                'title' => __('titles.register')
+                'title' => __('pages/auth/messages.buttons.register')
             ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components\Modals\Profile;
 
+use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -17,24 +18,29 @@ class DisableTwoFactor extends ModalComponent
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->password])) {
             throw ValidationException::withMessages([
-                'password' => __('messages.invalid_password'),
+                'password' => __('validation.current_password'),
             ]);
         }
 
         Auth::user()->two_factor_enabled = false;
 
-        if (Auth::user()->save()) {
-            Notification::make()
-                ->title(__('pages/profile.disable_two_factor.disabled'))
-                ->success()
-                ->send();
-            $this->redirect(route('profile'));
-        } else {
+        try {
+            Auth::user()->save();
+        }catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            $this->dispatch('sendToConsole', $e->getMessage());
+            return;
         }
+
+        Notification::make()
+            ->title(__('pages/account/messages.notifications.two_factor_disabled'))
+            ->success()
+            ->send();
+        $this->redirect(route('profile'));
     }
 
     public function render()

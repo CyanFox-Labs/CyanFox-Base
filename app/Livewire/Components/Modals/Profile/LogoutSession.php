@@ -18,14 +18,14 @@ class LogoutSession extends ModalComponent
     {
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->password])) {
             throw ValidationException::withMessages([
-                'password' => __('messages.invalid_password'),
+                'password' => __('validation.current_password'),
             ]);
         }
 
         AuthController::regenerateRememberToken(Auth::user());
         DB::table('sessions')->where('id', $this->sessionId)->delete();
         Notification::make()
-            ->title(__('pages/profile.session_logged_out'))
+            ->title(__('pages/account/messages.notifications.session_revoked'))
             ->success()
             ->send();
 

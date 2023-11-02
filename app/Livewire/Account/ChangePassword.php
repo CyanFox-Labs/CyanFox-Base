@@ -25,16 +25,16 @@ class ChangePassword extends Component
             'new_password_confirm' => 'required',
         ]);
 
-        if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->password])) {
+        if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->current_password])) {
             throw ValidationException::withMessages([
-                'current_password' => __('pages/account/change-password.invalid_current_password'),
+                'current_password' => __('validation.current_password'),
             ]);
         }
 
         if ($this->new_password !== $this->new_password_confirm) {
             throw ValidationException::withMessages([
-                'new_password' => __('pages/account/change-password.passwords_not_match'),
-                'new_password_confirm' => __('pages/account/change-password.passwords_not_match'),
+                'new_password' => __('validation.custom.passwords_not_match'),
+                'new_password_confirm' => __('validation.custom.passwords_not_match'),
             ]);
         }
 
@@ -49,11 +49,13 @@ class ChangePassword extends Component
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            $this->dispatch('sendToConsole', $e->getMessage());
             return;
         }
 
         Notification::make()
-            ->title(__('pages/account/change-password.password_changed'))
+            ->title(__('pages/account/messages.notifications.password_changed'))
             ->success()
             ->send();
 
@@ -64,7 +66,7 @@ class ChangePassword extends Component
     {
         return view('livewire.account.change-password')
             ->layout('components.layouts.guest', [
-                'title' => __('titles.account.change_password'),
+                'title' => __('pages/account/messages.buttons.change_password'),
             ]);
     }
 }

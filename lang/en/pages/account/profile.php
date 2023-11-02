@@ -5,7 +5,6 @@ return [
     'select_theme' => 'Select Theme',
     'sessions' => 'Sessions',
 
-
     'buttons' => [
         'revoke_session' => 'Revoke Session',
         'current_session' => 'Current Session',
