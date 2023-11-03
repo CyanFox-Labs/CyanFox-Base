@@ -1,24 +1,48 @@
 <?php
 
 return [
-    'back' => 'Zurück',
-    'cancel' => 'Abbrechen',
-    'close' => 'Schließen',
-    'confirm' => 'Bestätigen',
-    'delete' => 'Löschen',
-    'update' => 'Aktualisieren',
-    'yes' => 'Ja',
-    'no' => 'Nein',
-
-    'something_went_wrong' => 'Etwas ist schief gelaufen!',
-    'fill_all_fields_correctly' => 'Bitte fülle alle Felder korrekt aus!',
+    'name' => 'Name',
+    'first_name' => 'Vorname',
+    'last_name' => 'Nachname',
+    'username' => 'Benutzername',
+    'email' => 'E-Mail',
     'password' => 'Passwort',
-    'invalid_password' => 'Ungültiges Passwort!',
+    'confirm_password' => 'Passwort bestätigen',
+    'new_password' => 'Neues Passwort',
+    'confirm_new_password' => 'Neues Passwort bestätigen',
+    'current_password' => 'Aktuelles Passwort',
+    'two_factor_code' => '2FA Code',
+    'something_went_wrong' => 'Etwas ist schief gelaufen. Für weitere Informationen bitte die Entwicklerkonsole öffnen.',
+
+    'id' => 'ID',
+    'created_at' => 'Erstellt am',
+    'updated_at' => 'Aktualisiert am',
+    'deleted_at' => 'Gelöscht am',
+    'actions' => 'Aktionen',
 
     'language' => 'Sprache',
-    'language_changed' => 'Sprache erfolgreich geändert!',
-    'languageType' => [
+    'theme' => 'Erscheinungsbild',
+    'photo' => 'Foto',
+    'page' => 'Seite',
+    'version' => 'Version',
+    'users' => 'Benutzer',
+    'permissions' => 'Berechtigungen',
+    'roles' => 'Rollen',
+    'dashboard' => 'Übersicht',
+
+    'yes' => 'Ja',
+    'no' => 'Nein',
+    'cancel' => 'Abbrechen',
+    'close' => 'Schließen',
+    'back' => 'Zurück',
+    'save' => 'Speichern',
+
+    'notifications' => [
+        'language_changed' => 'Sprache erfolgreich geändert.',
+    ],
+
+    'language_types' => [
         'en' => 'Englisch',
         'de' => 'Deutsch',
-    ],
+    ]
 ];
