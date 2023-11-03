@@ -1,12 +1,73 @@
+image: docker
+services:
+  - docker
+
 stages:
-  - build
+  - install
+  - test
+  - release
 
 variables:
-  DOCKER_DRIVER: overlay2
-  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_HOST: tcp://docker:2376
+  DOCKER_CERT_PATH: "/certs/client"
+  DOCKER_TLS_VERIFY: "1"
 
-build:
-  image: docker/compose:1.29.2
-  stage: build
+cache:
+  paths:
+    - vendor/
+    - node_modules/
+    - public/
+
+install:
+  stage: install
+  image: php:8.1-fpm
+  before_script:
+    - apt-get update
+    - apt-get install -y libzip-dev libicu-dev unzip git ca-certificates curl gnupg libfreetype6-dev libjpeg62-turbo-dev libpng-dev
+    - docker-php-ext-configure gd --with-freetype --with-jpeg
+    - docker-php-ext-install intl zip gd
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+    # Install NodeJS
+    - chmod +x ./scripts/install-node.sh && ./scripts/install-node.sh
+
+    - apt-get update
+    - apt-get install -y nodejs
+
   script:
-    - docker-compose up -d
+    - composer update
+    - npm install
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "master" || ($CI_PIPELINE_SOURCE == 'merge_request_event' && ( $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master" ))
+
+test:
+  stage: test
+  script:
+    - cp .env.testing .env
+    - docker-compose -f docker-compose.test.yml up -d
+    - docker exec template_app npm run build
+    - docker exec template_app php artisan test
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "master" || ($CI_PIPELINE_SOURCE == 'merge_request_event' && ( $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "master" ))
+
+release:
+  stage: release
+  when: on_success
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  before_script:
+    - apk add --no-cache jq git
+  script:
+    - echo "Creating a GitLab Release ..."
+    - |
+      PROJECT_VERSION=$(jq -r .version.project version.json)
+      IS_DEV=$(jq -r .version.dev version.json)
+      GIT_COMMIT_DESCRIPTION=$(git log -1 --pretty=%B)
+      if [ "$IS_DEV" = "true" ]; then
+        release-cli create --name "$PROJECT_VERSION" --description "$GIT_COMMIT_DESCRIPTION" --tag-name "$PROJECT_VERSION" --pre-release
+      else
+        release-cli create --name "$PROJECT_VERSION" --description "$GIT_COMMIT_DESCRIPTION" --tag-name "$PROJECT_VERSION"
+      fi
+  rules:
+    - allow_failure: true
+    - if: $CI_COMMIT_BRANCH == "master"

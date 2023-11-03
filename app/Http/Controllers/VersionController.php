@@ -9,6 +9,7 @@ class VersionController extends Controller
 
     public static function getCurrentTemplateVersion()
     {
+        if (env('APP_ENV') == 'testing') return true;
         $file = base_path('version.json');
         $data = json_decode(file_get_contents($file), true);
 
@@ -17,6 +18,7 @@ class VersionController extends Controller
 
     public static function getCurrentProjectVersion()
     {
+        if (env('APP_ENV') == 'testing') return true;
         $file = base_path('version.json');
         $data = json_decode(file_get_contents($file), true);
 
@@ -25,6 +27,7 @@ class VersionController extends Controller
 
     public static function isDevVersion()
     {
+        if (env('APP_ENV') == 'testing') return true;
         $file = base_path('version.json');
         $data = json_decode(file_get_contents($file), true);
 
@@ -33,6 +36,7 @@ class VersionController extends Controller
 
     public static function getRemoteTemplateVersion()
     {
+        if (env('APP_ENV') == 'testing') return true;
         if (env('TEMPLATE_VERSION_URL') == null) return true;
 
         try {
@@ -47,6 +51,7 @@ class VersionController extends Controller
 
     public static function getRemoteProjectVersion()
     {
+        if (env('APP_ENV') == 'testing') return true;
         if (env('PROJECT_VERSION_URL') == null) return true;
 
         try {

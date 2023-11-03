@@ -1,6 +1,6 @@
 FROM php:8.1-fpm
 
-# Install dockerize so we can wait for containers to be ready
+# Install Dockerize
 ENV DOCKERIZE_VERSION 0.6.1
 
 RUN curl -s -f -L -o /tmp/dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/v$DOCKERIZE_VERSION/dockerize-linux-amd64-v$DOCKERIZE_VERSION.tar.gz \
@@ -13,8 +13,10 @@ ENV COMPOSER_VERSION 2.1.5
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=$COMPOSER_VERSION
 
 # Install nodejs
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash
+COPY ./scripts/install-node.sh /tmp/install-node.sh
+RUN chmod +x /tmp/install-node.sh && /tmp/install-node.sh
 
+# Install Dependencies
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         libz-dev \
@@ -26,7 +28,6 @@ RUN apt-get update \
         unzip \
         zip \
         nodejs \
-        npm \
     && apt-get clean \
     && docker-php-ext-configure gd \
     && docker-php-ext-configure zip \
