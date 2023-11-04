@@ -3,6 +3,8 @@
 namespace App\Livewire\Account;
 
 use App\Models\User;
+use Carbon\Carbon;
+use DateTime;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -32,16 +34,29 @@ class ForgotPassword extends Component
         }
 
         $user = User::where('password_reset_token', $this->resetToken)->first();
-        $user->password = Hash::make($this->password);
-        $user->password_reset_token = null;
-        $user->save();
 
-        Notification::make()
-            ->title(__('pages/account/messages.notifications.password_resetted'))
-            ->success()
-            ->send();
+        $expirationDate = Carbon::parse($user->password_reset_expiration);
 
-        $this->redirect(route('login'));
+        if ($expirationDate->isPast()) {
+            Notification::make()
+                ->title(__('pages/account/messages.notifications.password_reset_link_expired'))
+                ->danger()
+                ->send();
+
+            return redirect(route('forgot-password', [""]));
+        } else {
+            $user->password = Hash::make($this->password);
+            $user->password_reset_token = null;
+            $user->password_reset_expiration = null;
+            $user->save();
+
+            Notification::make()
+                ->title(__('pages/account/messages.notifications.password_resetted'))
+                ->success()
+                ->send();
+
+            $this->redirect(route('login'));
+        }
     }
 
     public function sendLink()
@@ -59,6 +74,7 @@ class ForgotPassword extends Component
         }
 
         $user->password_reset_token = bin2hex(random_bytes(32));
+        $user->password_reset_expiration = Carbon::now()->addHours(24);
         $user->save();
 
         Mail::send('emails.forgot-password', ['resetLink' => route('forgot-password', [$user->password_reset_token])], function ($message) use ($user) {
@@ -71,6 +87,32 @@ class ForgotPassword extends Component
             ->title(__('pages/account/messages.notifications.password_reset_link_sent'))
             ->success()
             ->send();
+    }
+
+    public function mount() {
+        if ($this->resetToken !== null) {
+            $user = User::where('password_reset_token', $this->resetToken)->first();
+
+            if ($user == null) {
+                Notification::make()
+                    ->title(__('pages/account/messages.notifications.password_reset_link_invalid'))
+                    ->danger()
+                    ->send();
+
+                return redirect(route('forgot-password', [""]));
+            }
+
+            $expirationDate = Carbon::parse($user->password_reset_expiration);
+
+            if ($expirationDate->isPast()) {
+                Notification::make()
+                    ->title(__('pages/account/messages.notifications.password_reset_link_expired'))
+                    ->danger()
+                    ->send();
+
+                return redirect(route('forgot-password', [""]));
+            }
+        }
     }
 
     public function render()

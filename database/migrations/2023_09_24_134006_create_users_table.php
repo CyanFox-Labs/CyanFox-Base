@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('change_password')->default(false);
             $table->boolean('activate_two_factor')->default(false);
             $table->string('password_reset_token')->nullable();
+            $table->timestamp('password_reset_expiration')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

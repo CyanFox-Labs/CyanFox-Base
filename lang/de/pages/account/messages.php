@@ -13,6 +13,8 @@ return [
         'password_changed' => 'Dein Passwort wurde erfolgreich geändert.',
         'password_resetted' => 'Dein Passwort wurde erfolgreich zurückgesetzt.',
         'password_reset_link_sent' => 'Wir haben dir einen Link zum Zurücksetzen deines Passworts per E-Mail gesendet.',
+        'password_reset_link_expired' => 'Der Link zum Zurücksetzen des Passworts ist abgelaufen.',
+        'password_reset_link_invalid' => 'Der Link zum Zurücksetzen des Passworts ist ungültig.',
         'revoked_all_sessions' => 'Alle deine Sitzungen wurden erfolgreich widerrufen.',
         'session_revoked' => 'Die Sitzung wurde erfolgreich widerrufen.',
         'theme_changed' => 'Dein Erscheinungsbild wurde erfolgreich geändert.',

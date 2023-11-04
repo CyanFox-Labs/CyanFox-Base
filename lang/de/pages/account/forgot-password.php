@@ -12,6 +12,7 @@ return [
         'title' => 'Passwort zurücksetzen',
         'line_1' => 'Du hast diese E-Mail erhalten, weil wir eine Anfrage zum Zurücksetzen des Passworts für dein Konto erhalten haben.',
         'line_2' => 'Wenn du kein Passwort-Reset angefordert hast, musst du nichts weiter tun.',
-        'line_3' => 'Wenn du dein Passwort zurücksetzen möchtest, klicke auf den folgenden Link:',
+        'line_3' => 'Der Passwort-Reset-Link läuft in 24 Stunden ab.',
+        'line_4' => 'Wenn du dein Passwort zurücksetzen möchtest, klicke auf den folgenden Link:',
     ]
 ];
