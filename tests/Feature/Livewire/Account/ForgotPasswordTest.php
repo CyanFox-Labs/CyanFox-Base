@@ -18,6 +18,7 @@ class ForgotPasswordTest extends TestCase
     {
         $user = User::factory()->create([
             'password' => Hash::make('password'),
+            'password_reset_expiration' => now()->addHour(),
         ]);
 
         Livewire::actingAs($user)

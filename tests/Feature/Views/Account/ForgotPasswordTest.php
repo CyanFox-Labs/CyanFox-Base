@@ -13,7 +13,12 @@ class ForgotPasswordTest extends TestCase
     /** @test */
     public function user_can_view_forgot_password(): void
     {
-        $user = User::factory()->create(['password_reset_token' => 'test']);
+        $user = User::factory()->create(
+            [
+                'password_reset_token' => 'test',
+                'password_reset_expiration' => now()->addHour(),
+            ]
+        );
 
         $response = $this->get(route('forgot-password', $user->password_reset_token));
 
