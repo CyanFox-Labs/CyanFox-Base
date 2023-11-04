@@ -90,8 +90,8 @@ class UserEdit extends Component
         $this->last_name = $this->user->last_name;
         $this->username = $this->user->username;
         $this->email = $this->user->email;
-        $this->change_password = $this->user->change_password;
-        $this->activate_two_factor = $this->user->activate_two_factor;
+        $this->change_password = (bool)$this->user->change_password;
+        $this->activate_two_factor = (bool)$this->user->activate_two_factor;
 
     }
 

@@ -19,7 +19,7 @@
 
         @if(!$isProjectUpToDate)
             <x-alert class="alert-error flex justify-center mt-4">
-                {{ __('pages/admin/admin.new_template_version') }} ({{ $currentProjectVersion }}
+                {{ __('pages/admin/admin.new_project_version') }} ({{ $currentProjectVersion }}
                 => {{ $remoteProjectVersion }})
             </x-alert>
         @endif
