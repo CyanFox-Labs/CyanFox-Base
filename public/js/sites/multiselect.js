@@ -67,6 +67,13 @@ document.addEventListener("alpine:init", () => {
                 originalSelect.nextSibling
             );
 
+            this.items = this.$el.querySelectorAll("li");
+            const preselectedValues = Array.from(this.items)
+                .map(item => item.querySelector("input[type=checkbox]"))
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+            Livewire.dispatch('updateMultiSelect', {values: preselectedValues});
+
             const itemGroups = originalSelect.querySelectorAll("optgroup");
 
             if (itemGroups.length > 0) {

@@ -67,9 +67,11 @@ class UserEdit extends Component
             return;
         }
 
-        if ($this->roles != null) {
-            $user->assignRole($this->roles);
+        foreach ($user->roles as $role) {
+            $user->removeRole($role);
         }
+
+        $user->syncRoles($this->roles);
 
         Notification::make()
             ->title(__('pages/admin/users/messages.notifications.updated'))
