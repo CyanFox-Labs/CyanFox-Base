@@ -38,6 +38,10 @@ class RoleEdit extends Component
                 'guard_name' => $this->guard_name,
             ]);
 
+            foreach ($this->role->permissions as $permission) {
+                $this->role->revokePermissionTo($permission);
+            }
+
             $this->role->syncPermissions($this->permissions);
         } catch (Exception $e) {
             Notification::make()

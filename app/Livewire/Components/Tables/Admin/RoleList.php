@@ -114,4 +114,14 @@ final class RoleList extends PowerGridComponent
                 ->dispatch('delete', ['rowId' => $row->id]),
         ];
     }
+
+
+    public function actionRules(): array
+    {
+        return [
+            Rule::button('delete')
+                ->when(fn(Role $model) => $model->name == 'Super Admin')
+                ->hide(),
+        ];
+    }
 }

@@ -29,6 +29,7 @@ return [
     'permissions' => 'Permissions',
     'roles' => 'Roles',
     'dashboard' => 'Dashboard',
+    'made_with_love' => 'Made with <i class="bx bxs-heart text-danger-600"></i> by CyanFox-Team',
 
     'yes' => 'Yes',
     'no' => 'No',

@@ -107,6 +107,9 @@ document.addEventListener("alpine:init", () => {
 
                     if (item.hasAttribute("selected")) {
                         checkBox.checked = true;
+
+                        values.push(checkBox.value);
+                        Livewire.dispatch('updateMultiSelect', {values: values});
                     }
                     label.prepend(checkBox);
                     li.append(label);

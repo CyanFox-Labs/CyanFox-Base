@@ -59,34 +59,11 @@
 
 
                     <div class="form-control w-full">
-                        <label class="label pt-0" for="change_password">
-                            <span
-                                class="label-text font-semibold">{{ __('pages/admin/users/messages.must_change_password') }}</span>
-                        </label>
-                        <select id="change_password" class="select select-bordered" wire:model="change_password">
-                            <option value="1" @if($user->change_password == 1) selected @endif>
-                                {{ __('messages.yes') }}
-                            </option>
-                            <option value="0" @if($user->change_password == 0) selected @endif>
-                                {{ __('messages.no') }}
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="form-control w-full">
-                        <label class="label pt-0" for="activate_two_factor">
-                            <span
-                                class="label-text font-semibold">{{ __('pages/admin/users/messages.must_activate_two_factor') }}</span>
-                        </label>
-                        <select id="activate_two_factor" class="select select-bordered"
-                                wire:model="activate_two_factor">
-                            <option value="1" @if($user->activate_two_factor == 1) selected @endif>
-                                {{ __('messages.yes') }}
-                            </option>
-                            <option value="0" @if($user->activate_two_factor == 0) selected @endif>
-                                {{ __('messages.no') }}
-                            </option>
-                        </select>
+                        <div class="form-control w-full">
+                            <x-checkbox label="{{ __('pages/admin/users/messages.must_change_password') }}" wire:model="change_password" />
+                            <div class="mt-3"></div>
+                            <x-checkbox label="{{ __('pages/admin/users/messages.must_activate_two_factor') }}" wire:model="activate_two_factor" />
+                        </div>
                     </div>
                 </div>
 
