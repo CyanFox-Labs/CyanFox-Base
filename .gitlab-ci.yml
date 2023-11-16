@@ -60,13 +60,8 @@ release:
     - echo "Creating a GitLab Release ..."
     - |
       PROJECT_VERSION=$(jq -r .version.project version.json)
-      IS_DEV=$(jq -r .version.dev version.json)
       GIT_COMMIT_DESCRIPTION=$(git log -1 --pretty=%B)
-      if [ "$IS_DEV" = "true" ]; then
-        release-cli create --name "v$PROJECT_VERSION" --description "$GIT_COMMIT_DESCRIPTION" --tag-name "v$PROJECT_VERSION" --pre-release
-      else
-        release-cli create --name "v$PROJECT_VERSION" --description "$GIT_COMMIT_DESCRIPTION" --tag-name "v$PROJECT_VERSION"
-      fi
+      release-cli create --name "v$PROJECT_VERSION" --description "$GIT_COMMIT_DESCRIPTION" --tag-name "v$PROJECT_VERSION"
   rules:
     - if: '$CI_COMMIT_BRANCH != "master"'
       when: never
