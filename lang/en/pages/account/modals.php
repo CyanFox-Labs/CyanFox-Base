@@ -39,5 +39,27 @@ return [
         'buttons' => [
             'regenerate' => 'Regenerate',
         ]
+    ],
+
+    'new_api_key' => [
+        'created' => [
+            'title' => 'API Key Created',
+            'description' => 'Please copy your new API key. You won\'t be able to see it again!',
+        ],
+
+        'title' => 'New API Key',
+        'description' => 'Please enter a name for your new API key.',
+
+        'buttons' => [
+            'create_api_key' => 'Create API Key',
+        ]
+    ],
+
+    'revoke_api_key' => [
+        'title' => 'Revoke API Key',
+        'description' => 'Are you sure you want to revoke this API key?',
+        'buttons' => [
+            'revoke_api_key' => 'Revoke API Key',
+        ]
     ]
 ];

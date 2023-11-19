@@ -19,5 +19,6 @@ return [
         'session_revoked' => 'Die Sitzung wurde erfolgreich widerrufen.',
         'theme_changed' => 'Dein Erscheinungsbild wurde erfolgreich geändert.',
         'profile_updated' => 'Dein Profil wurde erfolgreich aktualisiert.',
+        'api_key_revoked' => 'Der API Schlüssel wurde erfolgreich widerrufen.',
     ],
 ];

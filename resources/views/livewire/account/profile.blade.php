@@ -158,32 +158,35 @@
         <div class="col-span-2 space-y-4">
             <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
                 <div class="card-body">
-                    <x-form class="grid grid-cols-2 gap-4" wire:submit="updateProfile">
-                        <div>
-                            <div class="form-control w-full">
-                                <x-input label="{{ __('messages.first_name') }}"
-                                         class="input input-bordered w-full" wire:model="first_name"/>
+                    <x-form wire:submit="updateProfile">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <div class="form-control w-full">
+                                    <x-input label="{{ __('messages.first_name') }}"
+                                             class="input input-bordered w-full" wire:model="first_name"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-control w-full">
+                                    <x-input label="{{ __('messages.last_name') }}"
+                                             class="input input-bordered w-full" wire:model="last_name"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-control w-full">
+                                    <x-input label="{{ __('messages.username') }}"
+                                             class="input input-bordered w-full" wire:model="username"/>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-control w-full">
+                                    <x-input label="{{ __('messages.email') }}"
+                                             class="input input-bordered w-full" wire:model="email"/>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <div class="form-control w-full">
-                                <x-input label="{{ __('messages.last_name') }}"
-                                         class="input input-bordered w-full" wire:model="last_name"/>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="form-control w-full">
-                                <x-input label="{{ __('messages.username') }}"
-                                         class="input input-bordered w-full" wire:model="username"/>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="form-control w-full">
-                                <x-input label="{{ __('messages.email') }}"
-                                         class="input input-bordered w-full" wire:model="email"/>
-                            </div>
-                        </div>
-                        <div class="col-span-1 mt-6">
+                        <div class="divider"></div>
+                        <div class="col-span-1">
                             <x-button type="submit"
                                       class="btn btn-primary" spinner="updateProfile">
                                 {{ __('pages/account/profile.buttons.update_profile') }}
@@ -219,7 +222,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-span-1 mt-6 flex gap-2">
+                            <div class="divider"></div>
+                            <div class="col-span-1 flex gap-2">
                                 <x-button type="submit"
                                           class="btn btn-primary" spinner="updatePassword">
                                     {{ __('pages/account/messages.buttons.change_password') }}
@@ -245,6 +249,34 @@
                                 @endif
                             </div>
                         </x-form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2 space-y-4">
+                <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
+                    <div class="card-body">
+                        <div class="grid grid-cols-3 items-center gap-x-4 overflow-x-auto">
+                            @foreach (auth()->user()->tokens as $token)
+                                <div class="col-span-2 flex items-center space-x-2 space-y-3">
+                                    <div>
+                                        <div class="font-bold">{{ $token->name }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-span-1 text-end">
+                                    <button class="btn btn-outline btn-error my-1"
+                                            wire:click="$dispatch('openModal', { component: 'components.modals.profile.revoke_api_key', arguments: { apiKey: '{{ $token->id }}' }})">
+                                        {{ __('pages/account/profile.buttons.revoke_api_key') }}
+                                    </button>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="divider"></div>
+                        <div>
+                            <button class="btn btn-primary"
+                                    wire:click="$dispatch('openModal', { component: 'components.modals.profile.new_api_key' })">
+                                {{ __('pages/account/profile.buttons.new_api_key') }}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

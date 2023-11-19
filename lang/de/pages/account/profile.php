@@ -11,6 +11,8 @@ return [
         'revoke_all_sessions' => 'Alle Sitzungen widerrufen',
         'update_profile' => 'Profil aktualisieren',
         'show_recovery_codes' => 'Wiederherstellungscodes anzeigen',
+        'new_api_key' => 'Neuer API Schlüssel',
+        'revoke_api_key' => 'API Schlüssel widerrufen',
     ],
 
     'theme_types' => [

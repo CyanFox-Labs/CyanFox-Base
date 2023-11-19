@@ -12,7 +12,7 @@
     @if(!$isDevVersion)
         @if(!$isTemplateUpToDate)
             <x-alert class="alert-error flex justify-center mt-4">
-                {{ __('pages/admin/admin.new_project_version') }} ({{ $currentTemplateVersion }}
+                {{ __('pages/admin/admin.new_template_version') }} ({{ $currentTemplateVersion }}
                 => {{ $remoteTemplateVersion }})
             </x-alert>
         @endif

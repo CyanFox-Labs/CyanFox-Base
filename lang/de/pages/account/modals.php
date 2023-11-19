@@ -39,5 +39,27 @@ return [
         'buttons' => [
             'regenerate' => 'Neu generieren',
         ]
+    ],
+
+    'new_api_key' => [
+        'created' => [
+            'title' => 'API Schlüssel erstellt',
+            'description' => 'Bitte speichere deinen neuen API Schlüssel. Du wird ihn nicht mehr sehen können.',
+        ],
+
+        'title' => 'Neuer API Schlüssel',
+        'description' => 'Bitte gib einen Namen für deinen neuen Schlüssel Key ein.',
+
+        'buttons' => [
+            'create_api_key' => 'API Schlüssel erstellen',
+        ]
+    ],
+
+    'revoke_api_key' => [
+        'title' => 'API Schlüssel widerrufen',
+        'description' => 'Bist du sicher, dass du diesen API Schlüssel widerrufen möchtest?',
+        'buttons' => [
+            'revoke_api_key' => 'API Schlüssel widerrufen',
+        ]
     ]
 ];

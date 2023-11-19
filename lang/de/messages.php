@@ -29,9 +29,11 @@ return [
     'permissions' => 'Berechtigungen',
     'roles' => 'Rollen',
     'dashboard' => 'Übersicht',
+    'made_with_love' => 'Gemacht mit <i class="bx bxs-heart text-danger-600"></i> von CyanFox-Team',
 
     'yes' => 'Ja',
     'no' => 'Nein',
+    'ok' => 'OK',
     'cancel' => 'Abbrechen',
     'close' => 'Schließen',
     'back' => 'Zurück',

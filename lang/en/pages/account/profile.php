@@ -11,6 +11,8 @@ return [
         'revoke_all_sessions' => 'Revoke All Sessions',
         'update_profile' => 'Update Profile',
         'show_recovery_codes' => 'Show Recovery Codes',
+        'new_api_key' => 'New API Key',
+        'revoke_api_key' => 'Revoke API Key',
     ],
 
     'theme_types' => [

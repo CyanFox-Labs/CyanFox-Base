@@ -33,6 +33,7 @@ return [
 
     'yes' => 'Yes',
     'no' => 'No',
+    'ok' => 'OK',
     'cancel' => 'Cancel',
     'close' => 'Close',
     'back' => 'Back',
