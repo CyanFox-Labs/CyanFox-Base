@@ -45,5 +45,8 @@ return [
         'night' => 'Night',
         'coffee' => 'Coffee',
         'winter' => 'Winter',
+        'dim' => 'Dim',
+        'nord' => 'Nord',
+        'sunset' => 'Sunset',
     ],
 ];

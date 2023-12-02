@@ -11,7 +11,9 @@
     auth()->user()->theme == 'business' ||
     auth()->user()->theme == 'coffee' ||
     auth()->user()->theme == 'night' ||
-    auth()->user()->theme == 'dracula'
+    auth()->user()->theme == 'dracula' ||
+    auth()->user()->theme == 'dim' ||
+    auth()->user()->theme == 'sunset'
     ) class="dark" @endif>
 <head>
     <meta charset="utf-8">

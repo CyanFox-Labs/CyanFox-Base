@@ -105,6 +105,12 @@
                                     @if(auth()->user()->theme == 'coffee') selected @endif>{{ __('pages/account/profile.theme_types.coffee') }}</option>
                             <option value="winter"
                                     @if(auth()->user()->theme == 'winter') selected @endif>{{ __('pages/account/profile.theme_types.winter') }}</option>
+                            <option value="dim"
+                                    @if(auth()->user()->theme == 'dim') selected @endif>{{ __('pages/account/profile.theme_types.dim') }}</option>
+                            <option value="nord"
+                                    @if(auth()->user()->theme == 'nord') selected @endif>{{ __('pages/account/profile.theme_types.nord') }}</option>
+                            <option value="sunset"
+                                    @if(auth()->user()->theme == 'sunset') selected @endif>{{ __('pages/account/profile.theme_types.sunset') }}</option>
                         </select>
                     </div>
                 </div>

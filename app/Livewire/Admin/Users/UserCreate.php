@@ -22,8 +22,8 @@ class UserCreate extends Component
     public $email;
     public $password;
     public $roles = [];
-    public $change_password;
-    public $activate_two_factor;
+    public $change_password = false;
+    public $activate_two_factor = false;
 
     #[On('updateMultiSelect')]
     public function updateMultiSelect($values): void
@@ -39,8 +39,6 @@ class UserCreate extends Component
             'username' => 'required|string|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|string',
-            'change_password' => 'required|boolean',
-            'activate_two_factor' => 'required|boolean',
         ]);
 
         $user = new User();
