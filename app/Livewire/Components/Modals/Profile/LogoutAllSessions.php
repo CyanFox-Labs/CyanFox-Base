@@ -2,9 +2,12 @@
 
 namespace App\Livewire\Components\Modals\Profile;
 
+use App\Http\Controllers\Auth\AuthController;
 use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 use LivewireUI\Modal\ModalComponent;
 
@@ -16,7 +19,19 @@ class LogoutAllSessions extends ModalComponent
     public function logoutAllSessions()
     {
         try {
-            Auth::logoutOtherDevices($this->password);
+           // Auth::logoutOtherDevices($this->password); // Idk why this doesn't work anymore
+            if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->password])) {
+                throw ValidationException::withMessages([
+                    'password' => __('validation.current_password'),
+                ]);
+            }
+
+            AuthController::regenerateRememberToken(Auth::user());
+            DB::table('sessions')
+                ->where('user_id', Auth::user()->id)
+                ->whereNotIn('id', [Session::getId()])
+                ->delete();
+
             Notification::make()
                 ->title(__('pages/account/messages.notifications.revoked_all_sessions'))
                 ->success()
