@@ -277,11 +277,12 @@
                             @endforeach
                         </div>
                         <div class="divider"></div>
-                        <div>
+                        <div class="col-span-1 flex gap-2">
                             <button class="btn btn-primary"
                                     wire:click="$dispatch('openModal', { component: 'components.modals.profile.new_api_key' })">
                                 {{ __('pages/account/profile.buttons.new_api_key') }}
                             </button>
+                            <a href="/api/docs" class="btn btn-secondary">{{ __('pages/account/profile.buttons.api_docs') }}</a>
                         </div>
                     </div>
                 </div>

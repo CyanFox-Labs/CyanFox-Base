@@ -13,6 +13,7 @@ return [
         'show_recovery_codes' => 'Show Recovery Codes',
         'new_api_key' => 'New API Key',
         'revoke_api_key' => 'Revoke API Key',
+        'api_docs' => 'API Docs',
     ],
 
     'theme_types' => [

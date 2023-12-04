@@ -13,6 +13,7 @@ return [
         'show_recovery_codes' => 'Wiederherstellungscodes anzeigen',
         'new_api_key' => 'Neuer API Schlüssel',
         'revoke_api_key' => 'API Schlüssel widerrufen',
+        'api_docs' => 'API Dokumentation',
     ],
 
     'theme_types' => [
