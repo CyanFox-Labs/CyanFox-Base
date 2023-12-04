@@ -7,8 +7,8 @@
         <p class="flex items-center mb-6 text-2xl font-semibold">
             <img class="w-32 h-32 mr-2" src="{{ asset("img/Logo.png") }}" alt="logo">
             <span
-                    class="text-4xl font-bold brand-text lg:block hidden" id="logo_text"
-                    wire:ignore>{{ env('APP_NAME') }}</span>
+                class="text-4xl font-bold brand-text lg:block hidden" id="logo_text"
+                wire:ignore>{{ env('APP_NAME') }}</span>
         </p>
         <div class="bg-neutral rounded-box sm:w-96 w-auto">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -17,9 +17,9 @@
                     <div class="glass rounded-3xl">
                         <div class="flex p-2 relative">
                             <img
-                                    src="https://source.boringavatars.com/beam/120/{{ $user->username }}"
-                                    alt="Avatar"
-                                    class="rounded-full w-8 h-8 m-1">
+                                src="https://source.boringavatars.com/beam/120/{{ $user->username }}"
+                                alt="Avatar"
+                                class="rounded-full w-8 h-8 m-1">
                             <p class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">{{ $user->username }}</p>
                         </div>
 
@@ -88,14 +88,38 @@
                             <details class="dropdown">
                                 <summary class="m-1 btn">{{ __('messages.language') }}</summary>
                                 <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-32">
-                                    <li><a wire:click="setLanguage('de')">{{ __('messages.language_types.de') }}</a></li>
-                                    <li><a wire:click="setLanguage('en')">{{ __('messages.language_types.en') }}</a></li>
+                                    <li><a wire:click="setLanguage('de')">{{ __('messages.language_types.de') }}</a>
+                                    </li>
+                                    <li><a wire:click="setLanguage('en')">{{ __('messages.language_types.en') }}</a>
+                                    </li>
                                 </ul>
                             </details>
                         </div>
                     </x-form>
+                    <div class="grid gap-4 mt-4">
+                        @if(env('GITHUB_LOGIN_ENABLED'))
+                            <a href="{{ route('auth.redirect', 'github') }}"
+                               class="btn hover:bg-black bg-black text-white">
+                                {!! __('pages/auth/login.buttons.login_github') !!}
+                            </a>
+                        @endif
+
+                        @if(env('GITLAB_LOGIN_ENABLED'))
+                            <a href="{{ route('auth.redirect', 'gitlab') }}"
+                               class="btn hover:bg-orange-600 bg-orange-500 text-white">
+                                {!! __('pages/auth/login.buttons.login_gitlab') !!}
+                            </a>
+                        @endif
+
+                        @if(env('GOOGLE_LOGIN_ENABLED'))
+                            <a href="{{ route('auth.redirect', 'google') }}"
+                               class="btn hover:bg-red-600 bg-red-500 text-white">
+                                {!! __('pages/auth/login.buttons.login_google') !!}
+                            </a>
+                        @endif
+                    </div>
                     <div
-                            class="grid @if(env('ENABLE_REGISTRATION') && env('ENABLE_FORGOT_PASSWORD')) md:grid-cols-2 @endif gap-4 mt-4">
+                        class="grid @if(env('ENABLE_REGISTRATION') && env('ENABLE_FORGOT_PASSWORD')) md:grid-cols-2 @endif gap-4 mt-4">
                         @if(env('ENABLE_FORGOT_PASSWORD'))
                             <a href="{{ route('forgot-password', [""]) }}"
                                class="btn btn-ghost">

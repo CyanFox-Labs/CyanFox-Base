@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\OAuthController;
 use App\Livewire\Account\ActivateTwoFactor;
 use App\Livewire\Account\ChangePassword;
 use App\Livewire\Account\ForgotPassword;
@@ -15,7 +16,11 @@ use App\Livewire\Admin\Users\UserList;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Home;
+use App\Models\User;
+use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +79,14 @@ Route::middleware(['setLanguage'])->group(function () {
             Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
             Route::get('/forgot-password/{resetToken}', ForgotPassword::class)->name('forgot-password');
         }
+    });
+
+    Route::group(['prefix' => 'auth'], function () {
+        Route::get('/{provider}/redirect', [OAuthController::class, 'redirectToProvider'])->name('auth.redirect');
+
+        Route::get('github/callback', [OAuthController::class, 'handleGitHubCallback'])->name('auth.github.callback');
+        Route::get('google/callback', [OAuthController::class, 'handleGoogleCallback'])->name('auth.google.callback'); // Not tested yet
+        Route::get('gitlab/redirect', [OAuthController::class, 'handleGitLabCallback'])->name('auth.gitlab.redirect'); // Not tested yet
     });
 
 });

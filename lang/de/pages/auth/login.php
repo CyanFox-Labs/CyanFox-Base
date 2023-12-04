@@ -7,6 +7,9 @@ return [
 
     'buttons' => [
         'login' => 'Anmelden',
+        'login_google' => '<i class="bx bxl-google"></i> Mit Google anmelden',
+        'login_github' => '<i class="bx bxl-github"></i> Mit GitHub anmelden',
+        'login_gitlab' => '<i class="bx bxl-gitlab"></i> Mit GitLab anmelden',
         'forgot_password' => 'Passwort vergessen?',
     ]
 ];
