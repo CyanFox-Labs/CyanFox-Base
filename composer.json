@@ -22,6 +22,7 @@
         "openspout/openspout": "^4.18",
         "power-components/livewire-powergrid": "^5.1",
         "pragmarx/google2fa": "^8.0",
+        "rakutentech/laravel-request-docs": "^2.26",
         "robsontenorio/mary": "dev-main",
         "simplesoftwareio/simple-qrcode": "*",
         "spatie/laravel-permission": "^5.11",
