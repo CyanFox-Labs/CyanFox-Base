@@ -9,19 +9,35 @@
         </x-alert>
     </div>
 
-    @if(!$isDevVersion)
-        @if(!$isTemplateUpToDate)
-            <x-alert class="alert-error flex justify-center mt-4">
-                {{ __('pages/admin/admin.new_template_version') }} ({{ $currentTemplateVersion }}
-                => {{ $remoteTemplateVersion }})
-            </x-alert>
-        @endif
+    <div class="grid grid-cols-1">
+        <x-button class="btn btn-primary mt-4" wire:click="checkForUpdates" spinner>
+            {{ __('pages/admin/admin.buttons.check_for_updates') }}
+        </x-button>
+    </div>
 
-        @if(!$isProjectUpToDate)
-            <x-alert class="alert-error flex justify-center mt-4">
-                {{ __('pages/admin/admin.new_project_version') }} ({{ $currentProjectVersion }}
-                => {{ $remoteProjectVersion }})
-            </x-alert>
+    @if(!$isDevVersion)
+        @if($showUpdateNotification)
+            @if(!$isTemplateUpToDate)
+                <x-alert class="alert-error flex justify-center mt-4">
+                    {{ __('pages/admin/admin.new_template_version') }} ({{ $currentTemplateVersion }}
+                    => {{ $remoteTemplateVersion }})
+                </x-alert>
+            @else
+                <x-alert class="alert-success flex justify-center mt-4">
+                    {{ __('pages/admin/admin.no_new_template_version') }}
+                </x-alert>
+            @endif
+
+            @if(!$isProjectUpToDate)
+                <x-alert class="alert-error flex justify-center mt-4">
+                    {{ __('pages/admin/admin.new_project_version') }} ({{ $currentProjectVersion }}
+                    => {{ $remoteProjectVersion }})
+                </x-alert>
+            @else
+                <x-alert class="alert-success flex justify-center mt-4">
+                    {{ __('pages/admin/admin.no_new_project_version') }}
+                </x-alert>
+            @endif
         @endif
     @else
         <x-alert class="alert-warning flex justify-center mt-4">

@@ -166,6 +166,7 @@ return [
     'custom' => [
         'two_factor_code' => 'Invalid two factor code.',
         'passwords_not_match' => 'Passwords do not match.',
+        'passwords_same' => 'New password must be different from current password.',
         'invalid_captcha' => 'Please confirm that you are not a robot.',
     ],
 

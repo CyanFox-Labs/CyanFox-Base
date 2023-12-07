@@ -8,11 +8,14 @@ use App\Livewire\Components\Modals\Profile\ActivateTwoFactor;
 use App\Livewire\Components\Modals\Profile\DisableTwoFactor;
 use App\Livewire\Components\Modals\Profile\LogoutAllSessions;
 use App\Livewire\Components\Modals\Profile\LogoutSession;
+use App\Livewire\Components\Modals\Profile\NewApiKey;
 use App\Livewire\Components\Modals\Profile\RecoveryCodes;
+use App\Livewire\Components\Modals\Profile\RevokeApiKey;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Livewire\Livewire;
 use PragmaRX\Google2FA\Google2FA;
 use Tests\TestCase;
@@ -182,5 +185,43 @@ class ProfileTest extends TestCase
             ->call('showRecoveryCodes')
             ->assertDispatched('openModal');
 
+    }
+
+    /** @test */
+    public function user_can_create_an_api_key()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $component = new NewApiKey();
+        $component->name = 'Test API Key';
+        $component->createAPIKey();
+
+        $this->assertNotNull($component->plainTextToken);
+        $this->assertDatabaseHas('personal_access_tokens', [
+            'name' => 'Test API Key',
+            'tokenable_id' => $user->id,
+            'tokenable_type' => get_class($user)
+        ]);
+    }
+
+    /** @test */
+    public function user_can_revoke_an_api_key()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+
+        $tokenString = Str::random(80);
+
+        $apiKey = $user->tokens()->create([
+            'name' => 'Test API Key',
+            'token' => hash('sha256', $tokenString),
+        ]);
+
+        $component = new RevokeApiKey();
+        $component->apiKey = $apiKey->id;
+        $component->revokeApiKey();
+
+        $this->assertDatabaseMissing('personal_access_tokens', ['id' => $apiKey->id]);
     }
 }

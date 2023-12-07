@@ -8,7 +8,8 @@
                 <li><a href="{{ route('admin-user-list') }}"><i
                             class="bx bxs-user-account mr-2"></i> {{ __('messages.users') }}</a></li>
                 <li><a href="{{ route('admin-user-edit', [$userId]) }}"><i
-                            class="bx bxs-edit-alt mr-2"></i> {{ __('navigation/breadcrumbs.admin.users.edit') }}</a></li>
+                            class="bx bxs-edit-alt mr-2"></i> {{ __('navigation/breadcrumbs.admin.users.edit') }}</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -38,12 +39,14 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-4 mt-4">
-                    <div class="form-control w-full">
+                    @if($user->google_id == null && $user->gitlab_id == null && $user->github_id == null)
                         <div class="form-control w-full">
-                            <x-input label="{{ __('messages.password') }}" type="password"
-                                     class="input input-bordered w-full" wire:model="password"/>
+                            <div class="form-control w-full">
+                                <x-input label="{{ __('messages.password') }}" type="password"
+                                         class="input input-bordered w-full" wire:model="password"/>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="form-control w-full" wire:ignore>
                         <label class="label pt-0" for="roles">
                             <span class="label-text font-semibold">{{ __('messages.roles') }}</span>
@@ -58,13 +61,17 @@
                     </div>
 
 
-                    <div class="form-control w-full">
+                    @if($user->google_id == null && $user->gitlab_id == null && $user->github_id == null)
                         <div class="form-control w-full">
-                            <x-checkbox label="{{ __('pages/admin/users/messages.must_change_password') }}" wire:model="change_password" />
-                            <div class="mt-3"></div>
-                            <x-checkbox label="{{ __('pages/admin/users/messages.must_activate_two_factor') }}" wire:model="activate_two_factor" />
+                            <div class="form-control w-full">
+                                <x-checkbox label="{{ __('pages/admin/users/messages.must_change_password') }}"
+                                            wire:model="change_password"/>
+                                <div class="mt-3"></div>
+                                <x-checkbox label="{{ __('pages/admin/users/messages.must_activate_two_factor') }}"
+                                            wire:model="activate_two_factor"/>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
 
 

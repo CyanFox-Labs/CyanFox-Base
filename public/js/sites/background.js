@@ -10,10 +10,10 @@ async function getImage() {
     })
         .then((response) => response.json())
         .then((response) => {
-            imagePath = response.urls.regular;
-            photo = response.links.html;
-            author = response.user.name;
-            authorLink = response.user.links.html;
+            imagePath = response[0].urls.regular;
+            photo = response[0].links.html;
+            author = response[0].user.name;
+            authorLink = response[0].user.links.html;
 
 
         }).catch((error) => {

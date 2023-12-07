@@ -14,16 +14,22 @@ class Admin extends Component
     public $isProjectUpToDate;
     public $isTemplateUpToDate;
     public $isDevVersion;
+    public $showUpdateNotification = false;
 
     public function mount()
     {
+        $this->isDevVersion = VersionController::isDevVersion();
         $this->currentProjectVersion = VersionController::getCurrentProjectVersion();
         $this->currentTemplateVersion = VersionController::getCurrentTemplateVersion();
+    }
+
+    public function checkForUpdates()
+    {
         $this->remoteProjectVersion = VersionController::getRemoteProjectVersion();
         $this->remoteTemplateVersion = VersionController::getRemoteTemplateVersion();
         $this->isProjectUpToDate = VersionController::isProjectUpToDate();
         $this->isTemplateUpToDate = VersionController::isTemplateUpToDate();
-        $this->isDevVersion = VersionController::isDevVersion();
+        $this->showUpdateNotification = true;
     }
 
     public function render()

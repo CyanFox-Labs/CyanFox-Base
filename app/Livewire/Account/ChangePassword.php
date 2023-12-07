@@ -38,6 +38,13 @@ class ChangePassword extends Component
             ]);
         }
 
+        if ($this->new_password === $this->current_password) {
+            throw ValidationException::withMessages([
+                'new_password' => __('validation.custom.passwords_same'),
+                'new_password_confirm' => __('validation.custom.passwords_same'),
+            ]);
+        }
+
         $user = User::find(auth()->user()->id);
         $user->password = Hash::make($this->new_password);
         $user->change_password = 0;

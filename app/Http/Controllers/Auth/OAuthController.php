@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -48,7 +49,6 @@ class OAuthController extends Controller
             $user = new User();
             $user->google_id = $googleUser->id;
             $user->username = $googleUser->name;
-            $user->email = $googleUser->email;
 
             try {
                 $user->save();
@@ -73,7 +73,6 @@ class OAuthController extends Controller
             $user = new User();
             $user->gitlab_id = $gitlabUser->id;
             $user->username = $gitlabUser->name;
-            $user->email = $gitlabUser->email;
 
             try {
                 $user->save();

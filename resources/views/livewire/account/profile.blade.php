@@ -153,11 +153,14 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="divider"></div>
-                    <button class="btn btn-error btn-outline"
-                            wire:click="$dispatch('openModal', { component: 'components.modals.profile.logout-all-sessions' })">
-                        {{ __('pages/account/profile.buttons.revoke_all_sessions') }}
-                    </button>
+
+                    @if(auth()->user()->google_id == null && auth()->user()->gitlab_id == null && auth()->user()->github_id == null)
+                        <div class="divider"></div>
+                        <button class="btn btn-error btn-outline"
+                                wire:click="$dispatch('openModal', { component: 'components.modals.profile.logout-all-sessions' })">
+                            {{ __('pages/account/profile.buttons.revoke_all_sessions') }}
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -201,63 +204,65 @@
                     </x-form>
                 </div>
             </div>
-            <div class="col-span-2 space-y-4">
-                <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
-                    <div class="card-body">
-                        <x-form wire:submit="updatePassword">
-                            <div class="w-full">
-                                <div class="form-control w-full">
-                                    <x-input label="{{ __('messages.current_password') }}"
-                                             type="password"
-                                             class="input input-bordered w-full" wire:model="current_password"/>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-4 mt-4">
-                                <div>
+            @if(auth()->user()->google_id == null && auth()->user()->gitlab_id == null && auth()->user()->github_id == null)
+                <div class="col-span-2 space-y-4">
+                    <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
+                        <div class="card-body">
+                            <x-form wire:submit="updatePassword">
+                                <div class="w-full">
                                     <div class="form-control w-full">
-                                        <x-input label="{{ __('messages.new_password') }}"
+                                        <x-input label="{{ __('messages.current_password') }}"
                                                  type="password"
-                                                 class="input input-bordered w-full" wire:model="new_password"/>
+                                                 class="input input-bordered w-full" wire:model="current_password"/>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="form-control w-full">
-                                        <x-input label="{{ __('messages.confirm_new_password') }}"
-                                                 type="password"
-                                                 class="input input-bordered w-full" wire:model="confirm_password"/>
+                                <div class="grid grid-cols-2 gap-4 mt-4">
+                                    <div>
+                                        <div class="form-control w-full">
+                                            <x-input label="{{ __('messages.new_password') }}"
+                                                     type="password"
+                                                     class="input input-bordered w-full" wire:model="new_password"/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-control w-full">
+                                            <x-input label="{{ __('messages.confirm_new_password') }}"
+                                                     type="password"
+                                                     class="input input-bordered w-full" wire:model="confirm_password"/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="divider"></div>
-                            <div class="col-span-1 flex gap-2">
-                                <x-button type="submit"
-                                          class="btn btn-primary" spinner="updatePassword">
-                                    {{ __('pages/account/messages.buttons.change_password') }}
-                                </x-button>
+                                <div class="divider"></div>
+                                <div class="col-span-1 flex gap-2">
+                                    <x-button type="submit"
+                                              class="btn btn-primary" spinner="updatePassword">
+                                        {{ __('pages/account/messages.buttons.change_password') }}
+                                    </x-button>
 
-                                @if(auth()->user()->two_factor_enabled)
-                                    <button type="button"
-                                            class="btn btn-error"
-                                            wire:click="$dispatch('openModal', { component: 'components.modals.profile.disable-two-factor' })">
-                                        {{ __('pages/account/messages.buttons.deactivate_two_factor') }}
-                                    </button>
-                                    <button type="button"
-                                            class="btn btn-accent"
-                                            wire:click="$dispatch('openModal', { component: 'components.modals.profile.recovery-codes' })">
-                                        {{ __('pages/account/profile.buttons.show_recovery_codes') }}
-                                    </button>
-                                @else
-                                    <button type="button"
-                                            class="btn btn-accent"
-                                            wire:click="$dispatch('openModal', { component: 'components.modals.profile.activate-two-factor' })">
-                                        {{ __('pages/account/messages.buttons.activate_two_factor') }}
-                                    </button>
-                                @endif
-                            </div>
-                        </x-form>
+                                    @if(auth()->user()->two_factor_enabled)
+                                        <button type="button"
+                                                class="btn btn-error"
+                                                wire:click="$dispatch('openModal', { component: 'components.modals.profile.disable-two-factor' })">
+                                            {{ __('pages/account/messages.buttons.deactivate_two_factor') }}
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-accent"
+                                                wire:click="$dispatch('openModal', { component: 'components.modals.profile.recovery-codes' })">
+                                            {{ __('pages/account/profile.buttons.show_recovery_codes') }}
+                                        </button>
+                                    @else
+                                        <button type="button"
+                                                class="btn btn-accent"
+                                                wire:click="$dispatch('openModal', { component: 'components.modals.profile.activate-two-factor' })">
+                                            {{ __('pages/account/messages.buttons.activate_two_factor') }}
+                                        </button>
+                                    @endif
+                                </div>
+                            </x-form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endif
             <div class="col-span-2 space-y-4">
                 <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
                     <div class="card-body">
@@ -282,7 +287,8 @@
                                     wire:click="$dispatch('openModal', { component: 'components.modals.profile.new_api_key' })">
                                 {{ __('pages/account/profile.buttons.new_api_key') }}
                             </button>
-                            <a href="/api/docs" class="btn btn-secondary">{{ __('pages/account/profile.buttons.api_docs') }}</a>
+                            <a href="/api/docs"
+                               class="btn btn-secondary">{{ __('pages/account/profile.buttons.api_docs') }}</a>
                         </div>
                     </div>
                 </div>
