@@ -12,7 +12,7 @@
             <div class="form-control w-full max-w-xs">
                 <x-input label="{{ __('messages.two_factor_code') }}"
                          type="number" class="input input-bordered w-full max-w-xs"
-                         wire:model="two_factor_key"/>
+                         wire:model="two_factor_code"/>
             </div>
 
             <div class="form-control w-full max-w-xs">
