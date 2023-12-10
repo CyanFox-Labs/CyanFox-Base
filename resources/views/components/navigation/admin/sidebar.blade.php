@@ -50,6 +50,11 @@
                     <i class="bx bxs-user-badge"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('messages.roles') }}</span>
                 </a>
+                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin-activity-log*') ? 'bg-base-300' : '' }}"
+                   href="{{ route('admin-activity-log') }}">
+                    <i class="bx bxs-time-five"></i>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('messages.activity_log') }}</span>
+                </a>
             </div>
             <div class="relative flex items-center">
                 <div class="flex-grow border-t-2 rounded-2xl border-gray-500"></div>

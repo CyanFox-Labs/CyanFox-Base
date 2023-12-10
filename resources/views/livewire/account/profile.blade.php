@@ -10,6 +10,7 @@
             </ul>
         </div>
     </div>
+
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div class="col-span-1 space-y-4">
             <div class="card bg-base-100 shadow-xl">

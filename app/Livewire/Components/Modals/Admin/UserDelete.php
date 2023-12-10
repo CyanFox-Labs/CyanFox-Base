@@ -22,6 +22,13 @@ class UserDelete extends ModalComponent
             ->success()
             ->send();
 
+        activity('system')
+            ->causedBy(auth()->user())
+            ->withProperty('name', $user->username . ' (' . $user->email . ')')
+            ->log(__('pages/admin/users/messages.activity.deleted', [
+                'user' => $user->name,
+            ]));
+
         return redirect()->route('admin-user-list');
     }
 

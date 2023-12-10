@@ -13,6 +13,7 @@ return [
     'current_password' => 'Current Password',
     'two_factor_code' => 'Two Factor Code',
     'something_went_wrong' => 'Something went wrong. Check Browser Console for more details.',
+    'activity_log' => 'Activity',
 
     'id' => 'ID',
     'created_at' => 'Created At',

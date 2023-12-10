@@ -5,6 +5,7 @@ use App\Livewire\Account\ActivateTwoFactor;
 use App\Livewire\Account\ChangePassword;
 use App\Livewire\Account\ForgotPassword;
 use App\Livewire\Account\Profile;
+use App\Livewire\Admin\ActivityLog;
 use App\Livewire\Admin\Admin;
 use App\Livewire\Admin\Roles\RoleCreate;
 use App\Livewire\Admin\Roles\RoleEdit;
@@ -36,6 +37,7 @@ Route::middleware(['setLanguage'])->group(function () {
 
             Route::group(['prefix' => 'admin', 'middleware' => ['role:Super Admin']], function () {
                 Route::get('/', Admin::class)->name('admin');
+                Route::get('/activity', ActivityLog::class)->name('admin-activity-log');
 
                 Route::group(['prefix' => '/users'], function () {
                     Route::get('/', UserList::class)->name('admin-user-list');
