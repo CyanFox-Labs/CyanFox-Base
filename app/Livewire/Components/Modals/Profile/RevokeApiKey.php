@@ -19,8 +19,15 @@ class RevokeApiKey extends ModalComponent
             ->success()
             ->send();
 
+        activity('system')
+            ->performedOn(auth()->user())
+            ->causedBy(auth()->user())
+            ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('account.api_key_revoked');
+
         $this->closeModal();
-        return redirect()->route('profile');
+        return redirect()->route('profile', ['tab' => 'api_keys']);
     }
 
     public function render()

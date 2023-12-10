@@ -26,14 +26,21 @@ class ForgotPassword extends Component
             'password_confirm' => 'required|string',
         ]);
 
+        $user = User::where('password_reset_token', $this->resetToken)->first();
+
         if ($this->password != $this->password_confirm) {
+            activity('system')
+                ->performedOn($user)
+                ->causedByAnonymous()
+                ->withProperty('name', $user->username . ' (' . $user->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.forgot_password_failed');
             throw ValidationException::withMessages([
                 'password' => __('validation.custom.passwords_not_match'),
                 'password_confirm' => __('validation.custom.passwords_not_match'),
             ]);
         }
 
-        $user = User::where('password_reset_token', $this->resetToken)->first();
 
         $expirationDate = Carbon::parse($user->password_reset_expiration);
 
@@ -42,6 +49,13 @@ class ForgotPassword extends Component
                 ->title(__('pages/account/messages.notifications.password_reset_link_expired'))
                 ->danger()
                 ->send();
+
+            activity('system')
+                ->performedOn($user)
+                ->causedByAnonymous()
+                ->withProperty('name', $user->username . ' (' . $user->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.forgot_password_failed');
 
             return redirect(route('forgot-password', [""]));
         } else {
@@ -54,6 +68,13 @@ class ForgotPassword extends Component
                 ->title(__('pages/account/messages.notifications.password_resetted'))
                 ->success()
                 ->send();
+
+            activity('system')
+                ->performedOn($user)
+                ->causedByAnonymous()
+                ->withProperty('name', $user->username . ' (' . $user->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.forgot_password_success');
 
             $this->redirect(route('login'));
         }
@@ -68,6 +89,12 @@ class ForgotPassword extends Component
         $user = User::where('email', $this->email)->first();
 
         if ($user == null) {
+            activity('system')
+                ->performedOn($user)
+                ->causedByAnonymous()
+                ->withProperty('name', $this->email)
+                ->withProperty('ip', request()->ip())
+                ->log('account.forgot_password_request_failed');
             throw ValidationException::withMessages([
                 'email' => __('pages/account/forgot-password.email_not_found'),
             ]);
@@ -87,6 +114,13 @@ class ForgotPassword extends Component
             ->title(__('pages/account/messages.notifications.password_reset_link_sent'))
             ->success()
             ->send();
+
+        activity('system')
+            ->performedOn($user)
+            ->causedByAnonymous()
+            ->withProperty('name', $user->username . ' (' . $user->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('account.forgot_password_requested');
     }
 
     public function mount() {

@@ -22,6 +22,13 @@ class RoleDelete extends ModalComponent
             ->success()
             ->send();
 
+        activity('system')
+            ->performedOn($role)
+            ->causedBy(auth()->user())
+            ->withProperty('name', $role->name . ' (' . $role->guard_name . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('group.deleted');
+
         return redirect()->route('admin-role-list');
     }
 

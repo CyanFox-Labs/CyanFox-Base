@@ -39,101 +39,107 @@
                     </div>
                 @endif
 
-                @if($two_factor_enabled)
-                    <x-form class="space-y-2 md:space-y-6" wire:submit="checkTwoFactorCode">
-                        @csrf
-                        <x-input label="{{ __('messages.two_factor_code') }}"
-                                 class="input input-bordered w-full"
-                                 required="" wire:model="two_factor_code"/>
+                @if(!env('DISABLE_LOCAL_LOGIN'))
+                    @if($two_factor_enabled)
+                        <x-form class="space-y-2 md:space-y-6" wire:submit="checkTwoFactorCode">
+                            @csrf
+                            <x-input label="{{ __('messages.two_factor_code') }}"
+                                     class="input input-bordered w-full"
+                                     required="" wire:model="two_factor_code"/>
 
-                        <div class="flex items-center space-x-2 w-full">
-                            <a href="{{ route('login') }}"
-                               class="btn btn-neutral w-1/2">
-                                {{ __('messages.back') }}
-                            </a>
-                            <x-button type="submit"
-                                      class="btn btn-primary w-1/2" spinner="checkTwoFactorCode">
-                                {{ __('pages/auth/login.buttons.login') }}
-                            </x-button>
-                        </div>
-                    </x-form>
-                @else
-                    <x-form class="space-y-4 md:space-y-6" wire:submit="attemptLogin">
-                        @csrf
-                        <div>
-                            <div class="form-control w-full">
-                                <x-input label="{{ __('messages.username') }}"
-                                         wire:model="username"
-                                         wire:blur="checkIfUserExits($event.target.value)" required/>
+                            <div class="flex items-center space-x-2 w-full">
+                                <a href="{{ route('login') }}"
+                                   class="btn btn-neutral w-1/2">
+                                    {{ __('messages.back') }}
+                                </a>
+                                <x-button type="submit"
+                                          class="btn btn-primary w-1/2" spinner="checkTwoFactorCode">
+                                    {{ __('pages/auth/login.buttons.login') }}
+                                </x-button>
                             </div>
-                        </div>
-                        <div>
-                            <div class="form-control w-full">
-                                <x-input type="password" label="{{ __('messages.password') }}" wire:model="password"
-                                         required/>
+                        </x-form>
+                    @else
+                        <x-form class="space-y-4 md:space-y-6" wire:submit="attemptLogin">
+                            @csrf
+                            <div>
+                                <div class="form-control w-full">
+                                    <x-input label="{{ __('messages.username') }}"
+                                             wire:model="username"
+                                             wire:blur="checkIfUserExits($event.target.value)" required/>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-control">
-                            <label class="label cursor-pointer">
-                                <x-checkbox label="{{ __('pages/auth/login.remember_me') }}"
-                                            wire:model="remember_me" class="mt-3 font-semibold" right bottom/>
-                            </label>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <x-button type="submit"
-                                      class="flex-1 mr-2 btn btn-primary" spinner="attemptLogin">
-                                {{ __('pages/auth/login.buttons.login') }}
-                            </x-button>
+                            <div>
+                                <div class="form-control w-full">
+                                    <x-input type="password" label="{{ __('messages.password') }}" wire:model="password"
+                                             required/>
+                                </div>
+                            </div>
 
-                            <details class="dropdown">
-                                <summary class="m-1 btn">{{ __('messages.language') }}</summary>
-                                <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-32">
-                                    <li><a wire:click="setLanguage('de')">{{ __('messages.language_types.de') }}</a>
-                                    </li>
-                                    <li><a wire:click="setLanguage('en')">{{ __('messages.language_types.en') }}</a>
-                                    </li>
-                                </ul>
-                            </details>
+
+                            <div class="form-control">
+                                <label class="label cursor-pointer">
+                                    <x-checkbox label="{{ __('pages/auth/login.remember_me') }}"
+                                                wire:model="remember_me" class="mt-3 font-semibold" right bottom/>
+                                </label>
+                            </div>
+
+                            <div class="flex justify-between items-center">
+                                <x-button type="submit"
+                                          class="flex-1 mr-2 btn btn-primary" spinner="attemptLogin">
+                                    {{ __('pages/auth/login.buttons.login') }}
+                                </x-button>
+
+                                <details class="dropdown">
+                                    <summary class="m-1 btn">{{ __('messages.language') }}</summary>
+                                    <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-32">
+                                        <li><a wire:click="setLanguage('de')">{{ __('messages.language_types.de') }}</a>
+                                        </li>
+                                        <li><a wire:click="setLanguage('en')">{{ __('messages.language_types.en') }}</a>
+                                        </li>
+                                    </ul>
+                                </details>
+                            </div>
+                        </x-form>
+                        <div
+                            class="grid @if(env('ENABLE_REGISTRATION') && env('ENABLE_FORGOT_PASSWORD')) md:grid-cols-2 @endif gap-4 mt-4">
+                            @if(env('ENABLE_FORGOT_PASSWORD'))
+                                <a href="{{ route('forgot-password', [""]) }}"
+                                   class="btn btn-ghost">
+                                    {{ __('pages/auth/login.buttons.forgot_password') }}
+                                </a>
+                            @endif
+                            @if(env('ENABLE_REGISTRATION'))
+                                <a href="{{ route('register') }}"
+                                   class="btn btn-ghost">
+                                    {{ __('pages/auth/messages.buttons.register') }}
+                                </a>
+                            @endif
                         </div>
-                    </x-form>
-                    <div class="grid gap-4 mt-4">
-                        @if(env('GITHUB_LOGIN_ENABLED'))
-                            <a href="{{ route('auth.redirect', 'github') }}"
-                               class="btn hover:bg-black bg-black text-white">
-                                {!! __('pages/auth/login.buttons.login_github') !!}
-                            </a>
-                        @endif
-
-                        @if(env('GITLAB_LOGIN_ENABLED'))
-                            <a href="{{ route('auth.redirect', 'gitlab') }}"
-                               class="btn hover:bg-orange-600 bg-orange-500 text-white">
-                                {!! __('pages/auth/login.buttons.login_gitlab') !!}
-                            </a>
-                        @endif
-
-                        @if(env('GOOGLE_LOGIN_ENABLED'))
-                            <a href="{{ route('auth.redirect', 'google') }}"
-                               class="btn hover:bg-red-600 bg-red-500 text-white">
-                                {!! __('pages/auth/login.buttons.login_google') !!}
-                            </a>
-                        @endif
-                    </div>
-                    <div
-                        class="grid @if(env('ENABLE_REGISTRATION') && env('ENABLE_FORGOT_PASSWORD')) md:grid-cols-2 @endif gap-4 mt-4">
-                        @if(env('ENABLE_FORGOT_PASSWORD'))
-                            <a href="{{ route('forgot-password', [""]) }}"
-                               class="btn btn-ghost">
-                                {{ __('pages/auth/login.buttons.forgot_password') }}
-                            </a>
-                        @endif
-                        @if(env('ENABLE_REGISTRATION'))
-                            <a href="{{ route('register') }}"
-                               class="btn btn-ghost">
-                                {{ __('pages/auth/messages.buttons.register') }}
-                            </a>
-                        @endif
-                    </div>
+                    @endif
                 @endif
+
+                <div class="grid gap-4 mt-4">
+                    @if(env('GITHUB_LOGIN_ENABLED'))
+                        <a href="{{ route('auth.redirect', 'github') }}"
+                           class="btn hover:bg-black bg-black text-white">
+                            {!! __('pages/auth/login.buttons.login_github') !!}
+                        </a>
+                    @endif
+
+                    @if(env('GITLAB_LOGIN_ENABLED'))
+                        <a href="{{ route('auth.redirect', 'gitlab') }}"
+                           class="btn hover:bg-orange-600 bg-orange-500 text-white">
+                            {!! __('pages/auth/login.buttons.login_gitlab') !!}
+                        </a>
+                    @endif
+
+                    @if(env('GOOGLE_LOGIN_ENABLED'))
+                        <a href="{{ route('auth.redirect', 'google') }}"
+                           class="btn hover:bg-red-600 bg-red-500 text-white">
+                            {!! __('pages/auth/login.buttons.login_google') !!}
+                        </a>
+                    @endif
+                </div>
             </div>
         </div>
     </div>

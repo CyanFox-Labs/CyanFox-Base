@@ -27,6 +27,13 @@ class RecoveryCodes extends ModalComponent
                 $recovery_codes .= $recovery_code . "\n";
             }
 
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.recovery_codes_downloaded');
+
             echo $recovery_codes;
         }, 'recovery-codes.txt');
 
@@ -44,11 +51,27 @@ class RecoveryCodes extends ModalComponent
         $recovery_codes_array = decrypt(Auth::user()->two_factor_recovery_codes);
         $this->recovery_codes = json_decode($recovery_codes_array, true);
 
+
+        activity('system')
+            ->performedOn(auth()->user())
+            ->causedBy(auth()->user())
+            ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('account.recovery_codes_shown');
+
         $this->dispatch('openModal', 'components.modals.profile.recovery-codes');
     }
 
     public function regenerate() {
         AuthController::generateRecoveryCodes(Auth::user());
+
+        activity('system')
+            ->performedOn(auth()->user())
+            ->causedBy(auth()->user())
+            ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('account.recovery_codes_regenerated');
+
         $this->showRecoveryCodes();
     }
 

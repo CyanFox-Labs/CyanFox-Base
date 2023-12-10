@@ -22,12 +22,26 @@ class ActivateTwoFactor extends Component
     {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->password])) {
+            activity('system')
+                ->performedOn(Auth::user())
+                ->causedBy(Auth::user())
+                ->withProperty('name', Auth::user()->username . ' (' . Auth::user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.activate_two_factor_failed');
+
             throw ValidationException::withMessages([
                 'password' => __('validation.current_password')
             ]);
         }
 
         if (!AuthController::checkTwoFactorCode(Auth::user(), $this->two_factor_code, false)) {
+            activity('system')
+                ->performedOn(Auth::user())
+                ->causedBy(Auth::user())
+                ->withProperty('name', Auth::user()->username . ' (' . Auth::user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.activate_two_factor_failed');
+
             throw ValidationException::withMessages([
                 'two_factor_key' => __('validation.custom.two_factor_code')
             ]);
@@ -52,6 +66,14 @@ class ActivateTwoFactor extends Component
             ->title(__('pages/account/messages.notifications.two_factor_enabled'))
             ->success()
             ->send();
+
+        activity('system')
+            ->performedOn(Auth::user())
+            ->causedBy(Auth::user())
+            ->withProperty('name', Auth::user()->username . ' (' . Auth::user()->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('account.activate_two_factor_success');
+
         $this->redirect(route('home'));
     }
 

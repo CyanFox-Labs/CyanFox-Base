@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Jenssegers\Agent\Agent;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Url;
 use Livewire\Component;
+use Spatie\Activitylog\Models\Activity;
 
 class Profile extends Component
 {
@@ -19,6 +21,15 @@ class Profile extends Component
     public $last_name;
     public $username;
     public $email;
+
+    /* Tabs */
+    #[Url]
+    public $tab = 'overview';
+
+    public function changeTab($tab)
+    {
+        $this->tab = $tab;
+    }
 
     public function updateProfile()
     {
@@ -41,12 +52,27 @@ class Profile extends Component
                 ->title(__('pages/account/messages.notifications.profile_updated'))
                 ->success()
                 ->send();
+
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.profile_update_success');
+
             $this->redirect(route('profile'));
         } else {
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.profile_update_failed');
         }
     }
 
@@ -65,12 +91,27 @@ class Profile extends Component
                 ->title(__('messages.notifications.language_changed'))
                 ->success()
                 ->send();
+
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.language_change_success');
+
             return redirect()->route('profile');
         } else {
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.language_change_failed');
         }
     }
 
@@ -90,6 +131,13 @@ class Profile extends Component
                 ->danger()
                 ->send();
 
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.theme_change_failed');
+
             $this->dispatch('sendToConsole', $e->getMessage());
             return;
         }
@@ -98,6 +146,14 @@ class Profile extends Component
             ->title(__('pages/account/messages.notifications.theme_changed'))
             ->success()
             ->send();
+
+        activity('system')
+            ->performedOn(auth()->user())
+            ->causedBy(auth()->user())
+            ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('account.theme_change_success');
+
         return redirect()->route('profile');
     }
 
@@ -148,6 +204,14 @@ class Profile extends Component
     {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->current_password])) {
+
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.change_password_failed');
+
             throw ValidationException::withMessages([
                 'current_password' => __('validation.current_password')
             ]);
@@ -160,6 +224,14 @@ class Profile extends Component
 
 
         if ($this->new_password !== $this->confirm_password) {
+
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.change_password_failed');
+
             throw ValidationException::withMessages([
                 'new_password' => __('validation.custom.passwords_not_match'),
                 'confirm_password' => __('validation.custom.passwords_not_match')
@@ -173,13 +245,49 @@ class Profile extends Component
                 ->title(__('pages/account/messages.notifications.password_changed'))
                 ->success()
                 ->send();
+
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.change_password_success');
+
             $this->redirect(route('profile'));
         } else {
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.change_password_failed');
         }
+    }
+
+
+    /* Activity Log */
+    public $activityLog = [];
+    public function getActivityLog()
+    {
+        $userActivity = Activity::where('subject_id', Auth::user()->getAuthIdentifier())->get();
+
+        foreach ($userActivity as $activity) {
+
+            $this->activityLog[] = [
+                'id' => $activity->id,
+                'subject_id' => $activity->subject_id,
+                'causer_id' => $activity->causer_id,
+                'causer_ip' => $activity->getExtraProperty('ip'),
+                'description' => $activity->description,
+            ];
+        }
+
+        return $this->activityLog;
     }
 
 
@@ -190,6 +298,7 @@ class Profile extends Component
         $this->username = Auth::user()->username;
         $this->email = Auth::user()->email;
         $this->getSessionData();
+        $this->getActivityLog();
     }
 
     #[Title('Profile')]

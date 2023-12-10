@@ -20,6 +20,13 @@ class NewApiKey extends ModalComponent
         $token = auth()->user()->createToken($this->name)->plainTextToken;
 
         $this->plainTextToken = $token;
+
+        activity('system')
+            ->performedOn(auth()->user())
+            ->causedBy(auth()->user())
+            ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('account.api_key_created');
     }
 
     public function render()

@@ -51,6 +51,13 @@ class RoleCreate extends Component
             ->success()
             ->send();
 
+        activity('system')
+            ->performedOn($role)
+            ->causedBy(auth()->user())
+            ->withProperty('name', $role->name . ' (' . $role->guard_name . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('group.created');
+
         return redirect()->route('admin-role-list');
 
     }

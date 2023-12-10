@@ -4,6 +4,8 @@ return [
     'select_language' => 'Select Language',
     'select_theme' => 'Select Theme',
     'sessions' => 'Sessions',
+    'api_keys' => 'API Keys',
+    'activity_log' => 'Activity Log',
 
     'buttons' => [
         'revoke_session' => 'Revoke Session',

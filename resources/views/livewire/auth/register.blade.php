@@ -7,7 +7,7 @@
         <p class="flex items-center mb-6 text-2xl font-semibold">
             <img class="w-32 h-32 mr-2" src="{{ asset("img/Logo.png") }}" alt="logo">
             <span
-                class="text-4xl font-bold brand-text lg:block hidden" id="logo_text"
+                class="text-4xl font-bold brand-text text-white lg:block hidden" id="logo_text"
                 wire:ignore>{{ env('APP_NAME') }}</span>
         </p>
         <div class="bg-neutral rounded-box sm:w-full w-auto">

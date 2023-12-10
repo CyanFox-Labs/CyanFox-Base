@@ -3,13 +3,10 @@
 namespace App\Livewire\Admin\Users;
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Logger;
 use App\Models\User;
 use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -75,6 +72,13 @@ class UserCreate extends Component
             ->title(__('pages/admin/users/messages.notifications.created'))
             ->success()
             ->send();
+
+        activity('system')
+            ->performedOn($user)
+            ->causedBy(auth()->user())
+            ->withProperty('name', $user->username . ' (' . $user->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('user.created');
 
         return redirect()->route('admin-user-list');
     }

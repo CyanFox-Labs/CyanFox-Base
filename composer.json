@@ -26,6 +26,7 @@
         "rakutentech/laravel-request-docs": "^2.26",
         "robsontenorio/mary": "dev-main",
         "simplesoftwareio/simple-qrcode": "*",
+        "spatie/laravel-activitylog": "^4.7",
         "spatie/laravel-permission": "^5.11",
         "wire-elements/modal": "^2.0"
     },

@@ -13,6 +13,10 @@ return [
     'current_password' => 'Aktuelles Passwort',
     'two_factor_code' => '2FA Code',
     'something_went_wrong' => 'Etwas ist schief gelaufen. Für weitere Informationen bitte die Entwicklerkonsole öffnen.',
+    'activity_log' => 'Aktivitäten',
+    'system' => 'System',
+    'unknown' => 'Unbekannt',
+    'overview' => 'Übersicht',
 
     'id' => 'ID',
     'created_at' => 'Erstellt am',
@@ -29,7 +33,7 @@ return [
     'permissions' => 'Berechtigungen',
     'roles' => 'Rollen',
     'dashboard' => 'Übersicht',
-    'made_with_love' => 'Gemacht mit <i class="bx bxs-heart text-danger-600"></i> von CyanFox-Team',
+    'made_with_love' => 'Mit <i class="bx bxs-heart text-danger-600"></i> entwickelt von CyanFox-Team',
 
     'yes' => 'Ja',
     'no' => 'Nein',

@@ -17,6 +17,15 @@ class DisableTwoFactor extends ModalComponent
     {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->password])) {
+
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.disable_two_factor_failed');
+
+
             throw ValidationException::withMessages([
                 'password' => __('validation.current_password'),
             ]);
@@ -32,6 +41,13 @@ class DisableTwoFactor extends ModalComponent
                 ->danger()
                 ->send();
 
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.disable_two_factor_failed');
+
             $this->dispatch('sendToConsole', $e->getMessage());
             return;
         }
@@ -40,6 +56,14 @@ class DisableTwoFactor extends ModalComponent
             ->title(__('pages/account/messages.notifications.two_factor_disabled'))
             ->success()
             ->send();
+
+        activity('system')
+            ->performedOn(auth()->user())
+            ->causedBy(auth()->user())
+            ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('account.disable_two_factor_success');
+
         $this->redirect(route('profile'));
     }
 
