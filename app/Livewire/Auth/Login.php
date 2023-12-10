@@ -76,9 +76,20 @@ class Login extends Component
 
         if (AuthController::checkTwoFactorCode($this->user, $this->two_factor_code)) {
             Auth::login($this->user);
+
+            activity('system')
+                ->causedByAnonymous()
+                ->withProperty('name', $this->user->username . ' (' . $this->user->email . ')')
+                ->withProperty('ip', session()->get('ip_address'))
+                ->log('auth.two_factor_success');
             return redirect('/');
         }
 
+        activity('system')
+            ->causedByAnonymous()
+            ->withProperty('name', $this->user->username . ' (' . $this->user->email . ')')
+            ->withProperty('ip', session()->get('ip_address'))
+            ->log('auth.two_factor_failed');
         throw ValidationException::withMessages([
             'two_factor_code' => __('validation.custom.two_factor_code'),
         ]);
@@ -101,10 +112,28 @@ class Login extends Component
             if ($this->user->two_factor_enabled) {
                 Auth::logout();
                 $this->two_factor_enabled = true;
+
+                activity('system')
+                    ->causedByAnonymous()
+                    ->withProperty('name', $this->user->username . ' (' . $this->user->email . ')')
+                    ->withProperty('ip', session()->get('ip_address'))
+                    ->log('auth.two_factor_requested');
             } else {
+
+                activity('system')
+                    ->causedByAnonymous()
+                    ->withProperty('name', $this->user->username . ' (' . $this->user->email . ')')
+                    ->withProperty('ip', session()->get('ip_address'))
+                    ->log('auth.login');
                 $this->redirect('/');
             }
         } else {
+            activity('system')
+                ->causedByAnonymous()
+                ->withProperty('name', $this->username)
+                ->withProperty('ip', session()->get('ip_address'))
+                ->log('auth.failed');
+
             throw ValidationException::withMessages([
                 'password' => __('validation.current_password'),
             ]);

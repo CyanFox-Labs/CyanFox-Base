@@ -47,11 +47,17 @@ class Register extends Component
             'password_confirm' => 'required|string',
         ]);
 
-
         if (env('ENABLE_HCAPTCHA')) {
             try {
                 $this->validate(['hcaptcha' => ['required', new HCaptchaValidator()]]);
             } catch (ValidationException $e) {
+                activity('system')
+                    ->causedByAnonymous()
+                    ->withProperty('name', $this->username . ' (' . $this->email . ')')
+                    ->withProperty('ip', session()->get('ip_address'))
+                    ->log('auth.register_failed');
+
+
                 Notification::make()
                     ->title(__('validation.custom.invalid_captcha'))
                     ->danger()
@@ -61,6 +67,13 @@ class Register extends Component
         }
 
         if ($this->password != $this->password_confirm) {
+
+            activity('system')
+                ->causedByAnonymous()
+                ->withProperty('name', $this->username . ' (' . $this->email . ')')
+                ->withProperty('ip', session()->get('ip_address'))
+                ->log('auth.register_failed');
+
             throw ValidationException::withMessages([
                 'password' => __('validation.custom.passwords_not_match'),
                 'password_confirm' => __('validation.custom.passwords_not_match'),
@@ -77,6 +90,14 @@ class Register extends Component
         try {
             $user->save();
         } catch (Exception $e) {
+
+            activity('system')
+                ->causedByAnonymous()
+                ->withProperty('name', $this->username . ' (' . $this->email . ')')
+                ->withProperty('ip', session()->get('ip_address'))
+                ->log('auth.register_failed');
+
+
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
@@ -90,6 +111,14 @@ class Register extends Component
             ->title(__('pages/auth/messages.notifications.registration_successful'))
             ->success()
             ->send();
+
+
+        activity('system')
+            ->causedByAnonymous()
+            ->withProperty('name', $this->username . ' (' . $this->email . ')')
+            ->withProperty('ip', session()->get('ip_address'))
+            ->log('auth.register');
+
 
         $this->redirect(route('login'));
 

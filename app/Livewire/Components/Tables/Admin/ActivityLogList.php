@@ -53,7 +53,12 @@ final class ActivityLogList extends PowerGridComponent
             ->addColumn('subject', function (Activity $activity) {
                 return $activity->getExtraProperty('name');
             })
-            ->addColumn('causer_id', fn(Activity $activity) => $activity->causer->username . ' (' . $activity->causer->email . ')')
+            ->addColumn('causer_id', function (Activity $activity) {
+                if ($activity->causer == null) {
+                    return __('messages.unknown');
+                }
+                return $activity->causer->username;
+            })
             ->addColumn('causer_ip', function () {
                 return request()->ip();
             })

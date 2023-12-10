@@ -53,6 +53,13 @@ Route::middleware(['setLanguage'])->group(function () {
             });
 
             Route::get('/logout', function () {
+
+                activity('system')
+                    ->causedBy(auth()->user())
+                    ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                    ->withProperty('ip', session()->get('ip_address'))
+                    ->log('auth.logout');
+
                 auth()->logout();
                 return redirect()->route('login');
             })->name('logout');
