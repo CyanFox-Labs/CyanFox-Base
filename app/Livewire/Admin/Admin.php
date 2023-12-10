@@ -34,7 +34,7 @@ class Admin extends Component
         activity('system')
             ->causedBy(auth()->user())
             ->withProperty('name', __('messages.system'))
-            ->withProperty('ip', session()->get('ip_address'))
+            ->withProperty('ip', request()->ip())
             ->log('check_for_updates');
     }
 

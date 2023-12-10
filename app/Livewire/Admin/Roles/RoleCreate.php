@@ -52,9 +52,10 @@ class RoleCreate extends Component
             ->send();
 
         activity('system')
+            ->performedOn($role)
             ->causedBy(auth()->user())
             ->withProperty('name', $role->name . ' (' . $role->guard_name . ')')
-            ->withProperty('ip', session()->get('ip_address'))
+            ->withProperty('ip', request()->ip())
             ->log('group.created');
 
         return redirect()->route('admin-role-list');

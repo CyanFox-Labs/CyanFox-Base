@@ -17,6 +17,14 @@ class LogoutSession extends ModalComponent
     public function logoutSession()
     {
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->password])) {
+
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.revoke_session_failed');
+
             throw ValidationException::withMessages([
                 'password' => __('validation.current_password'),
             ]);
@@ -28,6 +36,13 @@ class LogoutSession extends ModalComponent
             ->title(__('pages/account/messages.notifications.session_revoked'))
             ->success()
             ->send();
+
+        activity('system')
+            ->performedOn(auth()->user())
+            ->causedBy(auth()->user())
+            ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('account.revoke_session_success');
 
         $this->redirect(route('profile'));
     }

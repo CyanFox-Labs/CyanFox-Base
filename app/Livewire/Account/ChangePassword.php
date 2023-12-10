@@ -26,12 +26,26 @@ class ChangePassword extends Component
         ]);
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->current_password])) {
+            activity('system')
+                ->performedOn(Auth::user())
+                ->causedBy(Auth::user())
+                ->withProperty('name', Auth::user()->username . ' (' . Auth::user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.change_password_failed');
+
             throw ValidationException::withMessages([
                 'current_password' => __('validation.current_password'),
             ]);
         }
 
         if ($this->new_password !== $this->new_password_confirm) {
+            activity('system')
+                ->performedOn(Auth::user())
+                ->causedBy(Auth::user())
+                ->withProperty('name', Auth::user()->username . ' (' . Auth::user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.change_password_failed');
+
             throw ValidationException::withMessages([
                 'new_password' => __('validation.custom.passwords_not_match'),
                 'new_password_confirm' => __('validation.custom.passwords_not_match'),
@@ -39,6 +53,13 @@ class ChangePassword extends Component
         }
 
         if ($this->new_password === $this->current_password) {
+            activity('system')
+                ->performedOn(Auth::user())
+                ->causedBy(Auth::user())
+                ->withProperty('name', Auth::user()->username . ' (' . Auth::user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.change_password_failed');
+
             throw ValidationException::withMessages([
                 'new_password' => __('validation.custom.passwords_same'),
                 'new_password_confirm' => __('validation.custom.passwords_same'),
@@ -65,6 +86,13 @@ class ChangePassword extends Component
             ->title(__('pages/account/messages.notifications.password_changed'))
             ->success()
             ->send();
+
+        activity('system')
+            ->performedOn(Auth::user())
+            ->causedBy(Auth::user())
+            ->withProperty('name', Auth::user()->username . ' (' . Auth::user()->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('account.change_password_success');
 
         return redirect()->route('home');
     }

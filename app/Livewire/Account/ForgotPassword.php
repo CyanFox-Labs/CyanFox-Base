@@ -30,10 +30,11 @@ class ForgotPassword extends Component
 
         if ($this->password != $this->password_confirm) {
             activity('system')
+                ->performedOn($user)
                 ->causedByAnonymous()
                 ->withProperty('name', $user->username . ' (' . $user->email . ')')
-                ->withProperty('ip', session()->get('ip_address'))
-                ->log('auth.forgot_password_failed');
+                ->withProperty('ip', request()->ip())
+                ->log('account.forgot_password_failed');
             throw ValidationException::withMessages([
                 'password' => __('validation.custom.passwords_not_match'),
                 'password_confirm' => __('validation.custom.passwords_not_match'),
@@ -50,10 +51,11 @@ class ForgotPassword extends Component
                 ->send();
 
             activity('system')
+                ->performedOn($user)
                 ->causedByAnonymous()
                 ->withProperty('name', $user->username . ' (' . $user->email . ')')
-                ->withProperty('ip', session()->get('ip_address'))
-                ->log('auth.forgot_password_failed');
+                ->withProperty('ip', request()->ip())
+                ->log('account.forgot_password_failed');
 
             return redirect(route('forgot-password', [""]));
         } else {
@@ -68,10 +70,11 @@ class ForgotPassword extends Component
                 ->send();
 
             activity('system')
+                ->performedOn($user)
                 ->causedByAnonymous()
                 ->withProperty('name', $user->username . ' (' . $user->email . ')')
-                ->withProperty('ip', session()->get('ip_address'))
-                ->log('auth.forgot_password_success');
+                ->withProperty('ip', request()->ip())
+                ->log('account.forgot_password_success');
 
             $this->redirect(route('login'));
         }
@@ -87,10 +90,11 @@ class ForgotPassword extends Component
 
         if ($user == null) {
             activity('system')
+                ->performedOn($user)
                 ->causedByAnonymous()
                 ->withProperty('name', $this->email)
-                ->withProperty('ip', session()->get('ip_address'))
-                ->log('auth.forgot_password_request_failed');
+                ->withProperty('ip', request()->ip())
+                ->log('account.forgot_password_request_failed');
             throw ValidationException::withMessages([
                 'email' => __('pages/account/forgot-password.email_not_found'),
             ]);
@@ -112,10 +116,11 @@ class ForgotPassword extends Component
             ->send();
 
         activity('system')
+            ->performedOn($user)
             ->causedByAnonymous()
             ->withProperty('name', $user->username . ' (' . $user->email . ')')
-            ->withProperty('ip', session()->get('ip_address'))
-            ->log('auth.forgot_password_requested');
+            ->withProperty('ip', request()->ip())
+            ->log('account.forgot_password_requested');
     }
 
     public function mount() {

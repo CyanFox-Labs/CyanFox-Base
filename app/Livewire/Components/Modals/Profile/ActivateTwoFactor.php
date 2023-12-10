@@ -22,12 +22,28 @@ class ActivateTwoFactor extends ModalComponent
     {
 
         if (!Auth::validate(['email' => Auth::user()->email, 'password' => $this->password])) {
+
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.activate_two_factor_failed');
+
             throw ValidationException::withMessages([
                 'password' => __('validation.current_password')
             ]);
         }
 
         if (!AuthController::checkTwoFactorCode(Auth::user(), $this->two_factor_code, false)) {
+
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.activate_two_factor_failed');
+
             throw ValidationException::withMessages([
                 'two_factor_code' => __('validation.custom.two_factor_code')
             ]);
@@ -44,6 +60,13 @@ class ActivateTwoFactor extends ModalComponent
                 ->danger()
                 ->send();
 
+            activity('system')
+                ->performedOn(auth()->user())
+                ->causedBy(auth()->user())
+                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('account.disable_two_factor_failed');
+
             $this->dispatch('sendToConsole', $e->getMessage());
             return;
         }
@@ -52,6 +75,14 @@ class ActivateTwoFactor extends ModalComponent
             ->title(__('pages/account/messages.notifications.two_factor_enabled'))
             ->success()
             ->send();
+
+        activity('system')
+            ->performedOn(auth()->user())
+            ->causedBy(auth()->user())
+            ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('account.activate_two_factor_success');
+
         $this->redirect(route('profile'));
     }
 

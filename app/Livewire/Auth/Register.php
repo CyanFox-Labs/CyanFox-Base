@@ -54,7 +54,7 @@ class Register extends Component
                 activity('system')
                     ->causedByAnonymous()
                     ->withProperty('name', $this->username . ' (' . $this->email . ')')
-                    ->withProperty('ip', session()->get('ip_address'))
+                    ->withProperty('ip', request()->ip())
                     ->log('auth.register_failed');
 
 
@@ -71,7 +71,7 @@ class Register extends Component
             activity('system')
                 ->causedByAnonymous()
                 ->withProperty('name', $this->username . ' (' . $this->email . ')')
-                ->withProperty('ip', session()->get('ip_address'))
+                ->withProperty('ip', request()->ip())
                 ->log('auth.register_failed');
 
             throw ValidationException::withMessages([
@@ -94,7 +94,7 @@ class Register extends Component
             activity('system')
                 ->causedByAnonymous()
                 ->withProperty('name', $this->username . ' (' . $this->email . ')')
-                ->withProperty('ip', session()->get('ip_address'))
+                ->withProperty('ip', request()->ip())
                 ->log('auth.register_failed');
 
 
@@ -116,7 +116,7 @@ class Register extends Component
         activity('system')
             ->causedByAnonymous()
             ->withProperty('name', $this->username . ' (' . $this->email . ')')
-            ->withProperty('ip', session()->get('ip_address'))
+            ->withProperty('ip', request()->ip())
             ->log('auth.register');
 
 

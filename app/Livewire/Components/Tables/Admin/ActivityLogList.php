@@ -57,13 +57,13 @@ final class ActivityLogList extends PowerGridComponent
                 if ($activity->causer == null) {
                     return __('messages.unknown');
                 }
-                return $activity->causer->username;
+                return $activity->causer->username . ' (' . $activity->causer->email . ')';
             })
-            ->addColumn('causer_ip', function () {
-                return request()->ip();
+            ->addColumn('causer_ip', function (Activity $activity) {
+                return $activity->getExtraProperty('ip') ?? __('messages.unknown');
             })
             ->addColumn('description', function (Activity $activity) {
-                return __('activity_log/system.' . $activity->description);
+                return __('activity_log/messages.' . $activity->description);
             });
     }
 

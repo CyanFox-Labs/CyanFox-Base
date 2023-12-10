@@ -55,9 +55,10 @@ Route::middleware(['setLanguage'])->group(function () {
             Route::get('/logout', function () {
 
                 activity('system')
+                    ->performedOn(auth()->user())
                     ->causedBy(auth()->user())
                     ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
-                    ->withProperty('ip', session()->get('ip_address'))
+                    ->withProperty('ip', request()->ip())
                     ->log('auth.logout');
 
                 auth()->logout();
