@@ -16,6 +16,7 @@ return [
     'activity_log' => 'Activity',
     'system' => 'System',
     'unknown' => 'Unknown',
+    'overview' => 'Overview',
 
     'id' => 'ID',
     'created_at' => 'Created At',

@@ -13,11 +13,11 @@
 
     <div role="tablist" class="tabs tabs-bordered pb-3">
         <a role="tab" class="tab @if($tab == 'overview') tab-active @endif"
-           wire:click="changeTab('overview')">Overview</a>
+           wire:click="changeTab('overview')">{{ __('messages.overview') }}</a>
         <a role="tab" class="tab @if($tab == 'api_keys') tab-active @endif"
-           wire:click="changeTab('api_keys')">API-Keys</a>
+           wire:click="changeTab('api_keys')">{{ __('pages/account/profile.api_keys') }}</a>
         <a role="tab" class="tab @if($tab == 'activity_log') tab-active @endif"
-           wire:click="changeTab('activity_log')">Activity Log</a>
+           wire:click="changeTab('activity_log')">{{ __('pages/account/profile.activity_log') }}</a>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">

@@ -5,6 +5,7 @@ return [
 
     'admin' => [
         'dashboard' => 'Admin • Übersicht',
+        'activity_log' => 'Admin • Aktivitäten',
         'users' => [
             'list' => 'Admin • Benutzer',
             'create' => 'Admin • Benutzer erstellen',

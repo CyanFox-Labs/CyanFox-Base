@@ -4,6 +4,8 @@ return [
     'select_language' => 'Sprache auswählen',
     'select_theme' => 'Erscheinungsbild auswählen',
     'sessions' => 'Sitzungen',
+    'api_keys' => 'API Schlüssel',
+    'activity_log' => 'Aktivitäten',
 
     'buttons' => [
         'revoke_session' => 'Sitzung widerrufen',
