@@ -59,6 +59,12 @@ class RoleEdit extends Component
             ->success()
             ->send();
 
+        activity('system')
+            ->causedBy(auth()->user())
+            ->withProperty('name', $this->role->name . ' (' . $this->role->guard_name . ')')
+            ->withProperty('ip', session()->get('ip_address'))
+            ->log('group.updated');
+
         return redirect()->route('admin-role-list');
     }
 

@@ -30,6 +30,12 @@ class Admin extends Component
         $this->isProjectUpToDate = VersionController::isProjectUpToDate();
         $this->isTemplateUpToDate = VersionController::isTemplateUpToDate();
         $this->showUpdateNotification = true;
+
+        activity('system')
+            ->causedBy(auth()->user())
+            ->withProperty('name', __('messages.system'))
+            ->withProperty('ip', session()->get('ip_address'))
+            ->log('check_for_updates');
     }
 
     public function render()

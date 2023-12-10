@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components\Modals\Admin;
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Models\User;
 use Exception;
 use Filament\Notifications\Notification;
@@ -25,9 +26,8 @@ class UserDelete extends ModalComponent
         activity('system')
             ->causedBy(auth()->user())
             ->withProperty('name', $user->username . ' (' . $user->email . ')')
-            ->log(__('pages/admin/users/messages.activity.deleted', [
-                'user' => $user->name,
-            ]));
+            ->withProperty('ip', session()->get('ip_address'))
+            ->log('user.deleted');
 
         return redirect()->route('admin-user-list');
     }

@@ -76,6 +76,12 @@ class UserCreate extends Component
             ->success()
             ->send();
 
+        activity('system')
+            ->causedBy(auth()->user())
+            ->withProperty('name', $user->username . ' (' . $user->email . ')')
+            ->withProperty('ip', session()->get('ip_address'))
+            ->log('user.created');
+
         return redirect()->route('admin-user-list');
     }
 

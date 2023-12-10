@@ -53,19 +53,27 @@ final class ActivityLogList extends PowerGridComponent
             ->addColumn('subject', function (Activity $activity) {
                 return $activity->getExtraProperty('name');
             })
-            ->addColumn('causer', function (Activity $activity) {
-                return $activity->causer->username . ' (' . $activity->causer->email . ')';
+            ->addColumn('causer_id', fn(Activity $activity) => $activity->causer->username . ' (' . $activity->causer->email . ')')
+            ->addColumn('causer_ip', function () {
+                return request()->ip();
             })
-            ->addColumn('description');
+            ->addColumn('description', function (Activity $activity) {
+                return __('activity_log/system.' . $activity->description);
+            });
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
-            Column::make('Subject', 'subject'),
-            Column::make('Causer', 'causer'),
-            Column::make('Description', 'description'),
+            Column::make(__('messages.id'), 'id')
+                ->sortable(),
+            Column::make(__('pages/admin/activity_log.subject'), 'subject'),
+            Column::make(__('pages/admin/activity_log.causer'), 'causer_id')
+                ->sortable(),
+            Column::make(__('pages/admin/activity_log.causer_ip'), 'causer_ip'),
+            Column::make(__('pages/admin/activity_log.description'), 'description')
+                ->sortable()
+                ->searchable(),
         ];
     }
 }

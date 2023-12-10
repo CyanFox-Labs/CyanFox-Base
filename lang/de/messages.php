@@ -13,6 +13,7 @@ return [
     'current_password' => 'Aktuelles Passwort',
     'two_factor_code' => '2FA Code',
     'something_went_wrong' => 'Etwas ist schief gelaufen. Für weitere Informationen bitte die Entwicklerkonsole öffnen.',
+    'activity_log' => 'Aktivitäten',
 
     'id' => 'ID',
     'created_at' => 'Erstellt am',

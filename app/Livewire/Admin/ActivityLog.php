@@ -10,7 +10,7 @@ class ActivityLog extends Component
     {
         return view('livewire.admin.activity-log')
             ->layout('components.layouts.admin', [
-                'title' => __('navigation/titles.admin.dashboard')
+                'title' => __('navigation/titles.admin.activity_log')
             ]);
     }
 }

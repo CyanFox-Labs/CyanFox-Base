@@ -5,6 +5,7 @@ return [
 
     'admin' => [
         'dashboard' => 'Admin • Dashboard',
+        'activity_log' => 'Admin • Activity Log',
         'users' => [
             'list' => 'Admin • Users',
             'create' => 'Admin • Create User',

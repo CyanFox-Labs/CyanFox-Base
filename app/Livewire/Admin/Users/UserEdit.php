@@ -78,6 +78,12 @@ class UserEdit extends Component
             ->success()
             ->send();
 
+        activity('system')
+            ->causedBy(auth()->user())
+            ->withProperty('name', $user->username . ' (' . $user->email . ')')
+            ->withProperty('ip', session()->get('ip_address'))
+            ->log('user.updated');
+
         return redirect()->route('admin-user-list');
     }
 
