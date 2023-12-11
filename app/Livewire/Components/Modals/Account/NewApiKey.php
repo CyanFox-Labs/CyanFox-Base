@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components\Modals\Profile;
+namespace App\Livewire\Components\Modals\Account;
 
 use LivewireUI\Modal\ModalComponent;
 
@@ -31,6 +31,6 @@ class NewApiKey extends ModalComponent
 
     public function render()
     {
-        return view('livewire.components.modals.profile.new-api-key');
+        return view('livewire.components.modals.account.new-api-key');
     }
 }

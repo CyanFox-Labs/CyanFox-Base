@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components\Modals\Profile;
+namespace App\Livewire\Components\Modals\Account;
 
 use App\Http\Controllers\Auth\AuthController;
 use Exception;
@@ -70,6 +70,6 @@ class LogoutAllSessions extends ModalComponent
 
     public function render()
     {
-        return view('livewire.components.modals.profile.logout-all-sessions');
+        return view('livewire.components.modals.account.logout-all-sessions');
     }
 }

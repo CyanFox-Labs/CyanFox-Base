@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components\Modals\Profile;
+namespace App\Livewire\Components\Modals\Account;
 
 use Exception;
 use Filament\Notifications\Notification;
@@ -69,6 +69,6 @@ class DisableTwoFactor extends ModalComponent
 
     public function render()
     {
-        return view('livewire.components.modals.profile.disable-two-factor');
+        return view('livewire.components.modals.account.disable-two-factor');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components\Modals\Profile;
+namespace App\Livewire\Components\Modals\Account;
 
 use App\Http\Controllers\Auth\AuthController;
 use Filament\Notifications\Notification;
@@ -59,7 +59,7 @@ class RecoveryCodes extends ModalComponent
             ->withProperty('ip', request()->ip())
             ->log('account.recovery_codes_shown');
 
-        $this->dispatch('openModal', 'components.modals.profile.recovery-codes');
+        $this->dispatch('openModal', 'components.modals.account.recovery-codes');
     }
 
     public function regenerate() {
@@ -77,6 +77,6 @@ class RecoveryCodes extends ModalComponent
 
     public function render()
     {
-        return view('livewire.components.modals.profile.recovery-codes');
+        return view('livewire.components.modals.account.recovery-codes');
     }
 }

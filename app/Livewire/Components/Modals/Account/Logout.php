@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components\Modals\Profile;
+namespace App\Livewire\Components\Modals\Account;
 
 use LivewireUI\Modal\ModalComponent;
 
@@ -8,6 +8,6 @@ class Logout extends ModalComponent
 {
     public function render()
     {
-        return view('livewire.components.modals.profile.logout');
+        return view('livewire.components.modals.account.logout');
     }
 }

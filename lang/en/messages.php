@@ -17,6 +17,7 @@ return [
     'system' => 'System',
     'unknown' => 'Unknown',
     'overview' => 'Overview',
+    'confirm' => 'Confirm',
 
     'id' => 'ID',
     'created_at' => 'Created At',

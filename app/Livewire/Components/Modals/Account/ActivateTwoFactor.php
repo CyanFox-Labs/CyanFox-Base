@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components\Modals\Profile;
+namespace App\Livewire\Components\Modals\Account;
 
 use App\Http\Controllers\Auth\AuthController;
 use Exception;
@@ -101,7 +101,7 @@ class ActivateTwoFactor extends ModalComponent
 
     public function render()
     {
-        return view('livewire.components.modals.profile.activate-two-factor', [
+        return view('livewire.components.modals.account.activate-two-factor', [
             'twoFactorImage' => $this->getTwoFactorImage(),
             'twoFactorSecret' => $this->getTwoFactorSecret()
         ]);

@@ -16,6 +16,8 @@ return [
         'new_api_key' => 'New API Key',
         'revoke_api_key' => 'Revoke API Key',
         'api_docs' => 'API Docs',
+        'setup_password' => 'Setup Password',
+        'delete_account' => 'Delete Account',
     ],
 
     'theme_types' => [

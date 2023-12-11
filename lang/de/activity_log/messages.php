@@ -51,6 +51,7 @@ return [
         'language_change_failed' => 'account:language.change_failed',
         'theme_change_success' => 'account:theme.change_success',
         'theme_change_failed' => 'account:theme.change_failed',
+        'delete_account_success' => 'account:delete_account.success',
     ],
 
     'check_for_updates' => 'system:check_for_updates',

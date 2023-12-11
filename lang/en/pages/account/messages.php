@@ -20,5 +20,6 @@ return [
         'theme_changed' => 'Your theme has been changed.',
         'profile_updated' => 'Your profile has been updated.',
         'api_key_revoked' => 'The API key has been revoked.',
+        'account_deleted' => 'Your account has been deleted.',
     ],
 ];

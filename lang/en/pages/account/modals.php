@@ -61,5 +61,18 @@ return [
         'buttons' => [
             'revoke_api_key' => 'Revoke API Key',
         ]
-    ]
+    ],
+
+    'setup_password' => [
+        'title' => 'Setup Password',
+        'description' => 'Please enter a password for your account. You will also be able to login using this password',
+    ],
+
+    'delete_account' => [
+        'title' => 'Delete Account',
+        'description' => 'Are you sure you want to delete your account? All of your data will be permanently deleted. This action cannot be undone.',
+        'buttons' => [
+            'delete_account' => 'Delete Account',
+        ]
+    ],
 ];

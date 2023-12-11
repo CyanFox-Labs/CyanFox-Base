@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components\Modals\Profile;
+namespace App\Livewire\Components\Modals\Account;
 
 use Filament\Notifications\Notification;
 use LivewireUI\Modal\ModalComponent;
@@ -32,6 +32,6 @@ class RevokeApiKey extends ModalComponent
 
     public function render()
     {
-        return view('livewire.components.modals.profile.revoke-api-key');
+        return view('livewire.components.modals.account.revoke-api-key');
     }
 }

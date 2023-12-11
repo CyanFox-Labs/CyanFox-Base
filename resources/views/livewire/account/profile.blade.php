@@ -155,23 +155,25 @@
                                 <div class="col-span-1 text-end">
                                     @if ($session['isCurrentSession'])
                                         <button class="btn btn-outline btn-ghost"
-                                                wire:click="$dispatch('openModal', { component: 'components.modals.profile.logout' })">
+                                                wire:click="$dispatch('openModal', { component: 'components.modals.account.logout' })">
                                             {{ __('pages/account/profile.buttons.current_session') }}
                                         </button>
                                     @else
-                                        <button class="btn btn-outline btn-error"
-                                                wire:click="$dispatch('openModal', { component: 'components.modals.profile.logout-session', arguments: { sessionId: '{{ $session['id'] }}' }})">
-                                            {{ __('pages/account/profile.buttons.revoke_session') }}
-                                        </button>
+                                        @if(auth()->user()->password !== null)
+                                            <button class="btn btn-outline btn-error"
+                                                    wire:click="$dispatch('openModal', { component: 'components.modals.account.logout-session', arguments: { sessionId: '{{ $session['id'] }}' }})">
+                                                {{ __('pages/account/profile.buttons.revoke_session') }}
+                                            </button>
+                                        @endif
                                     @endif
                                 </div>
                             @endforeach
                         </div>
 
-                        @if(auth()->user()->google_id == null && auth()->user()->gitlab_id == null && auth()->user()->github_id == null)
+                        @if(auth()->user()->password !== null)
                             <div class="divider"></div>
                             <button class="btn btn-error btn-outline"
-                                    wire:click="$dispatch('openModal', { component: 'components.modals.profile.logout-all-sessions' })">
+                                    wire:click="$dispatch('openModal', { component: 'components.modals.account.logout-all-sessions' })">
                                 {{ __('pages/account/profile.buttons.revoke_all_sessions') }}
                             </button>
                         @endif
@@ -209,16 +211,33 @@
                                 </div>
                             </div>
                             <div class="divider"></div>
-                            <div class="col-span-1">
+                            <div class="col-span-1 flex gap-2">
                                 <x-button type="submit"
                                           class="btn btn-primary" spinner="updateProfile">
                                     {{ __('pages/account/profile.buttons.update_profile') }}
                                 </x-button>
+
+
+                                @if(auth()->user()->password == null)
+                                    <button type="button"
+                                            class="btn btn-accent"
+                                            wire:click="$dispatch('openModal', { component: 'components.modals.account.setup-password' })">
+                                        {{ __('pages/account/profile.buttons.setup_password') }}
+                                    </button>
+                                @endif
+
+                                @if(auth()->user()->password !== null && !env('DISABLE_DELETE_ACCOUNT'))
+                                    <button type="button"
+                                            class="btn btn-error"
+                                            wire:click="$dispatch('openModal', { component: 'components.modals.account.delete-account' })">
+                                        {{ __('pages/account/profile.buttons.delete_account') }}
+                                    </button>
+                                @endif
                             </div>
                         </x-form>
                     </div>
                 </div>
-                @if(auth()->user()->google_id == null && auth()->user()->gitlab_id == null && auth()->user()->github_id == null)
+                @if(auth()->user()->password !== null)
                     <div class="col-span-2 space-y-4">
                         <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
                             <div class="card-body">
@@ -257,18 +276,18 @@
                                         @if(auth()->user()->two_factor_enabled)
                                             <button type="button"
                                                     class="btn btn-error"
-                                                    wire:click="$dispatch('openModal', { component: 'components.modals.profile.disable-two-factor' })">
+                                                    wire:click="$dispatch('openModal', { component: 'components.modals.account.disable-two-factor' })">
                                                 {{ __('pages/account/messages.buttons.deactivate_two_factor') }}
                                             </button>
                                             <button type="button"
                                                     class="btn btn-accent"
-                                                    wire:click="$dispatch('openModal', { component: 'components.modals.profile.recovery-codes' })">
+                                                    wire:click="$dispatch('openModal', { component: 'components.modals.account.recovery-codes' })">
                                                 {{ __('pages/account/profile.buttons.show_recovery_codes') }}
                                             </button>
                                         @else
                                             <button type="button"
                                                     class="btn btn-accent"
-                                                    wire:click="$dispatch('openModal', { component: 'components.modals.profile.activate-two-factor' })">
+                                                    wire:click="$dispatch('openModal', { component: 'components.modals.account.activate-two-factor' })">
                                                 {{ __('pages/account/messages.buttons.activate_two_factor') }}
                                             </button>
                                         @endif
@@ -295,7 +314,7 @@
                                 </div>
                                 <div class="col-span-1 text-end">
                                     <button class="btn btn-outline btn-error my-1"
-                                            wire:click="$dispatch('openModal', { component: 'components.modals.profile.revoke_api_key', arguments: { apiKey: '{{ $token->id }}' }})">
+                                            wire:click="$dispatch('openModal', { component: 'components.modals.account.revoke_api_key', arguments: { apiKey: '{{ $token->id }}' }})">
                                         {{ __('pages/account/profile.buttons.revoke_api_key') }}
                                     </button>
                                 </div>
@@ -304,7 +323,7 @@
                         <div class="divider"></div>
                         <div class="col-span-1 flex gap-2">
                             <button class="btn btn-primary"
-                                    wire:click="$dispatch('openModal', { component: 'components.modals.profile.new_api_key' })">
+                                    wire:click="$dispatch('openModal', { component: 'components.modals.account.new_api_key' })">
                                 {{ __('pages/account/profile.buttons.new_api_key') }}
                             </button>
                             <a href="/api/docs"

@@ -61,5 +61,18 @@ return [
         'buttons' => [
             'revoke_api_key' => 'API Schlüssel widerrufen',
         ]
-    ]
+    ],
+
+    'setup_password' => [
+        'title' => 'Passwort festlegen',
+        'description' => 'Bitte gib ein Passwort für deinen Account ein. Mit diesem Passwort kannst du dich in Zukunft auch anmelden.',
+    ],
+
+    'delete_account' => [
+        'title' => 'Account löschen',
+        'description' => 'Bist du sicher, dass du deinen Account löschen möchtest? Alle deine Daten werden gelöscht. Dies kann nicht rückgängig gemacht werden.',
+        'buttons' => [
+            'delete_account' => 'Account löschen',
+        ]
+    ],
 ];
