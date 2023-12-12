@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\Account\AccountAPIController;
 use App\Http\Controllers\API\UnsplashAPIController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
     Route::get('unsplash', [UnsplashAPIController::class, 'getRandomUnsplashImage']);
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::group(['prefix' => 'account'], function () {
+            Route::get('/', [AccountAPIController::class, 'getAccount']);
+
+            Route::get('activity', [AccountAPIController::class, 'getActivity']);
+            Route::get('permissions', [AccountAPIController::class, 'getPermissions']);
+            Route::get('roles', [AccountAPIController::class, 'getRoles']);
+            Route::post('update', [AccountAPIController::class, 'updateAccount']);
+        });
+    });
 });

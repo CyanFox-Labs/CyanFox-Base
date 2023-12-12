@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Livewire\Components\Tables\Admin;
+namespace App\Livewire\Components\Tables\Account;
 
-use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
@@ -38,7 +35,7 @@ final class ActivityLogList extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Activity::query()->where('log_name', 'system');
+        return Activity::query()->where('subject_id', auth()->id());
     }
 
     public function relationSearch(): array

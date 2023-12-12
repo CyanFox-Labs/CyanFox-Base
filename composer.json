@@ -23,16 +23,17 @@
         "openspout/openspout": "^4.18",
         "power-components/livewire-powergrid": "^5.1",
         "pragmarx/google2fa": "^8.0",
-        "rakutentech/laravel-request-docs": "^2.26",
         "robsontenorio/mary": "dev-main",
         "simplesoftwareio/simple-qrcode": "*",
         "spatie/laravel-activitylog": "^4.7",
+        "spatie/laravel-artisan-dd": "^2.3",
         "spatie/laravel-permission": "^5.11",
         "wire-elements/modal": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",
         "fakerphp/faker": "^1.9.1",
+        "knuckleswtf/scribe": "^4.26",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",

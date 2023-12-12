@@ -340,30 +340,7 @@
                         <span class="font-bold text-xl">{{ __('pages/account/profile.activity_log') }}</span>
                         <div class="divider"></div>
                         <div class="overflow-x-auto">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>{{ __('messages.id') }}</th>
-                                    <th>{{ __('pages/admin/activity_log.subject') }}</th>
-                                    <th>{{ __('pages/admin/activity_log.causer') }}</th>
-                                    <th>{{ __('pages/admin/activity_log.causer_ip') }}</th>
-                                    <th>{{ __('pages/admin/activity_log.description') }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($activityLog as $log)
-                                    @php($subject = \App\Models\User::find($log['subject_id']))
-                                    @php($causer = \App\Models\User::find($log['causer_id']))
-                                    <tr>
-                                        <td>{{ $log['id'] }}</td>
-                                        <td>{{ $subject !== null ? $subject->username . ' (' . $subject->email . ')' : __('messages.unknown') }}</td>
-                                        <td>{{ $causer !== null ? $causer->username . ' (' . $causer->email . ')' : __('messages.unknown') }}</td>
-                                        <td>{{ $log['causer_ip'] ?? __('messages.unknown') }}</td>
-                                        <td>{{ __('activity_log/messages.' . $log['description']) }}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                            <livewire:components.tables.account.activity-log-list/>
                         </div>
                     </div>
                 </div>
