@@ -55,17 +55,7 @@ class DataBaseSetup extends Command
             $this->call('migrate');
             $this->info('Database migrated!');
 
-            $permissions = [];
             $roles = ['Super Admin'];
-
-            foreach ($permissions as $permission) {
-                try {
-                    Permission::create(['name' => $permission]);
-                }catch (Exception $e) {
-                    $this->info('Could not create permission: ' . $permission);
-                    $this->error('Error: ' . $e->getMessage());
-                }
-            }
 
             foreach ($roles as $role) {
                 try {

@@ -8,6 +8,7 @@ use Knuckles\Scribe\Attributes\Authenticated;
 use Knuckles\Scribe\Attributes\BodyParam;
 use Knuckles\Scribe\Attributes\Group;
 use Spatie\Activitylog\Models\Activity;
+use function Symfony\Component\String\u;
 
 #[Group("User Account", "User Account Management")]
 #[Authenticated]
@@ -50,21 +51,24 @@ class AccountAPIController extends Controller
         return $request->user()->getRoleNames();
     }
 
-    #[BodyParam("first_name", description: "First name of the user", example: "John")]
-    #[BodyParam("last_name", description: "Last name of the user", example: "Doe")]
-    #[BodyParam("username", description: "Username of the user", example: "johndoe")]
-    #[BodyParam("email", description: "Email of the user", example: "john.doe@example")]
-    #[BodyParam("language", description: "Language of the user", example: "en")]
-    #[BodyParam("theme", description: "Theme of the user", example: "dark")]
+    #[BodyParam("first_name", description: "First name of the user", required: false, example: "John")]
+    #[BodyParam("last_name", description: "Last name of the user", required: false, example: "Doe")]
+    #[BodyParam("username", description: "Username of the user", required: false, example: "johndoe")]
+    #[BodyParam("email", description: "Email of the user", required: false, example: "john.doe@example")]
+    #[BodyParam("language", description: "Language of the user", required: false, example: "en")]
+    #[BodyParam("theme", description: "Theme of the user", required: false, example: "dark")]
+    #[BodyParam("password", description: "Password of the user", required: false, example: "password")]
     public function updateAccount(Request $request)
     {
         $user = $request->user();
-        $user->first_name = $request->input('first_name');
-        $user->last_name = $request->input('last_name');
-        $user->username = $request->input('username');
-        $user->email = $request->input('email');
-        $user->language = $request->input('language');
-        $user->theme = $request->input('theme');
+        if ($request->input('first_name')) $user->first_name = $request->input('first_name');
+        if ($request->input('last_name')) $user->last_name = $request->input('last_name');
+        if ($request->input('username')) $user->username = $request->input('username');
+        if ($request->input('email')) $user->email = $request->input('email');
+
+        if ($request->input('language')) $user->language = $request->input('language');
+        if ($request->input('theme')) $user->theme = $request->input('theme');
+        if ($request->input('password')) $user->password = bcrypt($request->input('password'));
         $user->save();
 
         return $request->user();
