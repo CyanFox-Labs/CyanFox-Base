@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:19.03.1-dind
+        options: --privileged
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@2.28.0
+        with:
+          php-version: '8.1'
+          extensions: gd, intl, zip
+          coverage: none
+          tools: composer:v2
+
+  test:
+    needs: install
+    runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:19.03.1-dind
+        options: --privileged
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Test
+        run: |
+          cp .env.testing .env
+          composer update
+          npm install
+          docker-compose -f docker-compose.test.yml up -d
+          docker exec template_app npm run build
+          docker exec template_app php artisan test
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install jq and git
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq git
+
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PROJECT_VERSION=$(jq -r .version.project version.json)
+          GIT_COMMIT_DESCRIPTION=$(git log -1 --pretty=%B)
+          gh release create v$PROJECT_VERSION --title "v$PROJECT_VERSION" --notes "$GIT_COMMIT_DESCRIPTION"
