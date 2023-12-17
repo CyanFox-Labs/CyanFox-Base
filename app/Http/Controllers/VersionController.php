@@ -56,17 +56,8 @@ class VersionController extends Controller
 
         try {
             $url = env('PROJECT_VERSION_URL');
+            $data = json_decode(file_get_contents($url), true);
 
-            $context = null;
-            if (env('PROJECT_AUTHORIZATION_KEY') !== null) {
-                $context = stream_context_create([
-                    'http' => [
-                        'header' => "Authorization: Bearer " . env('PROJECT_AUTHORIZATION_KEY')
-                    ]
-                ]);
-            }
-
-            $data = json_decode(file_get_contents($url, false, $context), true);
             return $data['version']['project'] ?? null;
         } catch (Exception $e) {
             return $e;
