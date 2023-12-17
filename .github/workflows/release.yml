@@ -57,15 +57,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install jq and git
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y jq git
-
       - name: Create GitHub Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          PROJECT_VERSION=$(jq -r .version.project version.json)
-          GIT_COMMIT_DESCRIPTION=$(git log -1 --pretty=%B)
-          gh release create v$PROJECT_VERSION --title "v$PROJECT_VERSION" --notes "$GIT_COMMIT_DESCRIPTION"
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            *
