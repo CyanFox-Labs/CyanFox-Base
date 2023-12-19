@@ -44,12 +44,14 @@
                         </div>
                     </div>
 
-                    <img src="{{ captcha_src() }}" alt="Captcha">
+                    @if(env('ENABLE_CAPTCHA'))
+                        <img src="{{ captcha_src() }}" alt="Captcha">
 
-                    <div class="form-control md:w-1/2 w-full">
-                        <x-input label="{{ __('messages.captcha') }}"
-                                 class="input input-bordered w-full" wire:model="captcha"/>
-                    </div>
+                        <div class="form-control md:w-1/2 w-full">
+                            <x-input label="{{ __('messages.captcha') }}"
+                                     class="input input-bordered w-full" wire:model="captcha"/>
+                        </div>
+                    @endif
 
                     <div class="flex justify-between items-center">
                         <x-button type="submit"

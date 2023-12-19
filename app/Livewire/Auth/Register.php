@@ -47,21 +47,23 @@ class Register extends Component
         ]);
 
 
-        $validator = Validator::make(['captcha' => $this->captcha], ['captcha' => 'required|captcha']);
+        if (env('ENABLE_CAPTCHA')) {
+            $validator = Validator::make(['captcha' => $this->captcha], ['captcha' => 'required|captcha']);
 
-        if($validator->fails()) {
-            activity('system')
-                ->causedByAnonymous()
-                ->withProperty('name', $this->username . ' (' . $this->email . ')')
-                ->withProperty('ip', request()->ip())
-                ->log('auth.register_failed');
+            if ($validator->fails()) {
+                activity('system')
+                    ->causedByAnonymous()
+                    ->withProperty('name', $this->username . ' (' . $this->email . ')')
+                    ->withProperty('ip', request()->ip())
+                    ->log('auth.register_failed');
 
-            Notification::make()
-                ->title(__('validation.custom.invalid_captcha'))
-                ->danger()
-                ->send();
+                Notification::make()
+                    ->title(__('validation.custom.invalid_captcha'))
+                    ->danger()
+                    ->send();
 
-            return;
+                return;
+            }
         }
 
         if ($this->password != $this->password_confirm) {
