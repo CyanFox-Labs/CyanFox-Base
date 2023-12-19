@@ -13,7 +13,11 @@ class VersionController extends Controller
         $file = base_path('version.json');
         $data = json_decode(file_get_contents($file), true);
 
-        return $data['version']['template'] ?? null;
+        if (isset($data['version']['template'])) {
+            return $data['version']['template'];
+        }
+
+        return 'N/A';
     }
 
     public static function getCurrentProjectVersion()
@@ -22,7 +26,11 @@ class VersionController extends Controller
         $file = base_path('version.json');
         $data = json_decode(file_get_contents($file), true);
 
-        return $data['version']['project'] ?? null;
+        if (isset($data['version']['project'])) {
+            return $data['version']['project'];
+        }
+
+        return 'N/A';
     }
 
     public static function isDevVersion()
@@ -43,7 +51,9 @@ class VersionController extends Controller
             $url = env('TEMPLATE_VERSION_URL');
             $data = json_decode(file_get_contents($url), true);
 
-            return $data['version']['template'] ?? null;
+            if ($data['version']['template'] == null) return true;
+
+            return $data['version']['template'];
         } catch (Exception $e) {
             return true;
         }
@@ -58,7 +68,9 @@ class VersionController extends Controller
             $url = env('PROJECT_VERSION_URL');
             $data = json_decode(file_get_contents($url), true);
 
-            return $data['version']['project'] ?? null;
+            if ($data['version']['project'] == null) return true;
+
+            return $data['version']['project'];
         } catch (Exception $e) {
             return $e;
         }
@@ -69,6 +81,9 @@ class VersionController extends Controller
         $currentVersion = self::getCurrentTemplateVersion();
         $remoteVersion = self::getRemoteTemplateVersion();
 
+        if ($currentVersion == null || $remoteVersion == null
+            || $currentVersion == 'N/A' || $remoteVersion == 'N/A') return true;
+
         return $currentVersion == $remoteVersion;
     }
 
@@ -76,6 +91,9 @@ class VersionController extends Controller
     {
         $currentVersion = self::getCurrentProjectVersion();
         $remoteVersion = self::getRemoteProjectVersion();
+
+        if ($currentVersion == null || $remoteVersion == null
+        || $currentVersion == 'N/A' || $remoteVersion == 'N/A') return true;
 
         return $currentVersion == $remoteVersion;
     }
