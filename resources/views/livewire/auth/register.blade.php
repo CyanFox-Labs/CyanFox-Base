@@ -44,9 +44,12 @@
                         </div>
                     </div>
 
-                    @if(env('ENABLE_HCAPTCHA'))
-                        <x-custom.hcaptcha fieldName="hcaptcha"></x-custom.hcaptcha>
-                    @endif
+                    <img src="{{ captcha_src() }}" alt="Captcha">
+
+                    <div class="form-control md:w-1/2 w-full">
+                        <x-input label="{{ __('messages.captcha') }}"
+                                 class="input input-bordered w-full" wire:model="captcha"/>
+                    </div>
 
                     <div class="flex justify-between items-center">
                         <x-button type="submit"

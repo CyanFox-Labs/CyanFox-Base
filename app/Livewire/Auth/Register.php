@@ -3,11 +3,10 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
-use App\Rules\HCaptchaValidator;
-use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
@@ -21,7 +20,7 @@ class Register extends Component
     public $email;
     public $password;
     public $password_confirm;
-    public $hcaptcha;
+    public $captcha;
 
 
     public function setLanguage($language)
@@ -47,23 +46,22 @@ class Register extends Component
             'password_confirm' => 'required|string',
         ]);
 
-        if (env('ENABLE_HCAPTCHA')) {
-            try {
-                $this->validate(['hcaptcha' => ['required', new HCaptchaValidator()]]);
-            } catch (ValidationException $e) {
-                activity('system')
-                    ->causedByAnonymous()
-                    ->withProperty('name', $this->username . ' (' . $this->email . ')')
-                    ->withProperty('ip', request()->ip())
-                    ->log('auth.register_failed');
 
+        $validator = Validator::make(['captcha' => $this->captcha], ['captcha' => 'required|captcha']);
 
-                Notification::make()
-                    ->title(__('validation.custom.invalid_captcha'))
-                    ->danger()
-                    ->send();
-                return;
-            }
+        if($validator->fails()) {
+            activity('system')
+                ->causedByAnonymous()
+                ->withProperty('name', $this->username . ' (' . $this->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('auth.register_failed');
+
+            Notification::make()
+                ->title(__('validation.custom.invalid_captcha'))
+                ->danger()
+                ->send();
+
+            return;
         }
 
         if ($this->password != $this->password_confirm) {

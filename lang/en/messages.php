@@ -44,6 +44,8 @@ return [
     'back' => 'Back',
     'save' => 'Save',
 
+    'captcha' => 'Captcha',
+
     'notifications' => [
         'language_changed' => 'Language changed successfully.',
     ],

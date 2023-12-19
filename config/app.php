@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Spatie\Activitylog\ActivitylogServiceProvider::class,
+        \Mews\Captcha\CaptchaServiceProvider::class,
     ])->toArray(),
 
     /*
