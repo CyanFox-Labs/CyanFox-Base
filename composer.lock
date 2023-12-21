@@ -2586,16 +2586,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.38.0",
+            "version": "v10.38.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "531732a17e4d0fa4fc4fb987a72abbdb93537d3a"
+                "reference": "ced4689f495213e9d23995b36098f12a802cc15b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/531732a17e4d0fa4fc4fb987a72abbdb93537d3a",
-                "reference": "531732a17e4d0fa4fc4fb987a72abbdb93537d3a",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ced4689f495213e9d23995b36098f12a802cc15b",
+                "reference": "ced4689f495213e9d23995b36098f12a802cc15b",
                 "shasum": ""
             },
             "require": {
@@ -2641,6 +2641,8 @@
                 "voku/portable-ascii": "^2.0"
             },
             "conflict": {
+                "carbonphp/carbon-doctrine-types": ">=3.0",
+                "doctrine/dbal": ">=4.0",
                 "tightenco/collect": "<5.5.33"
             },
             "provide": {
@@ -2752,6 +2754,7 @@
                 "files": [
                     "src/Illuminate/Collections/helpers.php",
                     "src/Illuminate/Events/functions.php",
+                    "src/Illuminate/Filesystem/functions.php",
                     "src/Illuminate/Foundation/helpers.php",
                     "src/Illuminate/Support/helpers.php"
                 ],
@@ -2784,7 +2787,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2023-12-19T14:59:00+00:00"
+            "time": "2023-12-20T14:52:12+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -3842,16 +3845,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.3.2",
+            "version": "v3.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "cfda4d16fdd63052cff3030f066deeb2b6f97c9b"
+                "reference": "6dd3bec8c711cd792742be4620057637e261e6f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/cfda4d16fdd63052cff3030f066deeb2b6f97c9b",
-                "reference": "cfda4d16fdd63052cff3030f066deeb2b6f97c9b",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/6dd3bec8c711cd792742be4620057637e261e6f7",
+                "reference": "6dd3bec8c711cd792742be4620057637e261e6f7",
                 "shasum": ""
             },
             "require": {
@@ -3904,7 +3907,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.3.2"
+                "source": "https://github.com/livewire/livewire/tree/v3.3.3"
             },
             "funding": [
                 {
@@ -3912,7 +3915,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-19T18:02:00+00:00"
+            "time": "2023-12-20T05:34:05+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -4851,31 +4854,31 @@
         },
         {
             "name": "power-components/livewire-powergrid",
-            "version": "v5.1.16",
+            "version": "v5.1.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "5fb2db880fe6f9a54470c1abf85c0dc1d4074ccf"
+                "reference": "1b43ac721582cf21911226535d785f18d588562c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/5fb2db880fe6f9a54470c1abf85c0dc1d4074ccf",
-                "reference": "5fb2db880fe6f9a54470c1abf85c0dc1d4074ccf",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/1b43ac721582cf21911226535d785f18d588562c",
+                "reference": "1b43ac721582cf21911226535d785f18d588562c",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "2.12.1 | ^3.7.1",
+                "doctrine/dbal": "^3.7",
                 "laravel/prompts": "^0.1.13",
                 "livewire/livewire": "^3.1.0",
                 "php": "^8.1"
             },
             "require-dev": {
-                "composer/composer": "^2.6.5",
+                "composer/composer": "^2.6.6",
                 "laradumps/laradumps-core": "^0.3.0",
                 "larastan/larastan": "^2.7",
-                "laravel/pint": "^1.13",
-                "orchestra/testbench": "^8.15",
-                "pestphp/pest": "^2.28",
+                "laravel/pint": "^1.13.7",
+                "orchestra/testbench": "^8.17",
+                "pestphp/pest": "^2.28.1",
                 "spaze/phpstan-disallowed-calls": "^2.16.1"
             },
             "suggest": {
@@ -4917,7 +4920,7 @@
             "homepage": "https://github.com/power-components/livewire-powergrid",
             "support": {
                 "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v5.1.16"
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v5.1.18"
             },
             "funding": [
                 {
@@ -4925,7 +4928,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-06T22:17:24+00:00"
+            "time": "2023-12-21T12:22:36+00:00"
         },
         {
             "name": "pragmarx/google2fa",
