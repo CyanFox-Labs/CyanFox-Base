@@ -3,12 +3,12 @@
     <div class="ml-2 mb-5">
         <div class="text-sm breadcrumbs">
             <ul>
-                <li><a href="{{ route('home') }}"><i class="bx bxs-cog mr-2"></i> {{ __('navigation/messages.admin') }}
+                <li><a href="{{ route('home') }}"><i class="icon-settings mr-2"></i> {{ __('navigation/messages.admin') }}
                     </a></li>
                 <li><a href="{{ route('admin-user-list') }}"><i
-                            class="bx bxs-user-account mr-2"></i> {{ __('messages.users') }}</a></li>
+                            class="icon-users mr-2"></i> {{ __('messages.users') }}</a></li>
                 <li><a href="{{ route('admin-user-create') }}"><i
-                            class="bx bxs-plus-circle mr-2"></i> {{ __('navigation/breadcrumbs.admin.users.create') }}</a></li>
+                            class="icon-plus-circle mr-2"></i> {{ __('navigation/breadcrumbs.admin.users.create') }}</a></li>
             </ul>
         </div>
     </div>

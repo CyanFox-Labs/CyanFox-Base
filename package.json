@@ -21,6 +21,7 @@
         "@alpinejs/persist": "^3.13.3",
         "alpinejs": "^3.13.3",
         "boxicons": "^2.1.4",
-        "jquery": "^3.7.1"
+        "jquery": "^3.7.1",
+        "lucide-static": "^0.300.0"
     }
 }

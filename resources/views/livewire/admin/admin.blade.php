@@ -48,13 +48,13 @@
     <div class="grid md:grid-cols-2 gap-4 mt-4">
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body flex justify-center align-middle text-center">
-                <a href="{{ route('admin-user-list') }}"><i class="bx bxs-user-account text-9xl"></i></a>
+                <a href="{{ route('admin-user-list') }}"><i class="icon-users text-9xl"></i></a>
                 <a href="{{ route('admin-user-list') }}">{{ __('messages.users') }}</a>
             </div>
         </div>
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body flex justify-center align-middle text-center">
-                <a href="{{ route('admin-role-list') }}"><i class="bx bxs-user-badge text-9xl"></i></a>
+                <a href="{{ route('admin-role-list') }}"><i class="icon-shield text-9xl"></i></a>
                 <a href="{{ route('admin-role-list') }}">{{ __('messages.roles') }}</a>
             </div>
         </div>

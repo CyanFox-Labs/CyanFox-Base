@@ -2,7 +2,7 @@
     <div class="ml-2 mb-5">
         <div class="text-sm breadcrumbs">
             <ul>
-                <li><a href="{{ route('home') }}"><i class="bx bxs-home mr-2"></i> {{ __('navigation/messages.home') }}
+                <li><a href="{{ route('home') }}"><i class="icon-home mr-2"></i> {{ __('navigation/messages.home') }}
                     </a></li>
                 <li><img src="https://source.boringavatars.com/beam/120/{{ auth()->user()->username }}"
                          alt="Profile" class="h-7 w-7 rounded-3xl mr-2"> {{ __('navigation/messages.profile') }}
@@ -13,11 +13,11 @@
 
     <div role="tablist" class="tabs tabs-bordered pb-3">
         <a role="tab" class="tab @if($tab == 'overview') tab-active @endif"
-           wire:click="changeTab('overview')">{{ __('messages.overview') }}</a>
+           wire:click="changeTab('overview')"><i class="icon-layout-dashboard"></i> &nbsp; {{ __('messages.overview') }}</a>
         <a role="tab" class="tab @if($tab == 'api_keys') tab-active @endif"
-           wire:click="changeTab('api_keys')">{{ __('pages/account/profile.api_keys') }}</a>
+           wire:click="changeTab('api_keys')"><i class="icon-key-round"></i> &nbsp; {{ __('pages/account/profile.api_keys') }}</a>
         <a role="tab" class="tab @if($tab == 'activity_log') tab-active @endif"
-           wire:click="changeTab('activity_log')">{{ __('pages/account/profile.activity_log') }}</a>
+           wire:click="changeTab('activity_log')"><i class="icon-eye"></i> &nbsp; {{ __('pages/account/profile.activity_log') }}</a>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -138,13 +138,13 @@
                                 <div class="col-span-3 flex items-center space-x-2 space-y-3">
                                     <div class="text-4xl">
                                         @if($session['deviceType'] == 'Desktop')
-                                            <i class="bx bx-desktop"></i>
+                                            <i class="icon-monitor"></i>
                                         @elseif($session['deviceType'] == 'Phone')
-                                            <i class="bx bx-mobile-alt"></i>
+                                            <i class="icon-smartphone"></i>
                                         @elseif($session['deviceType'] == 'Tablet')
-                                            <i class="bx bx-tab"></i>
+                                            <i class="icon-tablet"></i>
                                         @else
-                                            <i class="bx bx-devices"></i>
+                                            <i class="icon-monitor-smartphone"></i>
                                         @endif
                                     </div>
                                     <div>

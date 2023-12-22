@@ -8,12 +8,12 @@
                  src="https://source.boringavatars.com/beam/120/{{ auth()->user()->username }}" alt="Profile"
                  class="w-9 h-9 mr-6">
             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a href="{{ route('home') }}"><i class='bx bxs-home'></i> {{ __('navigation/messages.home') }}</a></li>
-                <li><a href="{{ route('profile') }}"><i class='bx bxs-user-circle'></i> {{ __('navigation/messages.profile') }}
+                <li><a href="{{ route('home') }}"><i class='icon-home'></i> {{ __('navigation/messages.home') }}</a></li>
+                <li><a href="{{ route('profile') }}"><i class='icon-user'></i> {{ __('navigation/messages.profile') }}
                     </a>
                 </li>
                 <div class="divider"></div>
-                <li><a href="{{ route('logout') }}"><i class='bx bxs-log-out'></i> {{ __('navigation/messages.logout') }}</a>
+                <li><a href="{{ route('logout') }}"><i class='icon-log-out'></i> {{ __('navigation/messages.logout') }}</a>
                 </li>
             </ul>
         </div>
@@ -37,22 +37,22 @@
             <div class="flex flex-col items-center w-full mt-3 mb-3">
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin') ? 'bg-base-300' : '' }}"
                    href="{{ route('admin') }}">
-                    <i class="bx bxs-dashboard"></i>
+                    <i class="icon-layout-dashboard"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('messages.dashboard') }}</span>
                 </a>
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin-user*') ? 'bg-base-300' : '' }}"
                    href="{{ route('admin-user-list') }}">
-                    <i class="bx bxs-user-account"></i>
+                    <i class="icon-users"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('messages.users') }}</span>
                 </a>
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin-role*') ? 'bg-base-300' : '' }}"
                    href="{{ route('admin-role-list') }}">
-                    <i class="bx bxs-user-badge"></i>
+                    <i class="icon-shield"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('messages.roles') }}</span>
                 </a>
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin-activity-log*') ? 'bg-base-300' : '' }}"
                    href="{{ route('admin-activity-log') }}">
-                    <i class="bx bxs-time-five"></i>
+                    <i class="icon-eye"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('messages.activity_log') }}</span>
                 </a>
             </div>
@@ -63,17 +63,17 @@
             <div class="flex flex-col items-center w-full mt-2">
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('home') ? 'bg-base-300' : '' }}"
                    href="{{ route('home') }}">
-                    <i class="bx bxs-home"></i>
+                    <i class="icon-home"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/messages.home') }}</span>
                 </a>
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('profile') ? 'bg-base-300' : '' }}"
                    href="{{ route('profile') }}">
-                    <i class="bx bxs-user"></i>
+                    <i class="icon-user"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/messages.profile') }}</span>
                 </a>
                 <a class="relative flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('logout') ? 'bg-base-300' : '' }}"
                    href="{{ route('logout') }}">
-                    <i class="bx bxs-log-out"></i>
+                    <i class="icon-log-out"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/messages.logout') }}</span>
                 </a>
             </div>
@@ -81,7 +81,7 @@
         <a @click="pinned = !pinned" id="pinBtn" role="button"
            class="flex items-center justify-center w-full h-16 mt-auto rounded hover:bg-base-300 sm:inline-flex hidden"
            :class="[pinned ? 'bg-base-300' : '']">
-            <i :class="[pinned ? 'bx bxs-pin bx-rotate-90' : 'bx bxs-pin']"></i>
+            <i :class="[pinned ? 'icon-pin bx-rotate-90' : 'icon-pin']"></i>
             <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/sidebar/messages.pin') }}</span>
         </a>
     </div>

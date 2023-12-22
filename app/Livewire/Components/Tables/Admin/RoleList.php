@@ -38,7 +38,7 @@ final class RoleList extends PowerGridComponent
     {
         return [
             Button::add('new-role')
-                ->slot('<i class="bx bxs-plus-circle"></i> ' . __('pages/admin/roles/role-list.buttons.new_role'))
+                ->slot('<i class="icon-plus-circle"></i> ' . __('pages/admin/roles/role-list.buttons.new_role'))
                 ->class('btn btn-accent')
                 ->dispatch('new-role', [])
         ];
@@ -103,12 +103,12 @@ final class RoleList extends PowerGridComponent
     {
         return [
             Button::add('edit')
-                ->slot('<i class="bx bxs-edit-alt"></i>')
+                ->slot('<i class="icon-pen"></i>')
                 ->id()
                 ->class('btn btn-primary btn-sm')
                 ->dispatch('edit', ['rowId' => $row->id]),
             Button::add('delete')
-                ->slot('<i class="bx bxs-trash-alt text-white"></i>')
+                ->slot('<i class="icon-trash"></i>')
                 ->id()
                 ->class('btn btn-error btn-sm')
                 ->dispatch('delete', ['rowId' => $row->id]),
