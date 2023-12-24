@@ -72,7 +72,7 @@ class VersionController extends Controller
 
             return $data['version']['project'];
         } catch (Exception $e) {
-            return $e;
+            return true;
         }
     }
 
