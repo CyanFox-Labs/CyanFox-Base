@@ -21,7 +21,7 @@
 
     <!-- Sidebar -->
     <div x-bind:class="{'expanded': sidebarOpen || pinned, 'pinned': pinned}" @mouseover="sidebarOpen = true"
-         @mouseleave="sidebarOpen = false"
+         @mouseleave="sidebarOpen = false" @touchstart="sidebarOpen = !sidebarOpen; pinned = false"
          class="flex flex-col items-center w-40 fixed top-0 left-0 h-full sidebar overflow-hidden bg-base-200 shadow-lg transform transition-transform"
          x-transition:enter="transition-transform transition-width ease-out duration-300"
          x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
