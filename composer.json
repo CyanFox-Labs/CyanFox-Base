@@ -28,7 +28,7 @@
         "simplesoftwareio/simple-qrcode": "*",
         "spatie/laravel-activitylog": "^4.7",
         "spatie/laravel-artisan-dd": "^2.3",
-        "spatie/laravel-permission": "^5.11",
+        "spatie/laravel-permission": "^6.3",
         "wire-elements/modal": "^2.0"
     },
     "require-dev": {
