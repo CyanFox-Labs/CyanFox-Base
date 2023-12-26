@@ -29,13 +29,22 @@ class CreatePermissions extends Command
     {
         $permissions = [];
 
+        $error = false;
+
         foreach ($permissions as $permission) {
             try {
                 Permission::create(['name' => $permission]);
             }catch (Exception $e) {
                 $this->info('Could not create permission: ' . $permission);
                 $this->error('Error: ' . $e->getMessage());
+                $error = true;
             }
+        }
+
+        if (!$error) {
+            $this->info('All permissions created successfully');
+        }else {
+            $this->error('Some permissions could not be created');
         }
     }
 }
