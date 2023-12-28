@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alert extends Model
 {
+    use HasFactory;
 
     protected $table = 'alerts';
     public $timestamps = true;

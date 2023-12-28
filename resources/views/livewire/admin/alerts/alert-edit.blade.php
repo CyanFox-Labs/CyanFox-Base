@@ -18,7 +18,7 @@
     <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
         <div class="card-body">
 
-            <form wire:submit="createAlert" onsubmit="sendToLivewire()">
+            <form wire:submit="updateAlert" onsubmit="sendToLivewire()">
 
                 <div class="grid md:grid-cols-2 gap-4 mt-4">
                     <div class="form-control w-full">

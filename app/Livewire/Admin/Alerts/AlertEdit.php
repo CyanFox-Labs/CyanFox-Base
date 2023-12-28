@@ -30,7 +30,7 @@ class AlertEdit extends Component
         $this->icon = $icon;
     }
 
-    public function createAlert()
+    public function updateAlert()
     {
         $this->validate([
             'title' => 'required',
