@@ -11,7 +11,7 @@
                     $border = 'border-blue-500';
                 }
                 if ($alert->type == 'warning') {
-                    $badge = 'bg-yellow-500';
+                    $badge = 'bg-yellow-500 text-white';
                     $border = 'border-yellow-500';
                 }
                 if ($alert->type == 'update') {

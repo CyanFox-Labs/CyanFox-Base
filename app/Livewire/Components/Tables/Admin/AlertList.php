@@ -5,6 +5,7 @@ namespace App\Livewire\Components\Tables\Admin;
 use App\Models\Alert;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
@@ -58,10 +59,11 @@ final class AlertList extends PowerGridComponent
             ->addColumn('id')
             ->addColumn('title')
             ->addColumn('message', function ($row) {
+                $row->message = $row->message ? Str::markdown(substr($row->message, 0, 70)) : "";
                 if (strlen($row->message) < 100)
                     return $row->message;
                 else
-                    return substr($row->message, 0, 70) . '...';
+                    return  $row->message . '...';
             })
             ->addColumn('type', function ($row) {
                 return __('pages/admin/alerts/messages.types.' . $row->type);
