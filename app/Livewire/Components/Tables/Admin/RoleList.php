@@ -3,6 +3,7 @@
 namespace App\Livewire\Components\Tables\Admin;
 
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -81,19 +82,19 @@ final class RoleList extends PowerGridComponent
         return [];
     }
 
-    #[\Livewire\Attributes\On('edit')]
+    #[On('edit')]
     public function edit($rowId): void
     {
         $this->redirect(route('admin-role-edit', [$rowId]));
     }
 
-    #[\Livewire\Attributes\On('delete')]
+    #[On('delete')]
     public function delete($rowId): void
     {
         $this->dispatch('openModal', 'components.modals.admin.role-delete', ['roleId' => $rowId]);
     }
 
-    #[\Livewire\Attributes\On('new-role')]
+    #[On('new-role')]
     public function createRole(): void
     {
         $this->redirect(route('admin-role-create'));

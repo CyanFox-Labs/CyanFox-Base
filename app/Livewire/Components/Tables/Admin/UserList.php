@@ -5,10 +5,10 @@ namespace App\Livewire\Components\Tables\Admin;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Facades\Rule;
 use PowerComponents\LivewirePowerGrid\Footer;
 use PowerComponents\LivewirePowerGrid\Header;
@@ -100,19 +100,19 @@ final class UserList extends PowerGridComponent
         return [];
     }
 
-    #[\Livewire\Attributes\On('edit')]
+    #[On('edit')]
     public function edit($rowId): void
     {
         $this->redirect(route('admin-user-edit', [$rowId]));
     }
 
-    #[\Livewire\Attributes\On('delete')]
+    #[On('delete')]
     public function delete($rowId): void
     {
         $this->dispatch('openModal', 'components.modals.admin.user-delete', ['userId' => $rowId]);
     }
 
-    #[\Livewire\Attributes\On('new-user')]
+    #[On('new-user')]
     public function createUser(): void
     {
         $this->redirect(route('admin-user-create'));

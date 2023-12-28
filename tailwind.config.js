@@ -16,7 +16,7 @@ module.exports = {
         './resources/views/filament/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
 
-        './app/Http/Livewire/**/*Table.php',
+        './app/Livewire/**/*List.php',
         './vendor/power-components/livewire-powergrid/resources/views/**/*.php',
         './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
 

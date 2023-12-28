@@ -16,5 +16,10 @@ return [
             'create' => 'Admin • Create Role',
             'edit' => 'Admin • Edit Role',
         ],
+        'alerts' => [
+            'list' => 'Admin • Alerts',
+            'create' => 'Admin • Create Alert',
+            'edit' => 'Admin • Edit Alert',
+        ],
     ]
 ];

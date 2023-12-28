@@ -11,5 +11,9 @@ return [
             'create' => 'Rolle erstellen',
             'edit' => 'Rolle bearbeiten',
         ],
+        'alerts' => [
+            'create' => 'Benachrichtigung erstellen',
+            'edit' => 'Benachrichtigung bearbeiten',
+        ],
     ]
 ];

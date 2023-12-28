@@ -50,6 +50,11 @@
                     <i class="icon-shield"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('messages.roles') }}</span>
                 </a>
+                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin-alert*') ? 'bg-base-300' : '' }}"
+                   href="{{ route('admin-alert-list') }}">
+                    <i class="icon-message-circle-warning"></i>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('messages.alerts') }}</span>
+                </a>
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin-activity-log*') ? 'bg-base-300' : '' }}"
                    href="{{ route('admin-activity-log') }}">
                     <i class="icon-eye"></i>

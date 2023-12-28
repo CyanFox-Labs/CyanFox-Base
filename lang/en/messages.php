@@ -18,6 +18,7 @@ return [
     'unknown' => 'Unknown',
     'overview' => 'Overview',
     'confirm' => 'Confirm',
+    'alerts' => 'Alerts',
 
     'id' => 'ID',
     'created_at' => 'Created At',
@@ -35,6 +36,11 @@ return [
     'roles' => 'Roles',
     'dashboard' => 'Dashboard',
     'made_with_love' => 'Made with <i class="bx bxs-heart text-danger-600"></i> by CyanFox-Team',
+
+    'title' => 'Title',
+    'message' => 'Message',
+    'type' => 'Type',
+    'icon' => 'Icon',
 
     'yes' => 'Yes',
     'no' => 'No',

@@ -16,5 +16,10 @@ return [
             'create' => 'Admin • Rolle erstellen',
             'edit' => 'Admin • Rolle bearbeiten',
         ],
+        'alerts' => [
+            'list' => 'Admin • Benachrichtigungen',
+            'create' => 'Admin • Benachrichtigung erstellen',
+            'edit' => 'Admin • Benachrichtigung bearbeiten',
+        ],
     ]
 ];

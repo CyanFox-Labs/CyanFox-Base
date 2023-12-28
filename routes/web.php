@@ -7,6 +7,9 @@ use App\Livewire\Account\ForgotPassword;
 use App\Livewire\Account\Profile;
 use App\Livewire\Admin\ActivityLog;
 use App\Livewire\Admin\Admin;
+use App\Livewire\Admin\Alerts\AlertCreate;
+use App\Livewire\Admin\Alerts\AlertEdit;
+use App\Livewire\Admin\Alerts\AlertList;
 use App\Livewire\Admin\Roles\RoleCreate;
 use App\Livewire\Admin\Roles\RoleEdit;
 use App\Livewire\Admin\Roles\RoleList;
@@ -49,6 +52,11 @@ Route::middleware(['setLanguage'])->group(function () {
                     Route::get('/', RoleList::class)->name('admin-role-list');
                     Route::get('create', RoleCreate::class)->name('admin-role-create');
                     Route::get('edit/{roleId}', RoleEdit::class)->name('admin-role-edit');
+                });
+                Route::group(['prefix' => '/alerts'], function () {
+                    Route::get('/', AlertList::class)->name('admin-alert-list');
+                    Route::get('edit/{alertId}', AlertEdit::class)->name('admin-alert-edit');
+                    Route::get('create', AlertCreate::class)->name('admin-alert-create');
                 });
             });
 

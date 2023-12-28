@@ -13,6 +13,12 @@ return [
         'created' => 'system:group.created',
     ],
 
+    'alert' => [
+        'created' => 'system:alert.created',
+        'updated' => 'system:alert.updated',
+        'deleted' => 'system:alert.deleted',
+    ],
+
     'auth' => [
         'login' => 'auth:login',
         'logout' => 'auth:logout',

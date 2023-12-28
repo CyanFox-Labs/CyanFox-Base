@@ -17,6 +17,8 @@ return [
     'system' => 'System',
     'unknown' => 'Unbekannt',
     'overview' => 'Übersicht',
+    'confirm' => 'Bestätigen',
+    'alerts' => 'Benachrichtigungen',
 
     'id' => 'ID',
     'created_at' => 'Erstellt am',
@@ -35,6 +37,11 @@ return [
     'dashboard' => 'Übersicht',
     'made_with_love' => 'Mit <i class="bx bxs-heart text-danger-600"></i> entwickelt von CyanFox-Team',
 
+    'title' => 'Titel',
+    'message' => 'Nachricht',
+    'type' => 'Typ',
+    'icon' => 'Icon',
+
     'yes' => 'Ja',
     'no' => 'Nein',
     'ok' => 'OK',
@@ -42,6 +49,8 @@ return [
     'close' => 'Schließen',
     'back' => 'Zurück',
     'save' => 'Speichern',
+
+    'captcha' => 'Captcha',
 
     'notifications' => [
         'language_changed' => 'Sprache erfolgreich geändert.',
