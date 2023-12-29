@@ -14,6 +14,15 @@ class UploadProfileImage extends ModalComponent
 
     public $profileImage;
 
+    public function getTemporaryImage()
+    {
+        try {
+            return $this->profileImage?->temporaryUrl();
+        }catch (Exception $e) {
+            return null;
+        }
+    }
+
     public function uploadProfileImage()
     {
 

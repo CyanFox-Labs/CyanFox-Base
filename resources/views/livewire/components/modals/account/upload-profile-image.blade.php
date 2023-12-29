@@ -8,7 +8,7 @@
             <div class="form-control w-full max-w-xs">
                 <div class="mx-auto">
                     <img
-                        src="{{ $profileImage?->temporaryUrl() ?? '' . auth()->user()->getProfileImageURL() }}"
+                        src="{{ $this->getTemporaryImage() ?? '' . auth()->user()->getProfileImageURL() }}"
                         alt="profile_image"
                         class="h-20 w-20 mb-5 rounded-3xl mx-auto"/>
                 </div>
