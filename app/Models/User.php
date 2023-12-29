@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -34,4 +35,14 @@ class User extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    public function getProfileImageURL(): string
+    {
+        $filePath = 'profile-images/' . $this->id . '.png';
+        if (Storage::disk('public')->exists($filePath)) {
+            return asset('storage/' . $filePath) . '?v=' . md5_file(storage_path('app/public/' . $filePath));
+        }
+
+        return str_replace('{USER}', $this->email, env('DEFAULT_AVATAR_URL'));
+    }
 }

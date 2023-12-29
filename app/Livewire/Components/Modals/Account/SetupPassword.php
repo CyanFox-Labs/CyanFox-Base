@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components\Modals\Account;
 
+use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -37,25 +38,15 @@ class SetupPassword extends ModalComponent
 
         Auth::user()->password = bcrypt($this->new_password);
 
-        if (Auth::user()->save()) {
-            Notification::make()
-                ->title(__('pages/account/messages.notifications.password_changed'))
-                ->success()
-                ->send();
-
-            activity('system')
-                ->performedOn(auth()->user())
-                ->causedBy(auth()->user())
-                ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
-                ->withProperty('ip', request()->ip())
-                ->log('account.change_password_success');
-
-            $this->redirect(route('profile'));
-        } else {
+        try {
+            Auth::user()->save();
+        }catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            $this->dispatch('sendToConsole', $e->getMessage());
 
             activity('system')
                 ->performedOn(auth()->user())
@@ -63,7 +54,22 @@ class SetupPassword extends ModalComponent
                 ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
                 ->withProperty('ip', request()->ip())
                 ->log('account.change_password_failed');
+            return;
         }
+
+        Notification::make()
+            ->title(__('pages/account/messages.notifications.password_changed'))
+            ->success()
+            ->send();
+
+        activity('system')
+            ->performedOn(auth()->user())
+            ->causedBy(auth()->user())
+            ->withProperty('name', auth()->user()->username . ' (' . auth()->user()->email . ')')
+            ->withProperty('ip', request()->ip())
+            ->log('account.change_password_success');
+
+        $this->redirect(route('profile'));
     }
 
     public function render()

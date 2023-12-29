@@ -21,5 +21,7 @@ return [
         'profile_updated' => 'Your profile has been updated.',
         'api_key_revoked' => 'The API key has been revoked.',
         'account_deleted' => 'Your account has been deleted.',
+        'profile_image_updated' => 'Your profile image has been updated.',
+        'profile_image_reset' => 'Your profile image has been reset.',
     ],
 ];

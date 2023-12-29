@@ -4,7 +4,7 @@
             <ul>
                 <li><a href="{{ route('home') }}"><i class="icon-home mr-2"></i> {{ __('navigation/messages.home') }}
                     </a></li>
-                <li><img src="https://source.boringavatars.com/beam/120/{{ auth()->user()->username }}"
+                <li><img src="{{ auth()->user()->getProfileImageURL() }}"
                          alt="Profile" class="h-7 w-7 rounded-3xl mr-2"> {{ __('navigation/messages.profile') }}
                 </li>
             </ul>
@@ -13,11 +13,14 @@
 
     <div role="tablist" class="tabs tabs-bordered pb-3">
         <a role="tab" class="tab @if($tab == 'overview') tab-active @endif"
-           wire:click="changeTab('overview')"><i class="icon-layout-dashboard"></i> &nbsp; {{ __('messages.overview') }}</a>
+           wire:click="changeTab('overview')"><i class="icon-layout-dashboard"></i> &nbsp; {{ __('messages.overview') }}
+        </a>
         <a role="tab" class="tab @if($tab == 'api_keys') tab-active @endif"
-           wire:click="changeTab('api_keys')"><i class="icon-key-round"></i> &nbsp; {{ __('pages/account/profile.api_keys') }}</a>
+           wire:click="changeTab('api_keys')"><i class="icon-key-round"></i>
+            &nbsp; {{ __('pages/account/profile.api_keys') }}</a>
         <a role="tab" class="tab @if($tab == 'activity_log') tab-active @endif"
-           wire:click="changeTab('activity_log')"><i class="icon-eye"></i> &nbsp; {{ __('pages/account/profile.activity_log') }}</a>
+           wire:click="changeTab('activity_log')"><i class="icon-eye"></i>
+            &nbsp; {{ __('pages/account/profile.activity_log') }}</a>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -26,8 +29,20 @@
                 <div class="card bg-base-100 shadow-xl">
                     <div class="card-body">
                         <div class="flex">
-                            <img src="https://source.boringavatars.com/beam/120/{{ auth()->user()->username }}"
-                                 alt="Profile" class="h-16 w-16 rounded-3xl mr-4">
+                            @if(!env('DISABLE_CHANGE_PROFILE_IMAGE'))
+                                <div class="h-16 w-16 relative mr-4 group">
+                                    <div
+                                        class="absolute inset-0 bg-cover bg-center z-0 rounded-3xl group-hover:opacity-50 transition-opacity duration-300"
+                                        style="background-image: url('{{ auth()->user()->getProfileImageURL() }}')"></div>
+                                    <div
+                                        wire:click="$dispatch('openModal', { component: 'components.modals.account.upload-profile-image' })"
+                                        class="opacity-0 group-hover:opacity-100 hover:cursor-pointer duration-300 absolute inset-0 z-10 flex justify-center items-center text-3xl text-white font-semibold">
+                                        <i class="icon-upload"></i></div>
+                                </div>
+                            @else
+                                <img src="{{ auth()->user()->getProfileImageURL() }}"
+                                     alt="Profile" class="h-16 w-16 rounded-3xl mr-4">
+                            @endif
                             <div>
                                 <p class="font-bold">{{ auth()->user()->username }}</p>
                                 <p>{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</p>

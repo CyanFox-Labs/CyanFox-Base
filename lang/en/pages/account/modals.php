@@ -75,4 +75,14 @@ return [
             'delete_account' => 'Delete Account',
         ]
     ],
+
+    'upload_profile_image' => [
+        'title' => 'Upload Profile Image',
+        'description' => 'Please select an image to upload.',
+        'label' => 'Profile Image',
+        'buttons' => [
+            'reset_image' => 'Reset Image',
+            'upload_profile_image' => 'Upload Profile Image',
+        ]
+    ],
 ];

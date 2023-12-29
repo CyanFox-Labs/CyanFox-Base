@@ -21,5 +21,7 @@ return [
         'profile_updated' => 'Dein Profil wurde erfolgreich aktualisiert.',
         'api_key_revoked' => 'Der API Schlüssel wurde erfolgreich widerrufen.',
         'account_deleted' => 'Dein Account wurde erfolgreich gelöscht.',
+        'profile_image_updated' => 'Dein Profilbild wurde erfolgreich aktualisiert.',
+        'profile_image_reset' => 'Dein Profilbild wurde erfolgreich zurückgesetzt.',
     ],
 ];

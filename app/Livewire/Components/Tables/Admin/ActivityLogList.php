@@ -38,7 +38,7 @@ final class ActivityLogList extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Activity::query()->where('log_name', 'system');
+        return Activity::query()->where('log_name', 'system')->orderByDesc('id');
     }
 
     public function relationSearch(): array

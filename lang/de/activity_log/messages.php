@@ -58,6 +58,9 @@ return [
         'theme_change_success' => 'account:theme.change_success',
         'theme_change_failed' => 'account:theme.change_failed',
         'delete_account_success' => 'account:delete_account.success',
+        'profile_image_change_failed' => 'account:profile_image.change_failed',
+        'profile_image_change_success' => 'account:profile_image.change_success',
+        'profile_image_reset' => 'account:profile_image.reset',
     ],
 
     'check_for_updates' => 'system:check_for_updates',

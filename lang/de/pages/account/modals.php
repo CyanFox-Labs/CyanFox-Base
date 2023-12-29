@@ -75,4 +75,14 @@ return [
             'delete_account' => 'Account löschen',
         ]
     ],
+
+    'upload_profile_image' => [
+        'title' => 'Profilbild hochladen',
+        'description' => 'Bitte wähle ein Bild aus, das du als Profilbild verwenden möchtest.',
+        'label' => 'Profilbild',
+        'buttons' => [
+            'reset_image' => 'Bild zurücksetzen',
+            'upload_profile_image' => 'Profilbild hochladen',
+        ]
+    ],
 ];

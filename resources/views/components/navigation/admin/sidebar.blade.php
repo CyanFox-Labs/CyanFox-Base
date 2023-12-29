@@ -5,7 +5,7 @@
         <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
             <span role="button" tabindex="0" class="mr-2">{{ auth()->user()->username }}</span>
             <img tabindex="0" role="button"
-                 src="https://source.boringavatars.com/beam/120/{{ auth()->user()->username }}" alt="Profile"
+                 src="{{ auth()->user()->getProfileImageURL() }}" alt="Profile"
                  class="w-9 h-9 mr-6">
             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                 <li><a href="{{ route('home') }}"><i class='icon-home'></i> {{ __('navigation/messages.home') }}</a></li>

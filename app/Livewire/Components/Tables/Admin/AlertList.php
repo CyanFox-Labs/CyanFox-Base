@@ -45,7 +45,7 @@ final class AlertList extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Alert::query();
+        return Alert::query()->orderBy('created_at', 'desc');
     }
 
     public function relationSearch(): array
