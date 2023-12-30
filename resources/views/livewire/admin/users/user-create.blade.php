@@ -59,6 +59,8 @@
                             <x-checkbox label="{{ __('pages/admin/users/messages.must_change_password') }}" wire:model="change_password" />
                             <div class="mt-3"></div>
                             <x-checkbox label="{{ __('pages/admin/users/messages.must_activate_two_factor') }}" wire:model="activate_two_factor" />
+                            <div class="mt-3"></div>
+                            <x-checkbox label="{{ __('pages/admin/users/user-create.send_welcome_email') }}" wire:model="send_welcome_email" />
                         </div>
                     </div>
                 </div>

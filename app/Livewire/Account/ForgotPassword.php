@@ -104,9 +104,13 @@ class ForgotPassword extends Component
         $user->password_reset_expiration = Carbon::now()->addHours(24);
         $user->save();
 
-        Mail::send('emails.forgot-password', ['resetLink' => route('forgot-password', [$user->password_reset_token])], function ($message) use ($user) {
-            $message->to($user->email, __('pages/account/forgot-password.email_content.title'))
-                ->subject(__('pages/account/forgot-password.email_content.title'));
+        $placeholders = ['username' => $user->username,
+            'first_name' => $user->first_name, 'last_name' => $user->last_name, 'password_reset_token' => $user->password_reset_token,
+            'reset_link' => route('forgot-password', [$user->password_reset_token])];
+
+        Mail::send('emails.forgot-password', $placeholders, function ($message) use ($user, $placeholders) {
+            $message->to($user->email, __('emails.forgot_password.title', $placeholders))
+                ->subject(__('emails.forgot_password.subject', $placeholders));
             $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
         });
 
@@ -123,7 +127,8 @@ class ForgotPassword extends Component
             ->log('account.forgot_password_requested');
     }
 
-    public function mount() {
+    public function mount()
+    {
         if ($this->resetToken !== null) {
             $user = User::where('password_reset_token', $this->resetToken)->first();
 

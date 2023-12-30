@@ -7,6 +7,7 @@ use App\Models\User;
 use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -21,6 +22,7 @@ class UserCreate extends Component
     public $roles = [];
     public $change_password = false;
     public $activate_two_factor = false;
+    public $send_welcome_email = false;
 
     #[On('updateMultiSelect')]
     public function updateMultiSelect($values): void
@@ -66,6 +68,17 @@ class UserCreate extends Component
 
         if ($this->roles != null) {
             $user->assignRole($this->roles);
+        }
+
+
+        if ($this->send_welcome_email) {
+            $placeholders = ['username' => $this->username, 'password' => $this->password,
+                'first_name' => $this->first_name, 'last_name' => $this->last_name];
+            Mail::send('emails.welcome', $placeholders, function ($message) use ($user, $placeholders) {
+                $message->to($user->email, __('emails.welcome.title', $placeholders))
+                    ->subject(__('emails.welcome.subject', $placeholders));
+                $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            });
         }
 
         Notification::make()

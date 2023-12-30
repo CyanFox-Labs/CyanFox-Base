@@ -1,5 +1,3 @@
-{{ __('pages/account/forgot-password.email_content.line_1') }} <br>
-{{ __('pages/account/forgot-password.email_content.line_2') }} <br>
-{{ __('pages/account/forgot-password.email_content.line_3') }} <br>
-{{ __('pages/account/forgot-password.email_content.line_4') }} <br>
-<a href="{{ $resetLink }}">{{ $resetLink }}</a>
+{!! __('emails.forgot_password.content', ['username' => $username,
+            'first_name' => $first_name, 'last_name' => $last_name,
+            'reset_link' => route('forgot-password', [$password_reset_token])]) !!}
