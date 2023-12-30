@@ -58,9 +58,39 @@
                     </label>
                 </div>
 
+                <div class="overflow-x-auto mt-4">
+                    <div class="grid lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))] md:grid-cols-1 gap-4">
+                        @foreach($existingFiles as $path)
+                            @php
+                                $file = basename($path);
+                            @endphp
+                            <div class="card bordered">
+                                <figure class="mt-4">
+                                    <i class="icon-file text-7xl"></i>
+                                </figure>
+                                <div class="card-body flex flex-col items-center justify-center">
+                                    <p class="card-title">{{ $file }}</p>
+                                </div>
+                                <div class="justify-end card-actions mb-4 mr-4">
+                                    <button type="button" class="btn btn-outline btn-error"
+                                            wire:click="removeFile('{{ $file }}')">
+                                        <i class="icon-x"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="mt-4">
+
+                        <x-file label="{{ __('pages/admin/alerts/messages.add_files') }}" wire:model="files"
+                                multiple=""></x-file>
+                    </div>
+                </div>
+
                 <div class="col-span-1 mt-6 space-x-2 space-y-2">
 
-                    <a href="{{ route('admin-user-list') }}"
+                    <a href="{{ route('admin-alert-list') }}"
                        class="btn btn-error">
                         {{ __('messages.back') }}
                     </a>

@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Alert;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 
 class Home extends Component
@@ -14,6 +15,13 @@ class Home extends Component
     {
         $this->alerts = Alert::all()->sortByDesc('created_at');
 
+    }
+
+    function downloadFile($filePath, $fileName)
+    {
+        return response()->streamDownload(function () use ($filePath) {
+            echo Storage::disk('public')->get($filePath);
+        }, $fileName);
     }
 
     public function render()

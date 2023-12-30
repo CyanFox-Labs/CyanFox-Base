@@ -90,7 +90,7 @@ class ForgotPassword extends Component
 
         if ($user == null) {
             activity('system')
-                ->performedOn($user)
+                ->performedOn($this->email)
                 ->causedByAnonymous()
                 ->withProperty('name', $this->email)
                 ->withProperty('ip', request()->ip())
@@ -125,6 +125,23 @@ class ForgotPassword extends Component
             ->withProperty('name', $user->username . ' (' . $user->email . ')')
             ->withProperty('ip', request()->ip())
             ->log('account.forgot_password_requested');
+    }
+
+    public function setLanguage($language)
+    {
+        cookie()->queue(cookie()->forget('language'));
+        cookie()->queue(cookie()->forever('language', $language));
+
+        Notification::make()
+            ->title(__('messages.notifications.language_changed'))
+            ->success()
+            ->send();
+
+        if ($this->resetToken !== null) {
+            return redirect()->route('forgot-password', [$this->resetToken]);
+        }
+
+        return redirect()->route('forgot-password');
     }
 
     public function mount()

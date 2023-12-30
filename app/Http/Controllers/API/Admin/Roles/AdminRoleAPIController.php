@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\Admin\Roles;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Knuckles\Scribe\Attributes\Authenticated;
 use Knuckles\Scribe\Attributes\BodyParam;
@@ -28,11 +29,52 @@ class AdminRoleAPIController extends Controller
         return Role::find($userId);
     }
 
+    #[BodyParam("name", description: "Name of the role", example: "Super Admin")]
+    #[BodyParam("guard_name", description: "Guard name of the role", example: "web")]
+    #[BodyParam("permissions", description: "Permissions of the role", example: "['create user']")]
+    public function createRole(Request $request)
+    {
+
+        $this->validate($request, [
+            'name' => 'required|string',
+            'guard_name' => 'required|string',
+            'permissions' => 'nullable|array',
+        ]);
+
+        $role = new Role();
+        $role->name = $request->input('name');
+        $role->guard_name = $request->input('guard_name');
+
+        try {
+            $role->save();
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Failed to create role',
+                'errors' => [
+                    'role' => $e->getMessage(),
+                ],
+            ], 500);
+        }
+
+        if ($request->input('permissions')) {
+            $role->syncPermissions($request->input('permissions'));
+        }
+
+        return $role;
+    }
+
     #[BodyParam("name", description: "Name of the role", required: false, example: "Super Admin")]
     #[BodyParam("guard_name", description: "Guard name of the role", required: false, example: "web")]
     #[BodyParam("permissions", description: "Permissions of the role", required: false, example: "['create user']")]
     public function updateRole($roleId, Request $request)
     {
+
+        $this->validate($request, [
+            'name' => 'nullable|string',
+            'guard_name' => 'nullable|string',
+            'permissions' => 'nullable|array',
+        ]);
+
         $role = Role::find($roleId);
         if (!$role) {
             return response()->json([
@@ -43,22 +85,16 @@ class AdminRoleAPIController extends Controller
         if ($request->input('name')) $role->name = $request->input('name');
         if ($request->input('guard_name')) $role->guard_name = $request->input('guard_name');
 
-        if ($request->input('permissions')) {
-            $role->syncPermissions($request->input('permissions'));
+        try {
+            $role->save();
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Failed to update role',
+                'errors' => [
+                    'role' => $e->getMessage(),
+                ],
+            ], 500);
         }
-
-        return $role;
-    }
-
-    #[BodyParam("name", description: "Name of the role", example: "Super Admin")]
-    #[BodyParam("guard_name", description: "Guard name of the role", example: "web")]
-    #[BodyParam("permissions", description: "Permissions of the role", example: "['create user']")]
-    public function createRole(Request $request)
-    {
-        $role = new Role();
-        $role->name = $request->input('name');
-        $role->guard_name = $request->input('guard_name');
-        $role->save();
 
         if ($request->input('permissions')) {
             $role->syncPermissions($request->input('permissions'));
@@ -76,7 +112,16 @@ class AdminRoleAPIController extends Controller
             ], 404);
         }
 
-        $role->delete();
+        try {
+            $role->delete();
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => 'Failed to delete role',
+                'errors' => [
+                    'role' => $e->getMessage(),
+                ],
+            ], 500);
+        }
 
         return response()->json([
             'message' => 'Role successfully deleted'

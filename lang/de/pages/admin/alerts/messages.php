@@ -21,5 +21,6 @@ return [
         'alert_deleted' => 'Benachrichtigung erfolgreich gelöscht!',
     ],
 
+    'add_files' => 'Dateien hinzufügen',
     'search' => 'Nach Icons suchen...'
 ];

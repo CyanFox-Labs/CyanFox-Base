@@ -2,7 +2,6 @@ let imagePath = "";
 let photo = "";
 let author = "";
 let authorLink = "";
-let credit = '?utm_source=CyanFox&utm_medium=referral'
 
 async function getImage() {
     await fetch("/api/v1/unsplash", {
@@ -27,7 +26,7 @@ async function getImage() {
         });
 }
 
-function setImageAsBackground(imagePath, photo, credit, authorLink, author) {
+function setImageAsBackground(imagePath, photo, authorLink, author) {
 
     if (!imagePath) {
         return;
@@ -38,6 +37,7 @@ function setImageAsBackground(imagePath, photo, credit, authorLink, author) {
     const photoElement = document.getElementById("photo");
 
     let translatedPhotoMessage = photoElement.dataset.trans;
+    let utmSource = photoElement.dataset.utm;
 
     function setSafeHref(element, url, text) {
         let a = document.createElement('a');
@@ -48,8 +48,8 @@ function setImageAsBackground(imagePath, photo, credit, authorLink, author) {
         element.parentElement.replaceChild(a, element);
     }
 
-    setSafeHref(photoElement, `${photo}${credit}`, translatedPhotoMessage);
-    setSafeHref(authorElement, `${authorLink}${credit}`, author);
+    setSafeHref(photoElement, `${photo}${utmSource}`, translatedPhotoMessage);
+    setSafeHref(authorElement, `${authorLink}${utmSource}`, author);
 
     bgImageElement.style.backgroundImage = 'url('+encodeURI(imagePath)+')';
     bgImageElement.style.backgroundSize = 'cover';
@@ -61,7 +61,7 @@ function setImageAsBackground(imagePath, photo, credit, authorLink, author) {
 }
 
 getImage().then(() =>
-    setImageAsBackground(imagePath, photo, credit, authorLink, author)
+    setImageAsBackground(imagePath, photo, authorLink, author)
 ).catch((error) => {
     console.error('Error:', error);
     document.getElementById('unsplashCredits').classList.add('hidden');

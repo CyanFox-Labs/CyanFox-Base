@@ -4,8 +4,8 @@ namespace App\Livewire\Components\Modals\Admin\Alerts;
 
 use App\Models\Alert;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Storage;
 use LivewireUI\Modal\ModalComponent;
-use Spatie\Permission\Models\Role;
 
 class AlertDelete extends ModalComponent
 {
@@ -17,6 +17,8 @@ class AlertDelete extends ModalComponent
         $alert = Alert::find($this->alertId);
 
         $alert->delete();
+
+        Storage::disk('public')->deleteDirectory('alerts/' . $alert->id);
 
         Notification::make()
             ->title(__('pages/admin/alerts/messages.notifications.alert_deleted'))

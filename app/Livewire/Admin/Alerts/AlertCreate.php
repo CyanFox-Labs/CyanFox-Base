@@ -5,16 +5,20 @@ namespace App\Livewire\Admin\Alerts;
 use App\Models\Alert;
 use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AlertCreate extends Component
 {
+    use WithFileUploads;
 
     public $icon = 'icon-bell';
     public $title;
     public $type = 'info';
     public $message;
+    public $files = [];
 
     #[On('updateMarkdown')]
     public function updateMarkdown($values): void
@@ -33,7 +37,8 @@ class AlertCreate extends Component
         $this->validate([
             'title' => 'required',
             'type' => 'required',
-            'icon' => 'required'
+            'icon' => 'required',
+            'files' => 'nullable',
         ]);
 
         $alert = new Alert();
@@ -54,6 +59,12 @@ class AlertCreate extends Component
 
             $this->dispatch('sendToConsole', $e->getMessage());
             return;
+        }
+
+        if ($this->files) {
+            foreach ($this->files as $file) {
+                Storage::disk('public')->putFileAs('alerts/' . $alert->id, $file, $file->getClientOriginalName());
+            }
         }
 
         activity('system')

@@ -21,5 +21,6 @@ return [
         'alert_deleted' => 'Alert deleted successfully!',
     ],
 
+    'add_files' => 'Add Files',
     'search' => 'Search for an icon'
 ];

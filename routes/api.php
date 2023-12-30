@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\Account\AccountAPIController;
 use App\Http\Controllers\API\Admin\AdminAPIController;
+use App\Http\Controllers\API\Admin\Alerts\AdminAlertAPIController;
 use App\Http\Controllers\API\Admin\Roles\AdminRoleAPIController;
 use App\Http\Controllers\API\Admin\Users\AdminUserAPIController;
 use App\Http\Controllers\API\UnsplashAPIController;
@@ -50,6 +51,14 @@ Route::prefix('v1')->group(function () {
                     Route::delete('{roleId}/delete', [AdminRoleAPIController::class, 'deleteRole']);
                     Route::post('create', [AdminRoleAPIController::class, 'createRole']);
                     Route::get('/', [AdminRoleAPIController::class, 'getAllRoles']);
+                });
+
+                Route::group(['prefix' => 'alerts'], function () {
+                    Route::get('{alertId}', [AdminAlertAPIController::class, 'getAlert']);
+                    Route::post('{alertId}/update', [AdminAlertAPIController::class, 'updateAlert']);
+                    Route::delete('{alertId}/delete', [AdminAlertAPIController::class, 'deleteAlert']);
+                    Route::post('create', [AdminAlertAPIController::class, 'createAlert']);
+                    Route::get('/', [AdminAlertAPIController::class, 'getAllAlerts']);
                 });
             });
         });

@@ -4,7 +4,7 @@ use Knuckles\Scribe\Extracting\Strategies;
 
 return [
 
-    'theme' => 'elements',
+    'theme' => 'scalar',
 
     /*
      * The HTML <title> for the generated documentation. If this is empty, Scribe will infer it from config('app.name').
@@ -442,5 +442,6 @@ INTRO
      * Tell Scribe which connections should be transacted here.
      * If you only use one db connection, you can leave this as is.
      */
-    'database_connections_to_transact' => [config('database.default')]
+    'database_connections_to_transact' => [config('database.default')],
+    'external' => ['html_attributes' => []]
 ];

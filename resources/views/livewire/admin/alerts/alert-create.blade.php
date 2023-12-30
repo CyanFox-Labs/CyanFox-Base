@@ -56,11 +56,13 @@
                         </div>
                         <textarea id="editor" wire:model="message"></textarea>
                     </label>
+
+                    <x-file label="{{ __('pages/admin/alerts/messages.add_files') }}" wire:model="files" multiple=""></x-file>
                 </div>
 
                 <div class="col-span-1 mt-6 space-x-2 space-y-2">
 
-                    <a href="{{ route('admin-user-list') }}"
+                    <a href="{{ route('admin-alert-list') }}"
                        class="btn btn-error">
                         {{ __('messages.back') }}
                     </a>

@@ -2,10 +2,12 @@
 
 return [
     'welcome' => [
-        // content, title, subject placeholders: :username, :password, :first_name, :last_name
+        // content, title, subject placeholders: :username, :password, :first_name, :last_name, :login_link
         'title' => 'Welcome to ' . env('APP_NAME'),
         'subject' => 'Welcome to ' . env('APP_NAME'),
-        'content' => 'Your account has been created. You can login with the following credentials: <br><br>Username: :username<br>Password: :password<br>',
+        'content' => 'Your account has been created. You can login with the following credentials: <br><br>
+Username: :username<br>Password: :password<br><br>
+You can login here: <a href="' . route('login') . '">Login</a>'
     ],
     'forgot_password' => [
         // content, title, subject placeholders: :username, :first_name, :last_name, :reset_link, :password_reset_token
