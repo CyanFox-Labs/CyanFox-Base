@@ -53,5 +53,9 @@ return [
         'dim' => 'Dim',
         'nord' => 'Nord',
         'sunset' => 'Sunset',
+        'catppuccin_latte' => 'Catppuccino Latte',
+        'catppuccin_frappee' => 'Catppuccino Frappé',
+        'catppuccin_macchiato' => 'Catppuccino Macchiato',
+        'catppuccin_mocha' => 'Catppuccino Mocha',
     ],
 ];

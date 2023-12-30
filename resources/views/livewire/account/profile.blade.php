@@ -11,16 +11,17 @@
         </div>
     </div>
 
-    <div role="tablist" class="tabs tabs-bordered pb-3">
+    <div role="tablist" class="tabs tabs-bordered pb-4">
         <a role="tab" class="tab @if($tab == 'overview') tab-active @endif"
-           wire:click="changeTab('overview')"><i class="icon-layout-dashboard"></i> &nbsp; {{ __('messages.overview') }}
+           wire:click="changeTab('overview')"><i class="icon-layout-dashboard"></i>
+            <span class="md:block hidden">&nbsp; {{ __('messages.overview') }}</span>
         </a>
         <a role="tab" class="tab @if($tab == 'api_keys') tab-active @endif"
            wire:click="changeTab('api_keys')"><i class="icon-key-round"></i>
-            &nbsp; {{ __('pages/account/profile.api_keys') }}</a>
+            <span class="md:block hidden">&nbsp; {{ __('pages/account/profile.api_keys') }}</span></a>
         <a role="tab" class="tab @if($tab == 'activity_log') tab-active @endif"
            wire:click="changeTab('activity_log')"><i class="icon-eye"></i>
-            &nbsp; {{ __('pages/account/profile.activity_log') }}</a>
+            <span class="md:block hidden">&nbsp; {{ __('pages/account/profile.activity_log') }}</span></a>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -140,6 +141,14 @@
                                         @if(auth()->user()->theme == 'nord') selected @endif>{{ __('pages/account/profile.theme_types.nord') }}</option>
                                 <option value="sunset"
                                         @if(auth()->user()->theme == 'sunset') selected @endif>{{ __('pages/account/profile.theme_types.sunset') }}</option>
+                                <option value="catppuccin_latte"
+                                        @if(auth()->user()->theme == 'catppuccin_latte') selected @endif>{{ __('pages/account/profile.theme_types.catppuccin_latte') }}</option>
+                                <option value="catppuccin_frappee"
+                                        @if(auth()->user()->theme == 'catppuccin_frappee') selected @endif>{{ __('pages/account/profile.theme_types.catppuccin_frappee') }}</option>
+                                <option value="catppuccin_macchiato"
+                                        @if(auth()->user()->theme == 'catppuccin_macchiato') selected @endif>{{ __('pages/account/profile.theme_types.catppuccin_macchiato') }}</option>
+                                <option value="catppuccin_mocha"
+                                        @if(auth()->user()->theme == 'catppuccin_mocha') selected @endif>{{ __('pages/account/profile.theme_types.catppuccin_mocha') }}</option>
                             </select>
                         </div>
                     </div>
@@ -226,7 +235,7 @@
                                 </div>
                             </div>
                             <div class="divider"></div>
-                            <div class="col-span-1 flex gap-2">
+                            <div class="col-span-1 flex gap-2 sm:flex-row flex-col">
                                 <x-button type="submit"
                                           class="btn btn-primary" spinner="updateProfile">
                                     {{ __('pages/account/profile.buttons.update_profile') }}
@@ -282,26 +291,22 @@
                                         </div>
                                     </div>
                                     <div class="divider"></div>
-                                    <div class="col-span-1 flex gap-2">
-                                        <x-button type="submit"
-                                                  class="btn btn-primary" spinner="updatePassword">
+                                    <div class="col-span-1 flex gap-2 sm:flex-row flex-col">
+                                        <x-button type="submit" class="btn btn-primary" spinner="updatePassword">
                                             {{ __('pages/account/messages.buttons.change_password') }}
                                         </x-button>
 
                                         @if(auth()->user()->two_factor_enabled)
-                                            <button type="button"
-                                                    class="btn btn-error"
+                                            <button type="button" class="btn btn-error"
                                                     wire:click="$dispatch('openModal', { component: 'components.modals.account.disable-two-factor' })">
                                                 {{ __('pages/account/messages.buttons.deactivate_two_factor') }}
                                             </button>
-                                            <button type="button"
-                                                    class="btn btn-accent"
+                                            <button type="button" class="btn btn-accent"
                                                     wire:click="$dispatch('openModal', { component: 'components.modals.account.recovery-codes' })">
                                                 {{ __('pages/account/profile.buttons.show_recovery_codes') }}
                                             </button>
                                         @else
-                                            <button type="button"
-                                                    class="btn btn-accent"
+                                            <button type="button" class="btn btn-accent"
                                                     wire:click="$dispatch('openModal', { component: 'components.modals.account.activate-two-factor' })">
                                                 {{ __('pages/account/messages.buttons.activate_two_factor') }}
                                             </button>
