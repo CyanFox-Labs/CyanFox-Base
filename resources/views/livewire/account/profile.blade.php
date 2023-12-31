@@ -341,7 +341,7 @@
                             @endforeach
                         </div>
                         <div class="divider"></div>
-                        <div class="col-span-1 flex gap-2">
+                        <div class="col-span-1 flex gap-2 sm:flex-row flex-col">
                             <button class="btn btn-primary"
                                     wire:click="$dispatch('openModal', { component: 'components.modals.account.new_api_key' })">
                                 {{ __('pages/account/profile.buttons.new_api_key') }}

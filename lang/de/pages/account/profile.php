@@ -12,7 +12,7 @@ return [
         'current_session' => 'Aktuelle Sitzung',
         'revoke_all_sessions' => 'Alle Sitzungen widerrufen',
         'update_profile' => 'Profil aktualisieren',
-        'show_recovery_codes' => 'Wiederherstellungscodes anzeigen',
+        'show_recovery_codes' => 'Wiederherstellungscodes',
         'new_api_key' => 'Neuer API Schlüssel',
         'revoke_api_key' => 'API Schlüssel widerrufen',
         'api_docs' => 'API Dokumentation',
