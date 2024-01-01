@@ -29,7 +29,8 @@
                     <div class="sm:flex sm:justify-between">
                         <div>
                             <p class="card-title"><i class="{{ $alert->icon }}"></i> {{ $alert->title }}</p>
-                            <div class="badge {{ $badge }}">{{ __('pages/admin/alerts/messages.types.' . $alert->type) }}</div>
+                            <div
+                                class="badge {{ $badge }}">{{ __('pages/admin/alerts/messages.types.' . $alert->type) }}</div>
                         </div>
                         <div class="flex gap-2">
                             <i class="icon-clock text-xl"></i>

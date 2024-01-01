@@ -5,18 +5,24 @@ return [
         'deleted' => 'system:user.deleted',
         'updated' => 'system:user.updated',
         'created' => 'system:user.created',
+        'create_failed' => 'system:user.create_failed',
+        'update_failed' => 'system:user.update_failed',
     ],
 
-    'group' => [
+    'role' => [
         'deleted' => 'system:group.deleted',
         'updated' => 'system:group.updated',
         'created' => 'system:group.created',
+        'create_failed' => 'system:group.create_failed',
+        'update_failed' => 'system:group.update_failed',
     ],
 
     'alert' => [
         'created' => 'system:alert.created',
         'updated' => 'system:alert.updated',
         'deleted' => 'system:alert.deleted',
+        'create_failed' => 'system:alert.create_failed',
+        'update_failed' => 'system:alert.update_failed',
     ],
 
     'auth' => [

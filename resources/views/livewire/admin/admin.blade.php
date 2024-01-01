@@ -61,14 +61,14 @@
 
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body flex justify-center align-middle text-center">
-                <a href="{{ route('admin-activity-log') }}"><i class="icon-eye text-9xl"></i></a>
-                <a href="{{ route('admin-activity-log') }}">{{ __('messages.activity_log') }}</a>
+                <a href="{{ route('admin-alert-list') }}"><i class="icon-message-circle-warning text-9xl"></i></a>
+                <a href="{{ route('admin-alert-list') }}">{{ __('messages.alerts') }}</a>
             </div>
         </div>
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body flex justify-center align-middle text-center">
-                <a href="{{ route('admin-alert-list') }}"><i class="icon-message-circle-warning text-9xl"></i></a>
-                <a href="{{ route('admin-alert-list') }}">{{ __('messages.alerts') }}</a>
+                <a href="{{ route('admin-activity-log') }}"><i class="icon-eye text-9xl"></i></a>
+                <a href="{{ route('admin-activity-log') }}">{{ __('messages.activity_log') }}</a>
             </div>
         </div>
     </div>

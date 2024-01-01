@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Components\Tables\Admin;
 
+use App\Models\Alert;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\On;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Exportable;
@@ -93,6 +95,24 @@ final class ActivityLogList extends PowerGridComponent
             Column::make(__('messages.updated_at'), 'updated_at')
                 ->sortable()
                 ->searchable(),
+            Column::action(__('messages.actions'))
+        ];
+    }
+
+    #[On('details')]
+    public function showDetails($rowId)
+    {
+        $this->dispatch('openModal', 'components.modals.admin.show-activity-log-details', ['activityId' => $rowId]);
+    }
+
+    public function actions(Activity $row): array
+    {
+        return [
+            Button::add('details')
+                ->slot('<i class="icon-menu"></i>')
+                ->id()
+                ->class('btn btn-primary btn-sm')
+                ->dispatch('details', ['rowId' => $row->id]),
         ];
     }
 }

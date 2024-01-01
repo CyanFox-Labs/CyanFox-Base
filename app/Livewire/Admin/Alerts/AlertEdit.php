@@ -61,6 +61,8 @@ class AlertEdit extends Component
             'files' => 'nullable',
         ]);
 
+        $originalAlert = Alert::find($this->alertId);
+
         $this->alert->title = $this->title;
         $this->alert->type = $this->type;
         $this->alert->icon = $this->icon;
@@ -75,6 +77,13 @@ class AlertEdit extends Component
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            activity('system')
+                ->performedOn($this->alert)
+                ->causedBy(auth()->user())
+                ->withProperty('name', $this->alert->title . ' (' . $this->alert->type . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('alert.update_failed');
 
             $this->dispatch('sendToConsole', $e->getMessage());
             return;
@@ -94,6 +103,8 @@ class AlertEdit extends Component
             ->causedBy(auth()->user())
             ->withProperty('name', $this->alert->title . ' (' . $this->alert->type . ')')
             ->withProperty('ip', request()->ip())
+            ->withProperty('old', $originalAlert->toJson())
+            ->withProperty('new', $this->alert->toJson())
             ->log('alert.updated');
 
         Notification::make()

@@ -32,6 +32,8 @@ class RoleEdit extends Component
             'guard_name' => 'required|string',
         ]);
 
+        $originalRole = Role::find($this->roleId);
+
         try {
             $this->role->update([
                 'name' => $this->name,
@@ -49,6 +51,13 @@ class RoleEdit extends Component
                 ->danger()
                 ->send();
 
+            activity('system')
+                ->performedOn($this->role)
+                ->causedBy(auth()->user())
+                ->withProperty('name', $this->role->name . ' (' . $this->role->guard_name . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('role.update_failed');
+
             $this->dispatch('sendToConsole', $e->getMessage());
             return;
         }
@@ -64,7 +73,9 @@ class RoleEdit extends Component
             ->causedBy(auth()->user())
             ->withProperty('name', $this->role->name . ' (' . $this->role->guard_name . ')')
             ->withProperty('ip', request()->ip())
-            ->log('group.updated');
+            ->withProperty('old', $originalRole->toJson())
+            ->withProperty('new', $this->role->toJson())
+            ->log('role.updated');
 
         return redirect()->route('admin-role-list');
     }

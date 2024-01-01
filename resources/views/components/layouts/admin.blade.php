@@ -2,18 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
       data-theme="{{ auth()->user()->theme }}"
       @if(
-    auth()->user()->theme == 'dark' ||
-    auth()->user()->theme == 'synthwave' ||
-    auth()->user()->theme == 'halloween' ||
-    auth()->user()->theme == 'forest' ||
-    auth()->user()->theme == 'black' ||
-    auth()->user()->theme == 'luxury' ||
-    auth()->user()->theme == 'business' ||
-    auth()->user()->theme == 'coffee' ||
-    auth()->user()->theme == 'night' ||
-    auth()->user()->theme == 'dracula' ||
-    auth()->user()->theme == 'dim' ||
-    auth()->user()->theme == 'sunset'
+    auth()->user()->getColorScheme() == 'dark'
     ) class="dark" @endif>
 <head>
     <meta charset="utf-8">

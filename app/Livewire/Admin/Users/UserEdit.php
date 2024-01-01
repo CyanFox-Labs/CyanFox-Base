@@ -43,6 +43,7 @@ class UserEdit extends Component
             'activate_two_factor' => 'required|boolean',
         ]);
 
+        $originalUser = User::find($this->userId);
 
         $user = User::find($this->userId);
         $user->first_name = $this->first_name;
@@ -62,6 +63,13 @@ class UserEdit extends Component
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            activity('system')
+                ->performedOn($user)
+                ->causedBy(auth()->user())
+                ->withProperty('name', $user->username . ' (' . $user->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('user.update_failed');
 
             $this->dispatch('sendToConsole', $e->getMessage());
             return;
@@ -83,6 +91,8 @@ class UserEdit extends Component
             ->causedBy(auth()->user())
             ->withProperty('name', $user->username . ' (' . $user->email . ')')
             ->withProperty('ip', request()->ip())
+            ->withProperty('old', $originalUser->toJson())
+            ->withProperty('new', $user->toJson())
             ->log('user.updated');
 
         return redirect()->route('admin-user-list');

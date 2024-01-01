@@ -41,6 +41,14 @@ class RoleCreate extends Component
                 ->title(__('messages.something_went_wrong'))
                 ->danger()
                 ->send();
+
+            activity('system')
+                ->performedOn($role)
+                ->causedBy(auth()->user())
+                ->withProperty('name', $role->name . ' (' . $role->guard_name . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('role.create_failed');
+
             $this->dispatch('sendToConsole', $e->getMessage());
             return;
         }
@@ -56,7 +64,8 @@ class RoleCreate extends Component
             ->causedBy(auth()->user())
             ->withProperty('name', $role->name . ' (' . $role->guard_name . ')')
             ->withProperty('ip', request()->ip())
-            ->log('group.created');
+            ->withProperty('new', $role->toJson())
+            ->log('role.created');
 
         return redirect()->route('admin-role-list');
 

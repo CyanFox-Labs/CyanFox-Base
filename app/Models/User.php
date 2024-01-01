@@ -45,4 +45,28 @@ class User extends Authenticatable
 
         return str_replace('{USER}', $this->email, env('DEFAULT_AVATAR_URL'));
     }
+
+    public function getColorScheme(): string
+    {
+        if (    auth()->user()->theme == 'dark' ||
+            auth()->user()->theme == 'synthwave' ||
+            auth()->user()->theme == 'halloween' ||
+            auth()->user()->theme == 'forest' ||
+            auth()->user()->theme == 'black' ||
+            auth()->user()->theme == 'luxury' ||
+            auth()->user()->theme == 'business' ||
+            auth()->user()->theme == 'coffee' ||
+            auth()->user()->theme == 'night' ||
+            auth()->user()->theme == 'dracula' ||
+            auth()->user()->theme == 'dim' ||
+            auth()->user()->theme == 'sunset' ||
+            auth()->user()->theme == 'catppuccin_frappee' ||
+            auth()->user()->theme == 'catppuccin_macchiato' ||
+            auth()->user()->theme == 'catppuccin_mocha') {
+            return 'dark';
+        }else{
+            return 'light';
+        }
+
+    }
 }

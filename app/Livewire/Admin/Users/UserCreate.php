@@ -59,6 +59,13 @@ class UserCreate extends Component
                 ->danger()
                 ->send();
 
+            activity('system')
+                ->performedOn($user)
+                ->causedBy(auth()->user())
+                ->withProperty('name', $user->username . ' (' . $user->email . ')')
+                ->withProperty('ip', request()->ip())
+                ->log('user.create_failed');
+
             $this->dispatch('sendToConsole', $e->getMessage());
             return;
         }
@@ -91,6 +98,7 @@ class UserCreate extends Component
             ->causedBy(auth()->user())
             ->withProperty('name', $user->username . ' (' . $user->email . ')')
             ->withProperty('ip', request()->ip())
+            ->withProperty('new', $user->toJson())
             ->log('user.created');
 
         return redirect()->route('admin-user-list');

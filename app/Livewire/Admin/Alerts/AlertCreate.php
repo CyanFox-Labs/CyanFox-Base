@@ -72,6 +72,7 @@ class AlertCreate extends Component
             ->causedBy(auth()->user())
             ->withProperty('name', $alert->title . ' (' . $alert->type . ')')
             ->withProperty('ip', request()->ip())
+            ->withProperty('new', $alert->toJson())
             ->log('alert.created');
 
         Notification::make()
