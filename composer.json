@@ -2,14 +2,28 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "danharrin/livewire-rate-limiting": "^1.2",
+        "filament/notifications": "^3.1",
+        "filament/tables": "^3.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "livewire/livewire": "^3.3",
+        "mews/captcha": "^3.3",
+        "pragmarx/google2fa-laravel": "^2.1",
+        "robsontenorio/mary": "dev-main",
+        "simplesoftwareio/simple-qrcode": "^4.2",
+        "spatie/laravel-artisan-dd": "^2.3",
+        "spatie/laravel-permission": "^6.3",
+        "wire-elements/modal": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -25,7 +39,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helpers/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -35,7 +52,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -59,6 +77,15 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true
+        }
+    },
+    "repositories": {
+        "robsontenorio/mary": {
+            "type": "vcs",
+            "url": "https://github.com/RealZone22/MaryUI.git",
+            "options": {
+                "symlink": true
+            }
         }
     },
     "minimum-stability": "stable",
