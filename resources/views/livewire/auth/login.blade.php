@@ -6,8 +6,17 @@
             <span
                 class="text-4xl font-bold brand-text text-white lg:block hidden">{{ config('app.name') }}</span>
         </p>
-        <div class="card bg-base-200 sm:w-96 w-auto">
+        <div class="card bg-base-200 sm:w-1/8 w-auto">
             <div class="card-body">
+                <div class="flex justify-end">
+                    <label>
+                        <select class="select select-bordered" wire:blur="changeLanguage($event.target.value)" wire:model="language">
+                            <option disabled selected>Language</option>
+                            <option value="en">{{ __('messages.languages.english') }}</option>
+                            <option value="de">{{ __('messages.languages.german') }}</option>
+                        </select>
+                    </label>
+                </div>
 
                 @if($user)
                     <div class="glass rounded-3xl">
@@ -35,18 +44,21 @@
                         <x-form class="space-y-4 md:space-y-6" wire:submit="checkTwoFactorCode">
                             @csrf
 
-                            <x-input label="{{ __('messages.two_factor_code') }}"
+                            <x-input label="{{ __('pages/auth/login.two_factor_or_recovery_code') }}"
                                      class="input input-bordered w-full"
                                      required="" wire:model="twoFactorCode"/>
 
-                            <x-button type="submit"
-                                      class="btn btn-primary w-full" spinner="checkTwoFactorCode">
-                                {{ __('pages/auth/login.buttons.login') }}
-                            </x-button>
-                            <a href="{{ route('auth.login') }}"
-                               class="btn btn-neutral">
-                                {{ __('messages.back') }}
-                            </a>
+                            <div>
+                                <x-button type="submit"
+                                          class="btn btn-primary w-full" spinner="checkTwoFactorCode">
+                                    {{ __('pages/auth/login.buttons.login') }}
+                                </x-button>
+
+                                <a href="{{ route('auth.login') }}"
+                                   class="btn btn-neutral w-full mt-2">
+                                    {{ __('messages.back') }}
+                                </a>
+                            </div>
                         </x-form>
                     @else
                         <x-form class="space-y-4 md:space-y-6" wire:submit="attemptLogin">
@@ -72,6 +84,20 @@
                         </x-form>
                     @endif
                 @endif
+                <div class="space-y-4 mt-4">
+                    <div class="divider">{{ strtoupper(__('messages.or')) }}</div>
+
+                    <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
+                        <a href="/auth/reset" class="btn btn-neutral">{{ __('pages/auth/login.buttons.forgot_password') }}</a>
+                        <a href="{{ route('auth.register') }}" class="btn btn-neutral">{{ __('pages/auth/login.buttons.register') }}</a>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 cursor-not-allowed">
+                        <a href="/auth/github" class="btn hover:bg-gray-950 bg-black text-white w-full btn-disabled">{!! __('pages/auth/login.login_with.github') !!}</a>
+                        <a href="/auth/gitlab" class="btn hover:bg-orange-500 bg-orange-600 text-white w-full btn-disabled">{!! __('pages/auth/login.login_with.gitlab') !!}</a>
+                        <a href="/auth/google" class="btn hover:bg-red-500 bg-red-600 text-white w-full btn-disabled">{!! __('pages/auth/login.login_with.google') !!}</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -8,12 +8,12 @@ use App\Models\UserRecoveryCode;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Notifications\Notification;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
-class Login extends Component
+class Register extends Component
 {
     use WithRateLimiting;
 
@@ -155,8 +155,8 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.auth.login')->layout('components.layouts.guest', [
-            'title' => __('navigation/titles.login')
+        return view('livewire.auth.register')->layout('components.layouts.guest', [
+            'title' => __('navigation/titles.register')
         ]);
     }
 }

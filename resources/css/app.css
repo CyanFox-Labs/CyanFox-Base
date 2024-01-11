@@ -1,3 +1,5 @@
+@import url('boxicons/css/boxicons.min.css');
+@import url('lucide-static/font/lucide.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
