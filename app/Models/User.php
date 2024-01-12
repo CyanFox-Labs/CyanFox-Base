@@ -59,7 +59,7 @@ class User extends Authenticatable
             return asset('storage/' . $filePath) . '?v=' . md5_file(storage_path('app/public/' . $filePath));
         }
 
-        return str_replace('{USER}', $this->email, get_setting('profile', 'default_avatar_url'));
+        return str_replace('{USER}', $this->username, get_setting('profile', 'default_avatar_url'));
     }
 
     public function getColorScheme(): string

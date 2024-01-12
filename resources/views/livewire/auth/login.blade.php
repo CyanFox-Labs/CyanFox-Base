@@ -88,10 +88,12 @@
                 <div class="space-y-4 mt-4">
                     <div class="divider">{{ strtoupper(__('messages.or')) }}</div>
 
-                    <div class="grid @if(get_setting('auth', 'enable_forgot_password') &&
+                    <div class="grid
+                    @if(get_setting('auth', 'enable_forgot_password') &&
                         get_setting('auth', 'enable_register')) lg:grid-cols-2 @endif grid-cols-1 gap-4">
+
                         @if(get_setting('auth', 'enable_forgot_password'))
-                            <a href="/auth/reset"
+                            <a href="{{ route('auth.forgot-password', '') }}"
                                class="btn btn-neutral">{{ __('pages/auth/login.buttons.forgot_password') }}</a>
                         @endif
 

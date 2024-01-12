@@ -13,7 +13,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Two-factor authentication in login
 - [x] Register
 - [ ] OAuth (Google, GitHub, etc.)
-- [ ] Forgot password
+- [x] Forgot password
 - [ ] Force change password
 - [ ] Force activate Two-factor authentication
 - [ ] Admin Page
@@ -37,4 +37,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [ ] Activity Log
     - [ ] OPTIONAL: Passkeys
 - [ ] Alerts / Notifications on home page
+- [ ] Activity logging
 - [ ] API Documentation

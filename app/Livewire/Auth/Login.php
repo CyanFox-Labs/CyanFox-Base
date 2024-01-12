@@ -71,13 +71,14 @@ class Login extends Component
 
     public function checkIfUserExits($username)
     {
+        if ($username == null || $username == '') {
+            return;
+        }
+
         if ($this->setRateLimit()) {
             return;
         }
-        if ($username == null || $username == '') {
-            $this->resetErrorBag('username');
-            return;
-        }
+
         $this->user = User::where('username', $username)->first();
         if ($this->user == null) {
             $this->user = false;
@@ -86,7 +87,6 @@ class Login extends Component
             ]);
         }
         $this->resetErrorBag('username');
-        $this->dispatch('userExists');
     }
 
 

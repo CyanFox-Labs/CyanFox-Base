@@ -6,7 +6,7 @@
             <span
                 class="text-4xl font-bold brand-text text-white lg:block hidden">{{ config('app.name') }}</span>
         </p>
-        <div class="card bg-base-200 sm:w-1/8 w-auto">
+        <div class="card bg-base-200 sm:min-w-96 sm:w-1/8 w-auto">
             <div class="card-body">
                 <div class="flex justify-end">
                     <label>
@@ -19,6 +19,19 @@
                     </label>
                 </div>
 
+                @if($user)
+                    <div class="glass rounded-3xl mt-2">
+                        <div class="flex p-2 relative">
+                            <img
+                                src="{{ $user->getAvatarURL() }}"
+                                alt="Avatar"
+                                class="rounded-full w-8 h-8 m-1">
+                            <p class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">{{ $user->username }}</p>
+                        </div>
+
+                    </div>
+                @endif
+
                 @if ($rateLimitTime > 1)
                     <div wire:poll.1s="setRateLimit">
                         <x-alert icon="o-exclamation-triangle"
@@ -27,47 +40,41 @@
                     </div>
                 @endif
 
-                <x-form class="space-y-4 md:space-y-6" wire:submit="register">
-                    @csrf
-                    <div class="grid sm:grid-cols-2 grid-cols-1 gap-4">
-                        <x-input label="{{ __('pages/auth/register.first_name') }}"
-                                 class="input input-bordered w-full"
-                                 wire:model="firstName" required/>
-
-                        <x-input label="{{ __('pages/auth/register.last_name') }}"
-                                 class="input input-bordered w-full"
-                                 wire:model="lastName" required/>
-
-
-                        <x-input label="{{ __('pages/auth/messages.username') }}"
-                                 class="input input-bordered w-full"
-                                 wire:model="username" required/>
-
+                @if($resetToken == null)
+                    <x-form class="space-y-4 md:space-y-6" wire:submit="sendResetLink">
+                        @csrf
                         <x-input label="{{ __('pages/auth/messages.email') }}"
-                                 type="email"
                                  class="input input-bordered w-full"
-                                 wire:model="email" required/>
+                                 wire:model="email"
+                                 wire:blur="checkIfUserExits($event.target.value)" required/>
 
-
+                        <x-button type="submit"
+                                  class="btn btn-primary w-full" spinner="sendResetLink">
+                            {{ __('pages/auth/forgot_password.buttons.send_reset_link') }}
+                        </x-button>
+                    </x-form>
+                @else
+                    <x-form class="space-y-4 md:space-y-6" wire:submit="resetPassword">
+                        @csrf
                         <x-input label="{{ __('pages/auth/messages.password') }}"
                                  type="password"
-                                 class="input input-bordered w-full"
-                                 wire:model="password" required/>
+                                 class="input input-bordered w-full" wire:model="password"
+                                 required />
 
-                        <x-input label="{{ __('pages/auth/register.confirm_password') }}"
+                        <x-input label="{{ __('pages/auth/forgot_password.confirm_password') }}"
                                  type="password"
-                                 class="input input-bordered w-full"
-                                 wire:model="passwordConfirmation" required/>
-                    </div>
+                                 class="input input-bordered w-full" wire:model="passwordConfirmation"
+                                 required />
 
-                    <x-button type="submit"
-                              class="btn btn-primary w-full" spinner="register">
-                        {{ __('pages/auth/register.buttons.register') }}
-                    </x-button>
+                        <x-button type="submit"
+                                  class="btn btn-primary w-full" spinner="resetPassword">
+                            {{ __('pages/auth/forgot_password.buttons.reset_password') }}
+                        </x-button>
+                    </x-form>
+                @endif
 
-                </x-form>
-
-                <a href="{{ route('auth.login') }}" class="btn btn-neutral mt-3 w-full">{{ __('pages/auth/messages.buttons.back_to_login') }}</a>
+                <a href="{{ route('auth.login') }}"
+                   class="btn btn-neutral mt-3 w-full">{{ __('pages/auth/messages.buttons.back_to_login') }}</a>
             </div>
         </div>
     </div>

@@ -6,7 +6,7 @@ return [
     'confirm_password' => 'Confirm Password',
 
     'notifications' => [
-        'registered' => 'Registration successful. You can now log in.',
+        'registered' => 'Registration successful.',
     ],
 
     'buttons' => [
