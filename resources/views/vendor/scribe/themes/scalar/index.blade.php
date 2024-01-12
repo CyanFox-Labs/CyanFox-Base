@@ -19,7 +19,8 @@
     id="api-reference"
     data-url="{{ env('APP_URL') }}/api/docs.openapi"
 ></script>
-<script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
+
+<script src="{{ asset('js/sites/scalar.js') }}"></script>
 
 </body>
 </html>

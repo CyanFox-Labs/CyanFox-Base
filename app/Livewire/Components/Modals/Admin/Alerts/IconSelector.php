@@ -3,6 +3,7 @@
 namespace App\Livewire\Components\Modals\Admin\Alerts;
 
 use App\Livewire\Admin\Alerts\AlertCreate;
+use App\Livewire\Admin\Alerts\AlertEdit;
 use LivewireUI\Modal\ModalComponent;
 
 class IconSelector extends ModalComponent
@@ -19,6 +20,7 @@ class IconSelector extends ModalComponent
 
         $this->closeModalWithEvents([
             AlertCreate::class => ['updateIcon', [$icon]],
+            AlertEdit::class => ['updateIcon', [$icon]],
         ]);
     }
 
