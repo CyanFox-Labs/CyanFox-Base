@@ -21,13 +21,14 @@ class Login extends Component
 
     public $user;
 
-    public $twoFactorEnabled = false;
-    public $twoFactorCode;
-
     public $rateLimitTime;
 
     public $username;
     public $password;
+
+    public $twoFactorEnabled = false;
+    public $twoFactorCode;
+
     public $rememberMe;
 
     public $language;

@@ -21,14 +21,15 @@ class Register extends Component
 
     public $user;
 
-    public $twoFactorEnabled = false;
-    public $twoFactorCode;
+    public $firstName;
+    public $lastName;
+    public $username;
+    public $email;
+    public $password;
+    public $passwordConfirmation;
 
     public $rateLimitTime;
 
-    public $username;
-    public $password;
-    public $rememberMe;
 
     public $language;
 
@@ -54,7 +55,7 @@ class Register extends Component
             ->title(__('pages/auth/messages.notifications.language_changed'))
             ->success()
             ->send();
-        return redirect()->route('auth.login');
+        return redirect()->route('auth.register');
     }
 
     public function setRateLimit()
@@ -68,89 +69,39 @@ class Register extends Component
         return false;
     }
 
-    public function checkIfUserExits($username)
+    public function register()
     {
-        if ($this->setRateLimit()) {
-            return;
-        }
-        if ($username == null || $username == '') {
-            $this->resetErrorBag('username');
-            return;
-        }
-        $this->user = User::where('username', $username)->first();
-        if ($this->user == null) {
-            $this->user = false;
-            throw ValidationException::withMessages([
-                'username' => __('pages/auth/login.user_not_found'),
-            ]);
-        }
-        $this->resetErrorBag('username');
-        $this->dispatch('userExists');
-    }
-
-
-    public function attemptLogin()
-    {
-        if ($this->setRateLimit()) {
-            return;
-        }
-
-        $credentials = [
-            'username' => $this->username,
-            'password' => $this->password,
-        ];
-
-        $this->checkIfUserExits($this->username);
-
-        if (Auth::attempt($credentials, $this->rememberMe)) {
-
-            if ($this->user->disabled) {
-                Auth::logout();
-                throw ValidationException::withMessages([
-                    'username' => __('pages/auth/login.user_disabled'),
-                ]);
-            }
-
-            if ($this->user->two_factor_secret == null) {
-                $this->user->generateTwoFactorSecret();
-            }
-
-            if (UserRecoveryCode::find($this->user->id) == null) {
-                $this->user->generateRecoveryCodes();
-            }
-
-            if ($this->user->two_factor_enabled) {
-                Auth::logout();
-                $this->twoFactorEnabled = true;
-            } else {
-                $this->redirect(route('home'));
-            }
-        } else {
-            throw ValidationException::withMessages([
-                'password' => __('validation.current_password'),
-            ]);
-        }
-    }
-
-    public function checkTwoFactorCode()
-    {
-        if ($this->setRateLimit()) {
-            return;
-        }
-
-        if (!$this->user->two_factor_enabled) {
-            return;
-        }
-
-        if ($this->user->checkTwoFactorCode($this->twoFactorCode)) {
-            Auth::login($this->user);
-            return redirect('/');
-        }
-
-        throw ValidationException::withMessages([
-            'twoFactorCode' => __('validation.custom.two_factor_code'),
+        $this->validate([
+            'firstName' => 'required|max:255',
+            'lastName' => 'required|max:255',
+            'username' => 'required|max:255|unique:users,username',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|max:255|same:passwordConfirmation',
+            'passwordConfirmation' => 'required|max:255',
         ]);
+
+        if ($this->setRateLimit()) {
+            return;
+        }
+
+        $user = User::create([
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
+            'username' => $this->username,
+            'email' => $this->email,
+            'password' => bcrypt($this->password),
+        ]);
+
+        Notification::make()
+            ->title(__('pages/auth/register.notifications.registered'))
+            ->success()
+            ->send();
+
+        Auth::login($user);
+
+        return redirect()->route('home');
     }
+
 
 
     public function render()

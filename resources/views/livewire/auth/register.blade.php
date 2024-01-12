@@ -6,7 +6,7 @@
             <span
                 class="text-4xl font-bold brand-text text-white lg:block hidden">{{ config('app.name') }}</span>
         </p>
-        <div class="card bg-base-200 sm:w-1/8 w-auto">
+        <div class="card bg-base-200 sm:w-1/3 w-auto">
             <div class="card-body">
                 <div class="flex justify-end">
                     <label>
@@ -27,16 +27,16 @@
                     </div>
                 @endif
 
-                <x-form class="space-y-4 md:space-y-6" wire:submit="attemptLogin">
+                <x-form class="space-y-4 md:space-y-6" wire:submit="register">
                     @csrf
                     <div class="grid sm:grid-cols-2 grid-cols-1 gap-4">
                         <x-input label="{{ __('pages/auth/register.first_name') }}"
                                  class="input input-bordered w-full"
-                                 wire:model="username" required/>
+                                 wire:model="firstName" required/>
 
                         <x-input label="{{ __('pages/auth/register.last_name') }}"
                                  class="input input-bordered w-full"
-                                 wire:model="password" required/>
+                                 wire:model="lastName" required/>
 
 
                         <x-input label="{{ __('pages/auth/messages.username') }}"
@@ -46,7 +46,7 @@
                         <x-input label="{{ __('pages/auth/messages.email') }}"
                                  type="email"
                                  class="input input-bordered w-full"
-                                 wire:model="password" required/>
+                                 wire:model="email" required/>
 
 
                         <x-input label="{{ __('pages/auth/messages.password') }}"
@@ -57,11 +57,11 @@
                         <x-input label="{{ __('pages/auth/register.confirm_password') }}"
                                  type="password"
                                  class="input input-bordered w-full"
-                                 wire:model="password" required/>
+                                 wire:model="passwordConfirmation" required/>
                     </div>
 
                     <x-button type="submit"
-                              class="btn btn-primary w-full" spinner="attemptLogin">
+                              class="btn btn-primary w-full" spinner="register">
                         {{ __('pages/auth/register.buttons.register') }}
                     </x-button>
 

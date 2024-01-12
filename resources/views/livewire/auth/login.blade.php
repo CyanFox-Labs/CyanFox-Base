@@ -10,7 +10,8 @@
             <div class="card-body">
                 <div class="flex justify-end">
                     <label>
-                        <select class="select select-bordered" wire:blur="changeLanguage($event.target.value)" wire:model="language">
+                        <select class="select select-bordered" wire:blur="changeLanguage($event.target.value)"
+                                wire:model="language">
                             <option disabled selected>Language</option>
                             <option value="en">{{ __('messages.languages.english') }}</option>
                             <option value="de">{{ __('messages.languages.german') }}</option>
@@ -87,15 +88,26 @@
                 <div class="space-y-4 mt-4">
                     <div class="divider">{{ strtoupper(__('messages.or')) }}</div>
 
-                    <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
-                        <a href="/auth/reset" class="btn btn-neutral">{{ __('pages/auth/login.buttons.forgot_password') }}</a>
-                        <a href="{{ route('auth.register') }}" class="btn btn-neutral">{{ __('pages/auth/login.buttons.register') }}</a>
+                    <div class="grid @if(get_setting('auth', 'enable_forgot_password') &&
+                        get_setting('auth', 'enable_register')) lg:grid-cols-2 @endif grid-cols-1 gap-4">
+                        @if(get_setting('auth', 'enable_forgot_password'))
+                            <a href="/auth/reset"
+                               class="btn btn-neutral">{{ __('pages/auth/login.buttons.forgot_password') }}</a>
+                        @endif
+
+                        @if(get_setting('auth', 'enable_register'))
+                            <a href="{{ route('auth.register') }}"
+                               class="btn btn-neutral">{{ __('pages/auth/login.buttons.register') }}</a>
+                        @endif
                     </div>
 
                     <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 cursor-not-allowed">
-                        <a href="/auth/github" class="btn hover:bg-gray-950 bg-black text-white w-full btn-disabled">{!! __('pages/auth/login.login_with.github') !!}</a>
-                        <a href="/auth/gitlab" class="btn hover:bg-orange-500 bg-orange-600 text-white w-full btn-disabled">{!! __('pages/auth/login.login_with.gitlab') !!}</a>
-                        <a href="/auth/google" class="btn hover:bg-red-500 bg-red-600 text-white w-full btn-disabled">{!! __('pages/auth/login.login_with.google') !!}</a>
+                        <a href="/auth/github"
+                           class="btn hover:bg-gray-950 bg-black text-white w-full btn-disabled">{!! __('pages/auth/login.login_with.github') !!}</a>
+                        <a href="/auth/gitlab"
+                           class="btn hover:bg-orange-500 bg-orange-600 text-white w-full btn-disabled">{!! __('pages/auth/login.login_with.gitlab') !!}</a>
+                        <a href="/auth/google"
+                           class="btn hover:bg-red-500 bg-red-600 text-white w-full btn-disabled">{!! __('pages/auth/login.login_with.google') !!}</a>
                     </div>
                 </div>
             </div>

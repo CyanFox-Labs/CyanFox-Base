@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'auth', 'middleware' => 'language'], function () {
     Route::get('login', Login::class)->name('auth.login')->middleware('guest');
-    Route::get('register', Register::class)->name('auth.register')->middleware('guest');
+
+    if(get_setting('auth', 'enable_register')) {
+        Route::get('register', Register::class)->name('auth.register')->middleware('guest');
+    }
 
     Route::get('logout', function () {
         auth()->logout();
