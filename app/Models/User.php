@@ -35,6 +35,9 @@ class User extends Authenticatable
         'force_activate_two_factor',
         'password_reset_token',
         'password_reset_expiration',
+        'github_id',
+        'gitlab_id',
+        'google_id',
         'disabled',
     ];
 
@@ -59,26 +62,29 @@ class User extends Authenticatable
             return asset('storage/' . $filePath) . '?v=' . md5_file(storage_path('app/public/' . $filePath));
         }
 
-        return str_replace('{USER}', $this->username, get_setting('profile', 'default_avatar_url'));
+        return str_replace('{USER}', urlencode($this->username), setting('profile_default_avatar_url'));
     }
 
     public function getColorScheme(): string
     {
-        if (auth()->user()->theme == 'dark' ||
-            auth()->user()->theme == 'synthwave' ||
-            auth()->user()->theme == 'halloween' ||
-            auth()->user()->theme == 'forest' ||
-            auth()->user()->theme == 'black' ||
-            auth()->user()->theme == 'luxury' ||
-            auth()->user()->theme == 'business' ||
-            auth()->user()->theme == 'coffee' ||
-            auth()->user()->theme == 'night' ||
-            auth()->user()->theme == 'dracula' ||
-            auth()->user()->theme == 'dim' ||
-            auth()->user()->theme == 'sunset' ||
-            auth()->user()->theme == 'catppuccin_frappee' ||
-            auth()->user()->theme == 'catppuccin_macchiato' ||
-            auth()->user()->theme == 'catppuccin_mocha') {
+        $darkThemes = [
+            'dark',
+            'synthwave',
+            'halloween',
+            'forest',
+            'black',
+            'luxury',
+            'business',
+            'coffee',
+            'night',
+            'dracula',
+            'dim',
+            'sunset',
+            'catppuccin_frappee',
+            'catppuccin_macchiato',
+            'catppuccin_mocha',
+        ];
+        if (in_array($this->theme, $darkThemes)) {
             return 'dark';
         }else{
             return 'light';

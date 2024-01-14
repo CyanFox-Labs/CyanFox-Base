@@ -31,4 +31,20 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'github' => [
+        'client_id' => setting('oauth_github_client_id', isConfig: true),
+        'client_secret' => setting('oauth_github_client_secret', true, true),
+        'redirect' => setting('oauth_github_redirect', isConfig: true),
+    ],
+    'gitlab' => [
+        'client_id' => setting('oauth_gitlab_client_id', isConfig: true),
+        'client_secret' => setting('oauth_gitlab_client_secret', true, true),
+        'redirect' => setting('oauth_gitlab_redirect', isConfig: true),
+    ],
+    'google' => [
+        'client_id' => setting('oauth_google_client_id', isConfig: true),
+        'client_secret' => setting('oauth_google_client_secret', true, true),
+        'redirect' => setting('oauth_google_redirect', isConfig: true),
+    ],
+
 ];

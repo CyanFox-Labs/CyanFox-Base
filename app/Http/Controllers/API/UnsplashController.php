@@ -51,14 +51,14 @@ class UnsplashController extends Controller
 
     public static function getUTM()
     {
-        return get_setting('unsplash', 'utm');
+        return setting('unsplash_utm', '?utm_source=your_app_name&utm_medium=referral');
     }
 
     /**
      * @throws GuzzleException
      */
     public static function getRandomUnsplashImage() {
-        $api_key = get_setting('unsplash', 'api_key');
+        $api_key = setting('unsplash_api_key', true);
 
         $client = new Client();
 

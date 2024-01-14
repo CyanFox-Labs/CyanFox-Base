@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('email')->unique()->nullable();
+            $table->string('password')->nullable();
             $table->string('theme')->default('light');
             $table->string('language')->default('en');
             $table->boolean('two_factor_enabled')->default(false);
@@ -26,6 +26,9 @@ return new class extends Migration
             $table->boolean('force_activate_two_factor')->default(false);
             $table->string('password_reset_token')->nullable();
             $table->timestamp('password_reset_expiration')->nullable();
+            $table->string('github_id')->nullable();
+            $table->string('google_id')->nullable();
+            $table->string('gitlab_id')->nullable();
             $table->boolean('disabled')->default(false);
             $table->rememberToken();
             $table->timestamps();

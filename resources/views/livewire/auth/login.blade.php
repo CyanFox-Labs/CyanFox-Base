@@ -4,9 +4,9 @@
         <p class="flex items-center mb-6 text-2xl font-semibold">
             <img class="w-32 h-32 mr-2" src="{{ asset("img/Logo.png") }}" alt="Logo">
             <span
-                class="text-4xl font-bold brand-text text-white lg:block hidden">{{ config('app.name') }}</span>
+                class="text-4xl font-bold brand-text text-white lg:block hidden">{{ setting('app_name') }}</span>
         </p>
-        <div class="card bg-base-200 sm:w-1/8 w-auto">
+        <div class="card bg-base-200 sm:min-w-96 sm:w-1/8 w-auto">
             <div class="card-body">
                 <div class="flex justify-end">
                     <label>
@@ -40,7 +40,7 @@
                     </div>
                 @endif
 
-                @if(!get_setting('auth', 'disable_local_login'))
+                @if(setting('auth_enable_local_login'))
                     @if($twoFactorEnabled)
                         <x-form class="space-y-4 md:space-y-6" wire:submit="checkTwoFactorCode">
                             @csrf
@@ -86,31 +86,49 @@
                     @endif
                 @endif
                 <div class="space-y-4 mt-4">
-                    <div class="divider">{{ strtoupper(__('messages.or')) }}</div>
-
-                    <div class="grid
-                    @if(get_setting('auth', 'enable_forgot_password') &&
-                        get_setting('auth', 'enable_register')) lg:grid-cols-2 @endif grid-cols-1 gap-4">
-
-                        @if(get_setting('auth', 'enable_forgot_password'))
-                            <a href="{{ route('auth.forgot-password', '') }}"
-                               class="btn btn-neutral">{{ __('pages/auth/login.buttons.forgot_password') }}</a>
+                    @if(setting('auth_enable_local_login'))
+                        @if(setting('auth_enable_forgot_password') ||
+                            setting('auth_enable_register') ||
+                            setting('auth_enable_oauth'))
+                            <div class="divider">{{ strtoupper(__('messages.or')) }}</div>
                         @endif
 
-                        @if(get_setting('auth', 'enable_register'))
-                            <a href="{{ route('auth.register') }}"
-                               class="btn btn-neutral">{{ __('pages/auth/login.buttons.register') }}</a>
-                        @endif
-                    </div>
+                        <div class="grid
+                    @if(setting('auth_enable_forgot_password') &&
+                        setting('auth_enable_register')) lg:grid-cols-2 @endif grid-cols-1 gap-4">
 
-                    <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 cursor-not-allowed">
-                        <a href="/auth/github"
-                           class="btn hover:bg-gray-950 bg-black text-white w-full btn-disabled">{!! __('pages/auth/login.login_with.github') !!}</a>
-                        <a href="/auth/gitlab"
-                           class="btn hover:bg-orange-500 bg-orange-600 text-white w-full btn-disabled">{!! __('pages/auth/login.login_with.gitlab') !!}</a>
-                        <a href="/auth/google"
-                           class="btn hover:bg-red-500 bg-red-600 text-white w-full btn-disabled">{!! __('pages/auth/login.login_with.google') !!}</a>
-                    </div>
+                            @if(setting('auth_enable_forgot_password'))
+                                <a href="{{ route('auth.forgot-password', '') }}"
+                                   class="btn btn-neutral">{{ __('pages/auth/login.buttons.forgot_password') }}</a>
+                            @endif
+
+                            @if(setting('auth_enable_register'))
+                                <a href="{{ route('auth.register') }}"
+                                   class="btn btn-neutral">{{ __('pages/auth/login.buttons.register') }}</a>
+                            @endif
+                        </div>
+                    @endif
+
+                    @if(setting('auth_enable_oauth'))
+                        <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+
+                            @if(setting('oauth_enable_github'))
+                                <a href="{{ route('auth.redirect', 'github') }}"
+                                   class="btn hover:bg-gray-950 bg-black text-white w-full">{!! __('pages/auth/login.login_with.github') !!}</a>
+                            @endif
+
+                            @if(setting('oauth_enable_gitlab'))
+                                <a href="{{ route('auth.redirect', 'gitlab') }}"
+                                   class="btn hover:bg-orange-500 bg-orange-600 text-white w-full">{!! __('pages/auth/login.login_with.gitlab') !!}</a>
+                            @endif
+
+                            @if(setting('oauth_enable_google'))
+                                <a href="{{ route('auth.redirect', 'google') }}"
+                                   class="btn hover:bg-red-500 bg-red-600 text-white w-full">{!! __('pages/auth/login.login_with.google') !!}</a>
+                            @endif
+
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -120,7 +138,7 @@
             <span class="text-sm" id="credits" wire:ignore><a id="photo"
                                                               href="{{ $unsplash['photo'] }}">{{ __('pages/auth/messages.photo') }}</a>, <a
                     id="author" href="{{ $unsplash['authorURL'] }}">{{ $unsplash['author'] }}</a>, <a
-                    href="https://unsplash.com/{{ get_setting('unsplash', 'utm') }}">Unsplash</a></span>
+                    href="https://unsplash.com/{{ setting('unsplash_utm', '?utm_source=your_app_name&utm_medium=referral') }}">Unsplash</a></span>
         </div>
     @endif
 </div>

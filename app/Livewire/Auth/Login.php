@@ -144,7 +144,7 @@ class Login extends Component
         }
 
         if ($this->user->checkTwoFactorCode($this->twoFactorCode)) {
-            Auth::login($this->user);
+            Auth::login($this->user, $this->rememberMe);
             return redirect('/');
         }
 

@@ -4,7 +4,7 @@
         <p class="flex items-center mb-6 text-2xl font-semibold">
             <img class="w-32 h-32 mr-2" src="{{ asset("img/Logo.png") }}" alt="Logo">
             <span
-                class="text-4xl font-bold brand-text text-white lg:block hidden">{{ config('app.name') }}</span>
+                class="text-4xl font-bold brand-text text-white lg:block hidden">{{ setting('app_name') }}</span>
         </p>
         <div class="card bg-base-200 sm:w-1/8 w-auto">
             <div class="card-body">
@@ -76,7 +76,7 @@
             <span class="text-sm" id="credits" wire:ignore><a id="photo"
                                                               href="{{ $unsplash['photo'] }}">{{ __('pages/auth/messages.photo') }}</a>, <a
                     id="author" href="{{ $unsplash['authorURL'] }}">{{ $unsplash['author'] }}</a>, <a
-                    href="https://unsplash.com/{{ get_setting('unsplash', 'utm') }}">Unsplash</a></span>
+                    href="https://unsplash.com/{{ setting('unsplash_utm', '?utm_source=your_app_name&utm_medium=referral') }}">Unsplash</a></span>
         </div>
     @endif
 </div>

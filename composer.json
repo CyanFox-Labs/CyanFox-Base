@@ -14,7 +14,9 @@
         "filament/tables": "^3.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
+        "laravel/prompts": "^0.1.15",
         "laravel/sanctum": "^3.3",
+        "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.3",
         "mews/captcha": "^3.3",
@@ -41,7 +43,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/helpers.php"
+            "app/helpers.php"
         ]
     },
     "autoload-dev": {

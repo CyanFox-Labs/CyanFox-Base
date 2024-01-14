@@ -12,8 +12,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Logout
 - [x] Two-factor authentication in login
 - [x] Register
-- [ ] OAuth (Google, GitHub, etc.)
+- [x] OAuth (Google, GitHub, etc.)
 - [x] Forgot password
+- [ ] Add default values to .env.example
+- [ ] Add github workflow and dependabot config
 - [ ] Force change password
 - [ ] Force activate Two-factor authentication
 - [ ] Admin Page

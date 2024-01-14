@@ -181,12 +181,12 @@ class ForgotPassword extends Component
             $message->to($user->email, str_replace(
                 ['{username}', '{first_name}', '{last_name}'],
                 [$user->username, $user->first_name, $user->last_name],
-                get_setting('emails', 'forgot_password.title')
+                setting('emails', 'forgot_password.title')
             ))
                 ->subject(str_replace(
                     ['{username}', '{first_name}', '{last_name}'],
                     [$user->username, $user->first_name, $user->last_name],
-                    get_setting('emails', 'forgot_password.subject')
+                    setting('emails', 'forgot_password.subject')
                 ));
             $message->from(config('mail.from.address'), config('mail.from.name'));
         });
