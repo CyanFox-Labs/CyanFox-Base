@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+<div x-data="{ sidebarOpen: false, pinned: $persist(false) }" class="relative">
+    <!-- Navbar -->
+    <nav class="bg-base-200 flex items-center justify-between p-3">
+        <div class="ml-auto flex items-center">
+            <div class="mr-4">
+                <i class="icon-search font-semibold text-2xl cursor-pointer" @click.stop="$dispatch('mary-search-open')"></i>
+            </div>
+
+            <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
+                <img tabindex="0" role="button"
+                     src="{{ auth()->user()->getAvatarURL() }}" alt="Profile"
+                     class="w-9 h-9 mr-6">
+                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><a href="#"><i class='icon-user'></i> {{ __('navigation/messages.profile') }}</a>
+                    </li>
+                    @hasrole('Super Admin')
+                    <li><a href="#"><i class='icon-settings'></i> {{ __('navigation/messages.admin') }}</a></li>
+                    <div class="divider"></div>
+                    @endhasrole
+
+                    <li><a href="{{ route('auth.logout') }}"><i
+                                class='icon-log-out'></i> {{ __('navigation/messages.logout') }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div x-bind:class="{'expanded': sidebarOpen || pinned, 'pinned': pinned}" @mouseover="sidebarOpen = true"
+         @mouseleave="sidebarOpen = false" @touchstart="sidebarOpen = !sidebarOpen; pinned = false"
+         class="flex flex-col items-center w-40 fixed top-0 left-0 h-full sidebar overflow-hidden bg-base-200  transform transition-transform"
+         x-transition:enter="transition-transform transition-width ease-out duration-300"
+         x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+         x-transition:leave="transition-transform transition-width ease-in duration-300"
+         x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
+
+        <div class="flex items-center justify-center w-full h-16 mt-2">
+            <img src="{{ asset('img/Logo.png') }}" alt="Logo" class="w-8 h-8">
+            <span class="ml-2 text-sm font-bold text-hidden">{{ setting('app_name') }}</span>
+        </div>
+
+        <div class="w-full px-2 mt-4">
+            <div class="flex flex-col items-center w-full mt-3 mb-3">
+                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('home') ? 'bg-base-300' : '' }}"
+                   href="#">
+                    <i class="icon-home"></i>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/messages.home') }}</span>
+                </a>
+            </div>
+
+            <div class="divider divider-neutral"></div>
+
+            <div class="flex flex-col items-center w-full mt-2">
+                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('profile') ? 'bg-base-300' : '' }}"
+                   href="#">
+                    <i class="icon-user"></i>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/messages.profile') }}</span>
+                </a>
+                @hasrole('Super Admin')
+                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin') ? 'bg-base-300' : '' }}"
+                   href="#">
+                    <i class="icon-settings"></i>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/messages.admin') }}</span>
+                </a>
+                @endhasrole
+                <a class="relative flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('logout') ? 'bg-base-300' : '' }}"
+                   href="{{ route('auth.logout') }}">
+                    <i class="icon-log-out"></i>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/messages.logout') }}</span>
+                </a>
+            </div>
+        </div>
+        <a @click="pinned = !pinned" id="pinBtn" role="button"
+           class="flex items-center justify-center w-full h-16 mt-auto rounded hover:bg-base-300 sm:inline-flex hidden"
+           :class="[pinned ? 'bg-base-300' : '']">
+            <i :class="[pinned ? 'icon-pin transform rotate-90 transition-transform duration-300' :
+            'icon-pin transform rotate-0 transition-transform duration-300']"></i>
+        </a>
+    </div>
+
+    <!-- Content -->
+    <div :class="{'ml-14': !pinned, 'ml-52': pinned}"
+         class="content transition-all duration-200 ease-in-out pt-7 px-2 md:px-5 pb-4">
+
+        {{ $content }}
+
+    </div>
+</div>

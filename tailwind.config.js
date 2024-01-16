@@ -13,12 +13,36 @@ module.exports = {
         './resources/views/filament/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
 
+        './lang/**/*.php',
+
         './vendor/robsontenorio/mary/src/View/Components/**/*.php'
     ],
     plugins: [require("daisyui")],
     daisyui: {
         themes: [
             {
+                cyanfox_dark: {
+                    "primary": "#1d4ed8",
+                    "secondary": "#22d3ee",
+                    "accent": "#f59e0b",
+                    "neutral": "#292524",
+                    "base-100": "#1f2937",
+                    "info": "#0369a1",
+                    "success": "#047857",
+                    "warning": "#f97316",
+                    "error": "#ef4444",
+                },
+                cyanfox_light: {
+                    "primary": "#2563eb",
+                    "secondary": "#38bdf8",
+                    "accent": "#f59e0b",
+                    "neutral": "#292524",
+                    "base-100": "#f3f4f6",
+                    "info": "#0369a1",
+                    "success": "#047857",
+                    "warning": "#f97316",
+                    "error": "#ef4444",
+                },
                 catppuccin_latte: {
                     "primary": "#d20f39",
                     "secondary": "#179299",

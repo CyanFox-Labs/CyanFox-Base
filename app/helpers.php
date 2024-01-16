@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\VersionHelper;
 use App\Models\Setting;
 
 if (!function_exists('setting')) {
@@ -17,5 +18,22 @@ if (!function_exists('setting')) {
         return app()->booted(function () use ($key, $isEncrypted) {
             return Setting::get($key, $isEncrypted);
         });
+    }
+}
+
+if (!function_exists('get_version')) {
+
+    /**
+     * Get the current version of the application.
+     */
+    function get_version($type = 'template')
+    {
+        return match ($type) {
+            'template' => VersionHelper::getCurrentTemplateVersion(),
+            'project' => VersionHelper::getCurrentProjectVersion(),
+            'remote_template' => VersionHelper::getRemoteTemplateVersion(),
+            'remote_project' => VersionHelper::getRemoteProjectVersion(),
+            default => null,
+        };
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Helpers;
 
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
-class OAuthController extends Controller
+class OAuthHelper
 {
 
     public function redirectToProvider(string $provider)

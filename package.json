@@ -19,6 +19,6 @@
     },
     "dependencies": {
         "boxicons": "^2.1.4",
-        "lucide-static": "^0.309.0"
+        "lucide-static": "^0.311.0"
     }
 }
