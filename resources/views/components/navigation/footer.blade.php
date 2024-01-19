@@ -7,7 +7,7 @@
         @else
             0ms
         @endif
-        &nbsp; | &nbsp;
+        <span class="px-2">|</span>
         {{ __('messages.version') }} {{ get_version('project') }}
     </div>
 

@@ -11,6 +11,7 @@ use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class Login extends Component
@@ -22,6 +23,9 @@ class Login extends Component
     public $user;
 
     public $rateLimitTime;
+
+    #[Url]
+    public $redirect;
 
     public $username;
     public $password;
@@ -35,6 +39,10 @@ class Login extends Component
 
     public function mount()
     {
+        if (!$this->redirect == null && !str_starts_with($this->redirect, setting('app_url'))) {
+            $this->redirect = setting('app_url');
+        }
+
         $unsplash = UnsplashController::returnBackground();
 
         $this->unsplash = $unsplash;
@@ -55,7 +63,7 @@ class Login extends Component
             ->title(__('pages/auth/messages.notifications.language_changed'))
             ->success()
             ->send();
-        return redirect()->route('auth.login');
+        return redirect()->route('auth.login', ['redirect' => $this->redirect]);
     }
 
     public function setRateLimit()
@@ -124,6 +132,10 @@ class Login extends Component
                 Auth::logout();
                 $this->twoFactorEnabled = true;
             } else {
+                if ($this->redirect) {
+                    return redirect()->to($this->redirect);
+                }
+
                 $this->redirect(route('home'));
             }
         } else {
@@ -145,6 +157,11 @@ class Login extends Component
 
         if ($this->user->checkTwoFactorCode($this->twoFactorCode)) {
             Auth::login($this->user, $this->rememberMe);
+
+            if ($this->redirect) {
+                return redirect()->to($this->redirect);
+            }
+
             return redirect('/');
         }
 

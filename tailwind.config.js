@@ -14,6 +14,7 @@ module.exports = {
         './vendor/filament/**/*.blade.php',
 
         './lang/**/*.php',
+        './app/Support/**/*.php',
 
         './vendor/robsontenorio/mary/src/View/Components/**/*.php'
     ],
@@ -96,12 +97,10 @@ module.exports = {
             "corporate",
             "synthwave",
             "retro",
-            "cyberpunk",
             "valentine",
             "halloween",
             "garden",
             "forest",
-            "aqua",
             "lofi",
             "pastel",
             "fantasy",

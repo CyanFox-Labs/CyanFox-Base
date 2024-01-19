@@ -33,7 +33,9 @@
 
 <x-navigation.footer/>
 
-<x-spotlight />
+<x-spotlight
+    shortcut="ctrl.x"
+/>
 
 @filamentScripts
 @vite('resources/js/app.js')

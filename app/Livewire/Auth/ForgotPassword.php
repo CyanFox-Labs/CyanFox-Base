@@ -119,7 +119,7 @@ class ForgotPassword extends Component
     public function resetPassword()
     {
         $this->validate([
-            'password' => 'required|string',
+            'password' => 'required|max:255|string',
             'passwordConfirmation' => 'required|same:password',
         ]);
 
@@ -157,7 +157,7 @@ class ForgotPassword extends Component
         }
 
         $this->validate([
-            'email' => 'required|email',
+            'email' => 'required|max:255|email',
         ]);
 
         $this->checkIfUserExits($this->email);

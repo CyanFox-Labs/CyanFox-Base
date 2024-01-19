@@ -15,10 +15,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Forgot password
 - [ ] Profile
     - [ ] Image upload
-    - [ ] Change basic information
-    - [ ] Change password
-    - [ ] Change Theme
-    - [ ] Change Language
+    - [x] Change basic information
+    - [x] Change password
+    - [x] Change Theme
+    - [x] Change Language
     - [ ] Manage Sessions
     - [ ] Activate Two-factor authentication
     - [ ] Disable Two-factor authentication
@@ -35,15 +35,18 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [ ] Alerts / Notifications
 - [ ] Force change password
 - [ ] Force activate Two-factor authentication
-- [ ] Alerts / Notifications on home page
+- [ ] Password rules
+- [ ] Alerts / Notifications (types: info, warning, update, error / danger | with dismiss option | where: login, admin, profile, home, default = navbar)
 - [ ] Activity logging
 - [ ] Add Spotlight values
+- [ ] Switch to navbar if the device is too small
 - [ ] API Documentation
-- [ ] German translation
+- [ ] German translation (sie & du)
 - [ ] Add default values to .env.example
 - [ ] Add github workflow and dependabot config
-- [ ] Add tests
-- [ ] Code cleanup
 - [ ] Code refactoring
-- [ ] Code comments / docs
+- [ ] Code cleanup
+- [ ] Code comments
+- [ ] Add tests
+- [ ] Add Readme (Screenshots, Links etc.)
 - [ ] Release v2.0.0

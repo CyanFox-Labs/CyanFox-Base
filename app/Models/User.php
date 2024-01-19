@@ -83,6 +83,7 @@ class User extends Authenticatable
             'catppuccin_frappee',
             'catppuccin_macchiato',
             'catppuccin_mocha',
+            'cyanfox_dark'
         ];
         if (in_array($this->theme, $darkThemes)) {
             return 'dark';

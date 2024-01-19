@@ -1,10 +1,12 @@
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <div x-data="{ sidebarOpen: false, pinned: $persist(false) }" class="relative">
+
     <!-- Navbar -->
     <nav class="bg-base-200 flex items-center justify-between p-3">
         <div class="ml-auto flex items-center">
             <div class="mr-4">
-                <i class="icon-search font-semibold text-2xl cursor-pointer" @click.stop="$dispatch('mary-search-open')"></i>
+                <i class="icon-search font-semibold text-2xl cursor-pointer"
+                   @click.stop="$dispatch('mary-search-open')"></i>
             </div>
 
             <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
@@ -12,15 +14,16 @@
                      src="{{ auth()->user()->getAvatarURL() }}" alt="Profile"
                      class="w-9 h-9 mr-6">
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a href="#"><i class='icon-user'></i> {{ __('navigation/messages.profile') }}</a>
+                    <li><a href="{{ route('account.profile') }}"><i class='icon-user'></i> {{ __('navigation/navigation.profile') }}</a>
                     </li>
+
                     @hasrole('Super Admin')
-                    <li><a href="#"><i class='icon-settings'></i> {{ __('navigation/messages.admin') }}</a></li>
-                    <div class="divider"></div>
+                        <li><a href="#"><i class='icon-settings'></i> {{ __('navigation/navigation.admin') }}</a></li>
+                        <div class="divider"></div>
                     @endhasrole
 
                     <li><a href="{{ route('auth.logout') }}"><i
-                                class='icon-log-out'></i> {{ __('navigation/messages.logout') }}</a></li>
+                                class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
                 </ul>
             </div>
         </div>
@@ -43,31 +46,31 @@
         <div class="w-full px-2 mt-4">
             <div class="flex flex-col items-center w-full mt-3 mb-3">
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('home') ? 'bg-base-300' : '' }}"
-                   href="#">
+                   href="{{ route('home') }}">
                     <i class="icon-home"></i>
-                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/messages.home') }}</span>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.home') }}</span>
                 </a>
             </div>
 
             <div class="divider divider-neutral"></div>
 
             <div class="flex flex-col items-center w-full mt-2">
-                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('profile') ? 'bg-base-300' : '' }}"
-                   href="#">
+                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('account.profile') ? 'bg-base-300' : '' }}"
+                   href="{{ route('account.profile') }}">
                     <i class="icon-user"></i>
-                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/messages.profile') }}</span>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.profile') }}</span>
                 </a>
                 @hasrole('Super Admin')
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin') ? 'bg-base-300' : '' }}"
                    href="#">
                     <i class="icon-settings"></i>
-                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/messages.admin') }}</span>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin') }}</span>
                 </a>
                 @endhasrole
                 <a class="relative flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('logout') ? 'bg-base-300' : '' }}"
                    href="{{ route('auth.logout') }}">
                     <i class="icon-log-out"></i>
-                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/messages.logout') }}</span>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.logout') }}</span>
                 </a>
             </div>
         </div>

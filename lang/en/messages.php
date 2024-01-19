@@ -9,5 +9,11 @@ return [
     'languages' => [
         'english' => 'English',
         'german' => 'German',
-    ]
+    ],
+
+    'buttons' => [
+        'update' => 'Update',
+    ],
+
+    'password' => 'Password'
 ];

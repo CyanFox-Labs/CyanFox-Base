@@ -38,7 +38,7 @@ class Spotlight
                 'name' => __('navigation/spotlight.default.profile.title'),
                 'description' => __('navigation/spotlight.default.profile.description'),
                 'icon' => Blade::render('<img src="' . auth()->user()->getAvatarURL() . '" alt="Profile" class="w-9 h-9">'),
-                'link' => '/profile'
+                'link' => route('account.profile')
             ],
             [
                 'name' => __('navigation/spotlight.default.logout.title'),

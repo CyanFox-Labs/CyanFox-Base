@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\OAuthHelper;
+use App\Livewire\Account\Profile;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
@@ -50,4 +51,8 @@ Route::group(['prefix' => 'auth', 'middleware' => 'language'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', Home::class)->name('home');
+
+    Route::group(['prefix' => 'account'], function () {
+        Route::get('profile', Profile::class)->name('account.profile');
+    });
 });
