@@ -10,6 +10,7 @@ use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
@@ -24,15 +25,16 @@ class ForgotPassword extends Component
     public $user;
 
 
+    public $email;
     public $resetToken;
     public $password;
     public $passwordConfirmation;
 
     public $rateLimitTime;
 
-    public $email;
 
     public $language;
+    public $captcha;
 
     public function mount()
     {
@@ -164,6 +166,16 @@ class ForgotPassword extends Component
 
         if ($this->user == null) {
             return;
+        }
+
+        if (setting('auth_enable_captcha')) {
+            $validator = Validator::make(['captcha' => $this->captcha], ['captcha' => 'required|captcha']);
+
+            if ($validator->fails()) {
+                throw ValidationException::withMessages([
+                    'captcha' => __('validation.custom.invalid_captcha')
+                ]);
+            }
         }
 
         $this->user->password_reset_token = Str::random(32);

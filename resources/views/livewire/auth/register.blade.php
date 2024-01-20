@@ -60,6 +60,18 @@
                                  wire:model="passwordConfirmation" required/>
                     </div>
 
+                    @if(setting('auth_enable_captcha'))
+                        <div class="gap-3 md:flex space-y-3">
+                            <img src="{{ captcha_src() }}" alt="Captcha">
+
+                            <div class="form-control md:w-1/2 w-full">
+                                <x-input label="{{ __('messages.captcha') }}"
+                                         required
+                                         class="input input-bordered w-full" wire:model="captcha"/>
+                            </div>
+                        </div>
+                    @endif
+
                     <x-button type="submit"
                               class="btn btn-primary w-full" spinner="register">
                         {{ __('pages/auth/register.buttons.register') }}

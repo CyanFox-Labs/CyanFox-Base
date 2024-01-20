@@ -171,6 +171,7 @@ return [
 
     'custom' => [
         'invalid_two_factor_code' => 'The two-factor code is invalid.',
+        'invalid_captcha' => 'The captcha is invalid.',
     ],
 
     /*

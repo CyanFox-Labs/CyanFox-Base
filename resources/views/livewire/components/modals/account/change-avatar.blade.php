@@ -6,6 +6,7 @@
     </div>
 
     <form method="dialog" wire:submit="updateAvatar">
+        @csrf
         <div class="flex justify-center my-6">
 
             <x-file wire:model="avatar" accept="image/png"

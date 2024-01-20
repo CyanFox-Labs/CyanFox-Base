@@ -133,6 +133,7 @@
                 <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
                     <div class="card-body">
                         <x-form wire:submit="updateProfileInformations">
+                            @csrf
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <div class="form-control w-full">
@@ -175,6 +176,7 @@
                         <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
                             <div class="card-body">
                                 <x-form wire:submit="updatePassword">
+                                    @csrf
                                     <div class="w-full">
                                         <div class="form-control w-full">
                                             <x-input label="{{ __('pages/account/profile.account_details.current_password') }}"

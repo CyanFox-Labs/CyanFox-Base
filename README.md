@@ -45,6 +45,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Module system
 - [ ] API Documentation
 - [ ] Skeletons
+- [ ] Error pages
 - [ ] German translation (sie & du)
 - [ ] Add default values to .env.example
 - [ ] Add github workflow and dependabot config

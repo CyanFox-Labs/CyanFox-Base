@@ -10,6 +10,7 @@ use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
@@ -29,6 +30,7 @@ class Register extends Component
     public $passwordConfirmation;
 
     public $rateLimitTime;
+    public $captcha;
 
 
     public $language;
@@ -84,6 +86,16 @@ class Register extends Component
             return;
         }
 
+        if (setting('auth_enable_captcha')) {
+            $validator = Validator::make(['captcha' => $this->captcha], ['captcha' => 'required|captcha']);
+
+            if ($validator->fails()) {
+                throw ValidationException::withMessages([
+                    'captcha' => __('validation.custom.invalid_captcha')
+                ]);
+            }
+        }
+
         $user = User::create([
             'first_name' => $this->firstName,
             'last_name' => $this->lastName,
@@ -91,6 +103,8 @@ class Register extends Component
             'email' => $this->email,
             'password' => bcrypt($this->password),
         ]);
+
+        $user->generateTwoFactorSecret();
 
         Notification::make()
             ->title(__('pages/auth/register.notifications.registered'))

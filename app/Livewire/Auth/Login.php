@@ -4,12 +4,12 @@ namespace App\Livewire\Auth;
 
 use App\Http\Controllers\API\UnsplashController;
 use App\Models\User;
-use App\Models\UserRecoveryCode;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -36,6 +36,7 @@ class Login extends Component
     public $rememberMe;
 
     public $language;
+    public $captcha;
 
     public function mount()
     {
@@ -110,6 +111,16 @@ class Login extends Component
         ];
 
         $this->checkIfUserExits($this->username);
+
+        if (setting('auth_enable_captcha')) {
+            $validator = Validator::make(['captcha' => $this->captcha], ['captcha' => 'required|captcha']);
+
+            if ($validator->fails()) {
+                throw ValidationException::withMessages([
+                    'captcha' => __('validation.custom.invalid_captcha')
+                ]);
+            }
+        }
 
         if (Auth::attempt($credentials, $this->rememberMe)) {
 

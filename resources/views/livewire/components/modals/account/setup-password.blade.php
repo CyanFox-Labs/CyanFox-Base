@@ -6,6 +6,7 @@
     </div>
 
     <form method="dialog" wire:submit="setupPassword">
+        @csrf
         <div class="md:flex justify-center mb-3">
 
             <div class="space-y-4 mb-4 md:mt-2 mt-6">

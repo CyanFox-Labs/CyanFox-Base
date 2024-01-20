@@ -1,6 +1,7 @@
 <x-modal class="modal-bottom sm:modal-middle">
 
     <form method="dialog" wire:submit="activateTwoFactor">
+        @csrf
         <div class="md:flex justify-center mb-3">
 
             <div class="flex flex-col items-center mr-4">

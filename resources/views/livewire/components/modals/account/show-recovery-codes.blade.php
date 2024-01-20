@@ -7,6 +7,7 @@
         </div>
 
         <form method="dialog" wire:submit="showRecoveryCodes">
+            @csrf
             <div class="flex justify-center mb-3">
                 <div class="form-control w-full max-w-xs">
                     <x-input label="{{ __('messages.password') }}"
