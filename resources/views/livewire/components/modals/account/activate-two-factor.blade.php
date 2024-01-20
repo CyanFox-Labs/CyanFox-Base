@@ -1,7 +1,7 @@
 <x-modal class="modal-bottom sm:modal-middle">
 
     <form method="dialog" wire:submit="activateTwoFactor">
-        <div class="md:flex justify-center">
+        <div class="md:flex justify-center mb-3">
 
             <div class="flex flex-col items-center mr-4">
                 <img src="data:image/svg+xml;base64,{{ auth()->user()->getTwoFactorImage() }}" alt="Two Factor Image"
@@ -21,7 +21,7 @@
 
         </div>
 
-        <div class="divider mt-4"></div>
+        <div class="divider"></div>
 
         <div class="mt-2 flex justify-between gap-3">
             <button class="btn btn-neutral flex-grow" type="button"

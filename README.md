@@ -14,7 +14,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] OAuth (Google, GitHub, etc.)
 - [x] Forgot password
 - [ ] Profile
-    - [ ] Image upload
+    - [x] Image upload
     - [x] Change basic information
     - [x] Change password
     - [x] Change Theme

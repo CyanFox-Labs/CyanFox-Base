@@ -6,7 +6,7 @@
     </div>
 
     <form method="dialog" wire:submit="setupPassword">
-        <div class="md:flex justify-center">
+        <div class="md:flex justify-center mb-3">
 
             <div class="space-y-4 mb-4 md:mt-2 mt-6">
                 <x-input label="{{ __('components/modals/account/setup_password.new_password') }}"
@@ -20,7 +20,7 @@
 
         </div>
 
-        <div class="divider mt-4"></div>
+        <div class="divider"></div>
 
         <div class="mt-2 flex justify-between gap-3">
             <button class="btn btn-neutral flex-grow" type="button"

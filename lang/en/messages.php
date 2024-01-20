@@ -23,6 +23,13 @@ return [
         'delete' => 'Delete',
     ],
 
+    'image_upload' => [
+        'hover' => 'Change',
+        'crop' => [
+            'title' => 'Crop image',
+        ],
+    ],
+
     'notifications' => [
         'something_went_wrong' => 'Something went wrong. Check the console for more information.',
     ],

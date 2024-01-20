@@ -40,7 +40,7 @@ class DeleteAccount extends ModalComponent
 
     public function mount()
     {
-        if (!setting('enable_delete_account')) {
+        if (!setting('profile_enable_delete_account')) {
             abort(403);
         }
 

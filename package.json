@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "boxicons": "^2.1.4",
+        "cropperjs": "^1.6.1",
         "lucide-static": "^0.311.0"
     }
 }

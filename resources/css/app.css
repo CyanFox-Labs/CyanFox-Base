@@ -1,5 +1,6 @@
 @import url('boxicons/css/boxicons.min.css');
 @import url('lucide-static/font/lucide.css');
+@import url('cropperjs/dist/cropper.min.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

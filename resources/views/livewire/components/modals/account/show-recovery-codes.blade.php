@@ -7,7 +7,7 @@
         </div>
 
         <form method="dialog" wire:submit="showRecoveryCodes">
-            <div class="flex justify-center">
+            <div class="flex justify-center mb-3">
                 <div class="form-control w-full max-w-xs">
                     <x-input label="{{ __('messages.password') }}"
                              type="password"
@@ -27,7 +27,7 @@
             </div>
         </form>
     @else
-        <div class="text-center">
+        <div class="text-center mb-3">
             <h2 class="text-2xl font-bold mb-4">{{ __('components/modals/account/show_recovery_codes.title') }}</h2>
             <p class="mb-3">{{ __('components/modals/account/show_recovery_codes.description') }}</p>
 
