@@ -93,13 +93,13 @@ class User extends Authenticatable
 
     }
 
-    /* Two-Factor Auth */
     public function regenerateRememberToken(): void
     {
         $this->setRememberToken(Str::random(32));
         $this->save();
     }
 
+    /* Two-Factor Auth */
     /**
      * @throws IncompatibleWithGoogleAuthenticatorException
      * @throws InvalidCharactersException

@@ -170,9 +170,7 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        'invalid_two_factor_code' => 'The two-factor code is invalid.',
     ],
 
     /*

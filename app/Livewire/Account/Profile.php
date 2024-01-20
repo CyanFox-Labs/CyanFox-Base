@@ -122,13 +122,14 @@ class Profile extends Component
         }
 
         auth()->user()->update([
-            'password' => bcrypt($this->newPassword),
+            'password' => Hash::make($this->newPassword),
         ]);
 
         DB::table('sessions')
             ->where('user_id', Auth::user()->id)
             ->whereNotIn('id', [Session::getId()])
             ->delete();
+
 
         Notification::make()
             ->title(__('pages/account/profile.notifications.password_updated'))

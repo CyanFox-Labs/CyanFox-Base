@@ -20,7 +20,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [x] Change Theme
     - [x] Change Language
     - [ ] Manage Sessions
-    - [ ] Activate Two-factor authentication
+    - [x] Activate Two-factor authentication
     - [ ] Disable Two-factor authentication
     - [ ] Delete account
     - [ ] API Keys
@@ -31,16 +31,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [ ] Role management
     - [ ] Permission management
     - [ ] Settings
+      - [ ] Password rules
     - [ ] Activity log
     - [ ] Alerts / Notifications
 - [ ] Force change password
 - [ ] Force activate Two-factor authentication
-- [ ] Password rules
 - [ ] Alerts / Notifications (types: info, warning, update, error / danger | with dismiss option | where: login, admin, profile, home, default = navbar)
 - [ ] Activity logging
 - [ ] Add Spotlight values
 - [ ] Switch to navbar if the device is too small
 - [ ] API Documentation
+- [ ] Skeletons
 - [ ] German translation (sie & du)
 - [ ] Add default values to .env.example
 - [ ] Add github workflow and dependabot config
