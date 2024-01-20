@@ -69,6 +69,13 @@ class CreateUserCommand extends Command
             $user->assignRole('SuperAdmin');
         }
 
+        try {
+            $user->generateTwoFactorSecret();
+        }catch (\Exception $exception) {
+            $this->error('Something went wrong while generating two factor secret.');
+            $this->error($exception->getMessage());
+        }
+
         $this->info('User created successfully.');
 
     }

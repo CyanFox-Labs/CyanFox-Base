@@ -50,7 +50,7 @@
             <x-button class="btn btn-success flex-grow"
                       type="button"
                       wire:click="downloadRecoveryCodes"
-                      spinner="download">{{ __('components/modals/account/show_recovery_codes.buttons.download') }}</x-button>
+                      spinner>{{ __('components/modals/account/show_recovery_codes.buttons.download') }}</x-button>
         </div>
     @endif
 </x-modal>

@@ -23,6 +23,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [x] Activate Two-factor authentication
     - [x] Show recovery codes
     - [x] Disable Two-factor authentication
+    - [ ] Setup password
     - [ ] Delete account
     - [ ] API Keys
     - [ ] Activity Log

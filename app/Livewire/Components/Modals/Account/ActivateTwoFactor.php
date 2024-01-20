@@ -34,6 +34,8 @@ class ActivateTwoFactor extends ModalComponent
             auth()->user()->update([
                 'two_factor_enabled' => true
             ]);
+
+            auth()->user()->generateRecoveryCodes();
         }catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.notifications.something_went_wrong'))

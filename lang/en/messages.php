@@ -20,6 +20,7 @@ return [
         'save' => 'Save',
         'cancel' => 'Cancel',
         'show' => 'Show',
+        'delete' => 'Delete',
     ],
 
     'notifications' => [

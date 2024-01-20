@@ -99,7 +99,7 @@
                                         class="btn btn-error">
                                     {{ __('pages/account/profile.actions.buttons.disable_two_factor') }}
                                 </button>
-                            @else
+                            @elseif(!auth()->user()->password == null)
                                 <button type="button"
                                         wire:click="$dispatch('openModal', { component: 'components.modals.account.activate-two-factor' })"
                                         class="btn btn-success">
@@ -110,14 +110,14 @@
                             @if(auth()->user()->password == null)
 
                                 <button type="button"
-                                        wire:click="$dispatch('openModal', { component: 'components.modals.account.set-password' })"
+                                        wire:click="$dispatch('openModal', { component: 'components.modals.account.setup-password' })"
                                         class="btn btn-success">
-                                    {{ __('pages/account/profile.actions.buttons.set_password') }}
+                                    {{ __('pages/account/profile.actions.buttons.setup_password') }}
                                 </button>
 
                             @endif
 
-                            @if(setting('enable_delete_account') && auth()->user()->password !== null)
+                            @if(setting('enable_delete_account') && !auth()->user()->password == null)
                                 <button type="button"
                                         wire:click="$dispatch('openModal', { component: 'components.modals.account.delete-account' })"
                                         class="btn btn-error">
@@ -170,7 +170,7 @@
                         </x-form>
                     </div>
                 </div>
-                @if(auth()->user()->password !== null)
+                @if(!auth()->user()->password == null)
                     <div class="col-span-2 space-y-4">
                         <div class="card bg-base-100 col-span-1 lg:col-span-2 shadow-xl">
                             <div class="card-body">

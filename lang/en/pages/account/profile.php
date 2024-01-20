@@ -61,6 +61,7 @@ return [
             'activate_two_factor' => 'Activate Two-Factor Authentication',
             'disable_two_factor' => 'Disable Two-Factor Authentication',
             'show_recovery_codes' => 'Show Recovery Codes',
+            'setup_password' => 'Setup Password',
         ]
     ],
 
