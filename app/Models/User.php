@@ -87,7 +87,7 @@ class User extends Authenticatable
         ];
         if (in_array($this->theme, $darkThemes)) {
             return 'dark';
-        }else{
+        } else {
             return 'light';
         }
 
@@ -114,17 +114,14 @@ class User extends Authenticatable
 
     public function generateRecoveryCodes(): void
     {
+        UserRecoveryCode::where('user_id', $this->id)->delete();
+
         for ($i = 0; $i < 8; $i++) {
             UserRecoveryCode::create([
                 'user_id' => $this->id,
                 'code' => encrypt(Str::random(10)),
             ]);
         }
-    }
-
-    public function removeRecoveryCode($key): void
-    {
-        UserRecoveryCode::where('user_id', $this->id)->where('code', $key)->delete();
     }
 
     /**
@@ -140,13 +137,12 @@ class User extends Authenticatable
 
         if ($checkRecovery) {
             $recoveryCodes = UserRecoveryCode::where('user_id', $this->id)->get();
-            $recoveryCode = $recoveryCodes->first(function($code) use ($key) {
-                return decrypt($code->code) == $key;
-            });
 
-            if ($recoveryCode != null) {
-                $recoveryCode->delete();
-                return true;
+            foreach ($recoveryCodes as $recoveryCode) {
+                if (decrypt($recoveryCode->code) == $key) {
+                    $recoveryCode->delete();
+                    return true;
+                }
             }
         }
 

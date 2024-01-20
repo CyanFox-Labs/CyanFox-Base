@@ -1,19 +1,14 @@
 <x-modal class="modal-bottom sm:modal-middle">
 
-    <form method="dialog" wire:submit="activateTwoFactor">
+    <div class="text-center">
+        <h2 class="text-2xl font-bold mb-4">{{ __('components/modals/account/disable_two_factor.title') }}</h2>
+        <p class="mb-3">{{ __('components/modals/account/disable_two_factor.description') }}</p>
+    </div>
+
+    <form method="dialog" wire:submit="disableTwoFactor">
         <div class="md:flex justify-center">
 
-            <div class="flex flex-col items-center mr-4">
-                <img src="data:image/svg+xml;base64,{{ auth()->user()->getTwoFactorImage() }}" alt="Two Factor Image"
-                     class="border-4 border-white mb-2">
-                <p>{{ decrypt(auth()->user()->two_factor_secret) }}</p>
-            </div>
-
-            <div class="space-y-4 md:mt-2 mt-6">
-                <x-input label="{{ __('components/modals/account/activate_two_factor.two_factor_code') }}"
-                         type="number" class="input input-bordered"
-                         wire:model="twoFactorCode"/>
-
+            <div class="space-y-4 mb-4 md:mt-2 mt-6">
                 <x-input label="{{ __('messages.password') }}"
                          type="password" class="input input-bordered"
                          wire:model="password"/>
@@ -28,7 +23,7 @@
                     wire:click="$dispatch('closeModal')">{{ __('messages.buttons.cancel') }}</button>
 
             <x-button class="btn btn-success flex-grow"
-                      type="submit" spinner="activateTwoFactor">
+                      type="submit" spinner="disableTwoFactor">
                 {{ __('messages.buttons.save') }}
             </x-button>
         </div>

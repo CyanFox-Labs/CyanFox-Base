@@ -2,37 +2,31 @@
 
 namespace App\Livewire\Components\Modals\Account;
 
-use App\Models\UserRecoveryCode;
 use Auth;
 use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Validation\ValidationException;
 use LivewireUI\Modal\ModalComponent;
 
-class ActivateTwoFactor extends ModalComponent
+class DisableTwoFactor extends ModalComponent
 {
 
-    public $twoFactorCode;
     public $password;
 
-    public function activateTwoFactor()
+    function disableTwoFactor()
     {
-
         if (!Auth::validate(['email' => auth()->user()->email, 'password' => $this->password])) {
             throw ValidationException::withMessages([
                 'password' => __('validation.current_password')
             ]);
         }
 
-        if(!auth()->user()->checkTwoFactorCode($this->twoFactorCode, false)) {
-            throw ValidationException::withMessages([
-                'twoFactorCode' => __('validation.custom.invalid_two_factor_code')
-            ]);
-        }
-
         try {
+            auth()->user()->generateTwoFactorSecret();
+            auth()->user()->generateRecoveryCodes();
+
             auth()->user()->update([
-                'two_factor_enabled' => true
+                'two_factor_enabled' => false
             ]);
         }catch (Exception $e) {
             Notification::make()
@@ -45,7 +39,7 @@ class ActivateTwoFactor extends ModalComponent
         }
 
         Notification::make()
-            ->title(__('components/modals/account/activate_two_factor.notifications.two_factor_enabled'))
+            ->title(__('components/modals/account/disable_two_factor.notifications.two_factor_disabled'))
             ->success()
             ->send();
 
@@ -54,6 +48,6 @@ class ActivateTwoFactor extends ModalComponent
 
     public function render()
     {
-        return view('livewire.components.modals.account.activate-two-factor');
+        return view('livewire.components.modals.account.disable-two-factor');
     }
 }

@@ -120,14 +120,6 @@ class Login extends Component
                 ]);
             }
 
-            if ($this->user->two_factor_secret == null) {
-                $this->user->generateTwoFactorSecret();
-            }
-
-            if (UserRecoveryCode::find($this->user->id) == null) {
-                $this->user->generateRecoveryCodes();
-            }
-
             if ($this->user->two_factor_enabled) {
                 Auth::logout();
                 $this->twoFactorEnabled = true;
@@ -166,7 +158,7 @@ class Login extends Component
         }
 
         throw ValidationException::withMessages([
-            'twoFactorCode' => __('validation.custom.two_factor_code'),
+            'twoFactorCode' => __('validation.custom.invalid_two_factor_code'),
         ]);
     }
 

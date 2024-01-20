@@ -21,7 +21,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [x] Change Language
     - [ ] Manage Sessions
     - [x] Activate Two-factor authentication
-    - [ ] Disable Two-factor authentication
+    - [x] Show recovery codes
+    - [x] Disable Two-factor authentication
     - [ ] Delete account
     - [ ] API Keys
     - [ ] Activity Log
@@ -40,6 +41,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Activity logging
 - [ ] Add Spotlight values
 - [ ] Switch to navbar if the device is too small
+- [ ] Module system
 - [ ] API Documentation
 - [ ] Skeletons
 - [ ] German translation (sie & du)

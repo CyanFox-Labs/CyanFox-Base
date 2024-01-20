@@ -19,6 +19,7 @@ return [
         'update' => 'Update',
         'save' => 'Save',
         'cancel' => 'Cancel',
+        'show' => 'Show',
     ],
 
     'notifications' => [

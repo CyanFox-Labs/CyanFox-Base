@@ -90,7 +90,7 @@
 
                             @if(auth()->user()->two_factor_enabled)
                                 <button type="button"
-                                        wire:click="$dispatch('openModal', { component: 'components.modals.account.recovery-codes' })"
+                                        wire:click="$dispatch('openModal', { component: 'components.modals.account.show-recovery-codes' })"
                                         class="btn btn-accent">
                                     {{ __('pages/account/profile.actions.buttons.show_recovery_codes') }}
                                 </button>

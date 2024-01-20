@@ -86,7 +86,7 @@
                     @endif
                 @endif
                 <div class="space-y-4 mt-4">
-                    @if(setting('auth_enable_local_login'))
+                    @if(setting('auth_enable_local_login') && !$twoFactorEnabled)
                         @if(setting('auth_enable_forgot_password') ||
                             setting('auth_enable_register') ||
                             setting('auth_enable_oauth'))
@@ -109,7 +109,7 @@
                         </div>
                     @endif
 
-                    @if(setting('auth_enable_oauth'))
+                    @if(setting('auth_enable_oauth') && !$twoFactorEnabled)
                         <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
 
                             @if(setting('oauth_enable_github'))
