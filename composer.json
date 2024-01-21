@@ -12,6 +12,7 @@
         "danharrin/livewire-rate-limiting": "^1.2",
         "filament/notifications": "^3.2.1",
         "guzzlehttp/guzzle": "^7.2",
+        "jenssegers/agent": "^2.6",
         "laravel/framework": "^10.10",
         "laravel/prompts": "^0.1.15",
         "laravel/sanctum": "^3.3",

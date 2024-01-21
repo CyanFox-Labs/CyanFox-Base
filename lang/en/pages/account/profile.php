@@ -80,5 +80,28 @@ return [
         'language_and_theme_updated' => 'Language and theme updated successfully!',
         'profile_informations_updated' => 'Profile informations updated successfully!',
         'password_updated' => 'Password updated successfully!',
+        'session_logged_out' => 'Session logged out successfully!',
+        'logged_out_other_devices' => 'Successfully logged out other devices!',
+    ],
+
+    'sessions' => [
+        'title' => 'Sessions',
+        'table' => [
+            'ip_address' => 'IP Address',
+            'user_agent' => 'User Agent',
+            'device' => 'Device',
+            'last_activity' => 'Last Activity',
+        ],
+        'device_types' => [
+            'desktop' => 'Desktop',
+            'phone' => 'Phone',
+            'tablet' => 'Tablet',
+            'unknown' => 'Unknown',
+        ],
+        'current_session' => 'Current Session',
+
+        'buttons' => [
+            'logout_other_devices' => 'Logout Other Devices',
+        ],
     ]
 ];

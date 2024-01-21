@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Components\Modals\Account;
 
-use App\Models\UserRecoveryCode;
+use App\Models\Session;
 use Auth;
 use Exception;
 use Filament\Notifications\Notification;
@@ -45,6 +45,8 @@ class ActivateTwoFactor extends ModalComponent
             $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
             return;
         }
+
+        Session::logoutOtherDevices();
 
         Notification::make()
             ->title(__('components/modals/account/activate_two_factor.notifications.two_factor_enabled'))

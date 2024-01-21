@@ -19,6 +19,7 @@ module.exports = {
         './vendor/robsontenorio/mary/src/View/Components/**/*.php',
 
         './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
+        './app/Livewire/**/*.php',
     ],
     plugins: [require("daisyui")],
     daisyui: {

@@ -22,8 +22,8 @@
         </a>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        @if($tab == 'overview')
+    @if($tab == 'overview')
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div class="col-span-1 space-y-4">
                 <div class="card bg-base-100 shadow-xl">
                     <div class="card-body">
@@ -179,25 +179,28 @@
                                     @csrf
                                     <div class="w-full">
                                         <div class="form-control w-full">
-                                            <x-input label="{{ __('pages/account/profile.account_details.current_password') }}"
-                                                     type="password"
-                                                     class="input input-bordered w-full" wire:model="currentPassword"/>
+                                            <x-input
+                                                label="{{ __('pages/account/profile.account_details.current_password') }}"
+                                                type="password"
+                                                class="input input-bordered w-full" wire:model="currentPassword"/>
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-2 gap-4 mt-4">
                                         <div>
                                             <div class="form-control w-full">
-                                                <x-input label="{{ __('pages/account/profile.account_details.new_password') }}"
-                                                         type="password"
-                                                         class="input input-bordered w-full" wire:model="newPassword"/>
+                                                <x-input
+                                                    label="{{ __('pages/account/profile.account_details.new_password') }}"
+                                                    type="password"
+                                                    class="input input-bordered w-full" wire:model="newPassword"/>
                                             </div>
                                         </div>
                                         <div>
                                             <div class="form-control w-full">
-                                                <x-input label="{{ __('pages/account/profile.account_details.confirm_new_password') }}"
-                                                         type="password"
-                                                         class="input input-bordered w-full"
-                                                         wire:model="passwordConfirmation"/>
+                                                <x-input
+                                                    label="{{ __('pages/account/profile.account_details.confirm_new_password') }}"
+                                                    type="password"
+                                                    class="input input-bordered w-full"
+                                                    wire:model="passwordConfirmation"/>
                                             </div>
                                         </div>
                                     </div>
@@ -213,7 +216,19 @@
                     </div>
                 @endif
             </div>
-        @endif
-    </div>
+        </div>
+    @endif
+
+
+
+    @if($tab == 'sessions')
+        <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+                <span class="font-bold text-xl">{{ __('pages/account/profile.sessions.title') }}</span>
+                <div class="divider"></div>
+                <livewire:components.tables.account.sessions-table/>
+            </div>
+        </div>
+    @endif
 
 </div>

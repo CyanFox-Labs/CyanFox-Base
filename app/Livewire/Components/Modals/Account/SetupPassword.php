@@ -2,11 +2,9 @@
 
 namespace App\Livewire\Components\Modals\Account;
 
+use App\Models\Session;
 use Filament\Notifications\Notification;
 use Hash;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use LivewireUI\Modal\ModalComponent;
 
 class SetupPassword extends ModalComponent
@@ -25,11 +23,7 @@ class SetupPassword extends ModalComponent
             'password' => Hash::make($this->newPassword),
         ]);
 
-        DB::table('sessions')
-            ->where('user_id', Auth::user()->id)
-            ->whereNotIn('id', [Session::getId()])
-            ->delete();
-
+        Session::logoutOtherDevices();
 
         Notification::make()
             ->title(__('components/modals/account/setup_password.notifications.password_updated'))

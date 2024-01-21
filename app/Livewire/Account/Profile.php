@@ -2,11 +2,9 @@
 
 namespace App\Livewire\Account;
 
+use App\Models\Session;
 use Filament\Notifications\Notification;
 use Hash;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -125,11 +123,8 @@ class Profile extends Component
             'password' => Hash::make($this->newPassword),
         ]);
 
-        DB::table('sessions')
-            ->where('user_id', Auth::user()->id)
-            ->whereNotIn('id', [Session::getId()])
-            ->delete();
 
+        Session::logoutOtherDevices();
 
         Notification::make()
             ->title(__('pages/account/profile.notifications.password_updated'))
