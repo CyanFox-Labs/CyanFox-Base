@@ -12,12 +12,6 @@
     @vite(['resources/css/app.css'])
     @livewireStyles
     @livewireScripts
-
-    <style>
-        [x-cloak] {
-            display: none !important;
-        }
-    </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 @livewire('notifications')
