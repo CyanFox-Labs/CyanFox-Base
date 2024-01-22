@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components\Modals\Account;
+namespace App\Livewire\Components\Modals\Account\TwoFactor;
 
 use App\Models\Session;
 use Auth;
@@ -58,6 +58,6 @@ class ActivateTwoFactor extends ModalComponent
 
     public function render()
     {
-        return view('livewire.components.modals.account.activate-two-factor');
+        return view('livewire.components.modals.account.two-factor.activate-two-factor');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components\Modals\Account;
+namespace App\Livewire\Components\Modals\Account\TwoFactor;
 
 use App\Models\UserRecoveryCode;
 use Auth;
@@ -58,6 +58,6 @@ class ShowRecoveryCodes extends ModalComponent
 
     public function render()
     {
-        return view('livewire.components.modals.account.show-recovery-codes');
+        return view('livewire.components.modals.account.two-factor.show-recovery-codes');
     }
 }

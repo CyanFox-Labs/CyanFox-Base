@@ -5,8 +5,11 @@
     <nav class="bg-base-200 flex items-center justify-between p-3">
         <div class="ml-auto flex items-center">
             <div class="mr-4">
-                <i class="icon-search font-semibold text-2xl cursor-pointer"
+                <i class="icon-search font-semibold text-xl cursor-pointer"
                    @click.stop="$dispatch('mary-search-open')"></i>
+            </div>
+            <div class="mr-4">
+                <i class="icon-bell font-semibold text-xl cursor-pointer"></i>
             </div>
 
             <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">

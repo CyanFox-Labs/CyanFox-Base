@@ -21,6 +21,7 @@ return [
         'cancel' => 'Cancel',
         'show' => 'Show',
         'delete' => 'Delete',
+        'confirm' => 'Confirm',
     ],
 
     'image_upload' => [

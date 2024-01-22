@@ -26,7 +26,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [x] Disable Two-factor authentication
     - [x] Setup password
     - [x] Delete account
-    - [ ] API Keys
+    - [x] API Keys
+      - [ ] API Permissions
     - [ ] Activity Log
     - [ ] OPTIONAL: Passkeys
 - [ ] Admin Page

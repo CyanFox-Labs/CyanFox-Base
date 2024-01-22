@@ -1,1 +1,1 @@
-<button class="btn btn-warning" wire:click="logoutOtherDevices">{{ __('pages/account/profile.sessions.buttons.logout_other_devices') }}</button>
+<button class="btn btn-warning" wire:click="$dispatch('openModal', { component: 'components.modals.account.logout-other-devices' })">{{ __('pages/account/profile.sessions.buttons.logout_other_devices') }}</button>

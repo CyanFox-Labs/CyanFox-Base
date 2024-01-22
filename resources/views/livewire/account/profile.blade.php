@@ -90,18 +90,18 @@
 
                             @if(auth()->user()->two_factor_enabled)
                                 <button type="button"
-                                        wire:click="$dispatch('openModal', { component: 'components.modals.account.show-recovery-codes' })"
+                                        wire:click="$dispatch('openModal', { component: 'components.modals.account.two-factor.show-recovery-codes' })"
                                         class="btn btn-accent">
                                     {{ __('pages/account/profile.actions.buttons.show_recovery_codes') }}
                                 </button>
                                 <button type="button"
-                                        wire:click="$dispatch('openModal', { component: 'components.modals.account.disable-two-factor' })"
+                                        wire:click="$dispatch('openModal', { component: 'components.modals.account.two-factor.disable-two-factor' })"
                                         class="btn btn-error">
                                     {{ __('pages/account/profile.actions.buttons.disable_two_factor') }}
                                 </button>
                             @elseif(!auth()->user()->password == null)
                                 <button type="button"
-                                        wire:click="$dispatch('openModal', { component: 'components.modals.account.activate-two-factor' })"
+                                        wire:click="$dispatch('openModal', { component: 'components.modals.account.two-factor.activate-two-factor' })"
                                         class="btn btn-success">
                                     {{ __('pages/account/profile.actions.buttons.activate_two_factor') }}
                                 </button>
@@ -227,6 +227,16 @@
                 <span class="font-bold text-xl">{{ __('pages/account/profile.sessions.title') }}</span>
                 <div class="divider"></div>
                 <livewire:components.tables.account.sessions-table/>
+            </div>
+        </div>
+    @endif
+
+    @if($tab == 'apiKeys')
+        <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+                <span class="font-bold text-xl">{{ __('pages/account/profile.api_keys.title') }}</span>
+                <div class="divider"></div>
+                <livewire:components.tables.account.a-p-i-keys-table/>
             </div>
         </div>
     @endif

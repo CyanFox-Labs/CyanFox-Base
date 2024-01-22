@@ -81,7 +81,6 @@ return [
         'profile_informations_updated' => 'Profile informations updated successfully!',
         'password_updated' => 'Password updated successfully!',
         'session_logged_out' => 'Session logged out successfully!',
-        'logged_out_other_devices' => 'Successfully logged out other devices!',
     ],
 
     'sessions' => [
@@ -102,6 +101,19 @@ return [
 
         'buttons' => [
             'logout_other_devices' => 'Logout Other Devices',
+        ],
+    ],
+
+    'api_keys' => [
+        'title' => 'API Keys',
+        'table' => [
+            'name' => 'Name',
+            'api_key' => 'API Key',
+            'last_used_at' => 'Last Used At',
+        ],
+
+        'buttons' => [
+            'create_api_key' => 'Create API Key',
         ],
     ]
 ];

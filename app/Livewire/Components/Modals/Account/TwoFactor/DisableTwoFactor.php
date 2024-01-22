@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components\Modals\Account;
+namespace App\Livewire\Components\Modals\Account\TwoFactor;
 
 use Auth;
 use Exception;
@@ -48,6 +48,6 @@ class DisableTwoFactor extends ModalComponent
 
     public function render()
     {
-        return view('livewire.components.modals.account.disable-two-factor');
+        return view('livewire.components.modals.account.two-factor.disable-two-factor');
     }
 }

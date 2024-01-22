@@ -69,17 +69,6 @@ class SessionsTable extends DataTableComponent
         ];
     }
 
-    public function logoutOtherDevices()
-    {
-
-        Session::logoutOtherDevices();
-
-        Notification::make()
-            ->title(__('pages/account/profile.notifications.logged_out_other_devices'))
-            ->success()
-            ->send();
-    }
-
     public function logout($id)
     {
         $session = Session::where('id', $id)->first();
