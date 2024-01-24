@@ -89,12 +89,13 @@ class Profile extends Component
             'email' => 'required|max:255|email|unique:users,email,' . auth()->user()->getAuthIdentifier() . ',id'
         ]);
 
-        auth()->user()->update([
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'username' => $this->username,
-            'email' => $this->email,
-        ]);
+        $user = auth()->user();
+        $user->first_name = $this->firstName;
+        $user->last_name = $this->lastName;
+        $user->username = $this->username;
+        $user->email = $this->email;
+
+        $user->save();
 
         Notification::make()
             ->title(__('pages/account/profile.notifications.profile_informations_updated'))

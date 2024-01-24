@@ -1,12 +1,15 @@
 # Laravel-Template
 
 ## Documentation
+
 You can find the documentation [here](https://docs.cyanfox.de/docs/laravel-template).
 
 ## License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Todo
+
 - [x] Login
     - [ ] Send notification if the user is logged in from a new device
 - [x] Logout
@@ -27,20 +30,25 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [x] Setup password
     - [x] Delete account
     - [x] API Keys
-      - [ ] API Permissions
-    - [ ] Activity Log
+        - [ ] API Permissions
+    - [x] Activity Log
     - [ ] OPTIONAL: Passkeys
 - [ ] Admin Page
     - [ ] User management
     - [ ] Role management
     - [ ] Permission management
     - [ ] Settings
-      - [ ] Password rules
+        - [ ] Password rules
+    - [ ] Operations
+        - [ ] Clear cache
+        - [ ] Clear views
+        - [ ] Clear activity log
     - [ ] Activity log
     - [ ] Alerts / Notifications
 - [ ] Force change password
 - [ ] Force activate Two-factor authentication
-- [ ] Alerts / Notifications (types: info, warning, update, error / danger | with dismiss option | where: login, admin, profile, home, default = navbar)
+- [ ] Alerts / Notifications (types: info, warning, update, error / danger | with dismiss option | where: login, admin,
+  profile, home, default = navbar)
 - [ ] Activity logging
 - [ ] Add Spotlight values
 - [ ] Switch to navbar if the device is too small

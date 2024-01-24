@@ -2,13 +2,18 @@
 
 namespace App\Livewire\Components\Tables\Account;
 
+use Illuminate\Database\Eloquent\Builder;
 use Laravel\Sanctum\PersonalAccessToken;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class APIKeysTable extends DataTableComponent
 {
-    protected $model = PersonalAccessToken::class;
+
+    public function builder(): Builder
+    {
+        return PersonalAccessToken::query()->where('tokenable_id', auth()->id());
+    }
 
     public function configure(): void
     {

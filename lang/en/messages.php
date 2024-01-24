@@ -22,6 +22,7 @@ return [
         'show' => 'Show',
         'delete' => 'Delete',
         'confirm' => 'Confirm',
+        'close' => 'Close',
     ],
 
     'image_upload' => [

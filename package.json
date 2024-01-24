@@ -20,6 +20,7 @@
     "dependencies": {
         "boxicons": "^2.1.4",
         "cropperjs": "^1.6.1",
+        "diff2html": "^3.4.47",
         "lucide-static": "^0.311.0"
     }
 }

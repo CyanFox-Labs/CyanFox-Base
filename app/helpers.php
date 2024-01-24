@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\ActivityLogHelper;
 use App\Helpers\VersionHelper;
 use App\Models\Setting;
 
@@ -35,5 +36,16 @@ if (!function_exists('get_version')) {
             'remote_project' => VersionHelper::getRemoteProjectVersion(),
             default => null,
         };
+    }
+}
+
+if (!function_exists('activity')) {
+
+    /**
+     * Log an activity to the database.
+     */
+    function activity()
+    {
+        return new ActivityLogHelper();
     }
 }
