@@ -47,12 +47,6 @@ class User extends Authenticatable
         'password_reset_expiration',
     ];
 
-    protected $casts = [
-        'password' => 'hashed',
-        'two_factor_secret' => 'encrypted',
-        'password_reset_token' => 'encrypted',
-    ];
-
 
     /* Utility Functions */
     public function getAvatarURL(): string

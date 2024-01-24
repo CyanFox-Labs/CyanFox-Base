@@ -72,6 +72,7 @@
 
                             <x-input label="{{ __('pages/auth/messages.password') }}"
                                      class="input input-bordered w-full"
+                                     type="password"
                                      wire:model="password" required/>
 
                             <x-checkbox label="{{ __('pages/auth/login.remember_me') }}"

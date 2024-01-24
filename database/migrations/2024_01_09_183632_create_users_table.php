@@ -21,10 +21,10 @@ return new class extends Migration
             $table->string('theme')->default('light');
             $table->string('language')->default('en');
             $table->boolean('two_factor_enabled')->default(false);
-            $table->string('two_factor_secret')->nullable();
+            $table->text('two_factor_secret')->nullable();
             $table->boolean('force_change_password')->default(false);
             $table->boolean('force_activate_two_factor')->default(false);
-            $table->string('password_reset_token')->nullable();
+            $table->text('password_reset_token')->nullable();
             $table->timestamp('password_reset_expiration')->nullable();
             $table->string('github_id')->nullable();
             $table->string('google_id')->nullable();

@@ -11,7 +11,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Todo
 
 - [x] Login
-    - [ ] Send notification if the user is logged in from a new device
+    - [x] Send notification if the user is logged in from a new device
 - [x] Logout
 - [x] Two-factor authentication in login
 - [x] Register

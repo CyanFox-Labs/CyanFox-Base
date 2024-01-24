@@ -183,22 +183,22 @@ class ForgotPassword extends Component
         $this->user->save();
 
         $placeholders = ['username' => $this->user->username,
-            'first_name' => $this->user->first_name, 'last_name' => $this->user->last_name,
-            'password_reset_token' => $this->user->password_reset_token,
-            'reset_link' => route('auth.forgot-password', [$this->user->password_reset_token])];
+            'firstName' => $this->user->first_name, 'lastName' => $this->user->last_name,
+            'passwordResetToken' => $this->user->password_reset_token,
+            'resetLink' => route('auth.forgot-password', [$this->user->password_reset_token])];
 
         $user = $this->user;
 
         Mail::send('emails.forgot-password', $placeholders, function ($message) use ($user, $placeholders) {
             $message->to($user->email, str_replace(
-                ['{username}', '{first_name}', '{last_name}'],
+                ['{username}', '{firstName}', '{lastName}'],
                 [$user->username, $user->first_name, $user->last_name],
-                setting('emails', 'forgot_password.title')
+                setting('emails_forgot_password_title')
             ))
                 ->subject(str_replace(
-                    ['{username}', '{first_name}', '{last_name}'],
+                    ['{username}', '{firstName}', '{lastName}'],
                     [$user->username, $user->first_name, $user->last_name],
-                    setting('emails', 'forgot_password.subject')
+                    setting('emails_forgot_password_subject')
                 ));
             $message->from(config('mail.from.address'), config('mail.from.name'));
         });

@@ -7,6 +7,7 @@ use App\Models\User;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -135,6 +136,10 @@ class Login extends Component
                 Auth::logout();
                 $this->twoFactorEnabled = true;
             } else {
+                if (setting('emails_login_enabled')) {
+                    $this->sendMail($this->user);
+                }
+
                 if ($this->redirect) {
                     return redirect()->to($this->redirect);
                 }
@@ -161,6 +166,10 @@ class Login extends Component
         if ($this->user->checkTwoFactorCode($this->twoFactorCode)) {
             Auth::login($this->user, $this->rememberMe);
 
+            if (setting('emails_login_enabled')) {
+                $this->sendMail($this->user);
+            }
+
             if ($this->redirect) {
                 return redirect()->to($this->redirect);
             }
@@ -171,6 +180,28 @@ class Login extends Component
         throw ValidationException::withMessages([
             'twoFactorCode' => __('validation.custom.invalid_two_factor_code'),
         ]);
+    }
+
+    private function sendMail($user)
+    {
+        $placeholders = ['username' => $user->username,
+            'firstName' => $user->first_name, 'lastName' => $user->last_name,
+            'ipAddress' => request()->ip()
+        ];
+
+        Mail::send('emails.login', $placeholders, function ($message) use ($user, $placeholders) {
+            $message->to($user->email, str_replace(
+                ['{username}', '{firstName}', '{lastName}', '{ipAddress}'],
+                [$user->username, $user->first_name, $user->last_name, request()->ip()],
+                setting('emails_login_title')
+            ))
+                ->subject(str_replace(
+                    ['{username}', '{firstName}', '{lastName}', '{ipAddress}'],
+                    [$user->username, $user->first_name, $user->last_name, request()->ip()],
+                    setting('emails_login_subject')
+                ));
+            $message->from(config('mail.from.address'), config('mail.from.name'));
+        });
     }
 
 

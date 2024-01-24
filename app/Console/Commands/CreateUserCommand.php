@@ -44,7 +44,7 @@ class CreateUserCommand extends Command
             'What is your password?'
         );
         $super_admin = confirm(
-            'Do you wish to assign this user the SuperAdmin role?',
+            'Do you want to assign this user the Super Admin role?',
             default: false
         );
 
@@ -58,7 +58,7 @@ class CreateUserCommand extends Command
 
         if ($super_admin) {
             try {
-                $user->assignRole('SuperAdmin');
+                $user->assignRole('Super Admin');
             } catch (RoleDoesNotExist $e) {
                 $this->warn('SuperAdmin role does not exist. Creating role...');
                 $role = Role::create(['name' => 'SuperAdmin']);
@@ -66,7 +66,7 @@ class CreateUserCommand extends Command
                 $user->assignRole($role);
                 return;
             }
-            $user->assignRole('SuperAdmin');
+            $user->assignRole('Super Admin');
         }
 
         try {

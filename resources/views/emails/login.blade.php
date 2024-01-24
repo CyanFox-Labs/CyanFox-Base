@@ -3,11 +3,11 @@
         '{username}',
         '{firstName}',
         '{lastName}',
-        '{resetLink}'
+        '{ipAddress}'
     ], [
         $username,
         $firstName,
         $lastName,
-        route('auth.forgot-password', [$passwordResetToken])
+        $ipAddress
     ],
-     setting('emails_forgot_password_content'))) !!}
+     setting('emails_login_content'))) !!}
