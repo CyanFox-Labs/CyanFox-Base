@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0292af4dd7507080c4d3c815f895a2b8",
+    "content-hash": "d4f9552eb40d60f4ec6347c47aa57f69",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4920,32 +4920,33 @@
         },
         {
             "name": "power-components/livewire-powergrid",
-            "version": "v5.1.0",
+            "version": "v5.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "5c042c231f4f1ad2802fbfbafd9cbfc3881e7ac0"
+                "reference": "9fea61dd310c614ef451b8011662750fb229337f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/5c042c231f4f1ad2802fbfbafd9cbfc3881e7ac0",
-                "reference": "5c042c231f4f1ad2802fbfbafd9cbfc3881e7ac0",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/9fea61dd310c614ef451b8011662750fb229337f",
+                "reference": "9fea61dd310c614ef451b8011662750fb229337f",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "2.12.1 | ^3.6.6",
-                "laravel/prompts": "^0.1.7",
-                "livewire/livewire": "^3.0.5",
+                "laravel/prompts": "^0.1.15",
+                "livewire/livewire": "^3.3.5",
                 "php": "^8.1"
             },
+            "conflict": {
+                "laravel/framework": "10.40.0"
+            },
             "require-dev": {
-                "composer/composer": "^2.6.3",
-                "laradumps/laradumps-core": "^0.3.0",
-                "laravel/pint": "^1.13.1",
-                "nunomaduro/larastan": "^2.6.4",
-                "orchestra/testbench": "^8.10.2",
-                "pestphp/pest": "^2.18.2",
-                "spaze/phpstan-disallowed-calls": "^2.16"
+                "composer/composer": "^2.6.6",
+                "laradumps/laradumps-core": "^1.1",
+                "larastan/larastan": "^2.8.1",
+                "laravel/pint": "^1.13.8",
+                "orchestra/testbench": "8.19|^9.0",
+                "pestphp/pest": "^2.30.0"
             },
             "suggest": {
                 "openspout/openspout": "Required to export XLS and CSV"
@@ -4986,7 +4987,7 @@
             "homepage": "https://github.com/power-components/livewire-powergrid",
             "support": {
                 "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v5.1.0"
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v5.3.2"
             },
             "funding": [
                 {
@@ -4994,7 +4995,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-21T22:53:48+00:00"
+            "time": "2024-01-25T16:29:21+00:00"
         },
         {
             "name": "pragmarx/google2fa",
