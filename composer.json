@@ -22,7 +22,7 @@
         "livewire/livewire": "^3.0",
         "mews/captcha": "^3.3",
         "openspout/openspout": "^4.18",
-        "power-components/livewire-powergrid": "^5.1",
+        "power-components/livewire-powergrid": "5.1",
         "pragmarx/google2fa": "^8.0",
         "robsontenorio/mary": "dev-main",
         "simplesoftwareio/simple-qrcode": "*",

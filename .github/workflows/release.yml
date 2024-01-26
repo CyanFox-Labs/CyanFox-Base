@@ -3,12 +3,12 @@ name: Release
 on:
   push:
     branches:
-#      - master TODO: Fix workflow
+      - master
       - develop
-#  pull_request:
- #   branches:
-#      - master
-#      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
 
 jobs:
   install:
