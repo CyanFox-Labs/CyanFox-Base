@@ -11,6 +11,11 @@
             <div class="mr-4">
                 <i class="icon-bell font-semibold text-xl cursor-pointer"></i>
             </div>
+            @hasrole('Super Admin')
+            <div class="mr-4">
+                <a href="{{ route('admin.dashboard') }}"><i class="icon-settings font-semibold text-xl"></i></a>
+            </div>
+            @endhasrole
 
             <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
                 <img tabindex="0" role="button"
@@ -21,7 +26,7 @@
                     </li>
 
                     @hasrole('Super Admin')
-                        <li><a href="#"><i class='icon-settings'></i> {{ __('navigation/navigation.admin') }}</a></li>
+                        <li><a href="{{ route('admin.dashboard') }}"><i class='icon-settings'></i> {{ __('navigation/navigation.admin.admin') }}</a></li>
                         <div class="divider"></div>
                     @endhasrole
 
@@ -35,7 +40,7 @@
     <!-- Sidebar -->
     <div x-bind:class="{'expanded': sidebarOpen || pinned, 'pinned': pinned}" @mouseover="sidebarOpen = true"
          @mouseleave="sidebarOpen = false" @touchstart="sidebarOpen = !sidebarOpen; pinned = false"
-         class="flex flex-col items-center w-40 fixed top-0 left-0 h-full sidebar overflow-hidden bg-base-200 transform transition-transform"
+         class="flex flex-col items-center w-40 fixed top-0 left-0 h-full sidebar overflow-x-hidden overflow-y-auto bg-base-200 transform transition-transform"
          x-transition:enter="transition-transform transition-width ease-out duration-300"
          x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
          x-transition:leave="transition-transform transition-width ease-in duration-300"
@@ -57,17 +62,17 @@
 
             <div class="divider divider-neutral"></div>
 
-            <div class="flex flex-col items-center w-full mt-2">
+            <div class="flex flex-col items-center w-full my-2">
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('account.profile') ? 'bg-base-300' : '' }}"
                    href="{{ route('account.profile') }}">
                     <i class="icon-user"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.profile') }}</span>
                 </a>
                 @hasrole('Super Admin')
-                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin') ? 'bg-base-300' : '' }}"
-                   href="#">
+                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300"
+                   href="{{ route('admin.dashboard') }}">
                     <i class="icon-settings"></i>
-                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin') }}</span>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.admin') }}</span>
                 </a>
                 @endhasrole
                 <a class="relative flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('logout') ? 'bg-base-300' : '' }}"

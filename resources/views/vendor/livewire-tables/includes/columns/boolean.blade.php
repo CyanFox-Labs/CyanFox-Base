@@ -2,29 +2,29 @@
     @if ($status)
         @if ($type === 'icons')
             @if ($successValue === true)
-                <x-heroicon-o-check-circle class="inline-block h-5 w-5 text-green-500" />
+                <i class="icon-check-circle-2 text-xl text-green-500"></i>
             @else
-                <x-heroicon-o-check-circle class="inline-block h-5 w-5 text-red-500" />
+                <i class="icon-check-circle-2 text-xl text-red-500"></i>
             @endif
         @elseif ($type === 'yes-no')
             @if ($successValue === true)
-                <span>Yes</span>
+                <span>{{ __('messages.yes') }}</span>
             @else
-                <span>No</span>
+                <span>{{ __('messages.no') }}</span>
             @endif
         @endif
     @else
         @if ($type === 'icons')
             @if ($successValue === false)
-                <x-heroicon-o-x-circle class="inline-block h-5 w-5 text-green-500" />
+                <i class="icon-x-circle text-xl text-green-500"></i>
             @else
-                <x-heroicon-o-x-circle class="inline-block h-5 w-5 text-red-500" />
+                <i class="icon-x-circle text-xl text-red-500"></i>
             @endif
         @elseif ($type === 'yes-no')
             @if ($successValue === false)
-                <span>Yes</span>
+                <span>{{ __('messages.yes') }}</span>
             @else
-                <span>No</span>
+                <span>{{ __('messages.no') }}</span>
             @endif
         @endif
     @endif
@@ -32,29 +32,29 @@
     @if ($status)
         @if ($type === 'icons')
             @if ($successValue === true)
-                <x-heroicon-o-check-circle style="width:1.2em;height:1.2em;" class="d-inline-block text-success" />
+                <i class="icon-x-circle text-xl text-success"></i>
             @else
-                <x-heroicon-o-check-circle style="width:1.2em;height:1.2em;" class="d-inline-block text-danger" />
+                <i class="icon-x-circle text-xl text-danger"></i>
             @endif
         @elseif ($type === 'yes-no')
             @if ($successValue === true)
-                <span>Yes</span>
+                <span>{{ __('messages.yes') }}</span>
             @else
-                <span>No</span>
+                <span>{{ __('messages.no') }}</span>
             @endif
         @endif
     @else
         @if ($type === 'icons')
             @if ($successValue === false)
-                <x-heroicon-o-x-circle style="width:1.2em;height:1.2em;" class="d-inline-block text-success" />
+                <i class="icon-x-circle text-xl text-success"></i>
             @else
-                <x-heroicon-o-x-circle style="width:1.2em;height:1.2em;" class="d-inline-block text-danger" />
+                <i class="icon-x-circle text-xl text-danger"></i>
             @endif
         @elseif ($type === 'yes-no')
             @if ($successValue === false)
-                <span>Yes</span>
+                <span>{{ __('messages.yes') }}</span>
             @else
-                <span>No</span>
+                <span>{{ __('messages.no') }}</span>
             @endif
         @endif
     @endif

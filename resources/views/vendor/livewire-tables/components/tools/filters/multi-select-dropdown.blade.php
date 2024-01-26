@@ -8,7 +8,7 @@
                 wire:model.live.debounce.250ms="filterComponents.{{ $filter->getKey() }}"
                 wire:key="{{ $filter->generateWireKey($tableName, 'multiselectdropdown') }}"
                 id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
-                class="block w-full transition duration-150 ease-in-out border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:text-white dark:border-gray-600"
+                class="block w-full transition duration-150 ease-in-out border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-base-100 dark:border-gray-600"
             >
             @if ($filter->getFirstOption() != "")
                 <option @if($filter->isEmpty($this)) selected @endif value="all">{{ $filter->getFirstOption()}}</option>

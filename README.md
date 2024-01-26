@@ -36,21 +36,21 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Admin Page
     - [ ] User management
     - [ ] Role management
-    - [ ] Permission management
     - [ ] Settings
         - [ ] Password rules
-    - [ ] Operations
+    - [ ] Actions
         - [ ] Clear cache
         - [ ] Clear views
         - [ ] Clear activity log
     - [ ] Activity log
-    - [ ] Alerts / Notifications
+    - [ ] Notifications
 - [ ] Force change password
 - [ ] Force activate Two-factor authentication
-- [ ] Alerts / Notifications (types: info, warning, update, error / danger | with dismiss option | where: login, admin,
+- [ ] Notifications (types: info, warning, update, error / danger | with dismiss option | where: login, admin,
   profile, home, default = navbar)
-- [ ] Activity logging
 - [ ] Add Spotlight values
+- [ ] User notifications
+- [ ] Activity logging
 - [ ] Switch to navbar if the device is too small
 - [ ] Module system
 - [ ] API Documentation
@@ -60,6 +60,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] German translation (sie & du)
 - [ ] Add default values to .env.example
 - [ ] Add github workflow and dependabot config
+- [ ] Add V1 -> V2 migration command
 - [ ] Code refactoring
 - [ ] Code cleanup
 - [ ] Code comments

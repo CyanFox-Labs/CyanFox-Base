@@ -24,7 +24,7 @@
                 type="button"
                 @class([
                     'btn dropdown-toggle d-block w-100 d-md-inline' => $component->isBootstrap(),
-                    'bg-base-100 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600 dark:hover:bg-gray-600' => $component->isTailwind(),
+                    'bg-base-100 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 text-sm font-medium focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:border-gray-600' => $component->isTailwind(),
                 ])
                 @if ($component->isFilterLayoutPopover()) x-on:click="filterPopoverOpen = !filterPopoverOpen"
                     aria-haspopup="true"
@@ -38,7 +38,7 @@
                 @if ($count = $component->getFilterBadgeCount())
                     <span @class([
                             'badge badge-info' => $component->isBootstrap(),
-                            'ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900' => $component->isTailwind(),
+                            'ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 capitalize bg-base-100' => $component->isTailwind(),
                         ])>
                         {{ $count }}
                     </span>

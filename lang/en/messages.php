@@ -3,6 +3,8 @@
 return [
     'back' => 'Back',
     'or' => 'or',
+    'yes' => 'Yes',
+    'no' => 'No',
 
     'footer' => [
         'page' => 'Page',
