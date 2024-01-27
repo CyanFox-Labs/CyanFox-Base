@@ -93,8 +93,8 @@ class CreateUser extends Component
 
     public function mount()
     {
-        $this->groups = Role::all()->pluck('name', 'id')->toArray();
-        $this->permissions = Permission::all()->pluck('name', 'id')->toArray();
+        $this->groups = Role::all()->pluck('name', 'name')->toArray();
+        $this->permissions = Permission::all()->pluck('name', 'name')->toArray();
     }
 
     public function render()

@@ -36,13 +36,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Admin Page
     - [x] User management
     - [ ] Role management
+    - [ ] Module management
     - [ ] Settings
         - [ ] Password rules
         - [ ] Activate / disable things (e.g. Login, Profile, Register, Notifications etc.)
-    - [ ] Actions
-        - [ ] Clear cache
-        - [ ] Clear views
-        - [ ] Clear activity log
     - [ ] Activity log
     - [ ] Notifications
 - [ ] Force change password
@@ -68,3 +65,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Add tests
 - [ ] Add Readme (Screenshots, Links etc.)
 - [ ] Release v2.0.0
+
+## Modules
+
+- [ ] Actions
+    - [ ] Clear cache
+    - [ ] Clear views
+    - [ ] Clear activity log

@@ -1,6 +1,7 @@
 @props([
     'label' => null,
     'options' => [],
+    'selected' => [],
     'id' => \Illuminate\Support\Str::uuid()->toString(),
 ])
 
@@ -39,7 +40,7 @@
 
     <select x-ref="multiple" multiple="multiple" id="{{ $id }}">
         @foreach($options as $key => $option)
-            <option value="{{ $key }}">{{ $option }}</option>
+            <option value="{{ $key }}" {{ in_array($key, $selected) ? 'selected' : '' }}>{{ $option }}</option>
         @endforeach
     </select>
 </div>

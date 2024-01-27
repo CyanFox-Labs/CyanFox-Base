@@ -42,7 +42,6 @@ class UpdateUser extends Component
             'passwordConfirmation' => 'nullable|max:255|same:password',
             'selectedGroups' => 'nullable|array',
             'selectedPermissions' => 'nullable|array',
-            'sendWelcomeEmail' => 'nullable|boolean',
             'forceChangePassword' => 'nullable|boolean',
             'forceActivateTwoFactor' => 'nullable|boolean',
             'disabled' => 'nullable|boolean',
@@ -91,12 +90,11 @@ class UpdateUser extends Component
         $this->forceActivateTwoFactor = (bool) $this->user->force_activate_two_factor;
         $this->disabled = (bool) $this->user->disabled;
 
-        $this->groups = Role::all()->pluck('name', 'id')->toArray();
-        $this->permissions = Permission::all()->pluck('name', 'id')->toArray();
+        $this->groups = Role::all()->pluck('name', 'name')->toArray();
+        $this->permissions = Permission::all()->pluck('name', 'name')->toArray();
 
-        $this->selectedGroups = $this->user->roles->pluck('id')->toArray();
-        $this->selectedPermissions = $this->user->permissions->pluck('id')->toArray();
-
+        $this->selectedGroups = $this->user->roles->pluck('name')->toArray();
+        $this->selectedPermissions = $this->user->permissions->pluck('name')->toArray();
     }
 
     public function render()

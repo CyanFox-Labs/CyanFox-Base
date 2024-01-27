@@ -81,10 +81,10 @@
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.settings') }}</span>
                 </a>
 
-                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.actions') ? 'bg-base-300' : '' }}"
+                <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.modules') ? 'bg-base-300' : '' }}"
                    href="{{ route('admin.dashboard') }}">
-                    <i class="icon-terminal"></i>
-                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.actions') }}</span>
+                    <i class="icon-blocks"></i>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.modules') }}</span>
                 </a>
 
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.activity') ? 'bg-base-300' : '' }}"

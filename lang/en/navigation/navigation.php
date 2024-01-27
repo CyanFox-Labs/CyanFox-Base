@@ -11,7 +11,7 @@ return [
         'users' => 'Users',
         'groups' => 'Groups',
         'settings' => 'Settings',
-        'actions' => 'Actions',
+        'modules' => 'Modules',
         'activity' => 'Activity',
     ],
 ];

@@ -28,9 +28,9 @@
                              class="input input-bordered w-full" wire:model="passwordConfirmation"/>
 
                     <x-custom.multi-select label="{{ __('pages/admin/users/messages.groups') }}"
-                                           wire:model="selectedGroups" :options="$groups"/>
+                                           wire:model="selectedGroups" :selected="$selectedGroups" :options="$groups"/>
                     <x-custom.multi-select label="{{ __('pages/admin/users/messages.permissions') }}"
-                                           wire:model="selectedPermissions" :options="$permissions"/>
+                                           wire:model="selectedPermissions" :selected="$selectedPermissions" :options="$permissions"/>
 
                     <div class="space-y-4">
                         <x-checkbox label="{{ __('pages/admin/users/messages.force_activate_two_factor') }}"
