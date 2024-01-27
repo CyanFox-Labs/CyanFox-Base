@@ -49,7 +49,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'language'], function () {
     })->name('auth.logout')->middleware('auth');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'disabled']], function () {
     Route::get('/', Home::class)->name('home');
 
     Route::group(['prefix' => 'account'], function () {

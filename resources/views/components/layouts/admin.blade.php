@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', setting('app_lang')) }}" @if(auth()->user())
+    data-theme="{{ auth()->user()->theme }}"
+      @if(
+    auth()->user()->getColorScheme() == 'dark'
+    ) class="dark" @endif>
+@endif
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,8 +23,14 @@
 @livewire('notifications')
 @livewire('wire-elements-modal')
 
-{{ $slot }}
 
+<x-navigation.admin :content="$slot"/>
+
+<x-navigation.footer/>
+
+<x-spotlight
+    shortcut="ctrl.x"
+/>
 
 @filamentScripts
 @vite('resources/js/app.js')

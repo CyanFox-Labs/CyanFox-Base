@@ -2,10 +2,12 @@
 @import url('lucide-static/font/lucide.css');
 @import url('cropperjs/dist/cropper.min.css');
 @import url('diff2html/bundles/css/diff2html.min.css');
+@import url('choices.js/public/assets/styles/choices.min.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* DaisyUI */
 .glass, .glass.btn-active {
     border: none;
     -webkit-backdrop-filter: blur(var(--glass-blur, 40px));
@@ -22,6 +24,29 @@
 }
 
 
+/* Filament */
 .fi-no-notification {
+    @apply bg-base-200 !important;
+}
+
+
+/* Choices.js */
+.choices, .choices__inner {
+    @apply bg-base-100 !important;
+    @apply select-bordered !important;
+    @apply rounded-md !important;
+}
+
+:is(.dark .choices__list--multiple .choices__item) {
+    color: unset !important;
+}
+
+.choices__list, .choices__list--dropdown {
+    @apply bg-base-100 !important;
+    @apply border-0 !important;
+    @apply shadow-none !important;
+}
+
+.choices__item--selectable.is-highlighted {
     @apply bg-base-200 !important;
 }

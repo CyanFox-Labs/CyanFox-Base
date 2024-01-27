@@ -34,10 +34,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [x] Activity Log
     - [ ] OPTIONAL: Passkeys
 - [ ] Admin Page
-    - [ ] User management
+    - [x] User management
     - [ ] Role management
     - [ ] Settings
         - [ ] Password rules
+        - [ ] Activate / disable things (e.g. Login, Profile, Register, Notifications etc.)
     - [ ] Actions
         - [ ] Clear cache
         - [ ] Clear views

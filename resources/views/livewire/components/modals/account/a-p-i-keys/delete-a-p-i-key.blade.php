@@ -9,8 +9,8 @@
     <div class="mt-2 flex justify-between gap-3">
         <button class="btn btn-neutral flex-grow" type="button"
                 wire:click="$dispatch('closeModal')">{{ __('messages.buttons.cancel') }}</button>
-        <button class="btn btn-error flex-grow" type="button"
-                wire:click="deleteAPIKey">{{ __('messages.buttons.confirm') }}</button>
+        <x-button class="btn btn-error flex-grow" type="button"
+                wire:click="deleteAPIKey" spinner>{{ __('messages.buttons.confirm') }}</x-button>
     </div>
 </x-modal>
 

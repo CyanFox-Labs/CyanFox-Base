@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "boxicons": "^2.1.4",
+        "choices.js": "^10.2.0",
         "cropperjs": "^1.6.1",
         "diff2html": "^3.4.47",
         "lucide-static": "^0.311.0"

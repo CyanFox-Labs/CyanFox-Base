@@ -40,6 +40,12 @@
                     </div>
                 @endif
 
+                @if(session('error'))
+                    <x-alert icon="o-exclamation-triangle"
+                             class="alert-error">{{ session('error') }}
+                    </x-alert>
+                @endif
+
                 @if(setting('auth_enable_local_login'))
                     @if($twoFactorEnabled)
                         <x-form class="space-y-4 md:space-y-6" wire:submit="checkTwoFactorCode">
@@ -57,7 +63,7 @@
 
                                 <a href="{{ route('auth.login') }}"
                                    class="btn btn-neutral w-full mt-2">
-                                    {{ __('messages.back') }}
+                                    {{ __('messages.buttons.back') }}
                                 </a>
                             </div>
                         </x-form>

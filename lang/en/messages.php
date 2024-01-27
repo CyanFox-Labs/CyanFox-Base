@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'back' => 'Back',
     'or' => 'or',
     'yes' => 'Yes',
     'no' => 'No',
@@ -25,6 +24,7 @@ return [
         'delete' => 'Delete',
         'confirm' => 'Confirm',
         'close' => 'Close',
+        'back' => 'Back',
     ],
 
     'image_upload' => [
