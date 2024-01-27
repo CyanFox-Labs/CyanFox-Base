@@ -24,7 +24,6 @@ class UpdateUser extends Component
     public $forceChangePassword = false;
     public $forceActivateTwoFactor = false;
     public $disabled = false;
-    public $sendWelcomeEmail = false;
 
 
     public $groups = [];
@@ -88,9 +87,9 @@ class UpdateUser extends Component
         $this->lastName = $this->user->last_name;
         $this->username = $this->user->username;
         $this->email = $this->user->email;
-        $this->forceChangePassword = $this->user->force_change_password;
-        $this->forceActivateTwoFactor = $this->user->force_activate_two_factor;
-        $this->disabled = $this->user->disabled;
+        $this->forceChangePassword = (bool) $this->user->force_change_password;
+        $this->forceActivateTwoFactor = (bool) $this->user->force_activate_two_factor;
+        $this->disabled = (bool) $this->user->disabled;
 
         $this->groups = Role::all()->pluck('name', 'id')->toArray();
         $this->permissions = Permission::all()->pluck('name', 'id')->toArray();
