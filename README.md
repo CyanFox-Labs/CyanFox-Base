@@ -61,8 +61,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Add V1 -> V2 migration command
 - [ ] Code refactoring
 - [ ] Code cleanup
-- [ ] Code comments
 - [ ] Add tests
+- [ ] Code comments
 - [ ] Add Readme (Screenshots, Links etc.)
 - [ ] Release v2.0.0
 
