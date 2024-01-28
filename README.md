@@ -35,7 +35,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [ ] OPTIONAL: Passkeys
 - [ ] Admin Page
     - [x] User management
-    - [ ] Role management
+    - [x] Role management
     - [ ] Module management
     - [ ] Settings
         - [ ] Password rules

@@ -8,7 +8,7 @@ use App\Models\User;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
 
-class UserTable extends DataTableComponent
+class UsersTable extends DataTableComponent
 {
     protected $model = User::class;
 
@@ -24,6 +24,7 @@ class UserTable extends DataTableComponent
     {
         return [
             Column::make(__('messages.table.id'), 'id')
+                ->searchable()
                 ->sortable(),
             ImageColumn::make(__('pages/admin/users/users.table.avatar'))
                 ->location(function ($row) {
@@ -36,12 +37,16 @@ class UserTable extends DataTableComponent
                     ];
                 }),
             Column::make(__('pages/admin/users/users.table.username'), 'username')
+                ->searchable()
                 ->sortable(),
             Column::make(__('pages/admin/users/users.table.first_name'), 'first_name')
+                ->searchable()
                 ->sortable(),
             Column::make(__('pages/admin/users/users.table.last_name'), 'last_name')
+                ->searchable()
                 ->sortable(),
             Column::make(__('pages/admin/users/users.table.email'), 'email')
+                ->searchable()
                 ->sortable(),
             BooleanColumn::make(__('pages/admin/users/users.table.two_factor_enabled'), 'two_factor_enabled')
                 ->sortable(),

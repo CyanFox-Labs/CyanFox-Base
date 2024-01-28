@@ -1,6 +1,9 @@
 <?php
 
 use App\Livewire\Admin\Dashboard;
+use App\Livewire\Admin\Groups\CreateGroup;
+use App\Livewire\Admin\Groups\Groups;
+use App\Livewire\Admin\Groups\UpdateGroup;
 use App\Livewire\Admin\Users\CreateUser;
 use App\Livewire\Admin\Users\UpdateUser;
 use App\Livewire\Admin\Users\Users;
@@ -22,6 +25,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:Super Admin', 'auth', 
         Route::get('/', Users::class)->name('admin.users');
         Route::get('/create', CreateUser::class)->name('admin.users.create');
         Route::get('/update/{userId}', UpdateUser::class)->name('admin.users.update');
+    });
+
+    Route::group(['prefix' => 'groups'], function () {
+        Route::get('/', Groups::class)->name('admin.groups');
+        Route::get('/create', CreateGroup::class)->name('admin.groups.create');
+        Route::get('/update/{groupId}', UpdateGroup::class)->name('admin.groups.update');
     });
 });
 

@@ -13,5 +13,10 @@ return [
             'create_user' => 'Admin • Users » Create User',
             'update_user' => 'Admin • Users » Update :user'
         ],
+        'groups' => [
+            'groups' => 'Admin • Groups',
+            'create_group' => 'Admin • Groups » Create Group',
+            'update_group' => 'Admin • Groups » Update :group'
+        ],
     ],
 ];
