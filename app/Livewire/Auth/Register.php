@@ -2,9 +2,8 @@
 
 namespace App\Livewire\Auth;
 
-use App\Http\Controllers\API\UnsplashController;
+use App\Helpers\UnsplashHelper;
 use App\Models\User;
-use App\Models\UserRecoveryCode;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Notifications\Notification;
@@ -37,7 +36,7 @@ class Register extends Component
 
     public function mount()
     {
-        $unsplash = UnsplashController::returnBackground();
+        $unsplash = UnsplashHelper::returnBackground();
 
         $this->unsplash = $unsplash;
 

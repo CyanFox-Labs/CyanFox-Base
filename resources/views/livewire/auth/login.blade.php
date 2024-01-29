@@ -2,8 +2,7 @@
     <div class="absolute inset-0 z-[-1]" style="{{ $unsplash['css'] }}"></div>
     <div class="flex flex-col justify-center items-center">
         <p class="flex items-center mb-6 text-2xl font-semibold">
-            <img class="w-32 h-32 mr-2" src="{{ asset("img/Logo.svg") }}" alt="Logo">
-
+            <img class="w-32 h-32" src="{{ asset("img/Logo.svg") }}" alt="Logo">
             <span
                 class="text-4xl font-bold brand-text text-white lg:block hidden">{{ setting('app_name') }}</span>
         </p>

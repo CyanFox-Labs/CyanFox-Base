@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Helpers;
 
-use App\Http\Controllers\Controller;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
-class UnsplashController extends Controller
+class UnsplashHelper
 {
 
     public static function returnBackground()

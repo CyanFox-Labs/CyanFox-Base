@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Auth;
 
-use App\Http\Controllers\API\UnsplashController;
+use App\Helpers\UnsplashHelper;
 use App\Models\User;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Url;
@@ -45,7 +45,7 @@ class Login extends Component
             $this->redirect = setting('app_url');
         }
 
-        $unsplash = UnsplashController::returnBackground();
+        $unsplash = UnsplashHelper::returnBackground();
 
         $this->unsplash = $unsplash;
 

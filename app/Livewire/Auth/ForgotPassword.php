@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Auth;
 
-use App\Http\Controllers\API\UnsplashController;
+use App\Helpers\UnsplashHelper;
 use App\Models\User;
 use Carbon\Carbon;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
@@ -63,7 +63,7 @@ class ForgotPassword extends Component
             }
         }
 
-        $unsplash = UnsplashController::returnBackground();
+        $unsplash = UnsplashHelper::returnBackground();
 
         $this->unsplash = $unsplash;
 
