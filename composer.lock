@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0292af4dd7507080c4d3c815f895a2b8",
+    "content-hash": "fbd6877de82bb76efe08bbb354eb1f02",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -3454,16 +3454,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.23.0",
+            "version": "3.23.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "d4ad81e2b67396e33dc9d7e54ec74ccf73151dcc"
+                "reference": "199e1aebbe3e62bd39f4d4fc8c61ce0b3786197e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/d4ad81e2b67396e33dc9d7e54ec74ccf73151dcc",
-                "reference": "d4ad81e2b67396e33dc9d7e54ec74ccf73151dcc",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/199e1aebbe3e62bd39f4d4fc8c61ce0b3786197e",
+                "reference": "199e1aebbe3e62bd39f4d4fc8c61ce0b3786197e",
                 "shasum": ""
             },
             "require": {
@@ -3528,7 +3528,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.23.0"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.23.1"
             },
             "funding": [
                 {
@@ -3540,20 +3540,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-04T10:16:17+00:00"
+            "time": "2024-01-26T18:42:03+00:00"
         },
         {
             "name": "league/flysystem-local",
-            "version": "3.23.0",
+            "version": "3.23.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem-local.git",
-                "reference": "5cf046ba5f059460e86a997c504dd781a39a109b"
+                "reference": "b884d2bf9b53bb4804a56d2df4902bb51e253f00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/5cf046ba5f059460e86a997c504dd781a39a109b",
-                "reference": "5cf046ba5f059460e86a997c504dd781a39a109b",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/b884d2bf9b53bb4804a56d2df4902bb51e253f00",
+                "reference": "b884d2bf9b53bb4804a56d2df4902bb51e253f00",
                 "shasum": ""
             },
             "require": {
@@ -3588,7 +3588,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem-local/issues",
-                "source": "https://github.com/thephpleague/flysystem-local/tree/3.23.0"
+                "source": "https://github.com/thephpleague/flysystem-local/tree/3.23.1"
             },
             "funding": [
                 {
@@ -3600,20 +3600,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-04T10:14:46+00:00"
+            "time": "2024-01-26T18:25:23+00:00"
         },
         {
             "name": "league/mime-type-detection",
-            "version": "1.14.0",
+            "version": "1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/mime-type-detection.git",
-                "reference": "b6a5854368533df0295c5761a0253656a2e52d9e"
+                "reference": "ce0f4d1e8a6f4eb0ddff33f57c69c50fd09f4301"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/b6a5854368533df0295c5761a0253656a2e52d9e",
-                "reference": "b6a5854368533df0295c5761a0253656a2e52d9e",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/ce0f4d1e8a6f4eb0ddff33f57c69c50fd09f4301",
+                "reference": "ce0f4d1e8a6f4eb0ddff33f57c69c50fd09f4301",
                 "shasum": ""
             },
             "require": {
@@ -3644,7 +3644,7 @@
             "description": "Mime-type detection for Flysystem",
             "support": {
                 "issues": "https://github.com/thephpleague/mime-type-detection/issues",
-                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.14.0"
+                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.15.0"
             },
             "funding": [
                 {
@@ -3656,7 +3656,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-17T14:13:20+00:00"
+            "time": "2024-01-28T23:22:08+00:00"
         },
         {
             "name": "league/oauth1-client",
@@ -3910,16 +3910,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.4.2",
+            "version": "v3.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "ab0baed58b774dde8e0ddbab1bbfd5b3d6334a82"
+                "reference": "c0489d4a76382f6dcf6e2702112f86aa089d0c8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/ab0baed58b774dde8e0ddbab1bbfd5b3d6334a82",
-                "reference": "ab0baed58b774dde8e0ddbab1bbfd5b3d6334a82",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/c0489d4a76382f6dcf6e2702112f86aa089d0c8d",
+                "reference": "c0489d4a76382f6dcf6e2702112f86aa089d0c8d",
                 "shasum": ""
             },
             "require": {
@@ -3973,7 +3973,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.4.2"
+                "source": "https://github.com/livewire/livewire/tree/v3.4.4"
             },
             "funding": [
                 {
@@ -3981,7 +3981,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-01-26T14:25:51+00:00"
+            "time": "2024-01-28T19:07:11+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -4920,32 +4920,33 @@
         },
         {
             "name": "power-components/livewire-powergrid",
-            "version": "v5.1.0",
+            "version": "v5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "5c042c231f4f1ad2802fbfbafd9cbfc3881e7ac0"
+                "reference": "7fab9dca197dd362b678bf163bee53c7bdb4085b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/5c042c231f4f1ad2802fbfbafd9cbfc3881e7ac0",
-                "reference": "5c042c231f4f1ad2802fbfbafd9cbfc3881e7ac0",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/7fab9dca197dd362b678bf163bee53c7bdb4085b",
+                "reference": "7fab9dca197dd362b678bf163bee53c7bdb4085b",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "2.12.1 | ^3.6.6",
-                "laravel/prompts": "^0.1.7",
-                "livewire/livewire": "^3.0.5",
+                "laravel/prompts": "^0.1.15",
+                "livewire/livewire": "^3.3.5",
                 "php": "^8.1"
             },
+            "conflict": {
+                "laravel/framework": "10.40.0"
+            },
             "require-dev": {
-                "composer/composer": "^2.6.3",
-                "laradumps/laradumps-core": "^0.3.0",
-                "laravel/pint": "^1.13.1",
-                "nunomaduro/larastan": "^2.6.4",
-                "orchestra/testbench": "^8.10.2",
-                "pestphp/pest": "^2.18.2",
-                "spaze/phpstan-disallowed-calls": "^2.16"
+                "composer/composer": "^2.6.6",
+                "laradumps/laradumps-core": "^1.1",
+                "larastan/larastan": "^2.8.1",
+                "laravel/pint": "^1.13.8",
+                "orchestra/testbench": "8.19|^9.0",
+                "pestphp/pest": "^2.30.0"
             },
             "suggest": {
                 "openspout/openspout": "Required to export XLS and CSV"
@@ -4986,7 +4987,7 @@
             "homepage": "https://github.com/power-components/livewire-powergrid",
             "support": {
                 "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v5.1.0"
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v5.2.3"
             },
             "funding": [
                 {
@@ -4994,7 +4995,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-21T22:53:48+00:00"
+            "time": "2024-01-18T19:41:27+00:00"
         },
         {
             "name": "pragmarx/google2fa",
