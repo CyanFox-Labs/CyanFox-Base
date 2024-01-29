@@ -47,8 +47,8 @@
          x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
 
         <div class="flex items-center justify-center w-full h-16 mt-2">
-            <img src="{{ asset('img/Logo.png') }}" alt="Logo" class="w-8 h-8">
-            <span class="ml-2 text-sm font-bold text-hidden">{{ setting('app_name') }}</span>
+            <img src="{{ asset('img/Logo.svg') }}" alt="Logo" class="w-16 h-16">
+            <span class="ml-1 font-bold text-hidden">{{ setting('app_name') }}</span>
         </div>
 
         <div class="w-full px-2 mt-4">

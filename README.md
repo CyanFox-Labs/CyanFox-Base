@@ -36,7 +36,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Admin Page
     - [x] User management
     - [x] Role management
-    - [ ] Module management
+    - [x] Module management
+      - [ ] Download modules or install from zip
     - [ ] Settings
         - [ ] Password rules
         - [ ] Activate / disable things (e.g. Login, Profile, Register, Notifications etc.)

@@ -77,8 +77,8 @@
 
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body flex justify-center align-middle text-center">
-                <a href="{{ route('admin.dashboard') }}"><i class="icon-blocks text-9xl"></i></a>
-                <a href="{{ route('admin.dashboard') }}">{{ __('navigation/navigation.admin.modules') }}</a>
+                <a href="{{ route('admin.modules') }}"><i class="icon-blocks text-9xl"></i></a>
+                <a href="{{ route('admin.modules') }}">{{ __('navigation/navigation.admin.modules') }}</a>
             </div>
         </div>
 

@@ -18,5 +18,8 @@ return [
             'create_group' => 'Admin • Groups » Create Group',
             'update_group' => 'Admin • Groups » Update :group'
         ],
+        'modules' => [
+            'modules' => 'Admin • Modules',
+        ],
     ],
 ];
