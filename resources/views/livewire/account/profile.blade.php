@@ -1,6 +1,6 @@
 <div>
 
-    <div role="tablist" class="tabs tabs-bordered pb-4">
+    <div role="tablist" class="tabs tabs-boxed mb-4">
         <a role="tab" class="tab @if($tab == 'overview') tab-active @endif"
            wire:click="$set('tab', 'overview')"><i class="icon-home pr-2"></i>
             <span class="md:block hidden">{{ __('pages/account/profile.tabs.overview') }}</span>

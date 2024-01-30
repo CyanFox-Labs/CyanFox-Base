@@ -5,6 +5,7 @@ use App\Livewire\Admin\Groups\CreateGroup;
 use App\Livewire\Admin\Groups\Groups;
 use App\Livewire\Admin\Groups\UpdateGroup;
 use App\Livewire\Admin\Modules\Modules;
+use App\Livewire\Admin\Settings\Settings;
 use App\Livewire\Admin\Users\CreateUser;
 use App\Livewire\Admin\Users\UpdateUser;
 use App\Livewire\Admin\Users\Users;
@@ -36,6 +37,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:Super Admin', 'auth', 
 
     Route::group(['prefix' => 'modules'], function () {
         Route::get('/', Modules::class)->name('admin.modules');
+    });
+
+    Route::group(['prefix' => 'settings'], function () {
+        Route::get('/', Settings::class)->name('admin.settings');
     });
 });
 

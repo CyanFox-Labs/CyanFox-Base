@@ -39,8 +39,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [x] Module management
       - [ ] Download modules or install from zip
     - [ ] Settings
-        - [ ] Password rules
-        - [ ] Activate / disable things (e.g. Login, Profile, Register, Notifications etc.)
+        - [x] System settings
+        - [ ] Auth settings
+        - [ ] Email settings
+        - [ ] Profile settings
+        - [ ] Security settings
     - [ ] Activity log
     - [ ] Notifications
 - [ ] Force change password
@@ -59,7 +62,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] German translation (sie & du)
 - [ ] Add default values to .env.example
 - [ ] Add github workflow and dependabot config
-- [ ] Add V1 -> V2 migration command
+- [ ] Add V1 -> V2 migration command -> For v1 projects
 - [ ] Code refactoring
 - [ ] Code cleanup
 - [ ] Add tests

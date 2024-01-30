@@ -70,8 +70,8 @@
 
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body flex justify-center align-middle text-center">
-                <a href="{{ route('admin.dashboard') }}"><i class="icon-settings-2 text-9xl"></i></a>
-                <a href="{{ route('admin.dashboard') }}">{{ __('navigation/navigation.admin.settings') }}</a>
+                <a href="{{ route('admin.settings') }}"><i class="icon-settings-2 text-9xl"></i></a>
+                <a href="{{ route('admin.settings') }}">{{ __('navigation/navigation.admin.settings') }}</a>
             </div>
         </div>
 

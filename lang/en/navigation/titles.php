@@ -21,5 +21,8 @@ return [
         'modules' => [
             'modules' => 'Admin • Modules',
         ],
+        'settings' => [
+            'settings' => 'Admin • Settings',
+        ],
     ],
 ];

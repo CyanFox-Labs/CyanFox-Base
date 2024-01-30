@@ -1,5 +1,15 @@
 <div>
-
+    <span class="font-bold text-xl">{{ __('pages/admin/modules/modules.title') }}</span>
+    <div class="divider"></div>
+    @if(count($modules) === 0)
+        <div class="card bg-base-100 shadow-xl">
+            <div class="card-body">
+                <div class="text-2xl font-semibold text-center">
+                    {{ __('pages/admin/modules/modules.no_modules') }}
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         @foreach($modules as $module)
             <div class="card bg-base-100 shadow-xl">

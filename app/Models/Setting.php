@@ -23,10 +23,6 @@ class Setting extends Model
             if ($setting == null) {
                 $setting = new self();
                 $setting->key = $key;
-                $setting->save();
-            }
-
-            if ($setting->value == null) {
                 $setting->value = ($isEncrypted) ? encrypt(env(strtoupper($key))) : env(strtoupper($key));
                 $setting->save();
             }
