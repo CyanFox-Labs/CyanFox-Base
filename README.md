@@ -40,7 +40,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
       - [ ] Download modules or install from zip
     - [ ] Settings
         - [x] System settings
-        - [ ] Auth settings
+        - [x] Auth settings
         - [ ] Email settings
         - [ ] Profile settings
         - [ ] Security settings
