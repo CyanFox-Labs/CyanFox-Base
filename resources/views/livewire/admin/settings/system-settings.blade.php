@@ -1,5 +1,4 @@
 <div>
-
     <x-form wire:submit="updateSystemSettings">
         @csrf
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))] gap-4 mb-5">
@@ -22,7 +21,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-5">
             <x-input label="{{ __('pages/admin/settings/system_settings.unsplash_utm') }}" class="input-bordered" wire:model="unsplashUtm"/>
-            <x-input label="{{ __('pages/admin/settings/system_settings.unsplash_api_key') }}" class="input-bordered" wire:model="unsplashApiKey"/>
+            <x-input label="{{ __('pages/admin/settings/system_settings.unsplash_api_key') }}" type="password" class="input-bordered" wire:model="unsplashApiKey"/>
         </div>
 
         <div class="divider"></div>
