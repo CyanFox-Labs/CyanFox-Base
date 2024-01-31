@@ -3,6 +3,7 @@
         @csrf
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))] gap-4 mb-5">
             <x-select label="{{ __('pages/admin/settings/auth_settings.enable_auth') }}"
+                      hint="{{ __('pages/admin/settings/auth_settings.enable_auth_hint') }}"
                       wire:model="enableAuth"
                       class="select select-bordered"
                       :options="$options"></x-select>

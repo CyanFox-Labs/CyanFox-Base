@@ -55,6 +55,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Activity logging
 - [ ] Switch to navbar if the device is too small
 - [ ] Module system
+- [ ] Auth system disable functionality
 - [ ] API Documentation
 - [ ] Skeletons
 - [ ] Error pages

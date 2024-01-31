@@ -2,6 +2,7 @@
 
 return [
     'enable_auth' => 'Enable Authentication',
+    'enable_auth_hint' => 'Turning off authentication will block features such as the admin panel and profile. You can reactivate it via the database by setting enable_auth to 1 in the settings table.',
     'enable_forgot_password' => 'Enable Forgot Password',
     'enable_registration' => 'Enable Registration',
     'enable_oauth' => 'Enable OAuth',
