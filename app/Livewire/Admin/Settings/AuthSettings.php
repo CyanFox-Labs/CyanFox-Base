@@ -82,15 +82,15 @@ class AuthSettings extends Component
             'enableGoogleOAuth' => 'nullable|boolean',
             'googleClientId' => 'nullable|string',
             'googleClientSecret' => 'nullable|string',
-            'googleRedirectUrl' => 'nullable|string',
+            'googleRedirectUrl' => 'nullable|string|url',
             'enableGithubOAuth' => 'nullable|boolean',
             'githubClientId' => 'nullable|string',
             'githubClientSecret' => 'nullable|string',
-            'githubRedirectUrl' => 'nullable|string',
+            'githubRedirectUrl' => 'nullable|string|url',
             'enableGitlabOAuth' => 'nullable|boolean',
             'gitlabClientId' => 'nullable|string',
             'gitlabClientSecret' => 'nullable|string',
-            'gitlabRedirectUrl' => 'nullable|string',
+            'gitlabRedirectUrl' => 'nullable|string|url',
         ]);
 
         $settings = [

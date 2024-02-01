@@ -108,6 +108,8 @@
             </div>
         @endif
 
+        <div class="divider"></div>
+
         <div class="mt-2 flex justify-start gap-3">
             <x-button class="btn btn-success"
                       type="submit" spinner="updateAuthSettings">

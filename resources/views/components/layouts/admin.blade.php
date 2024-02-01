@@ -11,7 +11,7 @@
 
     <title>{{ setting('app_name') }} | {{ $title ?? 'Page Title' }}</title>
 
-    <link rel="icon" type="image/png" href="{{ asset('img/Logo.png') }}">
+    <link rel="icon" type="image/svg" href="{{ asset('img/Logo.svg') }}">
 
     @filamentStyles
     @vite(['resources/css/app.css'])

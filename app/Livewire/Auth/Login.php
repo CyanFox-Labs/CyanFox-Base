@@ -186,18 +186,19 @@ class Login extends Component
     {
         $placeholders = ['username' => $user->username,
             'firstName' => $user->first_name, 'lastName' => $user->last_name,
-            'ipAddress' => request()->ip()
+            'ipAddress' => request()->ip(),
+            'userAgent' => request()->userAgent(),
         ];
 
         Mail::send('emails.login', $placeholders, function ($message) use ($user, $placeholders) {
             $message->to($user->email, str_replace(
-                ['{username}', '{firstName}', '{lastName}', '{ipAddress}'],
-                [$user->username, $user->first_name, $user->last_name, request()->ip()],
+                ['{username}', '{firstName}', '{lastName}', '{ipAddress}', '{userAgent}'],
+                [$user->username, $user->first_name, $user->last_name, request()->ip(), request()->userAgent()],
                 setting('emails_login_title')
             ))
                 ->subject(str_replace(
-                    ['{username}', '{firstName}', '{lastName}', '{ipAddress}'],
-                    [$user->username, $user->first_name, $user->last_name, request()->ip()],
+                    ['{username}', '{firstName}', '{lastName}', '{ipAddress}', '{userAgent}'],
+                    [$user->username, $user->first_name, $user->last_name, request()->ip(), request()->userAgent()],
                     setting('emails_login_subject')
                 ));
             $message->from(config('mail.from.address'), config('mail.from.name'));

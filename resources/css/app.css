@@ -29,6 +29,10 @@
     @apply bg-base-200 !important;
 }
 
+.fi-input-wrp {
+    @apply bg-base-100 !important;
+}
+
 
 /* Choices.js */
 .choices, .choices__inner {

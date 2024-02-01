@@ -3,11 +3,13 @@
         '{username}',
         '{firstName}',
         '{lastName}',
-        '{ipAddress}'
+        '{ipAddress}',
+        '{userAgent}'
     ], [
         $username,
         $firstName,
         $lastName,
-        $ipAddress
+        $ipAddress,
+        $userAgent
     ],
      setting('emails_login_content'))) !!}
