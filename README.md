@@ -42,7 +42,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
         - [x] System settings
         - [x] Auth settings
         - [x] Email settings
-        - [ ] Profile settings
+        - [x] Profile settings
         - [ ] Security settings
     - [ ] Activity log
     - [ ] Notifications
