@@ -3,6 +3,7 @@
 namespace App\Livewire\Account;
 
 use App\Models\Session;
+use App\Rules\Password;
 use Filament\Notifications\Notification;
 use Hash;
 use Illuminate\Validation\ValidationException;
@@ -110,7 +111,7 @@ class Profile extends Component
 
         $this->validate([
             'currentPassword' => 'required|max:255',
-            'newPassword' => 'required|max:255|same:passwordConfirmation',
+            'newPassword' => ['required', 'max:255', 'same:passwordConfirmation', new Password],
             'passwordConfirmation' => 'required',
         ]);
 

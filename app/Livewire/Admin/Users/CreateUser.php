@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Users;
 
 use App\Models\User;
+use App\Rules\Password;
 use Filament\Notifications\Notification;
 use Hash;
 use Illuminate\Support\Facades\Mail;
@@ -37,7 +38,7 @@ class CreateUser extends Component
             'lastName' => 'required|max:255',
             'username' => 'required|max:255|unique:users,username',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|max:255|same:passwordConfirmation',
+            'password' => ['required', 'max:255', 'same:passwordConfirmation', new Password],
             'passwordConfirmation' => 'required|max:255|same:password',
             'selectedGroups' => 'nullable|array',
             'selectedPermissions' => 'nullable|array',

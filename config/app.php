@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'timezone' => setting('app_timezone', isConfig: true) ?? 'UTC',
+    'timezone' => setting('app_timezone', isConfig: true) ?? env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => setting('app_lang', isConfig: true) ?? 'en',
+    'locale' => setting('app_lang', isConfig: true) ?? env('APP_LANG', 'en'),
 
     /*
     |--------------------------------------------------------------------------

@@ -4,6 +4,7 @@ namespace App\Livewire\Auth;
 
 use App\Helpers\UnsplashHelper;
 use App\Models\User;
+use App\Rules\Password;
 use Carbon\Carbon;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
@@ -121,8 +122,8 @@ class ForgotPassword extends Component
     public function resetPassword()
     {
         $this->validate([
-            'password' => 'required|max:255|string',
-            'passwordConfirmation' => 'required|same:password',
+            'password' => ['required', 'max:255', 'same:passwordConfirmation', new Password],
+            'passwordConfirmation' => 'required',
         ]);
 
         $user = User::where('password_reset_token', $this->resetToken)->first();

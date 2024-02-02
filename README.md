@@ -38,12 +38,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [x] Role management
     - [x] Module management
       - [ ] Download modules or install from zip
-    - [ ] Settings
+    - [x] Settings
         - [x] System settings
         - [x] Auth settings
         - [x] Email settings
         - [x] Profile settings
-        - [ ] Security settings
+        - [x] Security settings
     - [ ] Activity log
     - [ ] Notifications
 - [ ] Force change password

@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Users;
 
 use App\Models\User;
+use App\Rules\Password;
 use Exception;
 use Filament\Notifications\Notification;
 use Hash;
@@ -38,7 +39,7 @@ class UpdateUser extends Component
             'lastName' => 'required|max:255',
             'username' => 'required|max:255|unique:users,username,' . $this->userId,
             'email' => 'required|email|unique:users,email,' . $this->userId,
-            'password' => 'nullable|max:255|same:passwordConfirmation',
+            'password' => ['nullable', 'max:255', 'same:passwordConfirmation', new Password],
             'passwordConfirmation' => 'nullable|max:255|same:password',
             'selectedGroups' => 'nullable|array',
             'selectedPermissions' => 'nullable|array',

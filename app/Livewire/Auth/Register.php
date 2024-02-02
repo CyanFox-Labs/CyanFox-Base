@@ -4,6 +4,7 @@ namespace App\Livewire\Auth;
 
 use App\Helpers\UnsplashHelper;
 use App\Models\User;
+use App\Rules\Password;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Notifications\Notification;
@@ -77,7 +78,7 @@ class Register extends Component
             'lastName' => 'required|max:255',
             'username' => 'required|max:255|unique:users,username',
             'email' => 'required|email|max:255|unique:users,email',
-            'password' => 'required|max:255|same:passwordConfirmation',
+            'password' => ['required', 'max:255', 'same:passwordConfirmation', new Password],
             'passwordConfirmation' => 'required',
         ]);
 
@@ -114,7 +115,6 @@ class Register extends Component
 
         return redirect()->route('home');
     }
-
 
 
     public function render()
