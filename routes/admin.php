@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\Activity\Activity;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Groups\CreateGroup;
 use App\Livewire\Admin\Groups\Groups;
@@ -41,6 +42,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['role:Super Admin', 'auth', 
 
     Route::group(['prefix' => 'settings'], function () {
         Route::get('/', Settings::class)->name('admin.settings');
+    });
+
+    Route::group(['prefix' => 'activity'], function () {
+        Route::get('/', Activity::class)->name('admin.activity');
     });
 });
 

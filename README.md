@@ -44,7 +44,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
         - [x] Email settings
         - [x] Profile settings
         - [x] Security settings
-    - [ ] Activity log
+    - [x] Activity log
     - [ ] Notifications
 - [ ] Force change password
 - [ ] Force activate Two-factor authentication

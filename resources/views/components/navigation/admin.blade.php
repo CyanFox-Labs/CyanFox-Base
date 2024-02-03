@@ -88,7 +88,7 @@
                 </a>
 
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.activity') ? 'bg-base-300' : '' }}"
-                   href="{{ route('admin.dashboard') }}">
+                   href="{{ route('admin.activity') }}">
                     <i class="icon-eye"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.activity') }}</span>
                 </a>

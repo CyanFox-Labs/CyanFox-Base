@@ -24,5 +24,8 @@ return [
         'settings' => [
             'settings' => 'Admin • Settings',
         ],
+        'activity' => [
+            'activity' => 'Admin • Activity',
+        ],
     ],
 ];
