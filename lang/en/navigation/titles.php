@@ -8,6 +8,11 @@ return [
 
     'admin' => [
         'dashboard' => 'Admin • Dashboard',
+        'notifications' => [
+            'notifications' => 'Admin • Notifications',
+            'create_notification' => 'Admin • Notifications » Create Notification',
+            'update_notification' => 'Admin • Notifications » Update :notification'
+        ],
         'users' => [
             'users' => 'Admin • Users',
             'create_user' => 'Admin • Users » Create User',
@@ -18,11 +23,11 @@ return [
             'create_group' => 'Admin • Groups » Create Group',
             'update_group' => 'Admin • Groups » Update :group'
         ],
-        'modules' => [
-            'modules' => 'Admin • Modules',
-        ],
         'settings' => [
             'settings' => 'Admin • Settings',
+        ],
+        'modules' => [
+            'modules' => 'Admin • Modules',
         ],
         'activity' => [
             'activity' => 'Admin • Activity',

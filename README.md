@@ -45,7 +45,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
         - [x] Profile settings
         - [x] Security settings
     - [x] Activity log
-    - [ ] Notifications
+    - [x] Notifications
 - [ ] Force change password
 - [ ] Force activate Two-factor authentication
 - [ ] Notifications (types: info, warning, update, error / danger | with dismiss option | where: login, admin,

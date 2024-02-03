@@ -20,6 +20,7 @@ class SystemSettings extends Component
 
     public $projectVersionUrl;
     public $templateVersionUrl;
+    public $iconUrl;
 
 
     public function mount()
@@ -48,9 +49,10 @@ class SystemSettings extends Component
         $this->unsplashUtm = setting('unsplash_utm');
         $this->unsplashApiKey = decrypt(setting('unsplash_api_key'));
 
-        /* Version Settings */
+        /* URL Settings */
         $this->projectVersionUrl = setting('project_version_url');
         $this->templateVersionUrl = setting('template_version_url');
+        $this->iconUrl = setting('icon_url');
     }
 
     public function updateSystemSettings()
@@ -65,6 +67,7 @@ class SystemSettings extends Component
             'unsplashApiKey' => 'nullable',
             'projectVersionUrl' => 'nullable|url',
             'templateVersionUrl' => 'nullable|url',
+            'iconUrl' => 'nullable|url'
         ]);
 
 
@@ -76,7 +79,8 @@ class SystemSettings extends Component
             'unsplash_utm' => $this->unsplashUtm,
             'unsplash_api_key' => $this->unsplashApiKey ? encrypt($this->unsplashApiKey) : null,
             'project_version_url' => $this->projectVersionUrl,
-            'template_version_url' => $this->templateVersionUrl
+            'template_version_url' => $this->templateVersionUrl,
+            'icon_url' => $this->iconUrl,
         ];
 
         foreach ($settings as $key => $value) {

@@ -30,6 +30,8 @@
             <x-input label="{{ __('pages/admin/settings/system_settings.project_version_url') }}" type="url" class="input-bordered" wire:model="projectVersionUrl"/>
             <x-input label="{{ __('pages/admin/settings/system_settings.template_version_url') }}" type="url" class="input-bordered"
                      wire:model="templateVersionUrl"/>
+            <x-input label="{{ __('pages/admin/settings/system_settings.icon_url') }}" type="url" class="input-bordered"
+                     wire:model="iconUrl"/>
         </div>
 
         <div class="divider"></div>

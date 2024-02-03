@@ -9,4 +9,5 @@ return [
     'unsplash_api_key' => 'Unsplash API Key',
     'project_version_url' => 'Project Version URL',
     'template_version_url' => 'Template Version URL',
+    'icon_url' => 'Icon URL',
 ];

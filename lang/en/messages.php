@@ -4,6 +4,7 @@ return [
     'or' => 'or',
     'yes' => 'Yes',
     'no' => 'No',
+    'search' => 'Search',
 
     'footer' => [
         'page' => 'Page',
