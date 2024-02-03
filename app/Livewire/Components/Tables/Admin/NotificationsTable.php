@@ -6,6 +6,7 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Notification;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
+use Str;
 
 class NotificationsTable extends DataTableComponent
 {
@@ -25,11 +26,15 @@ class NotificationsTable extends DataTableComponent
             Column::make(__('messages.table.id'), 'id')
                 ->sortable(),
             Column::make(__('pages/admin/notifications/notifications.table.title'), 'title')
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
             Column::make(__('pages/admin/notifications/notifications.table.message'), 'message')
-                ->sortable(),
+                ->sortable()
+                ->searchable()
+                ->format(fn($value) => Str::limit($value, 50)),
             Column::make(__('pages/admin/notifications/notifications.table.type'), 'type')
-                ->sortable(),
+                ->sortable()
+                ->format(fn($value) => __('pages/admin/notifications/messages.types.' . $value)),
             Column::make(__('pages/admin/notifications/notifications.table.icon'), 'icon')
                 ->sortable()
                 ->format(fn($value) => '<i class="' . $value . ' text-lg"></i>')
@@ -37,7 +42,8 @@ class NotificationsTable extends DataTableComponent
             BooleanColumn::make(__('pages/admin/notifications/notifications.table.dismissible'), 'dismissible')
                 ->sortable(),
             Column::make(__('pages/admin/notifications/notifications.table.location'), 'location')
-                ->sortable(),
+                ->sortable()
+                ->format(fn($value) => __('pages/admin/notifications/messages.locations.' . $value)),
             Column::make(__('messages.table.created_at'), 'created_at')
                 ->sortable(),
             Column::make(__('messages.table.updated_at'), 'updated_at')
