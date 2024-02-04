@@ -4,6 +4,7 @@
 
     <button class="btn btn-neutral mt-5 w-full" wire:click="$dispatch('closeModal')">{{ __('messages.buttons.cancel') }}</button>
 
+    <div class="divider"></div>
 
     <div class="grid lg:grid-cols-12 md:grid-cols-9 sm:grid-cols-5 grid-cols-3 gap-4 mt-4">
         @foreach($icons as $icon)

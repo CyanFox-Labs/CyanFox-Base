@@ -6,14 +6,14 @@
             <p class="mb-3">{{ __('components/modals/account/show_recovery_codes.auth.description') }}</p>
         </div>
 
-        <form method="dialog" wire:submit="showRecoveryCodes">
+        <x-form wire:submit="showRecoveryCodes">
             @csrf
             <div class="flex justify-center mb-3">
                 <div class="form-control w-full max-w-xs">
                     <x-input label="{{ __('messages.password') }}"
                              type="password"
                              class="input input-bordered w-full max-w-xs mb-4"
-                             wire:model="password"/>
+                             wire:model="password" required/>
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
                           type="submit"
                           spinner="showRecoveryKeys">{{ __('messages.buttons.show') }}</x-button>
             </div>
-        </form>
+        </x-form>
     @else
         <div class="text-center mb-3">
             <h2 class="text-2xl font-bold mb-4">{{ __('components/modals/account/show_recovery_codes.title') }}</h2>

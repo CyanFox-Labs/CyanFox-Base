@@ -1,6 +1,8 @@
 <?php
 
 use App\Helpers\OAuthHelper;
+use App\Livewire\Account\ForceActivateTwoFactor;
+use App\Livewire\Account\ForceChangePassword;
 use App\Livewire\Account\Profile;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
@@ -49,10 +51,15 @@ Route::group(['prefix' => 'auth', 'middleware' => 'language'], function () {
     })->name('auth.logout')->middleware('auth');
 });
 
-Route::group(['middleware' => ['auth', 'disabled']], function () {
+Route::group(['middleware' => ['auth', 'disabled', 'force_change']], function () {
     Route::get('/', Home::class)->name('home');
 
     Route::group(['prefix' => 'account'], function () {
         Route::get('profile', Profile::class)->name('account.profile');
     });
+});
+
+Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
+    Route::get('change-password', ForceChangePassword::class)->name('account.force-change.password');
+    Route::get('activate-two-factor', ForceActivateTwoFactor::class)->name('account.force-activate.two-factor');
 });

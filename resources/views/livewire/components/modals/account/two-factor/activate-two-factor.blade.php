@@ -1,6 +1,6 @@
 <x-modal class="modal-bottom sm:modal-middle">
 
-    <form method="dialog" wire:submit="activateTwoFactor">
+    <x-form wire:submit="activateTwoFactor">
         @csrf
         <div class="md:flex justify-center mb-3">
 
@@ -12,12 +12,12 @@
 
             <div class="space-y-4 md:mt-2 mt-6">
                 <x-input label="{{ __('components/modals/account/activate_two_factor.two_factor_code') }}"
-                         type="number" class="input input-bordered"
-                         wire:model="twoFactorCode"/>
+                         class="input input-bordered"
+                         wire:model="twoFactorCode" required/>
 
                 <x-input label="{{ __('messages.password') }}"
                          type="password" class="input input-bordered"
-                         wire:model="password"/>
+                         wire:model="password" required/>
             </div>
 
         </div>
@@ -30,8 +30,8 @@
 
             <x-button class="btn btn-success flex-grow"
                       type="submit" spinner="activateTwoFactor">
-                {{ __('messages.buttons.save') }}
+                {{ __('messages.buttons.activate') }}
             </x-button>
         </div>
-    </form>
+    </x-form>
 </x-modal>

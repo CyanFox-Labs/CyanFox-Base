@@ -5,14 +5,14 @@
         <p class="mb-3">{!! __('components/modals/account/api_keys.create_api_key.description') !!}</p>
     </div>
 
-    <form method="dialog" wire:submit="createAPIKey">
+    <x-form wire:submit="createAPIKey">
         @csrf
         <div class="md:flex justify-center mb-3">
 
             <div class="space-y-4 mb-4 md:mt-2 mt-6">
                 <x-input label="{{ __('components/modals/account/api_keys.create_api_key.name') }}"
                          class="input input-bordered"
-                         wire:model="name"/>
+                         wire:model="name" required/>
             </div>
 
         </div>
@@ -28,5 +28,5 @@
                 {{ __('messages.buttons.save') }}
             </x-button>
         </div>
-    </form>
+    </x-form>
 </x-modal>

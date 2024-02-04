@@ -5,7 +5,7 @@
         <p class="mb-3">{{ __('components/modals/account/change_avatar.description') }}</p>
     </div>
 
-    <form method="dialog" wire:submit="updateAvatar">
+    <x-form wire:submit="updateAvatar">
         @csrf
         <div class="flex justify-center my-6">
 
@@ -16,8 +16,9 @@
                     crop-cancel-text="{{ __('messages.buttons.cancel') }}"
                     crop-save-text="{{ __('messages.buttons.save') }}"
                     crop-button-class="btn-success"
-                    crop-after-change>
-                <img src="{{ auth()->user()->getAvatarURL() }}" class="h-30 rounded-lg" alt="Avatar" />
+                    crop-after-change
+                    required>
+                <img src="{{ auth()->user()->getAvatarURL() }}" class="h-30 rounded-lg" alt="Avatar"/>
             </x-file>
 
         </div>
@@ -33,5 +34,5 @@
                 {{ __('messages.buttons.save') }}
             </x-button>
         </div>
-    </form>
+    </x-form>
 </x-modal>

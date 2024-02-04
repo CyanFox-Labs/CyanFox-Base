@@ -22,7 +22,6 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\CheckIfUserIsDisabled::class,
     ];
 
     /**
@@ -39,7 +38,6 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\CheckIfUserIsDisabled::class,
         ],
 
         'api' => [
@@ -59,6 +57,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
+        'force_change' => \App\Http\Middleware\ForceChange::class,
         'language' => \App\Http\Middleware\CheckLanguage::class,
         'disabled' => \App\Http\Middleware\CheckIfUserIsDisabled::class,
         'auth' => \App\Http\Middleware\Authenticate::class,

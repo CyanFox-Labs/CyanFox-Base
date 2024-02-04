@@ -5,6 +5,8 @@ return [
     'register' => 'Register',
     'forgot-password' => 'Forgot Password',
     'profile' => 'Profile',
+    'force_activate_two_factor' => 'Activate Two Factor',
+    'force_change_password' => 'Change Password',
 
     'admin' => [
         'dashboard' => 'Admin • Dashboard',

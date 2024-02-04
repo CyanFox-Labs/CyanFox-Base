@@ -41,7 +41,7 @@
                 @endif
 
                 @if($resetToken == null)
-                    <x-form class="space-y-4 md:space-y-6" wire:submit="sendResetLink">
+                    <x-form wire:submit="sendResetLink">
                         @csrf
                         <x-input label="{{ __('pages/auth/messages.email') }}"
                                  class="input input-bordered w-full"
@@ -60,13 +60,15 @@
                             </div>
                         @endif
 
+                        <div class="divider"></div>
+
                         <x-button type="submit"
                                   class="btn btn-primary w-full" spinner="sendResetLink">
                             {{ __('pages/auth/forgot_password.buttons.send_reset_link') }}
                         </x-button>
                     </x-form>
                 @else
-                    <x-form class="space-y-4 md:space-y-6" wire:submit="resetPassword">
+                    <x-form wire:submit="resetPassword">
                         @csrf
                         <x-input label="{{ __('pages/auth/messages.password') }}"
                                  type="password"
@@ -77,6 +79,8 @@
                                  type="password"
                                  class="input input-bordered w-full" wire:model="passwordConfirmation"
                                  required />
+
+                        <div class="divider"></div>
 
                         <x-button type="submit"
                                   class="btn btn-primary w-full" spinner="resetPassword">
@@ -93,9 +97,9 @@
     @if($unsplash['error'] == null)
         <div class="pl-6 pb-4 text-white">
             <span class="text-sm" id="credits" wire:ignore><a id="photo"
-                                                              href="{{ $unsplash['photo'] }}">{{ __('pages/auth/messages.photo') }}</a>, <a
-                    id="author" href="{{ $unsplash['authorURL'] }}">{{ $unsplash['author'] }}</a>, <a
-                    href="https://unsplash.com/{{ setting('unsplash_utm', '?utm_source=your_app_name&utm_medium=referral') }}">Unsplash</a></span>
+                                                              href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('pages/auth/messages.photo') }}</a>, <a
+                    id="author" href="{{ $unsplash['authorURL'] }}/{{ setting('unsplash_utm') }}">{{ $unsplash['author'] }}</a>, <a
+                    href="https://unsplash.com/{{ setting('unsplash_utm') }}">Unsplash</a></span>
         </div>
     @endif
 </div>

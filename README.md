@@ -46,8 +46,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
         - [x] Security settings
     - [x] Activity log
     - [x] Notifications
-- [ ] Force change password
-- [ ] Force activate Two-factor authentication
+- [x] Force change password
+- [x] Force activate Two-factor authentication
 - [ ] Notifications (types: info, warning, update, error / danger | with dismiss option | where: login, admin,
   profile, home, default = navbar)
 - [ ] Add Spotlight values
@@ -60,6 +60,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Skeletons
 - [ ] Error pages
 - [ ] Installer (Web & CLI)
+- [ ] Translation renewal
 - [ ] German translation (sie & du)
 - [ ] Add default values to .env.example
 - [ ] Add github workflow and dependabot config

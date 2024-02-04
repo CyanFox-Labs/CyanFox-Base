@@ -5,19 +5,19 @@
         <p class="mb-3">{!! __('components/modals/account/delete_account.description') !!}</p>
     </div>
 
-    <form method="dialog" wire:submit="deleteAccount">
+    <x-form wire:submit="deleteAccount">
         @csrf
         <div class="md:flex justify-center mb-3">
 
             <div class="space-y-4 mb-4 md:mt-2 mt-6">
                 <x-input label="{{ __('messages.password') }}"
                          type="password" class="input input-bordered"
-                         wire:model="password"/>
+                         wire:model="password" required/>
 
                 @if(auth()->user()->two_factor_enabled)
                     <x-input label="{{ __('components/modals/account/delete_account.two_factor_code') }}"
                              type="number" class="input input-bordered"
-                             wire:model="twoFactorCode"/>
+                             wire:model="twoFactorCode" required/>
                 @endif
             </div>
 
@@ -34,5 +34,5 @@
                 {{ __('messages.buttons.delete') }}
             </x-button>
         </div>
-    </form>
+    </x-form>
 </x-modal>

@@ -5,18 +5,18 @@
         <p class="mb-3">{{ __('components/modals/account/setup_password.description') }}</p>
     </div>
 
-    <form method="dialog" wire:submit="setupPassword">
+    <x-form wire:submit="setupPassword">
         @csrf
         <div class="md:flex justify-center mb-3">
 
             <div class="space-y-4 mb-4 md:mt-2 mt-6">
                 <x-input label="{{ __('components/modals/account/setup_password.new_password') }}"
                          type="password" class="input input-bordered"
-                         wire:model="newPassword"/>
+                         wire:model="newPassword" required/>
 
                 <x-input label="{{ __('components/modals/account/setup_password.confirm_new_password') }}"
                          type="password" class="input input-bordered"
-                         wire:model="passwordConfirmation"/>
+                         wire:model="passwordConfirmation" required/>
             </div>
 
         </div>
@@ -32,5 +32,5 @@
                 {{ __('messages.buttons.save') }}
             </x-button>
         </div>
-    </form>
+    </x-form>
 </x-modal>

@@ -26,6 +26,8 @@ return [
         'confirm' => 'Confirm',
         'close' => 'Close',
         'back' => 'Back',
+        'activate' => 'Activate',
+        'disable' => 'Disable',
     ],
 
     'image_upload' => [

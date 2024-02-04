@@ -5,14 +5,14 @@
         <p class="mb-3">{{ __('components/modals/account/disable_two_factor.description') }}</p>
     </div>
 
-    <form method="dialog" wire:submit="disableTwoFactor">
+    <x-form wire:submit="disableTwoFactor">
         @csrf
         <div class="md:flex justify-center mb-3">
 
             <div class="space-y-4 mb-4 md:mt-2 mt-6">
                 <x-input label="{{ __('messages.password') }}"
                          type="password" class="input input-bordered"
-                         wire:model="password"/>
+                         wire:model="password" required/>
             </div>
 
         </div>
@@ -23,10 +23,10 @@
             <button class="btn btn-neutral flex-grow" type="button"
                     wire:click="$dispatch('closeModal')">{{ __('messages.buttons.cancel') }}</button>
 
-            <x-button class="btn btn-success flex-grow"
+            <x-button class="btn btn-error flex-grow"
                       type="submit" spinner="disableTwoFactor">
-                {{ __('messages.buttons.save') }}
+                {{ __('messages.buttons.disable') }}
             </x-button>
         </div>
-    </form>
+    </x-form>
 </x-modal>
