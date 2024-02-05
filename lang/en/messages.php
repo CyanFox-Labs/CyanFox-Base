@@ -28,6 +28,7 @@ return [
         'back' => 'Back',
         'activate' => 'Activate',
         'disable' => 'Disable',
+        'reset' => 'Reset',
     ],
 
     'image_upload' => [

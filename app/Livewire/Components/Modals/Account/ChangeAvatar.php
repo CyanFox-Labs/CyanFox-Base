@@ -6,6 +6,7 @@ use Exception;
 use Filament\Notifications\Notification;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
+use Storage;
 
 class ChangeAvatar extends ModalComponent
 {
@@ -21,7 +22,7 @@ class ChangeAvatar extends ModalComponent
 
         try {
             $this->avatar->storeAs('public/profile-images', auth()->user()->id . '.png');
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.notifications.something_went_wrong'))
                 ->danger()
@@ -37,6 +38,19 @@ class ChangeAvatar extends ModalComponent
             ->send();
 
         return redirect()->route('account.profile');
+    }
+
+    public function resetAvatar()
+    {
+        Storage::disk('public')->delete('profile-images/' . auth()->user()->id . '.png');
+
+        Notification::make()
+            ->title(__('components/modals/account/change_avatar.notifications.avatar_reset'))
+            ->success()
+            ->send();
+
+        return redirect()->route('account.profile');
+
     }
 
     public function mount()

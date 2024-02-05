@@ -7,6 +7,8 @@ return [
     'profile' => 'Profile',
     'force_activate_two_factor' => 'Activate Two Factor',
     'force_change_password' => 'Change Password',
+    'notifications' => 'Notifications',
+    'home' => 'Home',
 
     'admin' => [
         'dashboard' => 'Admin • Dashboard',

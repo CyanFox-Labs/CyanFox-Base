@@ -3,6 +3,7 @@
 use App\Helpers\OAuthHelper;
 use App\Livewire\Account\ForceActivateTwoFactor;
 use App\Livewire\Account\ForceChangePassword;
+use App\Livewire\Account\Notifications;
 use App\Livewire\Account\Profile;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
@@ -56,6 +57,7 @@ Route::group(['middleware' => ['auth', 'disabled', 'force_change']], function ()
 
     Route::group(['prefix' => 'account'], function () {
         Route::get('profile', Profile::class)->name('account.profile');
+        Route::get('notifications', Notifications::class)->name('account.notifications');
     });
 });
 

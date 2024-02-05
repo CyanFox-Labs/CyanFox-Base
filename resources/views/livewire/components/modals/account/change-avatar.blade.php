@@ -29,6 +29,9 @@
             <button class="btn btn-neutral flex-grow" type="button"
                     wire:click="$dispatch('closeModal')">{{ __('messages.buttons.cancel') }}</button>
 
+            <button class="btn btn-warning flex-grow" type="button"
+                    wire:click="resetAvatar">{{ __('messages.buttons.reset') }}</button>
+
             <x-button class="btn btn-success flex-grow"
                       type="submit" spinner="updateAvatar">
                 {{ __('messages.buttons.save') }}

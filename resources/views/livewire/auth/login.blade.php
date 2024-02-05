@@ -6,7 +6,8 @@
             <span
                 class="text-4xl font-bold brand-text text-white lg:block hidden">{{ setting('app_name') }}</span>
         </p>
-        <div class="card bg-base-200 @if(setting('auth_enable_oauth')) lg:w-1/2 @else lg:w-1/3 @endif sm:min-w-96 sm:w-1/8 w-auto">
+        <div
+            class="card bg-base-200 @if(setting('auth_enable_oauth')) lg:w-1/2 @else lg:w-1/3 @endif sm:min-w-96 sm:w-1/8 w-auto">
             <div class="card-body">
                 <div class="flex justify-end">
                     <label>
@@ -127,7 +128,8 @@
                     @endif
 
                     @if(setting('auth_enable_oauth') && !$twoFactorEnabled)
-                        <div class="grid lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))] md:grid-cols-2 grid-cols-1 gap-4">
+                        <div
+                            class="grid lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))] md:grid-cols-2 grid-cols-1 gap-4">
 
                             @if(setting('oauth_enable_github'))
                                 <a href="{{ route('auth.redirect', 'github') }}"
@@ -154,7 +156,8 @@
         <div class="pl-6 pb-4 text-white">
             <span class="text-sm" id="credits" wire:ignore><a id="photo"
                                                               href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('pages/auth/messages.photo') }}</a>, <a
-                    id="author" href="{{ $unsplash['authorURL'] }}/{{ setting('unsplash_utm') }}">{{ $unsplash['author'] }}</a>, <a
+                    id="author"
+                    href="{{ $unsplash['authorURL'] }}/{{ setting('unsplash_utm') }}">{{ $unsplash['author'] }}</a>, <a
                     href="https://unsplash.com/{{ setting('unsplash_utm') }}">Unsplash</a></span>
         </div>
     @endif

@@ -9,7 +9,7 @@
                    @click.stop="$dispatch('mary-search-open')"></i>
             </div>
             <div class="mr-4">
-                <i class="icon-bell font-semibold text-xl cursor-pointer"></i>
+                <a href="{{ route('account.notifications') }}"><i class="icon-bell font-semibold text-xl cursor-pointer"></i></a>
             </div>
             <div class="mr-4">
                 <a href="{{ route('home') }}"><i class="icon-home font-semibold text-xl"></i></a>
@@ -18,7 +18,7 @@
             <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
                 <img tabindex="0" role="button"
                      src="{{ auth()->user()->getAvatarURL() }}" alt="Profile"
-                     class="w-9 h-9 mr-6">
+                     class="w-9 h-9 rounded-3xl mr-6">
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a href="{{ route('account.profile') }}"><i
                                     class='icon-user'></i> {{ __('navigation/navigation.profile') }}</a>

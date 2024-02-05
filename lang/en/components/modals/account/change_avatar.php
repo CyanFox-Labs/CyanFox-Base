@@ -6,5 +6,6 @@ return [
 
     'notifications' => [
         'avatar_updated' => 'Your avatar has been updated.',
+        'avatar_reset' => 'Your avatar has been reset.',
     ],
 ];

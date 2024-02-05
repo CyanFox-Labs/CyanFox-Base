@@ -32,11 +32,6 @@
                               class="select select-bordered"
                               :options="
                                   [['id' => 'home', 'name' => __('pages/admin/notifications/messages.locations.home')],
-                                  ['id' => 'admin', 'name' => __('pages/admin/notifications/messages.locations.admin')],
-                                  ['id' => 'profile', 'name' => __('pages/admin/notifications/messages.locations.profile')],
-                                  ['id' => 'login', 'name' => __('pages/admin/notifications/messages.locations.login')],
-                                  ['id' => 'register', 'name' => __('pages/admin/notifications/messages.locations.register')],
-                                  ['id' => 'forgotPassword', 'name' => __('pages/admin/notifications/messages.locations.forgotPassword')],
                                   ['id' => 'notificationsTab', 'name' => __('pages/admin/notifications/messages.locations.notificationsTab')]]"
                               required></x-select>
                 </div>

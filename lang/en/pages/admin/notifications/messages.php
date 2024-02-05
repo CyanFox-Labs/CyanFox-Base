@@ -19,11 +19,6 @@ return [
 
     'locations' => [
         'home' => 'Home',
-        'admin' => 'Admin',
-        'profile' => 'Profile',
-        'login' => 'Login',
-        'register' => 'Register',
-        'forgotPassword' => 'Forgot Password',
         'notificationsTab' => 'Notifications Tab',
     ],
 
