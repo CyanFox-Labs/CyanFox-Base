@@ -50,14 +50,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Force activate Two-factor authentication
 - [x] Notifications (types: info, warning, update, error / danger | with dismiss option | where: home, notifications tab)
 - [x] User notifications
-- [ ] Add Spotlight values
-- [ ] Switch to navbar if the device is too small
-- [ ] Activity logging
+- [x] Switch to navbar if the device is too small
 - [ ] Developer API (With e.g Modals, Spotlight) (For modules)
 - [ ] Module system
 - [ ] Move not necessary functions to modules
+- [ ] Activity logging
 - [ ] Auth system disable functionality
 - [ ] API Documentation
+- [ ] Add Spotlight values
 - [ ] Skeletons
 - [ ] Error pages
 - [ ] Installer (Web & CLI)
