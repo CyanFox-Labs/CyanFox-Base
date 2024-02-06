@@ -4,6 +4,7 @@ namespace App\Livewire\Components\Modals\Admin\Modules;
 
 use Exception;
 use Filament\Notifications\Notification;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 use Nwidart\Modules\Facades\Module;
 
@@ -18,7 +19,6 @@ class DeleteModule extends ModalComponent
         try {
             $module = Module::find($this->moduleName);
             $module->delete();
-
         } catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.notifications.something_went_wrong'))
@@ -34,9 +34,11 @@ class DeleteModule extends ModalComponent
             ->success()
             ->send();
 
-        return redirect()->route('admin.modules');
+        $this->closeModal();
+        $this->dispatch('refresh');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.modals.admin.modules.delete-module');

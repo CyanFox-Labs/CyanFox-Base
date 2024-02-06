@@ -7,6 +7,7 @@ use App\Rules\Password;
 use Filament\Notifications\Notification;
 use Hash;
 use Illuminate\Support\Facades\Mail;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -89,7 +90,7 @@ class CreateUser extends Component
             ->success()
             ->send();
 
-        return redirect()->route('admin.users');
+        $this->redirect(route('admin.users'), navigate: true);
     }
 
     public function mount()
@@ -98,6 +99,7 @@ class CreateUser extends Component
         $this->permissions = Permission::all()->pluck('name', 'name')->toArray();
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.admin.users.create-user')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.users.create_user')]);

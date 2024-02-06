@@ -3,6 +3,7 @@
 namespace App\Livewire\Components\Modals;
 
 use App\Models\ActivityLog;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 
 class ShowActivityLogDetails extends ModalComponent
@@ -31,6 +32,7 @@ class ShowActivityLogDetails extends ModalComponent
 
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.modals.show-activity-log-details');

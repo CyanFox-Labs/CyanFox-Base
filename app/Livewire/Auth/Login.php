@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -65,7 +66,8 @@ class Login extends Component
             ->title(__('pages/auth/messages.notifications.language_changed'))
             ->success()
             ->send();
-        return redirect()->route('auth.login', ['redirect' => $this->redirect]);
+
+        $this->dispatch('refresh');
     }
 
     public function setRateLimit()
@@ -141,10 +143,11 @@ class Login extends Component
                 }
 
                 if ($this->redirect) {
-                    return redirect()->to($this->redirect);
+                    $this->redirect($this->redirect, navigate: true);
+                    return;
                 }
 
-                $this->redirect(route('home'));
+                $this->redirect(route('home'), navigate: true);
             }
         } else {
             throw ValidationException::withMessages([
@@ -171,10 +174,11 @@ class Login extends Component
             }
 
             if ($this->redirect) {
-                return redirect()->to($this->redirect);
+                $this->redirect($this->redirect, navigate: true);
+                return;
             }
 
-            return redirect('/');
+            $this->redirect(route('home'), navigate: true);
         }
 
         throw ValidationException::withMessages([
@@ -205,7 +209,7 @@ class Login extends Component
         });
     }
 
-
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.auth.login')->layout('components.layouts.guest', [

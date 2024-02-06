@@ -126,7 +126,7 @@ class UpdateNotification extends Component implements HasForms
             ->title(__('pages/admin/notifications/update_notification.notifications.notification_updated'))
             ->send();
 
-        return redirect()->route('admin.notifications');
+        $this->redirect(route('admin.notifications'), navigate: true);
     }
 
 
@@ -147,6 +147,7 @@ class UpdateNotification extends Component implements HasForms
         $this->storedAttachments = Storage::disk('public')->files('notifications/' . $this->notification->id);
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.admin.notifications.update-notification')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.notifications.update_notification', ['notification' => $this->notification->title])]);

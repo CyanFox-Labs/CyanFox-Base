@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Register extends Component
@@ -57,7 +58,8 @@ class Register extends Component
             ->title(__('pages/auth/messages.notifications.language_changed'))
             ->success()
             ->send();
-        return redirect()->route('auth.register');
+
+        $this->dispatch('refresh');
     }
 
     public function setRateLimit()
@@ -113,10 +115,10 @@ class Register extends Component
 
         Auth::login($user);
 
-        return redirect()->route('home');
+        $this->redirect(route('home'), navigate: true);
     }
 
-
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.auth.register')->layout('components.layouts.guest', [

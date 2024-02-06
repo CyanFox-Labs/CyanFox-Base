@@ -8,6 +8,7 @@ use Exception;
 use Filament\Notifications\Notification;
 use Hash;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -63,7 +64,7 @@ class ForceActivateTwoFactor extends Component
             return redirect()->to($this->redirect);
         }
 
-        return redirect()->route('home');
+        $this->redirect(route('home'), navigate: true);
     }
 
     public function mount()
@@ -77,6 +78,7 @@ class ForceActivateTwoFactor extends Component
         }
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.account.force-activate-two-factor')->layout('components.layouts.guest', ['title' => __('navigation/titles.force_activate_two_factor')]);

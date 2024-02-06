@@ -6,6 +6,7 @@ use Auth;
 use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 
 class DisableTwoFactor extends ModalComponent
@@ -43,9 +44,11 @@ class DisableTwoFactor extends ModalComponent
             ->success()
             ->send();
 
-        return redirect()->route('account.profile');
+        $this->closeModal();
+        $this->dispatch('refresh');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.modals.account.two-factor.disable-two-factor');

@@ -7,6 +7,7 @@ use App\Rules\Password;
 use Filament\Notifications\Notification;
 use Hash;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -59,9 +60,10 @@ class ForceChangePassword extends Component
             return redirect()->to($this->redirect);
         }
 
-        return redirect()->route('home');
+        $this->redirect(route('home'), navigate: true);
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.account.force-change-password')->layout('components.layouts.guest', ['title' => __('navigation/titles.force_change_password')]);

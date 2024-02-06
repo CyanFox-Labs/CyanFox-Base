@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin;
 
 use App\Helpers\VersionHelper;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Dashboard extends Component
@@ -32,6 +33,7 @@ class Dashboard extends Component
         $this->showUpdateNotification = true;
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.admin.dashboard')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.dashboard')]);

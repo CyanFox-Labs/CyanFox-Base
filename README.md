@@ -51,9 +51,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Notifications (types: info, warning, update, error / danger | with dismiss option | where: home, notifications tab)
 - [x] User notifications
 - [x] Switch to navbar if the device is too small
-- [ ] Developer API (With e.g Modals, Spotlight) (For modules)
-- [ ] Module system
+- [x] Re-render page on update / modal close
+- [ ] Developer API (With e.g Modals, integration in existing views) (For modules)
 - [ ] Move not necessary functions to modules
+- [ ] Add notification buttons (e.g. "Edit User" in create user notification)
 - [ ] Activity logging
 - [ ] Auth system disable functionality
 - [ ] API Documentation

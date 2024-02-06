@@ -8,6 +8,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Storage;
 use Str;
@@ -116,7 +117,7 @@ class EmailSettings extends Component implements HasForms
             ->title(__('pages/admin/settings/settings.notifications.settings_updated'))
             ->send();
 
-        return redirect()->route('admin.settings', ['tab' => 'emails']);
+        $this->dispatch('refresh');
     }
 
 
@@ -143,6 +144,7 @@ class EmailSettings extends Component implements HasForms
         $this->forgotPasswordEmailContent->fill(['forgotPasswordEmailContent' => setting('emails_forgot_password_content')]);
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.admin.settings.email-settings');

@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Groups;
 
 use Filament\Notifications\Notification;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -34,8 +35,7 @@ class CreateGroup extends Component
             ->success()
             ->send();
 
-        return redirect()->route('admin.groups');
-
+        $this->redirect(route('admin.groups'), navigate: true);
     }
 
     public function mount()
@@ -43,6 +43,7 @@ class CreateGroup extends Component
         $this->permissions = Permission::all()->pluck('name', 'name')->toArray();
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.admin.groups.create-group')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.groups.create_group')]);

@@ -22,7 +22,8 @@ class CreateAPIKey extends ModalComponent
             ->success()
             ->send();
 
-        return redirect()->route('account.profile', ['tab' => 'apiKeys']);
+        $this->closeModal();
+        $this->dispatch('refresh');
     }
 
     public function render()

@@ -4,6 +4,7 @@ namespace App\Livewire\Components\Modals\Account;
 
 use Exception;
 use Filament\Notifications\Notification;
+use Livewire\Attributes\On;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use Storage;
@@ -37,7 +38,8 @@ class ChangeAvatar extends ModalComponent
             ->success()
             ->send();
 
-        return redirect()->route('account.profile');
+        $this->closeModal();
+        $this->dispatch('refresh');
     }
 
     public function resetAvatar()
@@ -49,8 +51,8 @@ class ChangeAvatar extends ModalComponent
             ->success()
             ->send();
 
-        return redirect()->route('account.profile');
-
+        $this->closeModal();
+        $this->dispatch('refresh');
     }
 
     public function mount()
@@ -60,6 +62,7 @@ class ChangeAvatar extends ModalComponent
         }
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.modals.account.change-avatar');

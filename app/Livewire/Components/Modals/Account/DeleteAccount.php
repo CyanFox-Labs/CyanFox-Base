@@ -5,6 +5,7 @@ namespace App\Livewire\Components\Modals\Account;
 use Auth;
 use Filament\Notifications\Notification;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 
 class DeleteAccount extends ModalComponent
@@ -22,7 +23,7 @@ class DeleteAccount extends ModalComponent
             ]);
         }
 
-        if(!auth()->user()->checkTwoFactorCode($this->twoFactorCode, false)) {
+        if (!auth()->user()->checkTwoFactorCode($this->twoFactorCode, false)) {
             throw ValidationException::withMessages([
                 'twoFactorCode' => __('validation.custom.invalid_two_factor_code')
             ]);
@@ -35,7 +36,8 @@ class DeleteAccount extends ModalComponent
             ->success()
             ->send();
 
-        return redirect()->route('auth.login');
+        $this->closeModal();
+        $this->dispatch('refresh');
     }
 
     public function mount()
@@ -43,9 +45,9 @@ class DeleteAccount extends ModalComponent
         if (!setting('profile_enable_delete_account')) {
             abort(403);
         }
-
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.modals.account.delete-account');

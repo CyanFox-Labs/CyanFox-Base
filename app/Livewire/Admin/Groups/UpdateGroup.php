@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Groups;
 
 use Exception;
 use Filament\Notifications\Notification;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -37,8 +38,7 @@ class UpdateGroup extends Component
             ->success()
             ->send();
 
-        return redirect()->route('admin.groups');
-
+        $this->redirect(route('admin.groups'), navigate: true);
     }
 
     public function mount()
@@ -56,6 +56,7 @@ class UpdateGroup extends Component
         $this->permissions = Permission::all()->pluck('name', 'name')->toArray();
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.admin.groups.update-group')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.groups.update_group', ['group' => $this->group->name])]);

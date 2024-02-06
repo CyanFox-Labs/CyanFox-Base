@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Settings;
 
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -18,6 +19,7 @@ class Settings extends Component
         }
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.admin.settings.settings')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.settings.settings')]);

@@ -7,6 +7,7 @@ use App\Rules\Password;
 use Filament\Notifications\Notification;
 use Hash;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -77,7 +78,7 @@ class Profile extends Component
             ->success()
             ->send();
 
-        return redirect()->route('account.profile');
+        $this->dispatch('refresh');
     }
 
 
@@ -103,7 +104,7 @@ class Profile extends Component
             ->success()
             ->send();
 
-        return redirect()->route('account.profile');
+        $this->dispatch('refresh');
     }
 
     public function updatePassword()
@@ -133,9 +134,13 @@ class Profile extends Component
             ->success()
             ->send();
 
-        return redirect()->route('account.profile');
+        $this->currentPassword = '';
+        $this->newPassword = '';
+        $this->passwordConfirmation = '';
+        $this->dispatch('refresh');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.account.profile')

@@ -11,13 +11,13 @@
             </div>
 
             <div class="space-y-4 md:mt-2 mt-6">
-                <x-input label="{{ __('components/modals/account/activate_two_factor.two_factor_code') }}"
-                         class="input input-bordered"
-                         wire:model="twoFactorCode" required/>
-
                 <x-input label="{{ __('messages.password') }}"
                          type="password" class="input input-bordered"
                          wire:model="password" required/>
+
+                <x-input label="{{ __('components/modals/account/activate_two_factor.two_factor_code') }}"
+                         class="input input-bordered"
+                         wire:model="twoFactorCode" required/>
             </div>
 
         </div>

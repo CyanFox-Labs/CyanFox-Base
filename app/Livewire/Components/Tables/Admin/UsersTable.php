@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components\Tables\Admin;
 
+use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\User;
@@ -12,6 +13,7 @@ class UsersTable extends DataTableComponent
 {
     protected $model = User::class;
 
+    #[On('refresh')]
     public function configure(): void
     {
         $this->setPrimaryKey('id');

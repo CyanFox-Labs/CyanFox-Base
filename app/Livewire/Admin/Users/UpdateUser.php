@@ -7,6 +7,7 @@ use App\Rules\Password;
 use Exception;
 use Filament\Notifications\Notification;
 use Hash;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -72,6 +73,7 @@ class UpdateUser extends Component
             ->success()
             ->send();
 
+        $this->redirect(route('admin.users'), navigate: true);
         return redirect()->route('admin.users');
     }
 
@@ -98,6 +100,7 @@ class UpdateUser extends Component
         $this->selectedPermissions = $this->user->permissions->pluck('name')->toArray();
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.admin.users.update-user')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.users.update_user', ['user' => $this->user->username])]);

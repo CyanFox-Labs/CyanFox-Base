@@ -109,7 +109,7 @@ class CreateNotification extends Component implements HasForms
             ->title(__('pages/admin/notifications/create_notification.notifications.notification_created'))
             ->send();
 
-        return redirect()->route('admin.notifications');
+        $this->redirect(route('admin.notifications'), navigate: true);
     }
 
     public function mount()
@@ -118,6 +118,7 @@ class CreateNotification extends Component implements HasForms
 
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.admin.notifications.create-notification')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.notifications.create_notification')]);

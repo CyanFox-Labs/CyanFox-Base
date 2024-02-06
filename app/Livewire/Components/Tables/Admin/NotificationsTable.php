@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components\Tables\Admin;
 
+use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Notification;
@@ -12,6 +13,7 @@ class NotificationsTable extends DataTableComponent
 {
     protected $model = Notification::class;
 
+    #[On('refresh')]
     public function configure(): void
     {
         $this->setPrimaryKey('id');

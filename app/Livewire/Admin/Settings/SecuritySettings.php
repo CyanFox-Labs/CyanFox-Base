@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Settings;
 
 use App\Models\Setting;
 use Filament\Notifications\Notification;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class SecuritySettings extends Component
@@ -44,7 +45,7 @@ class SecuritySettings extends Component
             ->title(__('pages/admin/settings/settings.notifications.settings_updated'))
             ->send();
 
-        return redirect()->route('admin.settings', ['tab' => 'security']);
+        $this->dispatch('refresh');
     }
 
     public function mount()
@@ -61,7 +62,7 @@ class SecuritySettings extends Component
         $this->passwordRequireLowercase = (bool) setting('security_password_require_lowercase');
     }
 
-
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.admin.settings.security-settings');

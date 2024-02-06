@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Settings;
 
 use App\Models\Setting;
 use Filament\Notifications\Notification;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ProfileSettings extends Component
@@ -38,7 +39,7 @@ class ProfileSettings extends Component
             ->title(__('pages/admin/settings/settings.notifications.settings_updated'))
             ->send();
 
-        return redirect()->route('admin.settings', ['tab' => 'profile']);
+        $this->dispatch('refresh');
     }
 
     public function mount()
@@ -53,6 +54,7 @@ class ProfileSettings extends Component
         $this->enableDeleteAccount = setting('profile_enable_delete_account');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.admin.settings.profile-settings');

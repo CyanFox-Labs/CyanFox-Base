@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ForgotPassword extends Component
@@ -49,7 +50,8 @@ class ForgotPassword extends Component
                     ->danger()
                     ->send();
 
-                return redirect(route('auth.forgot-password', ''));
+                $this->redirect(route('auth.forgot-password', ''), navigate: true);
+                return;
             }
 
             $expirationDate = Carbon::parse($user->password_reset_expiration);
@@ -60,7 +62,8 @@ class ForgotPassword extends Component
                     ->danger()
                     ->send();
 
-                return redirect(route('auth.forgot-password', ''));
+                $this->redirect(route('auth.forgot-password', ''), navigate: true);
+                return;
             }
         }
 
@@ -84,7 +87,8 @@ class ForgotPassword extends Component
             ->title(__('pages/auth/messages.notifications.language_changed'))
             ->success()
             ->send();
-        return redirect()->route('auth.forgot-password', '');
+
+        $this->dispatch('refresh');
     }
 
     public function setRateLimit()
@@ -137,7 +141,7 @@ class ForgotPassword extends Component
                 ->danger()
                 ->send();
 
-            return redirect(route('auth.forgot-password', ''));
+            $this->redirect(route('auth.forgot-password', ''), navigate: true);
         } else {
             $user->password = bcrypt($this->password);
             $user->password_reset_token = null;
@@ -149,7 +153,7 @@ class ForgotPassword extends Component
                 ->success()
                 ->send();
 
-            return redirect(route('auth.login'));
+            $this->redirect(route('auth.login'), navigate: true);
         }
     }
 
@@ -209,9 +213,10 @@ class ForgotPassword extends Component
             ->success()
             ->send();
 
-        return redirect()->route('auth.forgot-password', '');
+        $this->redirect(route('auth.forgot-password', ''), navigate: true);
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.auth.forgot-password')->layout('components.layouts.guest', [

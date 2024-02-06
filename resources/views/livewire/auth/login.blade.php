@@ -63,7 +63,7 @@
                                 </x-button>
 
                                 <a href="{{ route('auth.login') }}"
-                                   class="btn btn-neutral w-full mt-2">
+                                   class="btn btn-neutral w-full mt-2" wire:navigate>
                                     {{ __('messages.buttons.back') }}
                                 </a>
                             </div>
@@ -117,12 +117,12 @@
 
                             @if(setting('auth_enable_forgot_password'))
                                 <a href="{{ route('auth.forgot-password', '') }}"
-                                   class="btn btn-neutral">{{ __('pages/auth/login.buttons.forgot_password') }}</a>
+                                   class="btn btn-neutral" wire:navigate>{{ __('pages/auth/login.buttons.forgot_password') }}</a>
                             @endif
 
                             @if(setting('auth_enable_register'))
                                 <a href="{{ route('auth.register') }}"
-                                   class="btn btn-neutral">{{ __('pages/auth/login.buttons.register') }}</a>
+                                   class="btn btn-neutral" wire:navigate>{{ __('pages/auth/login.buttons.register') }}</a>
                             @endif
                         </div>
                     @endif

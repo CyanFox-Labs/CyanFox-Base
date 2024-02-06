@@ -5,6 +5,7 @@ namespace App\Livewire\Components\Modals\Account\TwoFactor;
 use App\Models\UserRecoveryCode;
 use Auth;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 
 class ShowRecoveryCodes extends ModalComponent
@@ -56,6 +57,7 @@ class ShowRecoveryCodes extends ModalComponent
         }, 'recovery-codes.txt');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.modals.account.two-factor.show-recovery-codes');

@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Modules;
 
 use Filament\Notifications\Notification;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Nwidart\Modules\Facades\Module;
 
@@ -33,7 +34,7 @@ class Modules extends Component
             ->success()
             ->send();
 
-        return redirect()->route('admin.modules');
+        $this->dispatch('refresh');
     }
 
     public function enableModule($name)
@@ -47,7 +48,7 @@ class Modules extends Component
             ->success()
             ->send();
 
-        return redirect()->route('admin.modules');
+        $this->dispatch('refresh');
     }
 
     public function deleteModule($name)
@@ -60,8 +61,11 @@ class Modules extends Component
             ->title(__('pages/admin/modules/modules.notifications.module_deleted'))
             ->success()
             ->send();
+
+        $this->dispatch('refresh');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.admin.modules.modules')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.modules.modules')]);

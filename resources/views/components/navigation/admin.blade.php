@@ -12,47 +12,47 @@
                     class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                     <li>
                         <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.dashboard') ? 'bg-base-300' : '' }}"
-                           href="{{ route('admin.dashboard') }}">
+                           href="{{ route('admin.dashboard') }}" wire:navigate>
                             <i class="icon-layout-dashboard"></i>
                             <span
                                 class="ml-2 text-sm font-medium">{{ __('navigation/navigation.admin.dashboard') }}</span>
                         </a>
 
                         <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.notifications*') ? 'bg-base-300' : '' }}"
-                           href="{{ route('admin.notifications') }}">
+                           href="{{ route('admin.notifications') }}" wire:navigate>
                             <i class="icon-bell"></i>
                             <span
                                 class="ml-2 text-sm font-medium">{{ __('navigation/navigation.admin.notifications') }}</span>
                         </a>
 
                         <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.users*') ? 'bg-base-300' : '' }}"
-                           href="{{ route('admin.users') }}">
+                           href="{{ route('admin.users') }}" wire:navigate>
                             <i class="icon-users"></i>
                             <span class="ml-2 text-sm font-medium">{{ __('navigation/navigation.admin.users') }}</span>
                         </a>
 
                         <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.groups*') ? 'bg-base-300' : '' }}"
-                           href="{{ route('admin.groups') }}">
+                           href="{{ route('admin.groups') }}" wire:navigate>
                             <i class="icon-shield"></i>
                             <span class="ml-2 text-sm font-medium">{{ __('navigation/navigation.admin.groups') }}</span>
                         </a>
 
                         <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.settings') ? 'bg-base-300' : '' }}"
-                           href="{{ route('admin.settings') }}">
+                           href="{{ route('admin.settings') }}" wire:navigate>
                             <i class="icon-settings-2"></i>
                             <span
                                 class="ml-2 text-sm font-medium">{{ __('navigation/navigation.admin.settings') }}</span>
                         </a>
 
                         <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.modules') ? 'bg-base-300' : '' }}"
-                           href="{{ route('admin.modules') }}">
+                           href="{{ route('admin.modules') }}" wire:navigate>
                             <i class="icon-blocks"></i>
                             <span
                                 class="ml-2 text-sm font-medium">{{ __('navigation/navigation.admin.modules') }}</span>
                         </a>
 
                         <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.activity') ? 'bg-base-300' : '' }}"
-                           href="{{ route('admin.activity') }}">
+                           href="{{ route('admin.activity') }}" wire:navigate>
                             <i class="icon-eye"></i>
                             <span
                                 class="ml-2 text-sm font-medium">{{ __('navigation/navigation.admin.activity') }}</span>
@@ -71,7 +71,7 @@
                    @click.stop="$dispatch('mary-search-open')"></i>
             </div>
 
-            <a class="btn btn-ghost btn-circle" href="{{ route('account.notifications') }}">
+            <a class="btn btn-ghost btn-circle" href="{{ route('account.notifications') }}" wire:navigate>
                 <i class="icon-bell font-semibold text-xl"></i>
             </a>
 
@@ -80,15 +80,15 @@
                      src="{{ auth()->user()->getAvatarURL() }}" alt="Profile"
                      class="w-9 h-9 rounded-3xl mr-6">
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a href="{{ route('account.profile') }}"><i
+                    <li><a href="{{ route('account.profile') }}" wire:navigate><i
                                 class='icon-user'></i> {{ __('navigation/navigation.profile') }}</a>
                     </li>
 
-                    <li><a href="{{ route('home') }}"><i
+                    <li><a href="{{ route('home') }}" wire:navigate><i
                                 class='icon-home'></i> {{ __('navigation/navigation.home') }}</a></li>
                     <div class="divider"></div>
 
-                    <li><a href="{{ route('auth.logout') }}"><i
+                    <li><a href="{{ route('auth.logout') }}" wire:navigate><i
                                 class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
                 </ul>
             </div>
@@ -103,11 +103,11 @@
                    @click.stop="$dispatch('mary-search-open')"></i>
             </div>
             <div class="mr-4">
-                <a href="{{ route('account.notifications') }}"><i
+                <a href="{{ route('account.notifications') }}" wire:navigate><i
                         class="icon-bell font-semibold text-xl cursor-pointer"></i></a>
             </div>
             <div class="mr-4">
-                <a href="{{ route('home') }}"><i class="icon-home font-semibold text-xl"></i></a>
+                <a href="{{ route('home') }}" wire:navigate><i class="icon-home font-semibold text-xl"></i></a>
             </div>
 
             <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
@@ -115,15 +115,15 @@
                      src="{{ auth()->user()->getAvatarURL() }}" alt="Profile"
                      class="w-9 h-9 rounded-3xl mr-6">
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a href="{{ route('account.profile') }}"><i
+                    <li><a href="{{ route('account.profile') }}" wire:navigate><i
                                 class='icon-user'></i> {{ __('navigation/navigation.profile') }}</a>
                     </li>
 
-                    <li><a href="{{ route('home') }}"><i
+                    <li><a href="{{ route('home') }}" wire:navigate><i
                                 class='icon-home'></i> {{ __('navigation/navigation.home') }}</a></li>
                     <div class="divider"></div>
 
-                    <li><a href="{{ route('auth.logout') }}"><i
+                    <li><a href="{{ route('auth.logout') }}" wire:navigate><i
                                 class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
                 </ul>
             </div>
@@ -147,49 +147,49 @@
         <div class="w-full px-2 mt-4">
             <div class="flex flex-col items-center w-full mt-3 mb-3">
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.dashboard') ? 'bg-base-300' : '' }}"
-                   href="{{ route('admin.dashboard') }}">
+                   href="{{ route('admin.dashboard') }}" wire:navigate>
                     <i class="icon-layout-dashboard"></i>
                     <span
                         class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.dashboard') }}</span>
                 </a>
 
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.notifications*') ? 'bg-base-300' : '' }}"
-                   href="{{ route('admin.notifications') }}">
+                   href="{{ route('admin.notifications') }}" wire:navigate>
                     <i class="icon-bell"></i>
                     <span
                         class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.notifications') }}</span>
                 </a>
 
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.users*') ? 'bg-base-300' : '' }}"
-                   href="{{ route('admin.users') }}">
+                   href="{{ route('admin.users') }}" wire:navigate>
                     <i class="icon-users"></i>
                     <span
                         class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.users') }}</span>
                 </a>
 
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.groups*') ? 'bg-base-300' : '' }}"
-                   href="{{ route('admin.groups') }}">
+                   href="{{ route('admin.groups') }}" wire:navigate>
                     <i class="icon-shield"></i>
                     <span
                         class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.groups') }}</span>
                 </a>
 
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.settings') ? 'bg-base-300' : '' }}"
-                   href="{{ route('admin.settings') }}">
+                   href="{{ route('admin.settings') }}" wire:navigate>
                     <i class="icon-settings-2"></i>
                     <span
                         class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.settings') }}</span>
                 </a>
 
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.modules') ? 'bg-base-300' : '' }}"
-                   href="{{ route('admin.modules') }}">
+                   href="{{ route('admin.modules') }}" wire:navigate>
                     <i class="icon-blocks"></i>
                     <span
                         class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.modules') }}</span>
                 </a>
 
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('admin.activity') ? 'bg-base-300' : '' }}"
-                   href="{{ route('admin.activity') }}">
+                   href="{{ route('admin.activity') }}" wire:navigate>
                     <i class="icon-eye"></i>
                     <span
                         class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.activity') }}</span>
@@ -200,17 +200,17 @@
 
             <div class="flex flex-col items-center w-full my-2">
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('account.profile') ? 'bg-base-300' : '' }}"
-                   href="{{ route('account.profile') }}">
+                   href="{{ route('account.profile') }}" wire:navigate>
                     <i class="icon-user"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.profile') }}</span>
                 </a>
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300"
-                   href="{{ route('home') }}">
+                   href="{{ route('home') }}" wire:navigate>
                     <i class="icon-home"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.home') }}</span>
                 </a>
                 <a class="relative flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('logout') ? 'bg-base-300' : '' }}"
-                   href="{{ route('auth.logout') }}">
+                   href="{{ route('auth.logout') }}" wire:navigate>
                     <i class="icon-log-out"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.logout') }}</span>
                 </a>

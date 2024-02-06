@@ -5,6 +5,7 @@ namespace App\Livewire\Components\Modals\Account;
 use App\Models\Session;
 use Filament\Notifications\Notification;
 use Hash;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 
 class SetupPassword extends ModalComponent
@@ -30,9 +31,11 @@ class SetupPassword extends ModalComponent
             ->success()
             ->send();
 
-        return redirect()->route('account.profile');
+        $this->closeModal();
+        $this->dispatch('refresh');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.modals.account.setup-password');

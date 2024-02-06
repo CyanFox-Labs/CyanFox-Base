@@ -5,6 +5,7 @@ namespace App\Livewire\Components\Modals\Admin\Users;
 use App\Models\User;
 use Exception;
 use Filament\Notifications\Notification;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 
 class DeleteUser extends ModalComponent
@@ -32,9 +33,11 @@ class DeleteUser extends ModalComponent
             ->success()
             ->send();
 
-        return redirect()->route('admin.users');
+        $this->closeModal();
+        $this->dispatch('refresh');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.modals.admin.users.delete-user');

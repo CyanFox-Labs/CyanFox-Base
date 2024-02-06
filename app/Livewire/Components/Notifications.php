@@ -4,6 +4,7 @@ namespace App\Livewire\Components;
 
 use App\Models\DismissedNotification;
 use App\Models\Notification;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -78,9 +79,10 @@ class Notifications extends Component
         $dismissedNotification->save();
 
         $this->notifications = [];
-        $this->mount($this->site);
+        $this->dispatch('refresh');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.notifications');

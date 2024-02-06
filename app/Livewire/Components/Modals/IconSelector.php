@@ -4,6 +4,7 @@ namespace App\Livewire\Components\Modals;
 
 use App\Livewire\Admin\Notifications\CreateNotification;
 use App\Livewire\Admin\Notifications\UpdateNotification;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 
 class IconSelector extends ModalComponent
@@ -18,10 +19,8 @@ class IconSelector extends ModalComponent
             return;
         }
 
-        $this->closeModalWithEvents([
-            CreateNotification::class => ['updateIcon', [$icon]],
-            UpdateNotification::class => ['updateIcon', [$icon]],
-        ]);
+        $this->closeModal();
+        $this->dispatch('updateIcon', $icon);
     }
 
     function getIcons(): array
@@ -67,6 +66,7 @@ class IconSelector extends ModalComponent
         $this->icons = $this->getIcons();
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.modals.icon-selector');

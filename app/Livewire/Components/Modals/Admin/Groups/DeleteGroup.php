@@ -4,6 +4,7 @@ namespace App\Livewire\Components\Modals\Admin\Groups;
 
 use Exception;
 use Filament\Notifications\Notification;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Role;
 
@@ -31,9 +32,11 @@ class DeleteGroup extends ModalComponent
             ->success()
             ->send();
 
-        return redirect()->route('admin.groups');
+        $this->closeModal();
+        $this->dispatch('refresh');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.modals.admin.groups.delete-group');

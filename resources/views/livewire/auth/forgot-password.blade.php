@@ -90,7 +90,7 @@
                 @endif
 
                 <a href="{{ route('auth.login') }}"
-                   class="btn btn-neutral mt-3 w-full">{{ __('pages/auth/messages.buttons.back_to_login') }}</a>
+                   class="btn btn-neutral mt-3 w-full" wire:navigate>{{ __('pages/auth/messages.buttons.back_to_login') }}</a>
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
 use Jenssegers\Agent\Agent;
+use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\Session;
@@ -13,6 +14,7 @@ use App\Models\Session;
 class SessionsTable extends DataTableComponent
 {
 
+    #[On('refresh')]
     public function builder(): Builder
     {
         return Session::query()->where('user_id', auth()->user()->id);

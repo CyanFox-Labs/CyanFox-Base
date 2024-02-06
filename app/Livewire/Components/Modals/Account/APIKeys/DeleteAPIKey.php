@@ -3,6 +3,7 @@
 namespace App\Livewire\Components\Modals\Account\APIKeys;
 
 use Filament\Notifications\Notification;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 
 class DeleteAPIKey extends ModalComponent
@@ -19,9 +20,11 @@ class DeleteAPIKey extends ModalComponent
             ->success()
             ->send();
 
-        return redirect()->route('account.profile', ['tab' => 'apiKeys']);
+        $this->closeModal();
+        $this->dispatch('refresh');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.modals.account.a-p-i-keys.delete-a-p-i-key');

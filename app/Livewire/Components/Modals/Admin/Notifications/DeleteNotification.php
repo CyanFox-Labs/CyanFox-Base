@@ -4,6 +4,7 @@ namespace App\Livewire\Components\Modals\Admin\Notifications;
 
 use App\Models\Notification;
 use Exception;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 use Storage;
 
@@ -33,9 +34,11 @@ class DeleteNotification extends ModalComponent
             ->success()
             ->send();
 
-        return redirect()->route('admin.notifications');
+        $this->closeModal();
+        $this->dispatch('refresh');
     }
 
+    #[On('refresh')]
     public function render()
     {
         return view('livewire.components.modals.admin.notifications.delete-notification');
