@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <div x-data="{ sidebarOpen: false, pinned: $persist(false) }" class="relative">
 
-    <!-- Mobile Navbar -->
+    <!-- Mobile Nav & sidebar -->
     <div class="navbar bg-base-200 md:hidden">
         <div class="navbar-start">
             <div class="dropdown">
@@ -16,6 +16,13 @@
                             <i class="icon-home"></i>
                             <span class="ml-2 text-sm font-medium">{{ __('navigation/navigation.home') }}</span>
                         </a>
+
+                        @isset($moduleComponent)
+                            @if($moduleComponent['section'] == 'mobile.sidebar')
+                                @component($moduleComponent['component'])
+                                @endcomponent
+                            @endif
+                        @endisset
                     </li>
                 </ul>
             </div>
@@ -25,14 +32,19 @@
         </div>
         <div class="navbar-end">
 
-            <div class="mr-3">
-                <i class="icon-search font-semibold text-xl cursor-pointer"
-                   @click.stop="$dispatch('mary-search-open')"></i>
-            </div>
+            <i class="btn btn-ghost btn-circle icon-search font-semibold text-xl cursor-pointer"
+               @click.stop="$dispatch('mary-search-open')"></i>
 
             <a class="btn btn-ghost btn-circle" href="{{ route('account.notifications') }}" wire:navigate>
                 <i class="icon-bell font-semibold text-xl"></i>
             </a>
+
+            @isset($moduleComponent)
+                @if($moduleComponent['section'] == 'mobile.navbar.quickActions')
+                    @component($moduleComponent['component'])
+                    @endcomponent
+                @endif
+            @endisset
 
             <div class="ml-2 dropdown dropdown-bottom dropdown-end">
                 <img tabindex="0" role="button"
@@ -40,17 +52,25 @@
                      class="w-9 h-9 rounded-3xl mr-6">
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a href="{{ route('account.profile') }}" wire:navigate><i
-                                    class='icon-user'></i> {{ __('navigation/navigation.profile') }}</a>
+                                class='icon-user'></i> {{ __('navigation/navigation.profile') }}</a>
                     </li>
 
                     @hasrole('Super Admin')
                     <li><a href="{{ route('admin.dashboard') }}" wire:navigate><i
-                                    class='icon-settings'></i> {{ __('navigation/navigation.admin.admin') }}</a></li>
+                                class='icon-settings'></i> {{ __('navigation/navigation.admin.admin') }}</a></li>
                     <div class="divider"></div>
                     @endhasrole
 
+                    @isset($moduleComponent)
+                        @if($moduleComponent['section'] == 'mobile.navbar.profileDropdown')
+                            @component($moduleComponent['component'])
+                            @endcomponent
+                            <div class="divider"></div>
+                        @endif
+                    @endisset
+
                     <li><a href="{{ route('auth.logout') }}" wire:navigate><i
-                                    class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
+                                class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
                 </ul>
             </div>
         </div>
@@ -64,14 +84,24 @@
                    @click.stop="$dispatch('mary-search-open')"></i>
             </div>
             <div class="mr-4">
-                <a href="{{ route('account.notifications') }}"wire:navigate><i
-                            class="icon-bell font-semibold text-xl"></i></a>
+                <a href="{{ route('account.notifications') }}" wire:navigate><i
+                        class="icon-bell font-semibold text-xl"></i></a>
             </div>
             @hasrole('Super Admin')
             <div class="mr-4">
-                <a href="{{ route('admin.dashboard') }}" wire:navigate><i class="icon-settings font-semibold text-xl"></i></a>
+                <a href="{{ route('admin.dashboard') }}" wire:navigate><i
+                        class="icon-settings font-semibold text-xl"></i></a>
             </div>
             @endhasrole
+
+            @isset($moduleComponent)
+                @if($moduleComponent['section'] == 'desktop.navbar.quickActions')
+                    <div class="mr-4">
+                        @component($moduleComponent['component'])
+                        @endcomponent
+                    </div>
+                @endif
+            @endisset
 
             <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
                 <img tabindex="0" role="button"
@@ -79,17 +109,25 @@
                      class="w-9 h-9 rounded-3xl mr-6">
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a href="{{ route('account.profile') }}" wire:navigate><i
-                                    class='icon-user'></i> {{ __('navigation/navigation.profile') }}</a>
+                                class='icon-user'></i> {{ __('navigation/navigation.profile') }}</a>
                     </li>
 
                     @hasrole('Super Admin')
                     <li><a href="{{ route('admin.dashboard') }}" wire:navigate><i
-                                    class='icon-settings'></i> {{ __('navigation/navigation.admin.admin') }}</a></li>
+                                class='icon-settings'></i> {{ __('navigation/navigation.admin.admin') }}</a></li>
                     <div class="divider"></div>
                     @endhasrole
 
+                    @isset($moduleComponent)
+                        @if($moduleComponent['section'] == 'desktop.navbar.profileDropdown')
+                            @component($moduleComponent['component'])
+                            @endcomponent
+                            <div class="divider"></div>
+                        @endif
+                    @endisset
+
                     <li><a href="{{ route('auth.logout') }}" wire:navigate><i
-                                    class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
+                                class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
                 </ul>
             </div>
         </div>
@@ -116,6 +154,13 @@
                     <i class="icon-home"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.home') }}</span>
                 </a>
+
+                @isset($moduleComponent)
+                    @if($moduleComponent['section'] == 'desktop.sidebar')
+                        @component($moduleComponent['component'])
+                        @endcomponent
+                    @endif
+                @endisset
             </div>
 
             <div class="divider divider-neutral"></div>
@@ -131,7 +176,7 @@
                    href="{{ route('admin.dashboard') }}" wire:navigate>
                     <i class="icon-settings"></i>
                     <span
-                            class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.admin') }}</span>
+                        class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.admin') }}</span>
                 </a>
                 @endhasrole
                 <a class="relative flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('logout') ? 'bg-base-300' : '' }}"

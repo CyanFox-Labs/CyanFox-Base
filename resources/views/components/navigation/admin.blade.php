@@ -57,6 +57,13 @@
                             <span
                                 class="ml-2 text-sm font-medium">{{ __('navigation/navigation.admin.activity') }}</span>
                         </a>
+
+                        @isset($moduleComponent)
+                            @if($moduleComponent['section'] == 'mobile.sidebar')
+                                @component($moduleComponent['component'])
+                                @endcomponent
+                            @endif
+                        @endisset
                     </li>
                 </ul>
             </div>
@@ -66,14 +73,19 @@
         </div>
         <div class="navbar-end">
 
-            <div class="mr-3">
-                <i class="icon-search font-semibold text-xl cursor-pointer"
-                   @click.stop="$dispatch('mary-search-open')"></i>
-            </div>
+            <i class="btn btn-ghost btn-circle icon-search font-semibold text-xl cursor-pointer"
+               @click.stop="$dispatch('mary-search-open')"></i>
 
             <a class="btn btn-ghost btn-circle" href="{{ route('account.notifications') }}" wire:navigate>
                 <i class="icon-bell font-semibold text-xl"></i>
             </a>
+
+            @isset($moduleComponent)
+                @if($moduleComponent['section'] == 'mobile.navbar.quickActions')
+                    @component($moduleComponent['component'])
+                    @endcomponent
+                @endif
+            @endisset
 
             <div class="ml-2 dropdown dropdown-bottom dropdown-end">
                 <img tabindex="0" role="button"
@@ -87,6 +99,14 @@
                     <li><a href="{{ route('home') }}" wire:navigate><i
                                 class='icon-home'></i> {{ __('navigation/navigation.home') }}</a></li>
                     <div class="divider"></div>
+
+                    @isset($moduleComponent)
+                        @if($moduleComponent['section'] == 'mobile.navbar.profileDropdown')
+                            @component($moduleComponent['component'])
+                            @endcomponent
+                            <div class="divider"></div>
+                        @endif
+                    @endisset
 
                     <li><a href="{{ route('auth.logout') }}" wire:navigate><i
                                 class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
@@ -110,6 +130,15 @@
                 <a href="{{ route('home') }}" wire:navigate><i class="icon-home font-semibold text-xl"></i></a>
             </div>
 
+            @isset($moduleComponent)
+                @if($moduleComponent['section'] == 'desktop.navbar.quickActions')
+                    <div class="mr-4">
+                        @component($moduleComponent['component'])
+                        @endcomponent
+                    </div>
+                @endif
+            @endisset
+
             <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
                 <img tabindex="0" role="button"
                      src="{{ auth()->user()->getAvatarURL() }}" alt="Profile"
@@ -122,6 +151,14 @@
                     <li><a href="{{ route('home') }}" wire:navigate><i
                                 class='icon-home'></i> {{ __('navigation/navigation.home') }}</a></li>
                     <div class="divider"></div>
+
+                    @isset($moduleComponent)
+                        @if($moduleComponent['section'] == 'desktop.navbar.profileDropdown')
+                            @component($moduleComponent['component'])
+                            @endcomponent
+                            <div class="divider"></div>
+                        @endif
+                    @endisset
 
                     <li><a href="{{ route('auth.logout') }}" wire:navigate><i
                                 class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
@@ -194,6 +231,13 @@
                     <span
                         class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.activity') }}</span>
                 </a>
+
+                @isset($moduleComponent)
+                    @if($moduleComponent['section'] == 'desktop.sidebar')
+                        @component($moduleComponent['component'])
+                        @endcomponent
+                    @endif
+                @endisset
             </div>
 
             <div class="divider divider-neutral"></div>

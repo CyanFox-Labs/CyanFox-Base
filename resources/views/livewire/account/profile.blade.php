@@ -215,6 +215,14 @@
                         </div>
                     </div>
                 @endif
+
+
+                @isset($moduleComponent)
+                    @if($moduleComponent['section'] == 'overview')
+                        @component($moduleComponent['component'])
+                        @endcomponent
+                    @endif
+                @endisset
             </div>
         </div>
     @endif

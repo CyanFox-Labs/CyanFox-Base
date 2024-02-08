@@ -89,5 +89,9 @@
             </div>
         </div>
 
+        @isset($moduleComponent)
+            @component($moduleComponent['component'])
+            @endcomponent
+        @endisset
     </div>
 </div>

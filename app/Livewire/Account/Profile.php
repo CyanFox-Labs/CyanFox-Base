@@ -78,7 +78,7 @@ class Profile extends Component
             ->success()
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('account.profile'));
     }
 
 
