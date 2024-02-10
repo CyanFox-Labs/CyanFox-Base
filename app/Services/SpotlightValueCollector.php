@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class ModuleIntegrationCollector
+class SpotlightValueCollector
 {
     protected $data = [];
 

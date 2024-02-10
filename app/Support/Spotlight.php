@@ -2,8 +2,6 @@
 
 namespace App\Support;
 
-use App\Models\SpotlightValue;
-use Blade;
 use Illuminate\Http\Request;
 
 class Spotlight
@@ -11,17 +9,19 @@ class Spotlight
 
     public static function getFormattedValues(bool $admin)
     {
-        return SpotlightValue::where('admin', $admin)
-            ->get()
-            ->map(function ($value) {
-                return [
-                    'name' => __($value->title),
-                    'description' => __($value->description),
-                    'icon' => Blade::render($value->icon),
-                    'link' => route($value->route)
-                ];
-            })
-            ->toArray();
+        $allValues = collect(app('spotlight.values')->getAll());
+
+        return $allValues->filter(function ($item) use ($admin) {
+            return $item['admin'] === $admin;
+        })->map(function ($item) {
+            return [
+                'name' => $item['name'],
+                'description' => $item['description'],
+                'link' => route($item['route']),
+                'icon' => $item['icon'],
+                'admin' => $item['admin'],
+            ];
+        })->values()->toArray();
     }
 
     public function search(Request $request)
@@ -30,11 +30,11 @@ class Spotlight
             return [];
         }
 
-        $search = $request->search;
+        $search = strtolower($request->search);
         $allValues = collect(array_merge(self::getFormattedValues(false), self::getFormattedValues(true)));
 
         return $allValues->filter(function ($item) use ($search) {
-            return str_contains($item['name'] . $item['description'], $search);
+            return str_contains(strtolower($item['name']) . strtolower($item['description']), $search);
         })->values();
     }
 

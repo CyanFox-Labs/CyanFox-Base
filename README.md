@@ -54,11 +54,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Re-render page on update / modal close
 - [x] Developer API (With e.g integration in existing views) (For modules)
 - [x] Move not necessary functions to modules
+- [ ] Update spotlight values from db to app('spotlight')
 - [ ] Add notification buttons (e.g. "Edit User" in create user notification)
 - [ ] Activity logging
 - [ ] Auth system disable functionality
 - [ ] API Documentation
-- [ ] Add Spotlight values
+- [x] Add Spotlight values
 - [ ] Skeletons
 - [ ] Error pages
 - [ ] Installer (Web & CLI)

@@ -12,11 +12,6 @@ return [
 
     'admin' => [
         'dashboard' => 'Admin • Dashboard',
-        'notifications' => [
-            'notifications' => 'Admin • Notifications',
-            'create_notification' => 'Admin • Notifications » Create Notification',
-            'update_notification' => 'Admin • Notifications » Update :notification'
-        ],
         'users' => [
             'users' => 'Admin • Users',
             'create_user' => 'Admin • Users » Create User',

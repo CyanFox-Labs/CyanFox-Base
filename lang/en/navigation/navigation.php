@@ -7,7 +7,6 @@ return [
     'admin' => [
         'admin' => 'Admin',
         'dashboard' => 'Dashboard',
-        'notifications' => 'Notifications',
         'users' => 'Users',
         'groups' => 'Groups',
         'settings' => 'Settings',
