@@ -17,12 +17,13 @@
                             <span class="ml-2 text-sm font-medium">{{ __('navigation/navigation.home') }}</span>
                         </a>
 
-                        @isset($moduleComponent)
+                        @forelse (app('integrate.views')->getAll() as $moduleComponent)
                             @if($moduleComponent['section'] == 'mobile.sidebar')
                                 @component($moduleComponent['component'])
                                 @endcomponent
                             @endif
-                        @endisset
+                        @empty
+                        @endforelse
                     </li>
                 </ul>
             </div>
@@ -35,16 +36,13 @@
             <i class="btn btn-ghost btn-circle icon-search font-semibold text-xl cursor-pointer"
                @click.stop="$dispatch('mary-search-open')"></i>
 
-            <a class="btn btn-ghost btn-circle" href="{{ route('account.notifications') }}" wire:navigate>
-                <i class="icon-bell font-semibold text-xl"></i>
-            </a>
-
-            @isset($moduleComponent)
+            @forelse (app('integrate.views')->getAll() as $moduleComponent)
                 @if($moduleComponent['section'] == 'mobile.navbar.quickActions')
                     @component($moduleComponent['component'])
                     @endcomponent
                 @endif
-            @endisset
+            @empty
+            @endforelse
 
             <div class="ml-2 dropdown dropdown-bottom dropdown-end">
                 <img tabindex="0" role="button"
@@ -61,15 +59,16 @@
                     <div class="divider"></div>
                     @endhasrole
 
-                    @isset($moduleComponent)
+                    @forelse (app('integrate.views')->getAll() as $moduleComponent)
                         @if($moduleComponent['section'] == 'mobile.navbar.profileDropdown')
                             @component($moduleComponent['component'])
                             @endcomponent
                             <div class="divider"></div>
                         @endif
-                    @endisset
+                    @empty
+                    @endforelse
 
-                    <li><a href="{{ route('auth.logout') }}" wire:navigate><i
+                    <li><a href="{{ route('auth.logout') }}"><i
                                 class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
                 </ul>
             </div>
@@ -83,10 +82,7 @@
                 <i class="icon-search font-semibold text-xl cursor-pointer"
                    @click.stop="$dispatch('mary-search-open')"></i>
             </div>
-            <div class="mr-4">
-                <a href="{{ route('account.notifications') }}" wire:navigate><i
-                        class="icon-bell font-semibold text-xl"></i></a>
-            </div>
+
             @hasrole('Super Admin')
             <div class="mr-4">
                 <a href="{{ route('admin.dashboard') }}" wire:navigate><i
@@ -94,14 +90,15 @@
             </div>
             @endhasrole
 
-            @isset($moduleComponent)
+            @forelse (app('integrate.views')->getAll() as $moduleComponent)
                 @if($moduleComponent['section'] == 'desktop.navbar.quickActions')
                     <div class="mr-4">
                         @component($moduleComponent['component'])
                         @endcomponent
                     </div>
                 @endif
-            @endisset
+            @empty
+            @endforelse
 
             <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
                 <img tabindex="0" role="button"
@@ -118,15 +115,16 @@
                     <div class="divider"></div>
                     @endhasrole
 
-                    @isset($moduleComponent)
+                    @forelse (app('integrate.views')->getAll() as $moduleComponent)
                         @if($moduleComponent['section'] == 'desktop.navbar.profileDropdown')
                             @component($moduleComponent['component'])
                             @endcomponent
                             <div class="divider"></div>
                         @endif
-                    @endisset
+                    @empty
+                    @endforelse
 
-                    <li><a href="{{ route('auth.logout') }}" wire:navigate><i
+                    <li><a href="{{ route('auth.logout') }}"><i
                                 class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
                 </ul>
             </div>
@@ -155,12 +153,13 @@
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.home') }}</span>
                 </a>
 
-                @isset($moduleComponent)
+                @forelse (app('integrate.views')->getAll() as $moduleComponent)
                     @if($moduleComponent['section'] == 'desktop.sidebar')
                         @component($moduleComponent['component'])
                         @endcomponent
                     @endif
-                @endisset
+                @empty
+                @endforelse
             </div>
 
             <div class="divider divider-neutral"></div>
@@ -180,7 +179,7 @@
                 </a>
                 @endhasrole
                 <a class="relative flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('logout') ? 'bg-base-300' : '' }}"
-                   href="{{ route('auth.logout') }}" wire:navigate>
+                   href="{{ route('auth.logout') }}">
                     <i class="icon-log-out"></i>
                     <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.logout') }}</span>
                 </a>

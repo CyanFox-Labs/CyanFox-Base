@@ -217,12 +217,13 @@
                 @endif
 
 
-                @isset($moduleComponent)
+                @forelse (app('integrate.views')->getAll() as $moduleComponent)
                     @if($moduleComponent['section'] == 'overview')
                         @component($moduleComponent['component'])
                         @endcomponent
                     @endif
-                @endisset
+                @empty
+                @endforelse
             </div>
         </div>
     @endif

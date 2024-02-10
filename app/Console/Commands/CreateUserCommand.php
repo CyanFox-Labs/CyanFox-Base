@@ -60,13 +60,12 @@ class CreateUserCommand extends Command
             try {
                 $user->assignRole('Super Admin');
             } catch (RoleDoesNotExist $e) {
-                $this->warn('SuperAdmin role does not exist. Creating role...');
-                $role = Role::create(['name' => 'SuperAdmin']);
+                $this->warn('Super Admin role does not exist. Creating role...');
+                $role = Role::create(['name' => 'Super Admin']);
                 $this->info('Role created successfully.');
                 $user->assignRole($role);
                 return;
             }
-            $user->assignRole('Super Admin');
         }
 
         try {

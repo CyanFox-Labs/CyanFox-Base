@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-between relative min-h-screen">
+<div class="flex flex-col justify-between relative min-h-screen dark">
     <div class="absolute inset-0 z-[-1]" style="{{ $unsplash['css'] }}"></div>
     <div class="flex flex-col md:justify-center md:items-center">
         <p class="flex items-center justify-center mb-6 text-2xl font-semibold">

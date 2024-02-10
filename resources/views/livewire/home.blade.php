@@ -1,8 +1,9 @@
 <div>
-    <livewire:components.notifications site="home"/>
-
-    @isset($moduleComponent)
-        @component($moduleComponent['component'])
-        @endcomponent
-    @endisset
+    @forelse (app('integrate.views')->getAll() as $moduleComponent)
+        @if($moduleComponent['section'] == 'home')
+            @component($moduleComponent['component'])
+            @endcomponent
+        @endif
+    @empty
+    @endforelse
 </div>

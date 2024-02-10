@@ -32,12 +32,16 @@
 
                     <div class="flex mt-4 justify-between">
                         <div>
-                            <a href="{{ route('admin.modules') }}/settings/{{ $module['name'] }}"
-                               class="btn btn-ghost"><i class="icon-settings-2 text-lg"></i></a>
+                            @if($module['hasSettingsPage'])
+                                <a href="{{ route('modules.' . $module["name"] . '.settings') }}"
+                                   class="btn btn-ghost"><i class="icon-settings-2 text-lg"></i></a>
+                            @endif
                         </div>
 
                         <div>
-                            <button wire:click="$dispatch('openModal', { component: 'components.modals.admin.modules.delete-module', arguments: { moduleName: '{{ $module['name'] }}' }})" class="btn btn-ghost">
+                            <button
+                                    wire:click="$dispatch('openModal', { component: 'components.modals.admin.modules.delete-module', arguments: { moduleName: '{{ $module['name'] }}' }})"
+                                    class="btn btn-ghost">
                                 <i class="icon-trash text-lg text-red-600"></i>
                             </button>
 

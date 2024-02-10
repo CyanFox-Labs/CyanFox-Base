@@ -49,13 +49,6 @@
 
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body flex justify-center align-middle text-center">
-                <a href="{{ route('admin.notifications') }}"><i class="icon-bell text-9xl"></i></a>
-                <a href="{{ route('admin.notifications') }}">{{ __('navigation/navigation.admin.notifications') }}</a>
-            </div>
-        </div>
-
-        <div class="card bg-base-100 shadow-xl">
-            <div class="card-body flex justify-center align-middle text-center">
                 <a href="{{ route('admin.users') }}"><i class="icon-users text-9xl"></i></a>
                 <a href="{{ route('admin.users') }}">{{ __('navigation/navigation.admin.users') }}</a>
             </div>
@@ -89,9 +82,12 @@
             </div>
         </div>
 
-        @isset($moduleComponent)
-            @component($moduleComponent['component'])
-            @endcomponent
-        @endisset
+        @forelse (app('integrate.views')->getAll() as $moduleComponent)
+            @if($moduleComponent['section'] == 'dashboard')
+                @component($moduleComponent['component'])
+                @endcomponent
+            @endif
+        @empty
+        @endforelse
     </div>
 </div>

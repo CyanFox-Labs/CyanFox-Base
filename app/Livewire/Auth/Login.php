@@ -143,11 +143,11 @@ class Login extends Component
                 }
 
                 if ($this->redirect) {
-                    $this->redirect($this->redirect, navigate: true);
+                    $this->redirect($this->redirect);
                     return;
                 }
 
-                $this->redirect(route('home'), navigate: true);
+                $this->redirect(route('home'));
             }
         } else {
             throw ValidationException::withMessages([
@@ -174,11 +174,11 @@ class Login extends Component
             }
 
             if ($this->redirect) {
-                $this->redirect($this->redirect, navigate: true);
+                $this->redirect($this->redirect);
                 return;
             }
 
-            $this->redirect(route('home'), navigate: true);
+            $this->redirect(route('home'));
         }
 
         throw ValidationException::withMessages([

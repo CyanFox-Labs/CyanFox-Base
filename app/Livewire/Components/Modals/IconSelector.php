@@ -2,8 +2,6 @@
 
 namespace App\Livewire\Components\Modals;
 
-use App\Livewire\Admin\Notifications\CreateNotification;
-use App\Livewire\Admin\Notifications\UpdateNotification;
 use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 

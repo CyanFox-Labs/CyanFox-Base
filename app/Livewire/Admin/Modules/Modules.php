@@ -6,6 +6,7 @@ use Filament\Notifications\Notification;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Nwidart\Modules\Facades\Module;
+use Route;
 
 class Modules extends Component
 {
@@ -19,6 +20,7 @@ class Modules extends Component
             return [
                 'name' => $module->getName(),
                 'enabled' => $module->isEnabled(),
+                'hasSettingsPage' => $this->checkIfModuleHasSettingsPage($module->getName()),
             ];
         }, $modules);
     }
@@ -65,9 +67,19 @@ class Modules extends Component
         $this->dispatch('refresh');
     }
 
+    public function checkIfModuleHasSettingsPage($name)
+    {
+        if (Route::has('modules.' . $name . '.settings')) {
+            return true;
+        }
+
+        return false;
+    }
+
     #[On('refresh')]
     public function render()
     {
+        $this->mount();
         return view('livewire.admin.modules.modules')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.modules.modules')]);
     }
 }

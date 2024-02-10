@@ -115,7 +115,7 @@ class Register extends Component
 
         Auth::login($user);
 
-        $this->redirect(route('home'), navigate: true);
+        $this->redirect(route('home'));
     }
 
     #[On('refresh')]

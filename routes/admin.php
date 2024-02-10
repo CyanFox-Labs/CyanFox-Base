@@ -6,9 +6,6 @@ use App\Livewire\Admin\Groups\CreateGroup;
 use App\Livewire\Admin\Groups\Groups;
 use App\Livewire\Admin\Groups\UpdateGroup;
 use App\Livewire\Admin\Modules\Modules;
-use App\Livewire\Admin\Notifications\CreateNotification;
-use App\Livewire\Admin\Notifications\Notifications;
-use App\Livewire\Admin\Notifications\UpdateNotification;
 use App\Livewire\Admin\Settings\Settings;
 use App\Livewire\Admin\Users\CreateUser;
 use App\Livewire\Admin\Users\UpdateUser;
@@ -26,12 +23,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin', 'middleware' => ['role:Super Admin', 'auth', 'disabled']], function () {
     Route::get('/', Dashboard::class)->name('admin.dashboard');
-
-    Route::group(['prefix' => 'notifications'], function () {
-        Route::get('/', Notifications::class)->name('admin.notifications');
-        Route::get('/create', CreateNotification::class)->name('admin.notifications.create');
-        Route::get('/update/{notificationId}', UpdateNotification::class)->name('admin.notifications.update');
-    });
 
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', Users::class)->name('admin.users');
