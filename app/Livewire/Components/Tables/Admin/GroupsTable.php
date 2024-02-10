@@ -42,7 +42,7 @@ class GroupsTable extends DataTableComponent
 
                     if ($row->name !== 'Super Admin') {
                         return
-                            '<a href="' . route('admin.groups.update', ['groupId' => $row->id]) . '"><i class="icon-pen font-semibold text-lg text-blue-600 px-2"></i></a>' .
+                            '<a href="' . route('admin.groups.update', ['groupId' => $row->id]) . '" wire:navigate><i class="icon-pen font-semibold text-lg text-blue-600 px-2"></i></a>' .
                             '<i wire:click="$dispatch(`openModal`, { component: `components.modals.admin.groups.delete-group`,
                         arguments: { groupId: `' . $row->id . '` } })" class="icon-trash font-semibold text-lg text-red-600 cursor-pointer"></i>';
                     }

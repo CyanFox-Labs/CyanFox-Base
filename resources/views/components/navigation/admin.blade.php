@@ -52,7 +52,7 @@
                         </a>
 
                         @forelse (app('integrate.views')->getAll() as $moduleComponent)
-                            @if($moduleComponent['section'] == 'mobile.sidebar')
+                            @if($moduleComponent['section'] == 'mobile.sidebar' && $moduleComponent['location'] == 'admin.sidebar')
                                 @component($moduleComponent['component'])
                                 @endcomponent
                             @endif
@@ -71,7 +71,7 @@
                @click.stop="$dispatch('mary-search-open')"></i>
 
             @forelse (app('integrate.views')->getAll() as $moduleComponent)
-                @if($moduleComponent['section'] == 'mobile.navbar.quickActions')
+                @if($moduleComponent['section'] == 'mobile.navbar.quickActions' && $moduleComponent['location'] == 'admin.sidebar')
                     @component($moduleComponent['component'])
                     @endcomponent
                 @endif
@@ -92,7 +92,7 @@
                     <div class="divider"></div>
 
                     @forelse (app('integrate.views')->getAll() as $moduleComponent)
-                        @if($moduleComponent['section'] == 'mobile.navbar.profileDropdown')
+                        @if($moduleComponent['section'] == 'mobile.navbar.profileDropdown' && $moduleComponent['location'] == 'admin.sidebar')
                             @component($moduleComponent['component'])
                             @endcomponent
                             <div class="divider"></div>
@@ -120,7 +120,7 @@
             </div>
 
             @forelse (app('integrate.views')->getAll() as $moduleComponent)
-                @if($moduleComponent['section'] == 'desktop.navbar.quickActions')
+                @if($moduleComponent['section'] == 'desktop.navbar.quickActions' && $moduleComponent['location'] == 'admin.sidebar')
                     <div class="mr-4">
                         @component($moduleComponent['component'])
                         @endcomponent
@@ -143,7 +143,7 @@
                     <div class="divider"></div>
 
                     @forelse (app('integrate.views')->getAll() as $moduleComponent)
-                        @if($moduleComponent['section'] == 'desktop.navbar.profileDropdown')
+                        @if($moduleComponent['section'] == 'desktop.navbar.profileDropdown' && $moduleComponent['location'] == 'admin.sidebar')
                             @component($moduleComponent['component'])
                             @endcomponent
                             <div class="divider"></div>
@@ -217,7 +217,7 @@
                 </a>
 
                 @forelse (app('integrate.views')->getAll() as $moduleComponent)
-                    @if($moduleComponent['section'] == 'desktop.sidebar')
+                    @if($moduleComponent['section'] == 'desktop.sidebar' && $moduleComponent['location'] == 'admin.sidebar')
                         @component($moduleComponent['component'])
                         @endcomponent
                     @endif

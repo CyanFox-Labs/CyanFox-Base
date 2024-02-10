@@ -66,10 +66,10 @@ class UsersTable extends DataTableComponent
                 ->label(function ($row) {
 
                     if ($row->id === auth()->user()->id) {
-                        return '<a href="' . route('admin.users.update', ['userId' => $row->id]) . '"><i class="icon-pen font-semibold text-lg text-blue-600 px-2"></i></a>';
+                        return '<a href="' . route('admin.users.update', ['userId' => $row->id]) . '" wire:navigate><i class="icon-pen font-semibold text-lg text-blue-600 px-2"></i></a>';
                     }
                     return
-                        '<a href="' . route('admin.users.update', ['userId' => $row->id]) . '"><i class="icon-pen font-semibold text-lg text-blue-600 px-2"></i></a>' .
+                        '<a href="' . route('admin.users.update', ['userId' => $row->id]) . '" wire:navigate><i class="icon-pen font-semibold text-lg text-blue-600 px-2"></i></a>' .
                         '<i wire:click="$dispatch(`openModal`, { component: `components.modals.admin.users.delete-user`,
                         arguments: { userId: `' . $row->id . '` } })" class="icon-trash font-semibold text-lg text-red-600 cursor-pointer"></i>';
                 })

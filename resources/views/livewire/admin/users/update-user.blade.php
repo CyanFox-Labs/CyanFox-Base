@@ -49,7 +49,7 @@
 
                 <div class="mt-2 flex justify-start gap-3">
                     <a class="btn btn-neutral" type="button"
-                       href="{{ route('admin.users') }}">{{ __('messages.buttons.back') }}</a>
+                       href="{{ route('admin.users') }}" wire:navigate>{{ __('messages.buttons.back') }}</a>
 
                     <x-button class="btn btn-success"
                               type="submit" spinner="updateUser">

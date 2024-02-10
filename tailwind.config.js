@@ -20,6 +20,9 @@ module.exports = {
 
         './vendor/rappasoft/laravel-livewire-tables/resources/views/**/*.blade.php',
         './app/Livewire/**/*.php',
+
+        './modules/**/*.php',
+        './modules/**/*.blade.php',
     ],
     plugins: [require("daisyui")],
     daisyui: {

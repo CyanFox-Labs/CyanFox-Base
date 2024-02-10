@@ -218,7 +218,7 @@
 
 
                 @forelse (app('integrate.views')->getAll() as $moduleComponent)
-                    @if($moduleComponent['section'] == 'overview')
+                    @if($moduleComponent['section'] == 'overview' && $moduleComponent['location'] == 'account.profile')
                         @component($moduleComponent['component'])
                         @endcomponent
                     @endif
