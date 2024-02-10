@@ -53,7 +53,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Switch to navbar if the device is too small
 - [x] Re-render page on update / modal close
 - [x] Developer API (With e.g integration in existing views) (For modules)
-- [ ] Move not necessary functions to modules
+- [x] Move not necessary functions to modules
 - [ ] Add notification buttons (e.g. "Edit User" in create user notification)
 - [ ] Activity logging
 - [ ] Auth system disable functionality
