@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ setting('app_name') }} | {{ $title ?? 'Page Title' }}</title>
+    <title>{{ setting('app_name') }} | {{ $title ?? '' }}</title>
 
     <link rel="icon" type="image/svg" href="{{ asset('img/Logo.svg') }}">
 

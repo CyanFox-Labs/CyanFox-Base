@@ -21,31 +21,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'admin', 'middleware' => ['role:Super Admin', 'auth', 'disabled']], function () {
-    Route::get('/', Dashboard::class)->name('admin.dashboard');
+if (setting('auth_enable')) {
+    Route::group(['prefix' => 'admin', 'middleware' => ['role:Super Admin', 'auth', 'disabled']], function () {
+        Route::get('/', Dashboard::class)->name('admin.dashboard');
 
-    Route::group(['prefix' => 'users'], function () {
-        Route::get('/', Users::class)->name('admin.users');
-        Route::get('/create', CreateUser::class)->name('admin.users.create');
-        Route::get('/update/{userId}', UpdateUser::class)->name('admin.users.update');
+        Route::group(['prefix' => 'users'], function () {
+            Route::get('/', Users::class)->name('admin.users');
+            Route::get('/create', CreateUser::class)->name('admin.users.create');
+            Route::get('/update/{userId}', UpdateUser::class)->name('admin.users.update');
+        });
+
+        Route::group(['prefix' => 'groups'], function () {
+            Route::get('/', Groups::class)->name('admin.groups');
+            Route::get('/create', CreateGroup::class)->name('admin.groups.create');
+            Route::get('/update/{groupId}', UpdateGroup::class)->name('admin.groups.update');
+        });
+
+        Route::group(['prefix' => 'settings'], function () {
+            Route::get('/', Settings::class)->name('admin.settings');
+        });
+
+        Route::group(['prefix' => 'modules'], function () {
+            Route::get('/', Modules::class)->name('admin.modules');
+        });
+
+        Route::group(['prefix' => 'activity'], function () {
+            Route::get('/', Activity::class)->name('admin.activity');
+        });
     });
-
-    Route::group(['prefix' => 'groups'], function () {
-        Route::get('/', Groups::class)->name('admin.groups');
-        Route::get('/create', CreateGroup::class)->name('admin.groups.create');
-        Route::get('/update/{groupId}', UpdateGroup::class)->name('admin.groups.update');
-    });
-
-    Route::group(['prefix' => 'settings'], function () {
-        Route::get('/', Settings::class)->name('admin.settings');
-    });
-
-    Route::group(['prefix' => 'modules'], function () {
-        Route::get('/', Modules::class)->name('admin.modules');
-    });
-
-    Route::group(['prefix' => 'activity'], function () {
-        Route::get('/', Activity::class)->name('admin.activity');
-    });
-});
-
+}

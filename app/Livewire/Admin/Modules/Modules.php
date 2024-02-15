@@ -36,7 +36,7 @@ class Modules extends Component
             ->success()
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('admin.modules'), navigate: true);
     }
 
     public function enableModule($name)
@@ -50,7 +50,7 @@ class Modules extends Component
             ->success()
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('admin.modules'), navigate: true);
     }
 
     public function deleteModule($name)
@@ -64,7 +64,7 @@ class Modules extends Component
             ->success()
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('admin.modules'), navigate: true);
     }
 
     public function checkIfModuleHasSettingsPage($name)
