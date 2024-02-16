@@ -12,7 +12,7 @@ use function Laravel\Prompts\text;
 
 class CreateUserCommand extends Command
 {
-    protected $signature = 'c:make:user';
+    protected $signature = 'c:admin:users.create';
 
     protected $description = 'Create a new user';
 

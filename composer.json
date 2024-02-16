@@ -29,7 +29,8 @@
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-artisan-dd": "^2.3",
         "spatie/laravel-permission": "^6.3",
-        "wire-elements/modal": "^2.0"
+        "wire-elements/modal": "^2.0",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -6,6 +6,7 @@ use Artisan;
 use Exception;
 use Jackiedo\DotenvEditor\Facades\DotenvEditor;
 use Livewire\Component;
+use PDO;
 
 class DatabaseSettings extends Component
 {
@@ -20,8 +21,8 @@ class DatabaseSettings extends Component
     public function testConnection()
     {
         try {
-            $connection = new \PDO("mysql:host={$this->host};port={$this->port};dbname={$this->database}", $this->username, $this->password);
-            $connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $connection = new PDO("mysql:host={$this->host};port={$this->port};dbname={$this->database}", $this->username, $this->password);
+            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $this->alert = [
                 'title' => __('pages/installer.database.alerts.success.title'),

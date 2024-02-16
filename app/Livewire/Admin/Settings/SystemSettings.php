@@ -48,7 +48,7 @@ class SystemSettings extends Component
 
         /* Unsplash Settings */
         $this->unsplashUtm = setting('unsplash_utm');
-        $this->unsplashApiKey = decrypt(setting('unsplash_api_key'));
+        $this->unsplashApiKey = setting('unsplash_api_key', true);
 
         /* URL Settings */
         $this->projectVersionUrl = setting('project_version_url');

@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 if (setting('auth_enable')) {
-    Route::group(['prefix' => 'auth', 'middleware' => ['session', 'language', 'throttle:20,1']], function () {
+    Route::group(['prefix' => 'auth', 'middleware' => ['language', 'throttle:20,1']], function () {
         Route::get('login', Login::class)->name('auth.login')->middleware('guest');
 
         if (setting('auth_enable_register')) {
@@ -53,13 +53,13 @@ if (setting('auth_enable')) {
         })->name('auth.logout')->middleware('auth');
     });
 
-    Route::group(['prefix' => 'account', 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'account', 'middleware' => ['auth']], function () {
         Route::get('change-password', ForceChangePassword::class)->name('account.force-change.password');
         Route::get('activate-two-factor', ForceActivateTwoFactor::class)->name('account.force-activate.two-factor');
     });
 }
 
-Route::group(['middleware' => ['session', 'auth', 'disabled', 'force_change']], function () {
+Route::group(['middleware' => ['auth', 'disabled', 'force_change']], function () {
     Route::get('/', Home::class)->name('home');
 
     if (setting('auth_enable')) {
@@ -68,7 +68,3 @@ Route::group(['middleware' => ['session', 'auth', 'disabled', 'force_change']], 
         });
     }
 });
-
-if (!setting('app_installed')) {
-    Route::get('install', Installer::class)->name('installer');
-}

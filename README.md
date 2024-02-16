@@ -60,7 +60,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] API Documentation
 - [x] Add Spotlight values
 - [x] Error pages
-- [ ] Installer (Web & CLI)
+- [x] Installer (Web & CLI)
 - [ ] Translation renewal
 - [ ] German translation (sie & du)
 - [ ] Add default values to .env.example
