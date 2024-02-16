@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 if (setting('auth_enable')) {
-    Route::group(['prefix' => 'admin', 'middleware' => ['role:Super Admin', 'auth', 'disabled']], function () {
+    Route::group(['prefix' => 'admin', 'middleware' => ['session', 'role:Super Admin', 'auth', 'disabled']], function () {
         Route::get('/', Dashboard::class)->name('admin.dashboard');
 
         Route::group(['prefix' => 'users'], function () {

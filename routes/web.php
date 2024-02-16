@@ -8,6 +8,7 @@ use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Home;
+use App\Livewire\Installer\Installer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 if (setting('auth_enable')) {
-    Route::group(['prefix' => 'auth', 'middleware' => 'language'], function () {
+    Route::group(['prefix' => 'auth', 'middleware' => ['session', 'language', 'throttle:20,1']], function () {
         Route::get('login', Login::class)->name('auth.login')->middleware('guest');
 
         if (setting('auth_enable_register')) {
@@ -58,7 +59,7 @@ if (setting('auth_enable')) {
     });
 }
 
-Route::group(['middleware' => ['auth', 'disabled', 'force_change']], function () {
+Route::group(['middleware' => ['session', 'auth', 'disabled', 'force_change']], function () {
     Route::get('/', Home::class)->name('home');
 
     if (setting('auth_enable')) {
@@ -67,3 +68,7 @@ Route::group(['middleware' => ['auth', 'disabled', 'force_change']], function ()
         });
     }
 });
+
+if (!setting('app_installed')) {
+    Route::get('install', Installer::class)->name('installer');
+}

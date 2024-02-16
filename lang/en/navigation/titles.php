@@ -9,6 +9,7 @@ return [
     'force_change_password' => 'Change Password',
     'notifications' => 'Notifications',
     'home' => 'Home',
+    'install' => 'Install',
 
     'admin' => [
         'dashboard' => 'Admin • Dashboard',

@@ -59,7 +59,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Auth system disable functionality
 - [ ] API Documentation
 - [x] Add Spotlight values
-- [ ] Error pages
+- [x] Error pages
 - [ ] Installer (Web & CLI)
 - [ ] Translation renewal
 - [ ] German translation (sie & du)

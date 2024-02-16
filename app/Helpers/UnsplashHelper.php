@@ -50,7 +50,7 @@ class UnsplashHelper
 
     public static function getUTM()
     {
-        return setting('unsplash_utm', '?utm_source=your_app_name&utm_medium=referral');
+        return setting('unsplash_utm');
     }
 
     /**
@@ -58,6 +58,9 @@ class UnsplashHelper
      */
     public static function getRandomUnsplashImage() {
         $api_key = setting('unsplash_api_key', true);
+        if ($api_key == null || $api_key == '') {
+            $api_key = config('template.unsplash.api_key');
+        }
 
         $client = new Client();
 
