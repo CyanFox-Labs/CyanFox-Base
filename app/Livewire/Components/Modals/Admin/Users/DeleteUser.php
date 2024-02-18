@@ -5,6 +5,7 @@ namespace App\Livewire\Components\Modals\Admin\Users;
 use App\Models\User;
 use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 
@@ -17,6 +18,7 @@ class DeleteUser extends ModalComponent
 
         try {
             $user = User::findOrFail($this->userId);
+            Storage::disk('public')->delete('profile-images/' . $user->id . '.png');
             $user->delete();
         }catch (Exception $e) {
             Notification::make()

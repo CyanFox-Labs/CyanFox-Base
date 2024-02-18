@@ -4,6 +4,7 @@ namespace App\Livewire\Components\Modals\Account;
 
 use Auth;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
@@ -28,6 +29,8 @@ class DeleteAccount extends ModalComponent
                 'twoFactorCode' => __('validation.custom.invalid_two_factor_code')
             ]);
         }
+
+        Storage::disk('public')->delete('profile-images/' . auth()->user()->id . '.png');
 
         auth()->user()->delete();
 

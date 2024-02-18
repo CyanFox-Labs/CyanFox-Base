@@ -3,7 +3,11 @@
 namespace App\Helpers;
 
 use Exception;
+use Knuckles\Scribe\Attributes\Group;
+use Knuckles\Scribe\Attributes\Unauthenticated;
 
+#[Unauthenticated]
+#[Group('Version', 'System Version')]
 class VersionHelper
 {
 

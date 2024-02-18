@@ -24,7 +24,9 @@ module.exports = {
         './modules/**/*.php',
         './modules/**/*.blade.php',
     ],
-    plugins: [require("daisyui")],
+    plugins: [
+        require("daisyui"),
+    ],
     daisyui: {
         themes: [
             {

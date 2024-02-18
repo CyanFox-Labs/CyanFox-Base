@@ -59,12 +59,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Auth system disable functionality
 - [ ] API Documentation
 - [x] Add Spotlight values
-- [x] Error pages
+- [ ] Better error pages
 - [x] Installer (Web & CLI)
+- [ ] Custom Avatar URL
 - [ ] Translation renewal
-- [ ] German translation (sie & du)
+- [ ] German translation
 - [ ] Add default values to .env.example
 - [ ] Add github workflow and dependabot config
+- [ ] Docker support
 - [ ] Add V1 -> V2 migration command -> For v1 projects
 - [ ] Add commands
 - [ ] Code refactoring

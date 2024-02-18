@@ -14,7 +14,7 @@
     <link rel="icon" type="image/svg" href="{{ asset('img/Logo.svg') }}">
 
     @filamentStyles
-    @vite(['resources/css/app.css'])
+    @vite('resources/css/app.css')
     @livewireStyles
     @livewireScripts
 </head>

@@ -7,6 +7,11 @@ return [
         'description' => 'Please enter a name for your API key.',
         'name' => 'Name',
 
+        'plain_text_token' => [
+            'title' => 'API Key Created',
+            'description' => 'Store this API key in a safe place. It will not be shown again.',
+        ],
+
         'notifications' => [
             'api_key_created' => 'API key created successfully!',
         ]

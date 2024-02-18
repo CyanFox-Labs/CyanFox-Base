@@ -108,7 +108,6 @@ return [
         'title' => 'API Keys',
         'table' => [
             'name' => 'Name',
-            'api_key' => 'API Key',
             'last_used_at' => 'Last Used At',
         ],
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Collectors;
 
-class ModuleIntegrationCollector
+class SpotlightValueCollector
 {
     protected $data = [];
 

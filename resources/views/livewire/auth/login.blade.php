@@ -7,7 +7,7 @@
                 class="text-4xl font-bold brand-text text-white lg:block hidden">{{ setting('app_name') }}</span>
         </p>
         <div
-            class="card bg-base-200 @if(setting('auth_enable_oauth')) lg:w-1/2 @else lg:w-1/3 @endif sm:min-w-96 sm:w-1/8 w-auto">
+            class="card glass @if(setting('auth_enable_oauth')) lg:w-1/3 @else lg:w-1/4 @endif sm:min-w-96 sm:w-1/8 w-auto">
             <div class="card-body">
                 <div class="flex justify-end">
                     <label>
@@ -117,12 +117,14 @@
 
                             @if(setting('auth_enable_forgot_password'))
                                 <a href="{{ route('auth.forgot-password', '') }}"
-                                   class="btn btn-neutral" wire:navigate>{{ __('pages/auth/login.buttons.forgot_password') }}</a>
+                                   class="btn btn-neutral"
+                                   wire:navigate>{{ __('pages/auth/login.buttons.forgot_password') }}</a>
                             @endif
 
                             @if(setting('auth_enable_register'))
                                 <a href="{{ route('auth.register') }}"
-                                   class="btn btn-neutral" wire:navigate>{{ __('pages/auth/login.buttons.register') }}</a>
+                                   class="btn btn-neutral"
+                                   wire:navigate>{{ __('pages/auth/login.buttons.register') }}</a>
                             @endif
                         </div>
                     @endif

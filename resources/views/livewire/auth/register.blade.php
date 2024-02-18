@@ -6,7 +6,7 @@
             <span
                 class="text-4xl font-bold brand-text text-white lg:block hidden">{{ setting('app_name') }}</span>
         </p>
-        <div class="card bg-base-200 lg:w-1/2 sm:min-w-96 sm:w-1/8 w-auto">
+        <div class="card glass lg:w-1/3 sm:min-w-96 sm:w-1/8 w-auto">
             <div class="card-body">
                 <div class="flex justify-end">
                     <label>

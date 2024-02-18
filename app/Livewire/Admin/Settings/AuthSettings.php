@@ -55,17 +55,17 @@ class AuthSettings extends Component
         $this->enableOAuth = setting('auth_enable_oauth');
         $this->enableLocalLogin = setting('auth_enable_local_login');
 
-        $this->enableGoogleOAuth = setting('oauth_enable_google');
+        $this->enableGoogleOAuth = setting('oauth_enable_google') ? 1 : 0;
         $this->googleClientId = setting('oauth_google_client_id');
         $this->googleClientSecret = setting('oauth_google_client_secret', true);
         $this->googleRedirectUrl = setting('oauth_google_redirect');
 
-        $this->enableGithubOAuth = setting('oauth_enable_github');
+        $this->enableGithubOAuth = setting('oauth_enable_github') ? 1 : 0;
         $this->githubClientId = setting('oauth_github_client_id');
         $this->githubClientSecret = setting('oauth_github_client_secret', true);
         $this->githubRedirectUrl = setting('oauth_github_redirect');
 
-        $this->enableGitlabOAuth = setting('oauth_enable_gitlab');
+        $this->enableGitlabOAuth = setting('oauth_enable_gitlab') ? 1 : 0;
         $this->gitlabClientId = setting('oauth_gitlab_client_id');
         $this->gitlabClientSecret = setting('oauth_gitlab_client_secret', true);
         $this->gitlabRedirectUrl = setting('oauth_gitlab_redirect');

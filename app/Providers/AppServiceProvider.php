@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Services\ModuleIntegrationCollector;
-use App\Services\SpotlightValueCollector;
+use App\Services\Collectors\ModuleIntegrationCollector;
+use App\Services\Collectors\SpotlightValueCollector;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('spotlight.values', function () {
             return new SpotlightValueCollector();
         });
+
+        if ($this->app->environment('local')) {
+            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 
     /**

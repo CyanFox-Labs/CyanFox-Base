@@ -5,7 +5,11 @@ namespace App\Helpers;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Knuckles\Scribe\Attributes\Group;
+use Knuckles\Scribe\Attributes\Unauthenticated;
 
+#[Unauthenticated]
+#[Group('Unsplash', 'Unsplash API')]
 class UnsplashHelper
 {
 

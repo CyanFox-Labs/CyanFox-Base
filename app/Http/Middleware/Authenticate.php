@@ -12,7 +12,6 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-
         if (!setting('auth_enable')) {
             return null;
         }
