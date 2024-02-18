@@ -57,7 +57,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Update spotlight values from db to app('spotlight')
 - [ ] Activity logging
 - [x] Auth system disable functionality
-- [ ] API Documentation
+- [x] API Documentation
 - [x] Add Spotlight values
 - [ ] Better error pages
 - [x] Installer (Web & CLI)
