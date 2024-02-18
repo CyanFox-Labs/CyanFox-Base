@@ -68,3 +68,11 @@ Route::group(['middleware' => ['auth', 'disabled', 'force_change']], function ()
         });
     }
 });
+
+Route::get('errors/{errorCode}', function () {
+    if (request()->errorCode < 400 || request()->errorCode > 599) {
+        abort(400);
+    }
+
+    abort(request()->errorCode);
+});

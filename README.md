@@ -59,7 +59,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Auth system disable functionality
 - [x] API Documentation
 - [x] Add Spotlight values
-- [ ] Better error pages
+- [x] Better error pages
 - [x] Installer (Web & CLI)
 - [ ] Custom Avatar URL
 - [ ] Translation renewal
@@ -74,6 +74,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [ ] Use new Developer API
 - [ ] Add tests
 - [ ] Code comments
+- [ ] Documentation (Wiki)
 - [ ] Add Readme (Screenshots, Links etc.)
 - [ ] Release v2.0.0
 

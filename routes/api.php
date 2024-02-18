@@ -22,6 +22,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('v1')->group(function () {
+
+    Route::get('errors/{errorCode}', function () {
+        if (request()->errorCode < 400 || request()->errorCode > 599) {
+            abort(400);
+        }
+
+        abort(request()->errorCode);
+    });
+
     Route::prefix('unsplash')->group(function () {
         Route::get('random', [UnsplashHelper::class, 'getRandomUnsplashImage']);
         Route::get('utm', [UnsplashHelper::class, 'getUTM']);
