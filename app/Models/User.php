@@ -51,6 +51,10 @@ class User extends Authenticatable
     /* Utility Functions */
     public function getAvatarURL(): string
     {
+        if ($this->custom_avatar_url) {
+            return $this->custom_avatar_url;
+        }
+
         $filePath = 'profile-images/' . $this->id . '.png';
         if (Storage::disk('public')->exists($filePath)) {
             return asset('storage/' . $filePath) . '?v=' . md5_file(storage_path('app/public/' . $filePath));

@@ -99,7 +99,7 @@ class EmailSettings extends Component implements HasForms
             'emails_welcome_title' => $this->welcomeEmailTitle,
             'emails_welcome_subject' => $this->welcomeEmailSubject,
             'emails_welcome_content' => $this->welcomeEmailData['welcomeEmailContent'],
-            'emails_login_enabled' => $this->enableLoginEmail,
+            'emails_login_enabled' => $this->enableLoginEmail ? 1 : 0,
             'emails_login_title' => $this->loginEmailTitle,
             'emails_login_subject' => $this->loginEmailSubject,
             'emails_login_content' => $this->loginEmailData['loginEmailContent'],

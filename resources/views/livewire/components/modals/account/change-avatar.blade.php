@@ -5,8 +5,7 @@
         <p class="mb-3">{{ __('components/modals/account/change_avatar.description') }}</p>
     </div>
 
-    <x-form wire:submit="updateAvatar">
-        @csrf
+    <x-form wire:submit="updateAvatar" novalidate>
         <div class="flex justify-center my-6">
 
             <x-file wire:model="avatar" accept="image/png"
@@ -21,6 +20,13 @@
                 <img src="{{ auth()->user()->getAvatarURL() }}" class="h-30 rounded-lg" alt="Avatar"/>
             </x-file>
 
+        </div>
+
+        <div class="divider mt-4 uppercase">{{ __('messages.or') }}</div>
+
+        <div class="my-4">
+            <x-input label="{{ __('components/modals/account/change_avatar.custom_avatar_url') }}" wire:model="customAvatarUrl"
+                     class="input-bordered"/>
         </div>
 
         <div class="divider mt-4"></div>

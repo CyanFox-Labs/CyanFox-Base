@@ -50,8 +50,8 @@ class ProfileSettings extends Component
         ];
 
         $this->defaultAvatarUrl = setting('profile_default_avatar_url');
-        $this->enableChangeAvatar = setting('profile_enable_change_avatar');
-        $this->enableDeleteAccount = setting('profile_enable_delete_account');
+        $this->enableChangeAvatar = setting('profile_enable_change_avatar') ? 1 : 0;
+        $this->enableDeleteAccount = setting('profile_enable_delete_account') ? 1 : 0;
     }
 
     #[On('refresh')]

@@ -55,13 +55,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Developer API (With e.g integration in existing views) (For modules)
 - [x] Move not necessary functions to modules
 - [x] Update spotlight values from db to app('spotlight')
-- [ ] Activity logging
 - [x] Auth system disable functionality
 - [x] API Documentation
 - [x] Add Spotlight values
 - [x] Better error pages
 - [x] Installer (Web & CLI)
-- [ ] Custom Avatar URL
+- [x] Custom Avatar URL
+- [ ] Activity logging
 - [ ] Translation renewal
 - [ ] German translation
 - [ ] Add default values to .env.example

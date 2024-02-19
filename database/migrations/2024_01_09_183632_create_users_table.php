@@ -24,12 +24,13 @@ return new class extends Migration
             $table->text('two_factor_secret')->nullable();
             $table->boolean('force_change_password')->default(false);
             $table->boolean('force_activate_two_factor')->default(false);
+            $table->boolean('disabled')->default(false);
+            $table->string('custom_avatar_url')->nullable();
             $table->text('password_reset_token')->nullable();
             $table->timestamp('password_reset_expiration')->nullable();
             $table->string('github_id')->nullable();
             $table->string('google_id')->nullable();
             $table->string('gitlab_id')->nullable();
-            $table->boolean('disabled')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

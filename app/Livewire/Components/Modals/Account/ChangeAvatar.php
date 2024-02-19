@@ -14,12 +14,42 @@ class ChangeAvatar extends ModalComponent
     use WithFileUploads;
 
     public $avatar;
+    public $customAvatarUrl;
 
     public function updateAvatar()
     {
         $this->validate([
-            'avatar' => 'required|image|max:5000',
+            'avatar' => 'nullable|image|max:5000',
+            'customAvatarUrl' => 'nullable|url',
         ]);
+
+        if ($this->customAvatarUrl) {
+
+            $user = auth()->user();
+            $user->custom_avatar_url = $this->customAvatarUrl;
+
+            $user->save();
+
+            Notification::make()
+                ->title(__('components/modals/account/change_avatar.notifications.avatar_updated'))
+                ->success()
+                ->send();
+
+            $this->closeModal();
+            $this->redirect(route('account.profile'), navigate: true);
+            return;
+        }
+
+        if (!$this->avatar) {
+            Notification::make()
+                ->title(__('components/modals/account/change_avatar.notifications.avatar_updated'))
+                ->success()
+                ->send();
+
+            $this->redirect(route('account.profile'), navigate: true);
+            return;
+        }
+
 
         try {
             $this->avatar->storeAs('public/profile-images', auth()->user()->id . '.png');
@@ -38,21 +68,24 @@ class ChangeAvatar extends ModalComponent
             ->success()
             ->send();
 
-        $this->closeModal();
-        $this->dispatch('refresh');
+        $this->redirect(route('account.profile'), navigate: true);
     }
 
     public function resetAvatar()
     {
         Storage::disk('public')->delete('profile-images/' . auth()->user()->id . '.png');
 
+        $user = auth()->user();
+        $user->custom_avatar_url = $this->customAvatarUrl;
+
+        $user->save();
+
         Notification::make()
             ->title(__('components/modals/account/change_avatar.notifications.avatar_reset'))
             ->success()
             ->send();
 
-        $this->closeModal();
-        $this->dispatch('refresh');
+        $this->redirect(route('account.profile'), navigate: true);
     }
 
     public function mount()
