@@ -73,6 +73,14 @@ class Profile extends Component
             'theme' => $this->theme,
         ]);
 
+        activity()
+            ->logName('account')
+            ->logMessage('account:profile.update')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('pages/account/profile.notifications.language_and_theme_updated'))
             ->success()
@@ -98,6 +106,14 @@ class Profile extends Component
         $user->email = $this->email;
 
         $user->save();
+
+        activity()
+            ->logName('account')
+            ->logMessage('account:profile.update')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
 
         Notification::make()
             ->title(__('pages/account/profile.notifications.profile_informations_updated'))
@@ -128,6 +144,14 @@ class Profile extends Component
 
 
         Session::logoutOtherDevices();
+
+        activity()
+            ->logName('account')
+            ->logMessage('account:profile.update')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
 
         Notification::make()
             ->title(__('pages/account/profile.notifications.password_updated'))

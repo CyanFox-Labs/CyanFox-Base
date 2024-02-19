@@ -30,6 +30,14 @@ class ChangeAvatar extends ModalComponent
 
             $user->save();
 
+            activity()
+                ->logName('account')
+                ->logMessage('account:avatar.update')
+                ->causer(auth()->user()->username)
+                ->subject(auth()->user()->username)
+                ->performedBy(auth()->user()->id)
+                ->save();
+
             Notification::make()
                 ->title(__('components/modals/account/change_avatar.notifications.avatar_updated'))
                 ->success()
@@ -63,6 +71,14 @@ class ChangeAvatar extends ModalComponent
             return;
         }
 
+        activity()
+            ->logName('account')
+            ->logMessage('account:avatar.update')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('components/modals/account/change_avatar.notifications.avatar_updated'))
             ->success()
@@ -79,6 +95,14 @@ class ChangeAvatar extends ModalComponent
         $user->custom_avatar_url = $this->customAvatarUrl;
 
         $user->save();
+
+        activity()
+            ->logName('account')
+            ->logMessage('account:avatar.reset')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
 
         Notification::make()
             ->title(__('components/modals/account/change_avatar.notifications.avatar_reset'))

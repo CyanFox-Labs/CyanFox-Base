@@ -41,6 +41,14 @@ class ForceChangePassword extends Component
         ]);
 
         if (!Hash::check($this->currentPassword, auth()->user()->password)) {
+            activity()
+                ->logName('account')
+                ->logMessage('account:force.change_password.failed')
+                ->causer(auth()->user()->username)
+                ->subject(auth()->user()->username)
+                ->performedBy(auth()->user()->id)
+                ->save();
+
             throw ValidationException::withMessages([
                 'currentPassword' => __('validation.current_password'),
             ]);
@@ -50,6 +58,14 @@ class ForceChangePassword extends Component
             'password' => Hash::make($this->newPassword),
             'force_change_password' => false,
         ]);
+
+        activity()
+            ->logName('account')
+            ->logMessage('account:force.change_password.success')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
 
         Notification::make()
             ->success()

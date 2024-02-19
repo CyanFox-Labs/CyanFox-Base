@@ -20,6 +20,14 @@ class DeleteAPIKey extends ModalComponent
             ->success()
             ->send();
 
+        activity()
+            ->logName('account')
+            ->logMessage('account:api_keys.delete')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         $this->closeModal();
         $this->dispatch('refresh');
     }

@@ -34,6 +34,14 @@ class ProfileSettings extends Component
             Setting::where('key', $key)->update(['value' => $value]);
         }
 
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:settings.update')
+            ->causer(auth()->user()->username)
+            ->subject('profile-settings')
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->success()
             ->title(__('pages/admin/settings/settings.notifications.settings_updated'))

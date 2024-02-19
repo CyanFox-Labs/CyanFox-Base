@@ -34,6 +34,14 @@ class DeleteAccount extends ModalComponent
 
         auth()->user()->delete();
 
+        activity()
+            ->logName('account')
+            ->logMessage('account:delete')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('components/modals/account/delete_account.notifications.account_deleted'))
             ->success()

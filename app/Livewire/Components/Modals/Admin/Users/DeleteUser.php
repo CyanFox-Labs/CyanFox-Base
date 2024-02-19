@@ -30,6 +30,14 @@ class DeleteUser extends ModalComponent
             return;
         }
 
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:users.delete')
+            ->causer(auth()->user()->username)
+            ->subject($user->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('components/modals/admin/delete_user.notifications.user_deleted'))
             ->success()

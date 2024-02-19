@@ -31,6 +31,14 @@ class Modules extends Component
 
         $module->disable();
 
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:modules.disable')
+            ->causer(auth()->user()->username)
+            ->subject($module->getName())
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('pages/admin/modules/modules.notifications.module_disabled'))
             ->success()
@@ -45,6 +53,14 @@ class Modules extends Component
 
         $module->enable();
 
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:modules.enable')
+            ->causer(auth()->user()->username)
+            ->subject($module->getName())
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('pages/admin/modules/modules.notifications.module_enabled'))
             ->success()
@@ -58,6 +74,14 @@ class Modules extends Component
         $module = Module::find($name);
 
         $module->delete();
+
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:modules.delete')
+            ->causer(auth()->user()->username)
+            ->subject($name)
+            ->performedBy(auth()->user()->id)
+            ->save();
 
         Notification::make()
             ->title(__('pages/admin/modules/modules.notifications.module_deleted'))

@@ -27,6 +27,14 @@ class DeleteGroup extends ModalComponent
             return;
         }
 
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:groups.delete')
+            ->causer(auth()->user()->username)
+            ->subject($group->name)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('components/modals/admin/delete_group.notifications.group_deleted'))
             ->success()

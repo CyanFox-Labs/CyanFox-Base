@@ -31,6 +31,14 @@ class Dashboard extends Component
         $this->isProjectUpToDate = VersionHelper::isProjectUpToDate();
         $this->isTemplateUpToDate = VersionHelper::isTemplateUpToDate();
         $this->showUpdateNotification = true;
+
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:dashboard.check_for_updates')
+            ->causer(auth()->user()->username)
+            ->subject('system')
+            ->performedBy(auth()->user()->id)
+            ->save();
     }
 
     #[On('refresh')]

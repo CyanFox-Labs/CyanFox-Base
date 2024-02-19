@@ -26,6 +26,14 @@ class SetupPassword extends ModalComponent
 
         Session::logoutOtherDevices();
 
+        activity()
+            ->logName('account')
+            ->logMessage('account:password.setup')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('components/modals/account/setup_password.notifications.password_updated'))
             ->success()

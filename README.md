@@ -61,17 +61,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Better error pages
 - [x] Installer (Web & CLI)
 - [x] Custom Avatar URL
-- [ ] Activity logging
-- [ ] Translation renewal
-- [ ] German translation
+- [x] Activity logging
 - [ ] Add default values to .env.example
 - [ ] Add github workflow and dependabot config
 - [ ] Docker support
 - [ ] Add V1 -> V2 migration command -> For v1 projects
 - [ ] Add commands
 - [ ] Code refactoring
-- [ ] Code cleanup
-    - [ ] Use new Developer API
+- [ ] Code cleanup with Translation renewal <br>
+      - Create new Developer API
+- [ ] German translation
 - [ ] Add tests
 - [ ] Code comments
 - [ ] Documentation (Wiki)

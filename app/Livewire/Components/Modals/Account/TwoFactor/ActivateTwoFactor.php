@@ -50,6 +50,14 @@ class ActivateTwoFactor extends ModalComponent
 
         Session::logoutOtherDevices();
 
+        activity()
+            ->logName('account')
+            ->logMessage('account:two_factor.activate')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('components/modals/account/activate_two_factor.notifications.two_factor_enabled'))
             ->success()

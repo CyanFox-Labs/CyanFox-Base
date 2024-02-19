@@ -85,6 +85,14 @@ class CreateUser extends Component
             });
         }
 
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:users.create')
+            ->causer(auth()->user()->username)
+            ->subject($user->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('pages/admin/users/create_user.notifications.user_created'))
             ->success()

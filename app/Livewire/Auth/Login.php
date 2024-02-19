@@ -137,6 +137,15 @@ class Login extends Component
             if ($this->user->two_factor_enabled) {
                 Auth::logout();
                 $this->twoFactorEnabled = true;
+
+                activity()
+                    ->logName('auth')
+                    ->logMessage('auth:login.two_factor')
+                    ->causer($this->user->username)
+                    ->subject($this->user->username)
+                    ->performedBy(auth()->user()->id)
+                    ->save();
+
             } else {
                 if (setting('emails_login_enabled')) {
                     $this->sendMail($this->user);
@@ -147,9 +156,25 @@ class Login extends Component
                     return;
                 }
 
+                activity()
+                    ->logName('auth')
+                    ->logMessage('auth:login.success')
+                    ->causer($this->user->username)
+                    ->subject($this->user->username)
+                    ->performedBy(auth()->user()->id)
+                    ->save();
+
                 $this->redirect(route('home'));
             }
         } else {
+            activity()
+                ->logName('auth')
+                ->logMessage('auth:login.failed')
+                ->causer($this->user->username)
+                ->subject($this->user->username)
+                ->performedBy(auth()->user()->id)
+                ->save();
+
             throw ValidationException::withMessages([
                 'password' => __('validation.current_password'),
             ]);
@@ -178,8 +203,24 @@ class Login extends Component
                 return;
             }
 
+            activity()
+                ->logName('auth')
+                ->logMessage('auth:login.two_factor.success')
+                ->causer($this->user->username)
+                ->subject($this->user->username)
+                ->performedBy(auth()->user()->id)
+                ->save();
+
             $this->redirect(route('home'));
         }
+
+        activity()
+            ->logName('auth')
+            ->logMessage('auth:login.two_factor.failed')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
 
         throw ValidationException::withMessages([
             'twoFactorCode' => __('validation.custom.invalid_two_factor_code'),

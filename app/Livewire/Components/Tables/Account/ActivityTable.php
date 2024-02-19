@@ -14,7 +14,7 @@ class ActivityTable extends DataTableComponent
     #[On('refresh')]
     public function builder(): Builder
     {
-        return ActivityLog::query()->where('performed_by', auth()->id());
+        return ActivityLog::query()->where('performed_by', auth()->id())->orderBy('created_at', 'desc');
     }
 
     public function configure(): void
@@ -46,12 +46,7 @@ class ActivityTable extends DataTableComponent
             Column::make(__('messages.table.created_at'), 'created_at')
                 ->sortable(),
             Column::make(__('messages.table.updated_at'), 'updated_at')
-                ->sortable(),
-            Column::make(__('messages.table.actions'))
-                ->label(fn($row) => '<i wire:click="$dispatch(`openModal`, { component: `components.modals.show-activity-log-details`,
-                        arguments: { activityLogId: `' . $row->id . '` } })" class="icon-eye font-semibold text-lg text-green-600 cursor-pointer"></i>'
-                )
-                ->html(),
+                ->sortable()
         ];
     }
 }

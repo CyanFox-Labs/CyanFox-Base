@@ -33,6 +33,14 @@ class UpdateGroup extends Component
 
         $this->group->syncPermissions($this->selectedPermissions);
 
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:groups.update')
+            ->causer(auth()->user()->username)
+            ->subject($this->group->name)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('pages/admin/groups/update_group.notifications.group_updated'))
             ->success()

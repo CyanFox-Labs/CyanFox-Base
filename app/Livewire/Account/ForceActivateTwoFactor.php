@@ -25,12 +25,28 @@ class ForceActivateTwoFactor extends Component
     {
 
         if (!Hash::check($this->password, auth()->user()->password)) {
+            activity()
+                ->logName('account')
+                ->logMessage('account:force.activate_two_factor.failed')
+                ->causer(auth()->user()->username)
+                ->subject(auth()->user()->username)
+                ->performedBy(auth()->user()->id)
+                ->save();
+
             throw ValidationException::withMessages([
                 'currentPassword' => __('validation.current_password'),
             ]);
         }
 
         if(!auth()->user()->checkTwoFactorCode($this->twoFactorCode, false)) {
+            activity()
+                ->logName('account')
+                ->logMessage('account:force.activate_two_factor.failed')
+                ->causer(auth()->user()->username)
+                ->subject(auth()->user()->username)
+                ->performedBy(auth()->user()->id)
+                ->save();
+
             throw ValidationException::withMessages([
                 'twoFactorCode' => __('validation.custom.invalid_two_factor_code')
             ]);
@@ -54,6 +70,14 @@ class ForceActivateTwoFactor extends Component
         }
 
         Session::logoutOtherDevices();
+
+        activity()
+            ->logName('account')
+            ->logMessage('account:force.activate_two_factor.success')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
 
         Notification::make()
             ->title(__('pages/account/force_activate_two_factor.notifications.two_factor_enabled'))

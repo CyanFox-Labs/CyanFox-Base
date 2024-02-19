@@ -119,6 +119,14 @@ class AuthSettings extends Component
             Setting::where('key', $key)->update(['value' => $value]);
         }
 
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:settings.update')
+            ->causer(auth()->user()->username)
+            ->subject('auth-settings')
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->success()
             ->title(__('pages/admin/settings/settings.notifications.settings_updated'))

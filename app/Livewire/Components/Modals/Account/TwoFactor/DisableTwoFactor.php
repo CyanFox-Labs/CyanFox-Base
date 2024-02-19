@@ -39,6 +39,14 @@ class DisableTwoFactor extends ModalComponent
             return;
         }
 
+        activity()
+            ->logName('account')
+            ->logMessage('account:two_factor.disable')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('components/modals/account/disable_two_factor.notifications.two_factor_disabled'))
             ->success()

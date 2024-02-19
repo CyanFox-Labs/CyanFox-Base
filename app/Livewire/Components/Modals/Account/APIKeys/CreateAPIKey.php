@@ -18,6 +18,14 @@ class CreateAPIKey extends ModalComponent
 
         $this->plainTextToken = auth()->user()->createToken($this->name)->plainTextToken;
 
+        activity()
+            ->logName('account')
+            ->logMessage('account:api_keys.create')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('components/modals/account/api_keys.create_api_key.notifications.api_key_created'))
             ->success()

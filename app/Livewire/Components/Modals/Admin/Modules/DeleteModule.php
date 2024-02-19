@@ -29,6 +29,14 @@ class DeleteModule extends ModalComponent
             return;
         }
 
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:modules.delete')
+            ->causer(auth()->user()->username)
+            ->subject($module->getName())
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('components/modals/admin/delete_module.notifications.module_deleted'))
             ->success()

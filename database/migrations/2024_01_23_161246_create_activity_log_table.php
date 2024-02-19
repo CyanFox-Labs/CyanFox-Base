@@ -19,8 +19,6 @@ return new class extends Migration
             $table->text('subject')->nullable();
             $table->text('causer')->nullable();
             $table->text('ip_address')->nullable();
-            $table->text('original_values')->nullable();
-            $table->text('new_values')->nullable();
             $table->timestamps();
         });
     }

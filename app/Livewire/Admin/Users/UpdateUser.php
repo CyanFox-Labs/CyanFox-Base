@@ -68,6 +68,14 @@ class UpdateUser extends Component
         $this->user->syncRoles($this->selectedGroups);
         $this->user->syncPermissions($this->selectedPermissions);
 
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:users.update')
+            ->causer(auth()->user()->username)
+            ->subject($this->user->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('pages/admin/users/update_user.notifications.user_updated'))
             ->success()

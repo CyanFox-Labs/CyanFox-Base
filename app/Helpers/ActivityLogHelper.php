@@ -13,53 +13,39 @@ class ActivityLogHelper
     private $subject;
     private $causer;
     private $ipAddress;
-    private $originalValues;
-    private $newValues;
     private $performedBy;
 
-    public function setLogMessage($logMessage): ActivityLogHelper
+    public function logMessage($logMessage): ActivityLogHelper
     {
         $this->logMessage = $logMessage;
         return $this;
     }
 
-    public function setSubject($subject): ActivityLogHelper
+    public function subject($subject): ActivityLogHelper
     {
         $this->subject = $subject;
         return $this;
     }
 
-    public function setCausedBy($causer): ActivityLogHelper
+    public function causer($causer): ActivityLogHelper
     {
         $this->causer = $causer;
         return $this;
     }
 
-    public function setIpAddress($ipAddress): ActivityLogHelper
+    public function ipAddress($ipAddress): ActivityLogHelper
     {
         $this->ipAddress = $ipAddress;
         return $this;
     }
 
-    public function setOriginalValues($originalValues): ActivityLogHelper
-    {
-        $this->originalValues = $originalValues;
-        return $this;
-    }
-
-    public function setNewValues($newValues): ActivityLogHelper
-    {
-        $this->newValues = $newValues;
-        return $this;
-    }
-
-    public function setLogName($logName): ActivityLogHelper
+    public function logName($logName): ActivityLogHelper
     {
         $this->logName = $logName;
         return $this;
     }
 
-    public function setPerformedBy($userId): ActivityLogHelper
+    public function performedBy($userId): ActivityLogHelper
     {
         $this->performedBy = $userId;
         return $this;
@@ -72,9 +58,7 @@ class ActivityLogHelper
         $activityLog->log_message = $this->logMessage;
         $activityLog->subject = $this->subject;
         $activityLog->causer = $this->causer;
-        $activityLog->ip_address = $this->ipAddress;
-        $activityLog->original_values = json_encode($this->originalValues);
-        $activityLog->new_values = json_encode($this->newValues);
+        $activityLog->ip_address = $this->ipAddress ?? request()->ip();
         $activityLog->performed_by = $this->performedBy;
         $activityLog->save();
     }

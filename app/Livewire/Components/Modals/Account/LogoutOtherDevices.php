@@ -14,6 +14,14 @@ class LogoutOtherDevices extends ModalComponent
 
         Session::logoutOtherDevices();
 
+        activity()
+            ->logName('account')
+            ->logMessage('account:sessions.logout_all')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('components/modals/account/sessions.notifications.logged_out_other_devices'))
             ->success()

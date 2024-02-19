@@ -30,6 +30,14 @@ class CreateGroup extends Component
 
         $group->syncPermissions($this->selectedPermissions);
 
+        activity()
+            ->logName('admin')
+            ->logMessage('admin:groups.create')
+            ->causer(auth()->user()->username)
+            ->subject($group->name)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('pages/admin/groups/create_group.notifications.group_created'))
             ->success()

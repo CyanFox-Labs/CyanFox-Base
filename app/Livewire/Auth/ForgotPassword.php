@@ -45,6 +45,14 @@ class ForgotPassword extends Component
             $user = User::where('password_reset_token', $this->resetToken)->first();
 
             if ($user == null) {
+                activity()
+                    ->logName('auth')
+                    ->logMessage('auth:forgot_password.failed')
+                    ->causer(request()->ip())
+                    ->subject($user->username)
+                    ->performedBy(auth()->user()->id)
+                    ->save();
+
                 Notification::make()
                     ->title(__('pages/auth/forgot_password.notifications.password_reset_link_invalid'))
                     ->danger()
@@ -57,6 +65,14 @@ class ForgotPassword extends Component
             $expirationDate = Carbon::parse($user->password_reset_expiration);
 
             if ($expirationDate->isPast()) {
+                activity()
+                    ->logName('auth')
+                    ->logMessage('auth:forgot_password.failed')
+                    ->causer(request()->ip())
+                    ->subject($user->username)
+                    ->performedBy(auth()->user()->id)
+                    ->save();
+
                 Notification::make()
                     ->title(__('pages/auth/forgot_password.notifications.password_reset_link_expired'))
                     ->danger()
@@ -136,6 +152,14 @@ class ForgotPassword extends Component
         $expirationDate = Carbon::parse($user->password_reset_expiration);
 
         if ($expirationDate->isPast()) {
+            activity()
+                ->logName('auth')
+                ->logMessage('auth:forgot_password.failed')
+                ->causer(request()->ip())
+                ->subject($user->username)
+                ->performedBy(auth()->user()->id)
+                ->save();
+
             Notification::make()
                 ->title(__('pages/auth/forgot_password.notifications.password_reset_link_expired'))
                 ->danger()
@@ -147,6 +171,14 @@ class ForgotPassword extends Component
             $user->password_reset_token = null;
             $user->password_reset_expiration = null;
             $user->save();
+
+            activity()
+                ->logName('auth')
+                ->logMessage('auth:forgot_password.success')
+                ->causer($user->username)
+                ->subject($user->username)
+                ->performedBy(auth()->user()->id)
+                ->save();
 
             Notification::make()
                 ->title(__('pages/auth/forgot_password.notifications.password_resetted'))

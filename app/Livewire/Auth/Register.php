@@ -108,6 +108,14 @@ class Register extends Component
 
         $user->generateTwoFactorSecret();
 
+        activity()
+            ->logName('auth')
+            ->logMessage('auth:register.success')
+            ->causer($user->username)
+            ->subject($user->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         Notification::make()
             ->title(__('pages/auth/register.notifications.registered'))
             ->success()

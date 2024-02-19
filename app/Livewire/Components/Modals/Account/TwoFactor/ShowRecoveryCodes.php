@@ -27,6 +27,14 @@ class ShowRecoveryCodes extends ModalComponent
         foreach ($recoveryCodes as $recoveryCode) {
             $this->recoveryCodes[] = decrypt($recoveryCode->code);
         }
+
+        activity()
+            ->logName('account')
+            ->logMessage('account:two_factor.recovery_codes.show')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
     }
 
     public function regenerateRecoveryCodes()
@@ -41,10 +49,26 @@ class ShowRecoveryCodes extends ModalComponent
             $this->recoveryCodes[] = decrypt($recoverCode->code);
         }
 
+        activity()
+            ->logName('account')
+            ->logMessage('account:two_factor.recovery_codes.regenerate')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
     }
 
     public function downloadRecoveryCodes()
     {
+        activity()
+            ->logName('account')
+            ->logMessage('account:two_factor.recovery_codes.download')
+            ->causer(auth()->user()->username)
+            ->subject(auth()->user()->username)
+            ->performedBy(auth()->user()->id)
+            ->save();
+
         return response()->streamDownload(function () {
             $recoverCodes = UserRecoveryCode::where('user_id', auth()->user()->id)->get();
             $decryptRecoverCodes = '';
