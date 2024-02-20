@@ -51,6 +51,7 @@ class AccountAPIController extends Controller
     #[BodyParam("last_name", description: "Last name of the user", required: false, example: "Doe")]
     #[BodyParam("username", description: "Username of the user", required: false, example: "johndoe")]
     #[BodyParam("email", description: "Email of the user", required: false, example: "john.doe@example")]
+    #[BodyParam("custom_avatar_url", description: "Custom avatar URL of the user", required: false, example: "https://example.com/avatar.png")]
     #[BodyParam("language", description: "Language of the user", required: false, example: "en")]
     #[BodyParam("theme", description: "Theme of the user", required: false, example: "dark")]
     #[BodyParam("password", description: "Password of the user", required: false, example: "password")]
@@ -61,6 +62,7 @@ class AccountAPIController extends Controller
             'last_name' => 'string|nullable',
             'username' => 'string|nullable',
             'email' => 'email|nullable',
+            'custom_avatar_url' => 'url|nullable',
             'language' => 'string|nullable',
             'theme' => 'string|nullable',
             'password' => 'string|nullable',
@@ -71,6 +73,7 @@ class AccountAPIController extends Controller
         if ($request->input('last_name')) $user->last_name = $request->input('last_name');
         if ($request->input('username')) $user->username = $request->input('username');
         if ($request->input('email')) $user->email = $request->input('email');
+        if ($request->input('custom_avatar_url')) $user->custom_avatar_url = $request->input('custom_avatar_url');
 
         if ($request->input('language')) $user->language = $request->input('language');
         if ($request->input('theme')) $user->theme = $request->input('theme');

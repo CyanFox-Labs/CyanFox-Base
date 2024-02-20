@@ -113,6 +113,7 @@ return [
 
         'buttons' => [
             'create_api_key' => 'Create API Key',
+            'api_docs' => 'API Docs',
         ],
     ],
 

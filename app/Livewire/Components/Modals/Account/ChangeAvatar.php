@@ -92,7 +92,7 @@ class ChangeAvatar extends ModalComponent
         Storage::disk('public')->delete('profile-images/' . auth()->user()->id . '.png');
 
         $user = auth()->user();
-        $user->custom_avatar_url = $this->customAvatarUrl;
+        $user->custom_avatar_url = null;
 
         $user->save();
 
@@ -117,6 +117,8 @@ class ChangeAvatar extends ModalComponent
         if (!setting('profile_enable_change_avatar')) {
             abort(403);
         }
+
+        $this->customAvatarUrl = auth()->user()->custom_avatar_url;
     }
 
     #[On('refresh')]

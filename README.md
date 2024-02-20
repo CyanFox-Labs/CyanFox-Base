@@ -63,6 +63,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Custom Avatar URL
 - [x] Activity logging
 - [x] Add default values to .env.example
+- [x] Add custom avatar url to api
 - [ ] Add github workflow and dependabot config
 - [ ] Docker support
 - [ ] Add V1 -> V2 migration command -> For v1 projects
