@@ -15,8 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     services:
       docker:
-        image: docker:19.03.1-dind
+        image: docker:stable-dind
         options: --privileged
+        env:
+          DOCKER_DRIVER: overlay2
+          DOCKER_HOST: tcp://localhost:2375
+          DOCKER_TLS_CERTDIR: ""
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -25,7 +29,7 @@ jobs:
         run: |
           cp .env.testing .env
           docker-compose -f docker-compose.test.yml up -d
-          docker exec template_app composer update
-          docker exec template_app npm install
-          docker exec template_app npm run build
-          docker exec template_app php artisan test
+          docker exec app composer update
+          docker exec app npm install
+          docker exec app npm run build
+          docker exec app php artisan test

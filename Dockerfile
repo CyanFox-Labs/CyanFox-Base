@@ -8,7 +8,7 @@ RUN curl -s -f -L -o /tmp/dockerize.tar.gz https://github.com/jwilder/dockerize/
     && rm /tmp/dockerize.tar.gz
 
 # Install Composer
-ENV COMPOSER_VERSION 2.1.5
+ENV COMPOSER_VERSION 2.7.1
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=$COMPOSER_VERSION
 
@@ -27,9 +27,11 @@ RUN apt-get update \
         libzip-dev \
         unzip \
         zip \
+        libicu-dev \
     && apt-get clean \
     && docker-php-ext-configure gd \
     && docker-php-ext-configure zip \
+    && docker-php-ext-configure intl \
     && docker-php-ext-install \
         gd \
         exif \
@@ -39,6 +41,7 @@ RUN apt-get update \
         pgsql \
         pcntl \
         zip \
+        intl \
     && rm -rf /var/lib/apt/lists/*;
 
 WORKDIR /usr/src/app
