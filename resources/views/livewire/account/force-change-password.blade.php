@@ -14,17 +14,17 @@
 
                     <x-input label="{{ __('pages/account/force_change_password.current_password') }}"
                              type="password"
-                             class="input input-bordered w-full" wire:model="currentPassword" required/>
+                             class="input-bordered w-full" wire:model="currentPassword" required/>
 
 
                     <div class="grid lg:grid-cols-2 gap-4 mt-4">
                         <x-input label="{{ __('pages/account/force_change_password.new_password') }}"
                                  type="password"
-                                 class="input input-bordered w-full" wire:model="newPassword" required/>
+                                 class="input-bordered w-full" wire:model="newPassword" required/>
 
                         <x-input label="{{ __('pages/account/force_change_password.confirm_new_password') }}"
                                  type="password"
-                                 class="input input-bordered w-full" wire:model="newPasswordConfirmation" required/>
+                                 class="input-bordered w-full" wire:model="newPasswordConfirmation" required/>
                     </div>
 
                     <div class="divider"></div>

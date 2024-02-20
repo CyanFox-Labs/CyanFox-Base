@@ -6,7 +6,7 @@
             <span
                 class="text-4xl font-bold brand-text text-white lg:block hidden">{{ setting('app_name') }}</span>
         </p>
-        <div class="card glass lg:w-1/4 sm:min-w-96 sm:w-1/8 w-auto">
+        <div class="card bg-base-200 lg:w-1/4 sm:min-w-96 sm:w-1/8 w-auto">
             <div class="card-body">
                 <div class="flex justify-end">
                     <label>
@@ -20,7 +20,7 @@
                 </div>
 
                 @if($user)
-                    <div class="glass rounded-3xl mt-2">
+                    <div class="rounded-3xl mt-2">
                         <div class="flex p-2 relative">
                             <img
                                 src="{{ $user->getAvatarURL() }}"
@@ -44,7 +44,7 @@
                     <x-form wire:submit="sendResetLink">
                         @csrf
                         <x-input label="{{ __('pages/auth/messages.email') }}"
-                                 class="input input-bordered w-full"
+                                 class="input-bordered w-full"
                                  wire:model="email"
                                  wire:blur="checkIfUserExits($event.target.value)" required/>
 
@@ -55,7 +55,7 @@
                                 <div class="form-control md:w-1/2 w-full">
                                     <x-input label="{{ __('messages.captcha') }}"
                                              required
-                                             class="input input-bordered w-full" wire:model="captcha"/>
+                                             class="input-bordered w-full" wire:model="captcha"/>
                                 </div>
                             </div>
                         @endif
@@ -72,12 +72,12 @@
                         @csrf
                         <x-input label="{{ __('pages/auth/messages.password') }}"
                                  type="password"
-                                 class="input input-bordered w-full" wire:model="password"
+                                 class="input-bordered w-full" wire:model="password"
                                  required />
 
                         <x-input label="{{ __('pages/auth/forgot_password.confirm_password') }}"
                                  type="password"
-                                 class="input input-bordered w-full" wire:model="passwordConfirmation"
+                                 class="input-bordered w-full" wire:model="passwordConfirmation"
                                  required />
 
                         <div class="divider"></div>
