@@ -1,0 +1,36 @@
+version: '3'
+services:
+  # Application
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+
+  # Web Server
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - 80:80
+
+  # MySQL
+  db:
+    image: mariadb
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+
+volumes:
+  dbdata:

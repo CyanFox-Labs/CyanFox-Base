@@ -64,12 +64,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Activity logging
 - [x] Add default values to .env.example
 - [x] Add custom avatar url to api
-- [ ] Add github workflow and dependabot config
-- [ ] Docker support
+- [x] Add github workflow and dependabot config
+- [x] Docker support
 - [ ] Add V1 -> V2 migration command -> For v1 projects
 - [ ] Add commands
 - [ ] Code refactoring
-- [ ] Code cleanup with Translation renewal <br>
+- [ ] Translation renewal with Code cleanup <br>
       - Create new Developer API
 - [ ] German translation
 - [ ] Add tests
