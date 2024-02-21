@@ -66,13 +66,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Add custom avatar url to api
 - [x] Add github workflow and dependabot config
 - [x] Docker support
-- [ ] Add V1 -> V2 migration command -> For v1 projects
-- [ ] Add commands
+- [x] Add commands
 - [ ] Code refactoring
 - [ ] Translation renewal with Code cleanup <br>
-      - Create new Developer API
+  - Create new Developer API
 - [ ] German translation
 - [ ] Add tests
+- [ ] Add V1 -> V2 migration command -> For v1 projects
 - [ ] Code comments
 - [ ] Documentation (Wiki)
 - [ ] Add Readme (Screenshots, Links etc.)

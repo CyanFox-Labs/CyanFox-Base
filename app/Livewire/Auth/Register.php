@@ -113,7 +113,7 @@ class Register extends Component
             ->logMessage('auth:register.success')
             ->causer($user->username)
             ->subject($user->username)
-            ->performedBy(auth()->user()->id)
+            ->performedBy($user->id)
             ->save();
 
         Notification::make()

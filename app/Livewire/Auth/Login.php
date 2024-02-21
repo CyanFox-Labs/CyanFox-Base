@@ -143,7 +143,7 @@ class Login extends Component
                     ->logMessage('auth:login.two_factor')
                     ->causer($this->user->username)
                     ->subject($this->user->username)
-                    ->performedBy(auth()->user()->id)
+                    ->performedBy($this->user->id)
                     ->save();
 
             } else {
@@ -161,7 +161,7 @@ class Login extends Component
                     ->logMessage('auth:login.success')
                     ->causer($this->user->username)
                     ->subject($this->user->username)
-                    ->performedBy(auth()->user()->id)
+                    ->performedBy($this->user->id)
                     ->save();
 
                 $this->redirect(route('home'));
@@ -172,7 +172,7 @@ class Login extends Component
                 ->logMessage('auth:login.failed')
                 ->causer($this->user->username)
                 ->subject($this->user->username)
-                ->performedBy(auth()->user()->id)
+                ->performedBy($this->user->id)
                 ->save();
 
             throw ValidationException::withMessages([
@@ -219,7 +219,7 @@ class Login extends Component
             ->logMessage('auth:login.two_factor.failed')
             ->causer($this->user->username)
             ->subject($this->user->username)
-            ->performedBy(auth()->user()->id)
+            ->performedBy($this->user->id)
             ->save();
 
         throw ValidationException::withMessages([

@@ -50,7 +50,7 @@ class ForgotPassword extends Component
                     ->logMessage('auth:forgot_password.failed')
                     ->causer(request()->ip())
                     ->subject($user->username)
-                    ->performedBy(auth()->user()->id)
+                    ->performedBy($user->id)
                     ->save();
 
                 Notification::make()
@@ -70,7 +70,7 @@ class ForgotPassword extends Component
                     ->logMessage('auth:forgot_password.failed')
                     ->causer(request()->ip())
                     ->subject($user->username)
-                    ->performedBy(auth()->user()->id)
+                    ->performedBy($user->id)
                     ->save();
 
                 Notification::make()
@@ -157,7 +157,7 @@ class ForgotPassword extends Component
                 ->logMessage('auth:forgot_password.failed')
                 ->causer(request()->ip())
                 ->subject($user->username)
-                ->performedBy(auth()->user()->id)
+                ->performedBy($user->id)
                 ->save();
 
             Notification::make()
@@ -177,7 +177,7 @@ class ForgotPassword extends Component
                 ->logMessage('auth:forgot_password.success')
                 ->causer($user->username)
                 ->subject($user->username)
-                ->performedBy(auth()->user()->id)
+                ->performedBy($user->id)
                 ->save();
 
             Notification::make()

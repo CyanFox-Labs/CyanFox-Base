@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Admin\Users;
 
 use App\Models\User;
 use Illuminate\Console\Command;
@@ -10,11 +10,11 @@ use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\password;
 use function Laravel\Prompts\text;
 
-class CreateUserCommand extends Command
+class UpdateUserCommand extends Command
 {
-    protected $signature = 'c:admin:users.create';
+    protected $signature = 'c:admin:users.update {username}';
 
-    protected $description = 'Create a new user';
+    protected $description = 'Update a user.';
 
     public function handle(): void
     {
@@ -22,7 +22,6 @@ class CreateUserCommand extends Command
         $username = text(
             'What is the user\'s username?',
             required: true,
-            validate: fn($username) => User::where('username', $username)->exists() ? 'Username already in use.' : null
         );
         $first_name = text(
             'What is the user\'s first name?',
@@ -37,24 +36,26 @@ class CreateUserCommand extends Command
             required: true,
             validate: fn($email) =>
             (filter_var($email, FILTER_VALIDATE_EMAIL) !== false ?
-                (User::where('email', $email)->exists() ? 'Email already in use.' : null)
+                null
                 : 'Invalid email.')
         );
         $password = password(
             'What is your password?'
         );
         $super_admin = confirm(
-            'Do you want to assign this user the Super Admin role?',
+            'Do you want to make this user a super admin?',
             default: false
         );
 
-        $user = User::create([
-            'username' => $username,
-            'first_name' => $first_name,
-            'last_name' => $last_name,
-            'email' => $email,
-            'password' => bcrypt($password),
-        ]);
+        $user = User::where('username', $this->argument('username'))->first();
+        $user->username = $username;
+        $user->first_name = $first_name;
+        $user->last_name = $last_name;
+        $user->email = $email;
+        if ($password) {
+            $user->password = bcrypt($password);
+        }
+        $user->save();
 
         if ($super_admin) {
             try {
@@ -66,16 +67,11 @@ class CreateUserCommand extends Command
                 $user->assignRole($role);
                 return;
             }
+        }else {
+            $user->removeRole('Super Admin');
         }
 
-        try {
-            $user->generateTwoFactorSecret();
-        }catch (\Exception $exception) {
-            $this->error('Something went wrong while generating two factor secret.');
-            $this->error($exception->getMessage());
-        }
-
-        $this->info('User created successfully.');
+        $this->info('User updated successfully.');
 
     }
 }
