@@ -2,8 +2,9 @@
 
 namespace App\Livewire\Components\Modals\Account;
 
-use Auth;
+use App\Facades\UserManager;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
@@ -12,34 +13,37 @@ use LivewireUI\Modal\ModalComponent;
 class DeleteAccount extends ModalComponent
 {
 
+    public $user;
     public $password;
     public $twoFactorCode;
 
     public function deleteAccount()
     {
 
-        if (!Auth::validate(['email' => auth()->user()->email, 'password' => $this->password])) {
+        if (!Auth::validate(['email' => $this->user->email, 'password' => $this->password])) {
             throw ValidationException::withMessages([
                 'password' => __('validation.current_password')
             ]);
         }
 
-        if (!auth()->user()->checkTwoFactorCode($this->twoFactorCode, false)) {
-            throw ValidationException::withMessages([
-                'twoFactorCode' => __('validation.custom.invalid_two_factor_code')
-            ]);
+        if (UserManager::getUser($this->user)->getTwoFactorManager()->isTwoFactorEnabled()) {
+            if (!UserManager::getUser($this->user)->getTwoFactorManager()->checkTwoFactorCode($this->twoFactorCode, false)) {
+                throw ValidationException::withMessages([
+                    'twoFactorCode' => __('validation.custom.invalid_two_factor_code')
+                ]);
+            }
         }
 
-        Storage::disk('public')->delete('profile-images/' . auth()->user()->id . '.png');
+        Storage::disk('public')->delete('profile-images/' . $this->user->id . '.png');
 
-        auth()->user()->delete();
+        UserManager::deleteUser($this->user);
 
         activity()
             ->logName('account')
-            ->logMessage('account:delete')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:delete')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
         Notification::make()
@@ -56,6 +60,8 @@ class DeleteAccount extends ModalComponent
         if (!setting('profile_enable_delete_account')) {
             abort(403);
         }
+
+        $this->user = Auth::user();
     }
 
     #[On('refresh')]

@@ -1,17 +1,13 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Services\Utils\Version;
 
 use Exception;
-use Knuckles\Scribe\Attributes\Group;
-use Knuckles\Scribe\Attributes\Unauthenticated;
 
-#[Unauthenticated]
-#[Group('Version', 'System Version')]
-class VersionHelper
+class VersionService
 {
 
-    public static function getCurrentTemplateVersion()
+    public function getCurrentTemplateVersion(): string
     {
         if (config('app.env') == 'testing') return true;
         $file = base_path('version.json');
@@ -24,7 +20,7 @@ class VersionHelper
         return 'N/A';
     }
 
-    public static function getCurrentProjectVersion()
+    public function getCurrentProjectVersion(): string
     {
         if (config('app.env') == 'testing') return true;
         $file = base_path('version.json');
@@ -37,16 +33,16 @@ class VersionHelper
         return 'N/A';
     }
 
-    public static function isDevVersion()
+    public function isDevVersion(): bool
     {
         if (config('app.env') == 'testing') return true;
         $file = base_path('version.json');
         $data = json_decode(file_get_contents($file), true);
 
-        return $data['version']['dev'] ?? null;
+        return $data['version']['dev'] ?? false;
     }
 
-    public static function getRemoteTemplateVersion()
+    public function getRemoteTemplateVersion(): string | bool
     {
         if (config('app.env') == 'testing') return true;
         if (setting('template_version_url') == null) return true;
@@ -58,12 +54,12 @@ class VersionHelper
             if ($data['version']['template'] == null) return true;
 
             return $data['version']['template'];
-        } catch (Exception $e) {
+        } catch (Exception) {
             return true;
         }
     }
 
-    public static function getRemoteProjectVersion()
+    public function getRemoteProjectVersion(): string | bool
     {
         if (config('app.env') == 'testing') return true;
         if (setting('project_version_url') == null) return true;
@@ -75,12 +71,12 @@ class VersionHelper
             if ($data['version']['project'] == null) return true;
 
             return $data['version']['project'];
-        } catch (Exception $e) {
+        } catch (Exception) {
             return true;
         }
     }
 
-    public static function isTemplateUpToDate()
+    public function isTemplateUpToDate(): bool
     {
         $currentVersion = self::getCurrentTemplateVersion();
         $remoteVersion = self::getRemoteTemplateVersion();
@@ -91,7 +87,7 @@ class VersionHelper
         return $currentVersion == $remoteVersion;
     }
 
-    public static function isProjectUpToDate()
+    public function isProjectUpToDate(): bool
     {
         $currentVersion = self::getCurrentProjectVersion();
         $remoteVersion = self::getRemoteProjectVersion();

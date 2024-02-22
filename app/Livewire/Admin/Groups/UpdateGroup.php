@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Groups;
 
 use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
@@ -35,10 +36,10 @@ class UpdateGroup extends Component
 
         activity()
             ->logName('admin')
-            ->logMessage('admin:groups.update')
-            ->causer(auth()->user()->username)
+            ->description('admin:groups.update')
+            ->causer(Auth::user()->username)
             ->subject($this->group->name)
-            ->performedBy(auth()->user()->id)
+            ->performedBy(Auth::user())
             ->save();
 
         Notification::make()

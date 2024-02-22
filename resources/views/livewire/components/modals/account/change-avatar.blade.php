@@ -17,7 +17,7 @@
                     crop-button-class="btn-success"
                     crop-after-change
                     required>
-                <img src="{{ auth()->user()->getAvatarURL() }}" class="h-30 rounded-lg" alt="Avatar"/>
+                <img src="{{ user()->getUser($user)->getAvatarURL() }}" class="h-30 rounded-lg" alt="Avatar"/>
             </x-file>
 
         </div>

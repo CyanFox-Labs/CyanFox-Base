@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Auth;
 
-use App\Helpers\UnsplashHelper;
+use App\Facades\Utils\UnsplashManager;
 use App\Models\User;
 use App\Rules\Password;
 use Carbon\Carbon;
@@ -47,10 +47,8 @@ class ForgotPassword extends Component
             if ($user == null) {
                 activity()
                     ->logName('auth')
-                    ->logMessage('auth:forgot_password.failed')
+                    ->description('auth:forgot_password.failed')
                     ->causer(request()->ip())
-                    ->subject($user->username)
-                    ->performedBy($user->id)
                     ->save();
 
                 Notification::make()
@@ -67,10 +65,10 @@ class ForgotPassword extends Component
             if ($expirationDate->isPast()) {
                 activity()
                     ->logName('auth')
-                    ->logMessage('auth:forgot_password.failed')
+                    ->description('auth:forgot_password.failed')
                     ->causer(request()->ip())
                     ->subject($user->username)
-                    ->performedBy($user->id)
+                    ->performedBy($user)
                     ->save();
 
                 Notification::make()
@@ -83,7 +81,7 @@ class ForgotPassword extends Component
             }
         }
 
-        $unsplash = UnsplashHelper::returnBackground();
+        $unsplash = UnsplashManager::returnBackground();
 
         $this->unsplash = $unsplash;
 
@@ -154,10 +152,10 @@ class ForgotPassword extends Component
         if ($expirationDate->isPast()) {
             activity()
                 ->logName('auth')
-                ->logMessage('auth:forgot_password.failed')
+                ->description('auth:forgot_password.failed')
                 ->causer(request()->ip())
                 ->subject($user->username)
-                ->performedBy($user->id)
+                ->performedBy($user)
                 ->save();
 
             Notification::make()
@@ -174,10 +172,10 @@ class ForgotPassword extends Component
 
             activity()
                 ->logName('auth')
-                ->logMessage('auth:forgot_password.success')
+                ->description('auth:forgot_password.success')
                 ->causer($user->username)
                 ->subject($user->username)
-                ->performedBy($user->id)
+                ->performedBy($user)
                 ->save();
 
             Notification::make()

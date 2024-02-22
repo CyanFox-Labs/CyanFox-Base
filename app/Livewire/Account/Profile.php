@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Account;
 
+use App\Facades\UserManager;
 use App\Models\Session;
 use App\Rules\Password;
 use Filament\Notifications\Notification;
-use Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
@@ -20,7 +22,7 @@ class Profile extends Component
     public $themes = [];
     public $theme;
     public $language;
-
+    public $user;
 
     public $firstName;
     public $lastName;
@@ -50,15 +52,15 @@ class Profile extends Component
             $this->themes[] = ['id' => $themeId, 'name' => __('pages/account/profile.language_and_theme.themes.' . $themeId)];
         }
 
-        $this->theme = auth()->user()->theme;
-        $this->language = auth()->user()->language;
+        $this->user = Auth::user();
 
+        $this->theme = $this->user->theme;
+        $this->language = $this->user->language;
 
-        /* Account Informations */
-        $this->firstName = auth()->user()->first_name;
-        $this->lastName = auth()->user()->last_name;
-        $this->email = auth()->user()->email;
-        $this->username = auth()->user()->username;
+        $this->firstName = $this->user->first_name;
+        $this->lastName = $this->user->last_name;
+        $this->email = $this->user->email;
+        $this->username = $this->user->username;
     }
 
     public function updateLanguageAndTheme()
@@ -68,17 +70,17 @@ class Profile extends Component
             'theme' => ['required', 'string'],
         ]);
 
-        auth()->user()->update([
+        $this->user->update([
             'language' => $this->language,
             'theme' => $this->theme,
         ]);
 
         activity()
             ->logName('account')
-            ->logMessage('account:profile.update')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:profile.update')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
         Notification::make()
@@ -99,20 +101,19 @@ class Profile extends Component
             'email' => 'required|max:255|email|unique:users,email,' . auth()->user()->getAuthIdentifier() . ',id'
         ]);
 
-        $user = auth()->user();
-        $user->first_name = $this->firstName;
-        $user->last_name = $this->lastName;
-        $user->username = $this->username;
-        $user->email = $this->email;
-
-        $user->save();
+        $this->user->update([
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
+            'username' => $this->username,
+            'email' => $this->email,
+        ]);
 
         activity()
             ->logName('account')
-            ->logMessage('account:profile.update')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:profile.update')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
         Notification::make()
@@ -138,19 +139,19 @@ class Profile extends Component
             ]);
         }
 
-        auth()->user()->update([
+        $this->user->update([
             'password' => Hash::make($this->newPassword),
         ]);
 
 
-        Session::logoutOtherDevices();
+        UserManager::getUser($this->user)->getSessionManager()->revokeOtherSessions();
 
         activity()
             ->logName('account')
-            ->logMessage('account:profile.update')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:profile.update')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
         Notification::make()

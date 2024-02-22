@@ -2,9 +2,10 @@
 
 namespace App\Livewire\Components\Modals\Account\TwoFactor;
 
-use Auth;
+use App\Facades\UserManager;
 use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
@@ -13,20 +14,21 @@ class DisableTwoFactor extends ModalComponent
 {
 
     public $password;
+    public $user;
 
     function disableTwoFactor()
     {
-        if (!Auth::validate(['email' => auth()->user()->email, 'password' => $this->password])) {
+        if (!Auth::validate(['email' => $this->user->email, 'password' => $this->password])) {
             throw ValidationException::withMessages([
                 'password' => __('validation.current_password')
             ]);
         }
 
         try {
-            auth()->user()->generateTwoFactorSecret();
-            auth()->user()->generateRecoveryCodes();
+            UserManager::getUser($this->user)->getTwoFactorManager()->generateTwoFactorSecret();
+            UserManager::getUser($this->user)->getTwoFactorManager()->generateRecoveryCodes();
 
-            auth()->user()->update([
+            $this->user->update([
                 'two_factor_enabled' => false
             ]);
         }catch (Exception $e) {
@@ -41,10 +43,10 @@ class DisableTwoFactor extends ModalComponent
 
         activity()
             ->logName('account')
-            ->logMessage('account:two_factor.disable')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:two_factor.disable')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
         Notification::make()
@@ -54,6 +56,11 @@ class DisableTwoFactor extends ModalComponent
 
         $this->closeModal();
         $this->dispatch('refresh');
+    }
+
+    public function mount()
+    {
+        $this->user = Auth::user();
     }
 
     #[On('refresh')]

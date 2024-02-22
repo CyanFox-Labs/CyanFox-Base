@@ -2,11 +2,10 @@
 
 namespace App\Livewire\Components\Modals\Account\TwoFactor;
 
-use App\Livewire\Account\Profile;
-use App\Models\Session;
-use Auth;
+use App\Facades\UserManager;
 use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
@@ -16,28 +15,31 @@ class ActivateTwoFactor extends ModalComponent
 
     public $twoFactorCode;
     public $password;
+    public $user;
 
     public function activateTwoFactor()
     {
 
-        if (!Auth::validate(['email' => auth()->user()->email, 'password' => $this->password])) {
+        if (!Auth::validate(['email' => $this->user->email, 'password' => $this->password])) {
             throw ValidationException::withMessages([
                 'password' => __('validation.current_password')
             ]);
         }
 
-        if(!auth()->user()->checkTwoFactorCode($this->twoFactorCode, false)) {
-            throw ValidationException::withMessages([
-                'twoFactorCode' => __('validation.custom.invalid_two_factor_code')
-            ]);
+        if (UserManager::getUser($this->user)->getTwoFactorManager()->isTwoFactorEnabled()) {
+            if(!UserManager::getUser($this->user)->getTwoFactorManager()->checkTwoFactorCode($this->twoFactorCode, false)) {
+                throw ValidationException::withMessages([
+                    'twoFactorCode' => __('validation.custom.invalid_two_factor_code')
+                ]);
+            }
         }
 
         try {
-            auth()->user()->update([
+            $this->user->update([
                 'two_factor_enabled' => true
             ]);
 
-            auth()->user()->generateRecoveryCodes();
+            UserManager::getUser($this->user)->getTwoFactorManager()->generateTwoFactorSecret();
         }catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.notifications.something_went_wrong'))
@@ -48,14 +50,14 @@ class ActivateTwoFactor extends ModalComponent
             return;
         }
 
-        Session::logoutOtherDevices();
+        UserManager::getUser($this->user)->getSessionManager()->revokeOtherSessions();
 
         activity()
             ->logName('account')
-            ->logMessage('account:two_factor.activate')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:two_factor.activate')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
         Notification::make()
@@ -65,6 +67,11 @@ class ActivateTwoFactor extends ModalComponent
 
         $this->closeModal();
         $this->dispatch('refresh');
+    }
+
+    public function mount()
+    {
+        $this->user = Auth::user();
     }
 
     #[On('refresh')]

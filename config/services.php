@@ -36,10 +36,10 @@ return [
         'client_secret' => setting('oauth_github_client_secret', true, true),
         'redirect' => setting('oauth_github_redirect', isConfig: true),
     ],
-    'gitlab' => [
-        'client_id' => setting('oauth_gitlab_client_id', isConfig: true),
-        'client_secret' => setting('oauth_gitlab_client_secret', true, true),
-        'redirect' => setting('oauth_gitlab_redirect', isConfig: true),
+    'discord' => [
+        'client_id' => setting('discord_client_id', isConfig: true),
+        'client_secret' => setting('discord_client_secret', true, true),
+        'redirect' => setting('discord_redirect', isConfig: true),
     ],
     'google' => [
         'client_id' => setting('oauth_google_client_id', isConfig: true),

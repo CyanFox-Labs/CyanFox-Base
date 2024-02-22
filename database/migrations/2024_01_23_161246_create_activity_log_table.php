@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('activity_log', function (Blueprint $table) {
             $table->id();
             $table->string('log_name')->nullable()->default('system');
-            $table->text('log_message')->nullable();
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('performed_by')->nullable();
             $table->text('subject')->nullable();
             $table->text('causer')->nullable();

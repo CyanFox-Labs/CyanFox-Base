@@ -1,51 +1,78 @@
 <?php
 
-use App\Helpers\ActivityLogHelper;
-use App\Helpers\VersionHelper;
-use App\Models\Setting;
+use App\Facades\SettingsManager;
+use App\Services\Activity\ActivityLogService;
+use App\Services\Groups\GroupService;
+use App\Services\Modules\ModuleService;
+use App\Services\Settings\SettingsService;
+use App\Services\Users\UserService;
+use App\Services\Utils\Unsplash\UnsplashService;
+use App\Services\Utils\UtilsService;
+use App\Services\Utils\Version\VersionService;
 
-if (!function_exists('setting')) {
-
-    /**
-     * Get a specific setting from the database.
-     * If the setting does not exist, it will use the .env value.
-     */
-    function setting($key, $isEncrypted = false, $isConfig = false)
+if (!function_exists('version')) {
+    function version(): VersionService
     {
-        if (!$isConfig) {
-            return Setting::get($key, $isEncrypted);
-        }
-
-        return app()->booted(function () use ($key, $isEncrypted) {
-            return Setting::get($key, $isEncrypted);
-        });
+        return new VersionService();
     }
 }
 
-if (!function_exists('get_version')) {
-
-    /**
-     * Get the current version of the application.
-     */
-    function get_version($type = 'template')
+if (!function_exists('unsplash')) {
+    function unsplash(): UnsplashService
     {
-        return match ($type) {
-            'template' => VersionHelper::getCurrentTemplateVersion(),
-            'project' => VersionHelper::getCurrentProjectVersion(),
-            'remote_template' => VersionHelper::getRemoteTemplateVersion(),
-            'remote_project' => VersionHelper::getRemoteProjectVersion(),
-            default => null,
-        };
+        return new UnsplashService();
+    }
+}
+
+if (!function_exists('utils')) {
+    function utils(): UtilsService
+    {
+        return new UtilsService();
     }
 }
 
 if (!function_exists('activity')) {
-
-    /**
-     * Log an activity to the database.
-     */
-    function activity()
+    function activity(): ActivityLogService
     {
-        return new ActivityLogHelper();
+        return new ActivityLogService();
+    }
+}
+
+if (!function_exists('group')) {
+    function group(): GroupService
+    {
+        return new GroupService();
+    }
+}
+
+if (!function_exists('module')) {
+    function module(): ModuleService
+    {
+        return new ModuleService();
+    }
+}
+
+if (!function_exists('setting')) {
+    function setting($key = null, $isEncrypted = false, $isConfig = false): null|string|SettingsService
+    {
+        if ($key == null) {
+            return new SettingsService();
+        }
+
+        if (!$isConfig) {
+            return SettingsManager::getSetting($key, $isEncrypted);
+        }
+
+        return app()->booted(function () use ($key, $isEncrypted) {
+            return SettingsManager::getSetting($key, $isEncrypted);
+        });
+    }
+}
+
+
+if (!function_exists('user')) {
+    function user(): UserService
+    {
+        return new UserService();
     }
 }

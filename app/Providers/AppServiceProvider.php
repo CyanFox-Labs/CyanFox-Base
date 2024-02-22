@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\Collectors\ModuleIntegrationCollector;
 use App\Services\Collectors\SpotlightValueCollector;
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('local')) {
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             $this->app->register(TelescopeServiceProvider::class);
+            $this->app->register(IdeHelperServiceProvider::class);
         }
     }
 

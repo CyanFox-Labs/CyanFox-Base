@@ -19,11 +19,4 @@ class Session extends Model
         'payload',
         'last_activity',
     ];
-
-    public static function logoutOtherDevices()
-    {
-        self::where('user_id', auth()->user()->id)
-            ->whereNotIn('id', [\Illuminate\Support\Facades\Session::getId()])
-            ->delete();
-    }
 }

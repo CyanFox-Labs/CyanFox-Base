@@ -67,7 +67,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Add github workflow and dependabot config
 - [x] Docker support
 - [x] Add commands
-- [ ] Code refactoring
+- [x] Code refactoring
 - [ ] Translation renewal with Code cleanup <br>
   - Create new Developer API
 - [ ] German translation

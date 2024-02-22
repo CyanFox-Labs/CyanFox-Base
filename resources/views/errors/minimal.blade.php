@@ -24,7 +24,7 @@
             <span
                 class="text-4xl font-bold brand-text text-white lg:block hidden">{{ setting('app_name') }}</span>
         </p>
-        <div class="card glass lg:w-1/4 sm:min-w-96 sm:w-1/8 w-auto">
+        <div class="card bg-base-200 lg:w-1/4 sm:min-w-96 sm:w-1/8 w-auto">
             <div class="card-body">
 
 
@@ -41,7 +41,7 @@
                     @if(auth()->user())
                         <a href="{{ route('home')  }}"
                            class="btn btn-info flex-grow"
-                           wire:navigate>{{ __('messages.buttons.back') }}</a>
+                           wire:navigate>{{ __('navigation/navigation.home') }}</a>
                     @else
                         <a href="{{ route('auth.login') }}"
                            class="btn btn-info flex-grow"

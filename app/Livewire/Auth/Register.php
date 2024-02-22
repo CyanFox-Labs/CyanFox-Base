@@ -2,13 +2,15 @@
 
 namespace App\Livewire\Auth;
 
-use App\Helpers\UnsplashHelper;
+use App\Facades\UserManager;
+use App\Facades\Utils\UnsplashManager;
 use App\Models\User;
 use App\Rules\Password;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -38,7 +40,7 @@ class Register extends Component
 
     public function mount()
     {
-        $unsplash = UnsplashHelper::returnBackground();
+        $unsplash = UnsplashManager::returnBackground();
 
         $this->unsplash = $unsplash;
 
@@ -103,17 +105,17 @@ class Register extends Component
             'last_name' => $this->lastName,
             'username' => $this->username,
             'email' => $this->email,
-            'password' => bcrypt($this->password),
+            'password' => Hash::make($this->password),
         ]);
 
-        $user->generateTwoFactorSecret();
+        UserManager::getUser($user)->getTwoFactorManager()->generateTwoFactorSecret();
 
         activity()
             ->logName('auth')
-            ->logMessage('auth:register.success')
+            ->description('auth:register.success')
             ->causer($user->username)
             ->subject($user->username)
-            ->performedBy($user->id)
+            ->performedBy($user)
             ->save();
 
         Notification::make()

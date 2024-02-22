@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Admin;
 
+use App\Facades\Utils\VersionManager;
 use App\Helpers\VersionHelper;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -16,28 +18,30 @@ class Dashboard extends Component
     public $isTemplateUpToDate;
     public $isDevVersion;
     public $showUpdateNotification = false;
+    public $user;
 
     public function mount()
     {
-        $this->isDevVersion = VersionHelper::isDevVersion();
-        $this->currentProjectVersion = VersionHelper::getCurrentProjectVersion();
-        $this->currentTemplateVersion = VersionHelper::getCurrentTemplateVersion();
+        $this->isDevVersion = VersionManager::isDevVersion();
+        $this->currentProjectVersion = VersionManager::getCurrentProjectVersion();
+        $this->currentTemplateVersion = VersionManager::getCurrentTemplateVersion();
+        $this->user = Auth::user();
     }
 
     public function checkForUpdates()
     {
-        $this->remoteProjectVersion = VersionHelper::getRemoteProjectVersion();
-        $this->remoteTemplateVersion = VersionHelper::getRemoteTemplateVersion();
-        $this->isProjectUpToDate = VersionHelper::isProjectUpToDate();
-        $this->isTemplateUpToDate = VersionHelper::isTemplateUpToDate();
+        $this->remoteProjectVersion = VersionManager::getRemoteProjectVersion();
+        $this->remoteTemplateVersion = VersionManager::getRemoteTemplateVersion();
+        $this->isProjectUpToDate = VersionManager::isProjectUpToDate();
+        $this->isTemplateUpToDate = VersionManager::isTemplateUpToDate();
         $this->showUpdateNotification = true;
 
         activity()
             ->logName('admin')
-            ->logMessage('admin:dashboard.check_for_updates')
-            ->causer(auth()->user()->username)
+            ->description('admin:dashboard.check_for_updates')
+            ->causer($this->user->username)
             ->subject('system')
-            ->performedBy(auth()->user()->id)
+            ->performedBy($this->user)
             ->save();
     }
 

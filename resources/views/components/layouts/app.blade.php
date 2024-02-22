@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', setting('app_lang')) }}" @if(auth()->user())
     data-theme="{{ auth()->user()->theme }}"
       @if(
-    auth()->user()->getColorScheme() == 'dark'
+    user()->getUser(auth()->user())->getColorScheme() == 'dark'
     ) class="dark" @endif>
 @endif
 <head>

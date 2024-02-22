@@ -24,7 +24,7 @@
                     <div class="rounded-3xl glass">
                         <div class="flex p-2 relative">
                             <img
-                                src="{{ $user->getAvatarURL() }}"
+                                src="{{ user()->getUser($user)->getAvatarURL() }}"
                                 alt="Avatar"
                                 class="rounded-full w-8 h-8 m-1">
                             <p class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">{{ $user->username }}</p>

@@ -80,7 +80,7 @@
 
             <div class="ml-2 dropdown dropdown-bottom dropdown-end">
                 <img tabindex="0" role="button"
-                     src="{{ auth()->user()->getAvatarURL() }}" alt="Profile"
+                     src="{{ user()->getUser(auth()->user())->getAvatarURL() }}" alt="Profile"
                      class="w-9 h-9 rounded-3xl mr-6">
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a href="{{ route('account.profile') }}" wire:navigate><i
@@ -131,7 +131,7 @@
 
             <div class="dropdown dropdown-bottom dropdown-end ml-auto flex items-center">
                 <img tabindex="0" role="button"
-                     src="{{ auth()->user()->getAvatarURL() }}" alt="Profile"
+                     src="{{ user()->getUser(auth()->user())->getAvatarURL() }}" alt="Profile"
                      class="w-9 h-9 rounded-3xl mr-6">
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a href="{{ route('account.profile') }}" wire:navigate><i

@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Admin\Settings;
 
+use App\Facades\SettingsManager;
 use App\Models\Setting;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -30,16 +32,14 @@ class ProfileSettings extends Component
             'profile_enable_delete_account' => $this->enableDeleteAccount,
         ];
 
-        foreach ($settings as $key => $value) {
-            Setting::where('key', $key)->update(['value' => $value]);
-        }
+        SettingsManager::updateSettings($settings);
 
         activity()
             ->logName('admin')
-            ->logMessage('admin:settings.update')
-            ->causer(auth()->user()->username)
+            ->description('admin:settings.update')
+            ->causer(Auth::user()->username)
             ->subject('profile-settings')
-            ->performedBy(auth()->user()->id)
+            ->performedBy(Auth::user())
             ->save();
 
         Notification::make()

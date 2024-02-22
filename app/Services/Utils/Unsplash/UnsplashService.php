@@ -1,19 +1,13 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Services\Utils\Unsplash;
 
 use Exception;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
-use Knuckles\Scribe\Attributes\Group;
-use Knuckles\Scribe\Attributes\Unauthenticated;
 
-#[Unauthenticated]
-#[Group('Unsplash', 'Unsplash API')]
-class UnsplashHelper
+class UnsplashService
 {
-
-    public static function returnBackground()
+    public function returnBackground(): array
     {
         try {
             $imageData = self::getRandomUnsplashImage();
@@ -25,7 +19,7 @@ class UnsplashHelper
             $authorLink = $imageData[0]['user']['links']['html'] . $utmSource;
             $error = null;
 
-            $css = "background-image: url('".$imagePath."');
+            $css = "background-image: url('" . $imagePath . "');
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center;
@@ -52,15 +46,13 @@ class UnsplashHelper
         ];
     }
 
-    public static function getUTM()
+    public function getUTM(): string
     {
         return setting('unsplash_utm');
     }
 
-    /**
-     * @throws GuzzleException
-     */
-    public static function getRandomUnsplashImage() {
+    public function getRandomUnsplashImage(): array
+    {
         $api_key = setting('unsplash_api_key', true);
         if ($api_key == null || $api_key == '') {
             $api_key = config('template.unsplash.api_key');
@@ -73,6 +65,6 @@ class UnsplashHelper
         ];
 
         $response = $client->request('GET', 'https://api.unsplash.com/photos/random?count=1&query=landscape,beautiful', ['headers' => $headers]);
-        return json_decode((string) $response->getBody(), true);
+        return json_decode((string)$response->getBody(), true);
     }
 }

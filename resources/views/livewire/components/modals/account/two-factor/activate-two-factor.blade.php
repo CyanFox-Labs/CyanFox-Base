@@ -5,9 +5,9 @@
         <div class="md:flex justify-center mb-3">
 
             <div class="flex flex-col items-center mr-4">
-                <img src="data:image/svg+xml;base64,{{ auth()->user()->getTwoFactorImage() }}" alt="Two Factor Image"
+                <img src="data:image/svg+xml;base64,{{ user()->getUser($this->user)->getTwoFactorManager()->getTwoFactorImage() }}" alt="Two Factor Image"
                      class="border-4 border-white mb-2">
-                <p>{{ decrypt(auth()->user()->two_factor_secret) }}</p>
+                <p>{{ decrypt($user->two_factor_secret) }}</p>
             </div>
 
             <div class="space-y-4 md:mt-2 mt-6">

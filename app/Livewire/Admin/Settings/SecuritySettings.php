@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Admin\Settings;
 
+use App\Facades\SettingsManager;
 use App\Models\Setting;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -36,16 +38,14 @@ class SecuritySettings extends Component
             'security_password_require_lowercase' => $this->passwordRequireLowercase,
         ];
 
-        foreach ($settings as $key => $value) {
-            Setting::where('key', $key)->update(['value' => $value]);
-        }
+        SettingsManager::updateSettings($settings);
 
         activity()
             ->logName('admin')
-            ->logMessage('admin:settings.update')
-            ->causer(auth()->user()->username)
+            ->description('admin:settings.update')
+            ->causer(Auth::user()->username)
             ->subject('security-settings')
-            ->performedBy(auth()->user()->id)
+            ->performedBy(Auth::user())
             ->save();
 
         Notification::make()

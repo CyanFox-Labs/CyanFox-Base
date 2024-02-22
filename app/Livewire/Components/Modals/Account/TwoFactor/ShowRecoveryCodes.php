@@ -2,8 +2,9 @@
 
 namespace App\Livewire\Components\Modals\Account\TwoFactor;
 
+use App\Facades\UserManager;
 use App\Models\UserRecoveryCode;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
@@ -13,27 +14,24 @@ class ShowRecoveryCodes extends ModalComponent
 
     public $recoveryCodes;
     public $password;
+    public $user;
 
     public function showRecoveryCodes()
     {
-        if (!Auth::validate(['email' => auth()->user()->email, 'password' => $this->password])) {
+        if (!Auth::validate(['email' => $this->user->email, 'password' => $this->password])) {
             throw ValidationException::withMessages([
                 'password' => __('validation.current_password')
             ]);
         }
 
-        $recoveryCodes = UserRecoveryCode::where('user_id', auth()->user()->id)->get();
-
-        foreach ($recoveryCodes as $recoveryCode) {
-            $this->recoveryCodes[] = decrypt($recoveryCode->code);
-        }
+        $this->recoveryCodes = UserManager::getUser($this->user)->getTwoFactorManager()->generateRecoveryCodes();
 
         activity()
             ->logName('account')
-            ->logMessage('account:two_factor.recovery_codes.show')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:two_factor.recovery_codes.show')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
     }
 
@@ -41,20 +39,14 @@ class ShowRecoveryCodes extends ModalComponent
     {
         $this->recoveryCodes = [];
 
-        auth()->user()->generateRecoveryCodes();
-
-        $recoverCodes = UserRecoveryCode::where('user_id', auth()->user()->id)->get();
-
-        foreach ($recoverCodes as $recoverCode) {
-            $this->recoveryCodes[] = decrypt($recoverCode->code);
-        }
+        $this->recoveryCodes = UserManager::getUser($this->user)->getTwoFactorManager()->generateRecoveryCodes();
 
         activity()
             ->logName('account')
-            ->logMessage('account:two_factor.recovery_codes.regenerate')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:two_factor.recovery_codes.regenerate')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
     }
@@ -63,22 +55,22 @@ class ShowRecoveryCodes extends ModalComponent
     {
         activity()
             ->logName('account')
-            ->logMessage('account:two_factor.recovery_codes.download')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:two_factor.recovery_codes.download')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
         return response()->streamDownload(function () {
-            $recoverCodes = UserRecoveryCode::where('user_id', auth()->user()->id)->get();
-            $decryptRecoverCodes = '';
+            $recoveryCodes = implode(PHP_EOL, $this->recoveryCodes);
 
-            foreach ($recoverCodes as $recoverCode) {
-                $decryptRecoverCodes .= decrypt($recoverCode->code) . "\n";
-            }
-
-            echo $decryptRecoverCodes;
+            echo $recoveryCodes;
         }, 'recovery-codes.txt');
+    }
+
+    public function mount()
+    {
+        $this->user = Auth::user();
     }
 
     #[On('refresh')]

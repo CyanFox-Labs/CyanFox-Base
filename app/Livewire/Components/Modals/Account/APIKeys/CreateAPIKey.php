@@ -2,13 +2,16 @@
 
 namespace App\Livewire\Components\Modals\Account\APIKeys;
 
+use App\Facades\UserManager;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateAPIKey extends ModalComponent
 {
     public $name;
     public $plainTextToken;
+    public $user;
 
     public function createAPIKey()
     {
@@ -16,14 +19,14 @@ class CreateAPIKey extends ModalComponent
             'name' => 'required|unique:personal_access_tokens,name'
         ]);
 
-        $this->plainTextToken = auth()->user()->createToken($this->name)->plainTextToken;
+        $this->plainTextToken = UserManager::getUser($this->user)->getAPIKeyManager()->createAPIKey($this->name);
 
         activity()
             ->logName('account')
-            ->logMessage('account:api_keys.create')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:api_keys.create')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
         Notification::make()
@@ -36,6 +39,11 @@ class CreateAPIKey extends ModalComponent
     {
         $this->closeModal();
         $this->dispatch('refresh');
+    }
+
+    public function mount()
+    {
+        $this->user = Auth::user();
     }
 
     public function render()

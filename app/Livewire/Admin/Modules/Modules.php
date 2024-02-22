@@ -2,11 +2,12 @@
 
 namespace App\Livewire\Admin\Modules;
 
+use App\Facades\ModuleManager;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Nwidart\Modules\Facades\Module;
-use Route;
 
 class Modules extends Component
 {
@@ -20,7 +21,7 @@ class Modules extends Component
             return [
                 'name' => $module->getName(),
                 'enabled' => $module->isEnabled(),
-                'hasSettingsPage' => $this->checkIfModuleHasSettingsPage($module->getName()),
+                'hasSettingsPage' => ModuleManager::hasSettingsPage($module->getName()),
             ];
         }, $modules);
     }
@@ -33,10 +34,10 @@ class Modules extends Component
 
         activity()
             ->logName('admin')
-            ->logMessage('admin:modules.disable')
-            ->causer(auth()->user()->username)
+            ->description('admin:modules.disable')
+            ->causer(Auth::user()->username)
             ->subject($module->getName())
-            ->performedBy(auth()->user()->id)
+            ->performedBy(Auth::user())
             ->save();
 
         Notification::make()
@@ -55,10 +56,10 @@ class Modules extends Component
 
         activity()
             ->logName('admin')
-            ->logMessage('admin:modules.enable')
-            ->causer(auth()->user()->username)
+            ->description('admin:modules.enable')
+            ->causer(Auth::user()->username)
             ->subject($module->getName())
-            ->performedBy(auth()->user()->id)
+            ->performedBy(Auth::user())
             ->save();
 
         Notification::make()
@@ -77,10 +78,10 @@ class Modules extends Component
 
         activity()
             ->logName('admin')
-            ->logMessage('admin:modules.delete')
-            ->causer(auth()->user()->username)
+            ->description('admin:modules.delete')
+            ->causer(Auth::user()->username)
             ->subject($name)
-            ->performedBy(auth()->user()->id)
+            ->performedBy(Auth::user())
             ->save();
 
         Notification::make()
@@ -89,15 +90,6 @@ class Modules extends Component
             ->send();
 
         $this->redirect(route('admin.modules'), navigate: true);
-    }
-
-    public function checkIfModuleHasSettingsPage($name)
-    {
-        if (Route::has('modules.' . $name . '.settings')) {
-            return true;
-        }
-
-        return false;
     }
 
     #[On('refresh')]

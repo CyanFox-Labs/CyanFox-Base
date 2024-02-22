@@ -4,10 +4,11 @@ namespace App\Livewire\Components\Modals\Account;
 
 use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
-use Storage;
 
 class ChangeAvatar extends ModalComponent
 {
@@ -15,6 +16,7 @@ class ChangeAvatar extends ModalComponent
 
     public $avatar;
     public $customAvatarUrl;
+    public $user;
 
     public function updateAvatar()
     {
@@ -25,17 +27,16 @@ class ChangeAvatar extends ModalComponent
 
         if ($this->customAvatarUrl) {
 
-            $user = auth()->user();
-            $user->custom_avatar_url = $this->customAvatarUrl;
-
-            $user->save();
+            $this->user->update([
+                'custom_avatar_url' => $this->customAvatarUrl,
+            ]);
 
             activity()
                 ->logName('account')
-                ->logMessage('account:avatar.update')
-                ->causer(auth()->user()->username)
-                ->subject(auth()->user()->username)
-                ->performedBy(auth()->user()->id)
+                ->description('account:avatar.update')
+                ->causer($this->user->username)
+                ->subject($this->user->username)
+                ->performedBy($this->user)
                 ->save();
 
             Notification::make()
@@ -60,7 +61,7 @@ class ChangeAvatar extends ModalComponent
 
 
         try {
-            $this->avatar->storeAs('public/profile-images', auth()->user()->id . '.png');
+            $this->avatar->storeAs('public/avatars', $this->user->id . '.png');
         } catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.notifications.something_went_wrong'))
@@ -73,10 +74,10 @@ class ChangeAvatar extends ModalComponent
 
         activity()
             ->logName('account')
-            ->logMessage('account:avatar.update')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:avatar.update')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
         Notification::make()
@@ -89,19 +90,18 @@ class ChangeAvatar extends ModalComponent
 
     public function resetAvatar()
     {
-        Storage::disk('public')->delete('profile-images/' . auth()->user()->id . '.png');
+        Storage::disk('public')->delete('avatars/' . $this->user->id . '.png');
 
-        $user = auth()->user();
-        $user->custom_avatar_url = null;
-
-        $user->save();
+        $this->user->update([
+            'custom_avatar_url' => null,
+        ]);
 
         activity()
             ->logName('account')
-            ->logMessage('account:avatar.reset')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:avatar.reset')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
         Notification::make()
@@ -118,7 +118,8 @@ class ChangeAvatar extends ModalComponent
             abort(403);
         }
 
-        $this->customAvatarUrl = auth()->user()->custom_avatar_url;
+        $this->user = Auth::user();
+        $this->customAvatarUrl = $this->user->custom_avatar_url;
     }
 
     #[On('refresh')]

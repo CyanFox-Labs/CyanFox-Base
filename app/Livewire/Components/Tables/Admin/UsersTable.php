@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components\Tables\Admin;
 
+use App\Facades\UserManager;
 use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -31,7 +32,7 @@ class UsersTable extends DataTableComponent
             ImageColumn::make(__('pages/admin/users/users.table.avatar'))
                 ->location(function ($row) {
                     $user = User::find($row->id);
-                    return $user->getAvatarURL();
+                    return UserManager::getUser($user)->getAvatarURL();
                 })
                 ->attributes(function () {
                     return [

@@ -30,7 +30,7 @@ return new class extends Migration
             $table->timestamp('password_reset_expiration')->nullable();
             $table->string('github_id')->nullable();
             $table->string('google_id')->nullable();
-            $table->string('gitlab_id')->nullable();
+            $table->string('discord_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

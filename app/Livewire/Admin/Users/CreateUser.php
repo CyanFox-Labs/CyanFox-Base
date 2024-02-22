@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Admin\Users;
 
+use App\Facades\UserManager;
 use App\Models\User;
 use App\Rules\Password;
 use Filament\Notifications\Notification;
-use Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -62,6 +64,7 @@ class CreateUser extends Component
 
         $user->syncRoles($this->selectedGroups);
         $user->syncPermissions($this->selectedPermissions);
+        UserManager::getUser($user)->getTwoFactorManager()->generateTwoFactorSecret();
 
         if ($this->sendWelcomeEmail) {
             $placeholders = ['username' => $this->username,
@@ -87,10 +90,10 @@ class CreateUser extends Component
 
         activity()
             ->logName('admin')
-            ->logMessage('admin:users.create')
-            ->causer(auth()->user()->username)
+            ->description('admin:users.create')
+            ->causer(Auth::user()->username)
             ->subject($user->username)
-            ->performedBy(auth()->user()->id)
+            ->performedBy(Auth::user())
             ->save();
 
         Notification::make()

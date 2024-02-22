@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Groups;
 
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
@@ -32,10 +33,10 @@ class CreateGroup extends Component
 
         activity()
             ->logName('admin')
-            ->logMessage('admin:groups.create')
-            ->causer(auth()->user()->username)
+            ->description('admin:groups.create')
+            ->causer(Auth::user()->username)
             ->subject($group->name)
-            ->performedBy(auth()->user()->id)
+            ->performedBy(Auth::user())
             ->save();
 
         Notification::make()

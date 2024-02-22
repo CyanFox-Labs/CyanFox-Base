@@ -20,10 +20,10 @@
                 </div>
 
                 @if($user)
-                    <div class="rounded-3xl mt-2">
+                    <div class="rounded-3xl mt-2 glass">
                         <div class="flex p-2 relative">
                             <img
-                                src="{{ $user->getAvatarURL() }}"
+                                src="{{ user()->getUser($user)->getAvatarURL() }}"
                                 alt="Avatar"
                                 class="rounded-full w-8 h-8 m-1">
                             <p class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">{{ $user->username }}</p>
@@ -73,12 +73,12 @@
                         <x-input label="{{ __('pages/auth/messages.password') }}"
                                  type="password"
                                  class="input-bordered w-full" wire:model="password"
-                                 required />
+                                 required/>
 
                         <x-input label="{{ __('pages/auth/forgot_password.confirm_password') }}"
                                  type="password"
                                  class="input-bordered w-full" wire:model="passwordConfirmation"
-                                 required />
+                                 required/>
 
                         <div class="divider"></div>
 
@@ -90,7 +90,8 @@
                 @endif
 
                 <a href="{{ route('auth.login') }}"
-                   class="btn btn-neutral mt-3 w-full" wire:navigate>{{ __('pages/auth/messages.buttons.back_to_login') }}</a>
+                   class="btn btn-neutral mt-3 w-full"
+                   wire:navigate>{{ __('pages/auth/messages.buttons.back_to_login') }}</a>
             </div>
         </div>
     </div>
@@ -98,7 +99,8 @@
         <div class="pl-6 pb-4 text-white">
             <span class="text-sm" id="credits" wire:ignore><a id="photo"
                                                               href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('pages/auth/messages.photo') }}</a>, <a
-                    id="author" href="{{ $unsplash['authorURL'] }}/{{ setting('unsplash_utm') }}">{{ $unsplash['author'] }}</a>, <a
+                    id="author"
+                    href="{{ $unsplash['authorURL'] }}/{{ setting('unsplash_utm') }}">{{ $unsplash['author'] }}</a>, <a
                     href="https://unsplash.com/{{ setting('unsplash_utm') }}">Unsplash</a></span>
         </div>
     @endif

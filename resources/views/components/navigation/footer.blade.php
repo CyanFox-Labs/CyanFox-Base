@@ -8,7 +8,7 @@
             0ms
         @endif
         <span class="px-2">|</span>
-        {{ __('messages.footer.version') }} {{ get_version('project') }}
+        {{ __('messages.footer.version') }} {{ version()->getCurrentProjectVersion()  }}
     </div>
 
 

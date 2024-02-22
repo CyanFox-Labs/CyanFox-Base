@@ -4,6 +4,7 @@ namespace App\Livewire\Components\Modals\Admin\Groups;
 
 use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Role;
@@ -29,10 +30,10 @@ class DeleteGroup extends ModalComponent
 
         activity()
             ->logName('admin')
-            ->logMessage('admin:groups.delete')
-            ->causer(auth()->user()->username)
+            ->description('admin:groups.delete')
+            ->causer(Auth::user()->username)
             ->subject($group->name)
-            ->performedBy(auth()->user()->id)
+            ->performedBy(Auth::user())
             ->save();
 
         Notification::make()

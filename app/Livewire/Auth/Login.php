@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Auth;
 
-use App\Helpers\UnsplashHelper;
+use App\Facades\Utils\UnsplashManager;
 use App\Models\User;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
@@ -46,7 +46,7 @@ class Login extends Component
             $this->redirect = setting('app_url');
         }
 
-        $unsplash = UnsplashHelper::returnBackground();
+        $unsplash = UnsplashManager::returnBackground();
 
         $this->unsplash = $unsplash;
 
@@ -140,10 +140,10 @@ class Login extends Component
 
                 activity()
                     ->logName('auth')
-                    ->logMessage('auth:login.two_factor')
+                    ->description('auth:login.two_factor')
                     ->causer($this->user->username)
                     ->subject($this->user->username)
-                    ->performedBy($this->user->id)
+                    ->performedBy($this->user)
                     ->save();
 
             } else {
@@ -158,10 +158,10 @@ class Login extends Component
 
                 activity()
                     ->logName('auth')
-                    ->logMessage('auth:login.success')
+                    ->description('auth:login.success')
                     ->causer($this->user->username)
                     ->subject($this->user->username)
-                    ->performedBy($this->user->id)
+                    ->performedBy($this->user)
                     ->save();
 
                 $this->redirect(route('home'));
@@ -169,10 +169,10 @@ class Login extends Component
         } else {
             activity()
                 ->logName('auth')
-                ->logMessage('auth:login.failed')
+                ->description('auth:login.failed')
                 ->causer($this->user->username)
                 ->subject($this->user->username)
-                ->performedBy($this->user->id)
+                ->performedBy($this->user)
                 ->save();
 
             throw ValidationException::withMessages([
@@ -205,10 +205,10 @@ class Login extends Component
 
             activity()
                 ->logName('auth')
-                ->logMessage('auth:login.two_factor.success')
+                ->description('auth:login.two_factor.success')
                 ->causer($this->user->username)
                 ->subject($this->user->username)
-                ->performedBy(auth()->user()->id)
+                ->performedBy($this->user)
                 ->save();
 
             $this->redirect(route('home'));
@@ -216,10 +216,10 @@ class Login extends Component
 
         activity()
             ->logName('auth')
-            ->logMessage('auth:login.two_factor.failed')
+            ->description('auth:login.two_factor.failed')
             ->causer($this->user->username)
             ->subject($this->user->username)
-            ->performedBy($this->user->id)
+            ->performedBy($this->user)
             ->save();
 
         throw ValidationException::withMessages([

@@ -2,15 +2,18 @@
 
 namespace App\Livewire\Components\Modals\Account;
 
+use App\Facades\UserManager;
 use App\Models\Session;
 use Filament\Notifications\Notification;
-use Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 
 class SetupPassword extends ModalComponent
 {
 
+    public $user;
     public $newPassword;
     public $passwordConfirmation;
 
@@ -20,18 +23,18 @@ class SetupPassword extends ModalComponent
             'passwordConfirmation' => 'required',
         ]);
 
-        auth()->user()->update([
+        $this->user->update([
             'password' => Hash::make($this->newPassword),
         ]);
 
-        Session::logoutOtherDevices();
+        UserManager::getUser($this->user)->getSessionManager()->revokeOtherSessions();
 
         activity()
             ->logName('account')
-            ->logMessage('account:password.setup')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+            ->description('account:password.setup')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
         Notification::make()
@@ -41,6 +44,11 @@ class SetupPassword extends ModalComponent
 
         $this->closeModal();
         $this->dispatch('refresh');
+    }
+
+    public function mount()
+    {
+        $this->user = Auth::user();
     }
 
     #[On('refresh')]

@@ -32,14 +32,14 @@
                                 <div class="h-16 w-16 relative mr-4 group">
                                     <div
                                         class="absolute inset-0 bg-cover bg-center z-0 rounded-3xl group-hover:opacity-70 transition-opacity duration-300"
-                                        style="background-image: url('{{ auth()->user()->getAvatarURL() }}')"></div>
+                                        style="background-image: url('{{ user()->getUser(auth()->user())->getAvatarURL() }}')"></div>
                                     <div
                                         wire:click="$dispatch('openModal', { component: 'components.modals.account.change-avatar' })"
                                         class="opacity-0 group-hover:opacity-100 hover:cursor-pointer duration-300 absolute inset-0 z-10 flex justify-center items-center text-3xl text-white font-semibold">
                                         <i class="icon-upload"></i></div>
                                 </div>
                             @else
-                                <img src="{{ auth()->user()->getAvatarURL() }}"
+                                <img src="{{ user()->getUser(auth()->user())->getAvatarURL() }}"
                                      alt="Avatar" class="h-16 w-16 rounded-3xl mr-4">
                             @endif
                             <div>

@@ -31,7 +31,7 @@ class ActivityTable extends DataTableComponent
             Column::make(__('pages/account/profile.activity.table.log_name'), 'log_name')
                 ->sortable()
                 ->searchable(),
-            Column::make(__('pages/account/profile.activity.table.log_message'), 'log_message')
+            Column::make(__('pages/account/profile.activity.table.description'), 'description')
                 ->sortable()
                 ->searchable(),
             Column::make(__('pages/account/profile.activity.table.subject'), 'subject')

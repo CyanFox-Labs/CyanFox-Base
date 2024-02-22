@@ -6,7 +6,8 @@ use App\Models\User;
 use App\Rules\Password;
 use Exception;
 use Filament\Notifications\Notification;
-use Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
@@ -70,10 +71,10 @@ class UpdateUser extends Component
 
         activity()
             ->logName('admin')
-            ->logMessage('admin:users.update')
-            ->causer(auth()->user()->username)
+            ->description('admin:users.update')
+            ->causer(Auth::user()->username)
             ->subject($this->user->username)
-            ->performedBy(auth()->user()->id)
+            ->performedBy(Auth::user())
             ->save();
 
         Notification::make()
