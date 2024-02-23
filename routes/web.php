@@ -1,6 +1,5 @@
 <?php
 
-use App\Helpers\OAuthHelper;
 use App\Livewire\Account\ForceActivateTwoFactor;
 use App\Livewire\Account\ForceChangePassword;
 use App\Livewire\Account\Profile;
@@ -8,7 +7,7 @@ use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Home;
-use App\Livewire\Installer\Installer;
+use App\Services\Users\OAuthService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,16 +34,16 @@ if (setting('auth_enable')) {
             Route::get('forgot-password/{resetToken}', ForgotPassword::class)->name('auth.forgot-password')->middleware('guest');
         }
 
-        Route::get('{provider}/redirect', [OAuthHelper::class, 'redirectToProvider'])->name('auth.redirect');
+        Route::get('{provider}/redirect', [OAuthService::class, 'redirectToProvider'])->name('auth.redirect');
 
         if (setting('oauth_enable_github')) {
-            Route::get('github/callback', [OAuthHelper::class, 'handleGitHubCallback'])->name('auth.github.callback');
+            Route::get('github/callback', [OAuthService::class, 'handleGitHubCallback'])->name('auth.github.callback');
         }
         if (setting('oauth_enable_gitlab')) {
-            Route::get('gitlab/redirect', [OAuthHelper::class, 'handleDiscordCallback'])->name('auth.gitlab.redirect'); // Not tested yet
+            Route::get('gitlab/redirect', [OAuthService::class, 'handleDiscordCallback'])->name('auth.gitlab.redirect'); // Not tested yet
         }
         if (setting('oauth_enable_google')) {
-            Route::get('google/callback', [OAuthHelper::class, 'handleGoogleCallback'])->name('auth.google.callback'); // Not tested yet
+            Route::get('google/callback', [OAuthService::class, 'handleGoogleCallback'])->name('auth.google.callback'); // Not tested yet
         }
 
         Route::get('logout', function () {

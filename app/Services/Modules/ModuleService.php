@@ -44,7 +44,7 @@ class ModuleService
 
     public function getSettingsPage(string $moduleName): ?string
     {
-        if ($this->hasModuleSettingsPage($moduleName)) {
+        if ($this->hasSettingsPage($moduleName)) {
             return route('modules.' . $moduleName . '.settings');
         }
         return null;

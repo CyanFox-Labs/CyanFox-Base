@@ -10,7 +10,7 @@
     @vite('resources/css/app.js')
 
     @php
-        $unsplash = \App\Helpers\UnsplashHelper::returnBackground();
+        $unsplash = unsplash()->returnBackground()
     @endphp
 </head>
 <body>

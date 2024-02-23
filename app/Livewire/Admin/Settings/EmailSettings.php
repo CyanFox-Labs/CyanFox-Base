@@ -3,7 +3,6 @@
 namespace App\Livewire\Admin\Settings;
 
 use App\Facades\SettingsManager;
-use App\Models\Setting;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -12,8 +11,6 @@ use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
-use Storage;
-use Str;
 
 class EmailSettings extends Component implements HasForms
 {
