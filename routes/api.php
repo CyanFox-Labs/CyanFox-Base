@@ -1,13 +1,13 @@
 <?php
 
-use App\Helpers\UnsplashHelper;
-use App\Helpers\VersionHelper;
 use App\Http\Controllers\API\AccountAPIController;
 use App\Http\Controllers\API\Admin\AdminAPIController;
 use App\Http\Controllers\API\Admin\AdminGroupController;
 use App\Http\Controllers\API\Admin\AdminModuleAPIController;
 use App\Http\Controllers\API\Admin\AdminSettingsAPIController;
 use App\Http\Controllers\API\Admin\AdminUserAPIController;
+use App\Services\Utils\Unsplash\UnsplashService;
+use App\Services\Utils\Version\VersionService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,17 +32,17 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::prefix('unsplash')->group(function () {
-        Route::get('random', [UnsplashHelper::class, 'getRandomUnsplashImage']);
-        Route::get('utm', [UnsplashHelper::class, 'getUTM']);
+        Route::get('random', [UnsplashService::class, 'getRandomUnsplashImage']);
+        Route::get('utm', [UnsplashService::class, 'getUTM']);
     });
 
     Route::prefix('version')->group(function () {
-        Route::get('/dev', [VersionHelper::class, 'isDevVersion']);
-        Route::get('/template', [VersionHelper::class, 'getCurrentTemplateVersion']);
-        Route::get('/project', [VersionHelper::class, 'getCurrentProjectVersion']);
+        Route::get('/dev', [VersionService::class, 'isDevVersion']);
+        Route::get('/template', [VersionService::class, 'getCurrentTemplateVersion']);
+        Route::get('/project', [VersionService::class, 'getCurrentProjectVersion']);
         Route::prefix('remote')->group(function () {
-            Route::get('/template', [VersionHelper::class, 'getRemoteTemplateVersion']);
-            Route::get('/project', [VersionHelper::class, 'getRemoteProjectVersion']);
+            Route::get('/template', [VersionService::class, 'getRemoteTemplateVersion']);
+            Route::get('/project', [VersionService::class, 'getRemoteProjectVersion']);
         });
     });
 

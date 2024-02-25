@@ -22,17 +22,17 @@ return [
             'github_client_secret' => 'Github Client Secret',
             'github_redirect_url' => 'Github Redirect URL',
         ],
-        'gitlab' => [
-            'enable_gitlab_oauth' => 'Enable Gitlab OAuth',
-            'gitlab_client_id' => 'Gitlab Client ID',
-            'gitlab_client_secret' => 'Gitlab Client Secret',
-            'gitlab_redirect_url' => 'Gitlab Redirect URL',
+        'discord' => [
+            'enable_discord_oauth' => 'Enable Discord OAuth',
+            'discord_client_id' => 'Discord Client ID',
+            'discord_client_secret' => 'Discord Client Secret',
+            'discord_redirect_url' => 'Discord Redirect URL',
         ],
     ],
 
     'tabs' => [
         'google' => 'Google',
         'github' => 'Github',
-        'gitlab' => 'Gitlab',
+        'discord' => 'Discord',
     ],
 ];

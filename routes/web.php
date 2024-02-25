@@ -39,8 +39,8 @@ if (setting('auth_enable')) {
         if (setting('oauth_enable_github')) {
             Route::get('github/callback', [OAuthService::class, 'handleGitHubCallback'])->name('auth.github.callback');
         }
-        if (setting('oauth_enable_gitlab')) {
-            Route::get('gitlab/redirect', [OAuthService::class, 'handleDiscordCallback'])->name('auth.gitlab.redirect'); // Not tested yet
+        if (setting('oauth_enable_discord')) {
+            Route::get('discord/callback', [OAuthService::class, 'handleDiscordCallback'])->name('auth.discord.redirect'); // Not tested yet
         }
         if (setting('oauth_enable_google')) {
             Route::get('google/callback', [OAuthService::class, 'handleGoogleCallback'])->name('auth.google.callback'); // Not tested yet

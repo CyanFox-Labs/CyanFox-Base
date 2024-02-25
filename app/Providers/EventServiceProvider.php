@@ -19,10 +19,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-
-            SocialiteWasCalled::class => [
-                DiscordExtendSocialite::class.'@handle',
-            ],
+        ],
+        SocialiteWasCalled::class => [
+            DiscordExtendSocialite::class.'@handle',
         ],
     ];
 

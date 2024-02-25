@@ -49,7 +49,7 @@ class SettingsService
         return $setting;
     }
 
-    public function updateSetting(string $key, string $value, bool $isEncrypted = false): Setting
+    public function updateSetting(string $key, ?string $value, bool $isEncrypted = false): Setting
     {
         $setting = Setting::where('key', $key)->first();
 

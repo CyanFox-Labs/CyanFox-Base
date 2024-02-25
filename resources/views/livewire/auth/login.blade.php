@@ -133,19 +133,19 @@
                         <div
                             class="grid lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))] md:grid-cols-2 grid-cols-1 gap-4">
 
+                            @if(setting('oauth_enable_google'))
+                                <a href="{{ route('auth.redirect', 'google') }}"
+                                   class="btn hover:bg-red-500 bg-red-600 text-white w-full">{!! __('pages/auth/login.login_with.google') !!}</a>
+                            @endif
+
                             @if(setting('oauth_enable_github'))
                                 <a href="{{ route('auth.redirect', 'github') }}"
                                    class="btn hover:bg-gray-950 bg-black text-white w-full">{!! __('pages/auth/login.login_with.github') !!}</a>
                             @endif
 
-                            @if(setting('oauth_enable_gitlab'))
-                                <a href="{{ route('auth.redirect', 'gitlab') }}"
-                                   class="btn hover:bg-orange-500 bg-orange-600 text-white w-full">{!! __('pages/auth/login.login_with.gitlab') !!}</a>
-                            @endif
-
-                            @if(setting('oauth_enable_google'))
-                                <a href="{{ route('auth.redirect', 'google') }}"
-                                   class="btn hover:bg-red-500 bg-red-600 text-white w-full">{!! __('pages/auth/login.login_with.google') !!}</a>
+                            @if(setting('oauth_enable_discord'))
+                                <a href="{{ route('auth.redirect', 'discord') }}"
+                                   class="btn hover:bg-indigo-500 bg-indigo-600 text-white w-full">{!! __('pages/auth/login.login_with.discord') !!}</a>
                             @endif
 
                         </div>

@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Facade;
  * @method static User findUser(int $userId)
  * @method static User findUserByUsername(string $username)
  * @method static User findUserByEmail(string $email)
- * @method static User createUser(array $data)
- * @method static User updateUser(User $user, array $data)
- * @method static void deleteUser(User $user)
  * @method static AuthUserService getUser(User $user)
  */
 class UserManager extends Facade

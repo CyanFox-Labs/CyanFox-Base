@@ -31,20 +31,20 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => env('OAUTH_GOOGLE_CLIENT_ID'),
+        'client_secret' => env('OAUTH_GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('OAUTH_GOOGLE_REDIRECT'),
+    ],
     'github' => [
-        'client_id' => setting('oauth_github_client_id', isConfig: true),
-        'client_secret' => setting('oauth_github_client_secret', true, true),
-        'redirect' => setting('oauth_github_redirect', isConfig: true),
+        'client_id' => env('OAUTH_GITHUB_CLIENT_ID'),
+        'client_secret' => env('OAUTH_GITHUB_CLIENT_SECRET'),
+        'redirect' => env('OAUTH_GITHUB_REDIRECT'),
     ],
     'discord' => [
-        'client_id' => setting('discord_client_id', isConfig: true),
-        'client_secret' => setting('discord_client_secret', true, true),
-        'redirect' => setting('discord_redirect', isConfig: true),
-    ],
-    'google' => [
-        'client_id' => setting('oauth_google_client_id', isConfig: true),
-        'client_secret' => setting('oauth_google_client_secret', true, true),
-        'redirect' => setting('oauth_google_redirect', isConfig: true),
+        'client_id' => env('OAUTH_DISCORD_CLIENT_ID'),
+        'client_secret' => env('OAUTH_DISCORD_CLIENT_SECRET'),
+        'redirect' => env('OAUTH_DISCORD_REDIRECT'),
     ],
 
 ];

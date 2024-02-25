@@ -7,9 +7,9 @@ return [
         'forgot_password' => 'Forgot your password?',
     ],
     'login_with' => [
-        'github' => '<i class="icon-github"></i>',
-        'gitlab' => '<i class="icon-gitlab"></i>',
-        'google' => '<i class="bx bxl-google"></i>',
+        'github' => '<i class="bi bi-github"></i>',
+        'discord' => '<i class="bi bi-discord"></i>',
+        'google' => '<i class="bi bi-google"></i>',
     ],
     'user_not_found' => 'We can\'t find a user with that username.',
     'user_disabled' => 'This user has been disabled.',

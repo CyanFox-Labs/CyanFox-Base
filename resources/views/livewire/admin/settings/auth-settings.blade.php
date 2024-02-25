@@ -39,18 +39,18 @@
 
         <div role="tablist" class="tabs tabs-bordered my-4">
             <a role="tab" class="tab @if($tab == 'google') tab-active @endif"
-               wire:click="$set('tab', 'google')"><i class="icon-chrome pr-2"></i>
+               wire:click="$set('tab', 'google')"><i class="bi bi-google pr-2"></i>
                 <span class="md:block hidden">{{ __('pages/admin/settings/auth_settings.tabs.google') }}</span>
             </a>
 
             <a role="tab" class="tab @if($tab == 'github') tab-active @endif"
-               wire:click="$set('tab', 'github')"><i class="icon-github pr-2"></i>
+               wire:click="$set('tab', 'github')"><i class="bi bi-github pr-2"></i>
                 <span class="md:block hidden">{{ __('pages/admin/settings/auth_settings.tabs.github') }}</span>
             </a>
 
-            <a role="tab" class="tab @if($tab == 'gitlab') tab-active @endif"
-               wire:click="$set('tab', 'gitlab')"><i class="icon-gitlab pr-2"></i>
-                <span class="md:block hidden">{{ __('pages/admin/settings/auth_settings.tabs.gitlab') }}</span>
+            <a role="tab" class="tab @if($tab == 'discord') tab-active @endif"
+               wire:click="$set('tab', 'discord')"><i class="bi bi-discord pr-2"></i>
+                <span class="md:block hidden">{{ __('pages/admin/settings/auth_settings.tabs.discord') }}</span>
             </a>
         </div>
 
@@ -90,21 +90,21 @@
             </div>
         @endif
 
-        @if($tab == 'gitlab')
+        @if($tab == 'discord')
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
-                <x-select label="{{ __('pages/admin/settings/auth_settings.oauth.gitlab.enable_gitlab_oauth') }}"
-                          wire:model="enableGitlabOAuth"
+                <x-select label="{{ __('pages/admin/settings/auth_settings.oauth.discord.enable_discord_oauth') }}"
+                          wire:model="enableDiscordOAuth"
                           class="select select-bordered"
                           :options="$options"></x-select>
 
-                <x-input label="{{ __('pages/admin/settings/auth_settings.oauth.gitlab.gitlab_client_id') }}"
-                         class="input-bordered" wire:model="gitlabClientId"/>
+                <x-input label="{{ __('pages/admin/settings/auth_settings.oauth.discord.discord_client_id') }}"
+                         class="input-bordered" wire:model="discordClientId"/>
 
-                <x-input label="{{ __('pages/admin/settings/auth_settings.oauth.gitlab.gitlab_client_secret') }}"
-                         class="input-bordered" type="password" wire:model="gitlabClientSecret"/>
+                <x-input label="{{ __('pages/admin/settings/auth_settings.oauth.discord.discord_client_secret') }}"
+                         class="input-bordered" type="password" wire:model="discordClientSecret"/>
 
-                <x-input label="{{ __('pages/admin/settings/auth_settings.oauth.gitlab.gitlab_redirect_url') }}"
-                         class="input-bordered" wire:model="gitlabRedirectUrl"/>
+                <x-input label="{{ __('pages/admin/settings/auth_settings.oauth.discord.discord_redirect_url') }}"
+                         class="input-bordered" wire:model="discordRedirectUrl"/>
             </div>
         @endif
 

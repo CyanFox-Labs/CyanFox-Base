@@ -6,7 +6,7 @@ use App\Helpers\UnsplashHelper;
 use App\Models\Session;
 use Exception;
 use Filament\Notifications\Notification;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;

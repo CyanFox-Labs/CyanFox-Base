@@ -22,21 +22,4 @@ class GroupService
     {
         return Role::findByName($groupName);
     }
-
-    public function createGroup(array $data): Role
-    {
-        return Role::create($data);
-    }
-
-    public function updateGroup(Role $group, array $data): Role
-    {
-        $group->update($data);
-        return $group;
-    }
-
-    public function deleteGroup(Role $group): void
-    {
-        $group->delete();
-    }
-
 }

@@ -53,19 +53,13 @@ if (!function_exists('module')) {
 }
 
 if (!function_exists('setting')) {
-    function setting($key = null, $isEncrypted = false, $isConfig = false): null|string|SettingsService
+    function setting($key = null, $isEncrypted = false): null|string|SettingsService
     {
         if ($key == null) {
             return new SettingsService();
         }
 
-        if (!$isConfig) {
-            return SettingsManager::getSetting($key, $isEncrypted);
-        }
-
-        return app()->booted(function () use ($key, $isEncrypted) {
-            return SettingsManager::getSetting($key, $isEncrypted);
-        });
+        return SettingsManager::getSetting($key, $isEncrypted);
     }
 }
 

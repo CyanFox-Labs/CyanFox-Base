@@ -33,10 +33,10 @@ class AuthSettings extends Component
     public $githubClientSecret;
     public $githubRedirectUrl;
 
-    public $enableGitlabOAuth;
-    public $gitlabClientId;
-    public $gitlabClientSecret;
-    public $gitlabRedirectUrl;
+    public $enableDiscordOAuth;
+    public $discordClientId;
+    public $discordClientSecret;
+    public $discordRedirectUrl;
 
     public function mount()
     {
@@ -46,7 +46,7 @@ class AuthSettings extends Component
         ];
 
 
-        if (!in_array($this->tab, ['google', 'github', 'gitlab'])) {
+        if (!in_array($this->tab, ['google', 'github', 'discord'])) {
             $this->tab = 'google';
         }
 
@@ -67,10 +67,10 @@ class AuthSettings extends Component
         $this->githubClientSecret = setting('oauth_github_client_secret', true);
         $this->githubRedirectUrl = setting('oauth_github_redirect');
 
-        $this->enableGitlabOAuth = setting('oauth_enable_gitlab') ? 1 : 0;
-        $this->gitlabClientId = setting('oauth_gitlab_client_id');
-        $this->gitlabClientSecret = setting('oauth_gitlab_client_secret', true);
-        $this->gitlabRedirectUrl = setting('oauth_gitlab_redirect');
+        $this->enableDiscordOAuth = setting('oauth_enable_discord') ? 1 : 0;
+        $this->discordClientId = setting('oauth_discord_client_id');
+        $this->discordClientSecret = setting('oauth_discord_client_secret', true);
+        $this->discordRedirectUrl = setting('oauth_discord_redirect');
     }
 
     public function updateAuthSettings()
@@ -90,10 +90,10 @@ class AuthSettings extends Component
             'githubClientId' => 'nullable|string',
             'githubClientSecret' => 'nullable|string',
             'githubRedirectUrl' => 'nullable|string|url',
-            'enableGitlabOAuth' => 'nullable|boolean',
-            'gitlabClientId' => 'nullable|string',
-            'gitlabClientSecret' => 'nullable|string',
-            'gitlabRedirectUrl' => 'nullable|string|url',
+            'enableDiscordOAuth' => 'nullable|boolean',
+            'discordClientId' => 'nullable|string',
+            'discordClientSecret' => 'nullable|string',
+            'discordRedirectUrl' => 'nullable|string|url',
         ]);
 
         $settings = [
@@ -111,10 +111,10 @@ class AuthSettings extends Component
             'oauth_github_client_id' => $this->githubClientId,
             'oauth_github_client_secret' => $this->githubClientSecret ? encrypt($this->githubClientSecret) : null,
             'oauth_github_redirect' => $this->githubRedirectUrl,
-            'oauth_enable_gitlab' => $this->enableGitlabOAuth,
-            'oauth_gitlab_client_id' => $this->gitlabClientId,
-            'oauth_gitlab_client_secret' => $this->gitlabClientSecret ? encrypt($this->gitlabClientSecret) : null,
-            'oauth_gitlab_redirect' => $this->gitlabRedirectUrl,
+            'oauth_enable_discord' => $this->enableDiscordOAuth,
+            'oauth_discord_client_id' => $this->discordClientId,
+            'oauth_discord_client_secret' => $this->discordClientSecret ? encrypt($this->discordClientSecret) : null,
+            'oauth_discord_redirect' => $this->discordRedirectUrl,
         ];
 
         SettingsManager::updateSettings($settings);
