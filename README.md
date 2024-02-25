@@ -69,7 +69,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Add commands
 - [x] Code refactoring
 - [x] Add discord as socialite provider
-- [ ] Add Laravel pulse to admin dashboard
+- [x] Add Laravel pulse to admin dashboard
 - [ ] Translation renewal with Code cleanup <br>
     - Create new Developer API
     - Update the API to the new system

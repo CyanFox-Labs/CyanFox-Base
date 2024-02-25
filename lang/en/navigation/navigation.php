@@ -12,5 +12,6 @@ return [
         'settings' => 'Settings',
         'modules' => 'Modules',
         'activity' => 'Activity',
+        'pulse' => 'Pulse',
     ],
 ];

@@ -82,6 +82,13 @@
             </div>
         </div>
 
+        <div class="card bg-base-100 shadow-xl">
+            <div class="card-body flex justify-center align-middle text-center">
+                <a href="/pulse"><i class="icon-heart-pulse text-9xl"></i></a>
+                <a href="/pulse">{{ __('navigation/navigation.admin.pulse') }}</a>
+            </div>
+        </div>
+
         @forelse (app('integrate.views')->getAll() as $moduleComponent)
             @if($moduleComponent['section'] == 'dashboard' && $moduleComponent['location'] == 'admin.dashboard')
                 @component($moduleComponent['component'])
