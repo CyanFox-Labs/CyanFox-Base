@@ -2,40 +2,55 @@
 
 namespace App\Livewire\Admin\Groups;
 
+use App\Facades\ActivityLogManager;
+use App\Facades\GroupManager;
 use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 class UpdateGroup extends Component
 {
     public $groupId;
+
     public $group;
 
     public $name;
+
     public $guardName = 'web';
 
     public $permissions = [];
+
     public $selectedPermissions = [];
 
-    public function updateGroup()
+    public function updateGroup(): void
     {
         $this->validate([
-            'name' => 'required|string|unique:roles,name,' . $this->groupId . ',id',
+            'name' => 'required|string|unique:roles,name,'.$this->groupId.',id',
             'guardName' => 'required|string',
         ]);
 
-        $this->group->name = $this->name;
-        $this->group->guard_name = $this->guardName;
-        $this->group->save();
+        try {
+            $this->group->update([
+                'name' => $this->name,
+                'guard_name' => $this->guardName,
+            ]);
 
-        $this->group->syncPermissions($this->selectedPermissions);
+            $this->group->syncPermissions($this->selectedPermissions);
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
 
-        activity()
-            ->logName('admin')
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
+
+        ActivityLogManager::logName('admin')
             ->description('admin:groups.update')
             ->causer(Auth::user()->username)
             ->subject($this->group->name)
@@ -50,17 +65,17 @@ class UpdateGroup extends Component
         $this->redirect(route('admin.groups'), navigate: true);
     }
 
-    public function mount()
+    public function mount(): void
     {
-        try {
-            $this->group = Role::findOrFail($this->groupId);
-        }catch (Exception) {
+        $this->group = GroupManager::findGroup($this->groupId);
+
+        if (!$this->group) {
             abort(404);
         }
 
         $this->name = $this->group->name;
         $this->guardName = $this->group->guard_name;
-        $this->selectedPermissions = $this->group->permissions->pluck('name')->toArray();
+        $this->selectedPermissions = GroupManager::getPermissionsFromGroup($this->group);
 
         $this->permissions = Permission::all()->pluck('name', 'name')->toArray();
     }

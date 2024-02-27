@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Admin\Settings;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\SettingsManager;
-use App\Models\Setting;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -14,19 +14,68 @@ class SystemSettings extends Component
     public $timeZones = [];
 
     public $appName;
+
     public $appUrl;
+
     public $appLang;
+
     public $appTimezone;
 
     public $unsplashUtm;
+
     public $unsplashApiKey;
 
     public $projectVersionUrl;
+
     public $templateVersionUrl;
+
     public $iconUrl;
 
+    public function updateSystemSettings(): void
+    {
 
-    public function mount()
+        $this->validate([
+            'appName' => 'nullable',
+            'appUrl' => 'nullable|url',
+            'appLang' => 'nullable',
+            'appTimezone' => 'nullable',
+            'unsplashUtm' => 'nullable',
+            'unsplashApiKey' => 'nullable',
+            'projectVersionUrl' => 'nullable|url',
+            'templateVersionUrl' => 'nullable|url',
+            'iconUrl' => 'nullable|url',
+        ]);
+
+        $settings = [
+            'app_name' => $this->appName,
+            'app_url' => $this->appUrl,
+            'app_lang' => $this->appLang,
+            'app_timezone' => $this->appTimezone,
+            'unsplash_utm' => $this->unsplashUtm,
+            'unsplash_api_key' => $this->unsplashApiKey ? encrypt($this->unsplashApiKey) : null,
+            'project_version_url' => $this->projectVersionUrl,
+            'template_version_url' => $this->templateVersionUrl,
+            'icon_url' => $this->iconUrl,
+        ];
+
+        SettingsManager::updateSettings($settings);
+
+        ActivityLogManager::logName('admin')
+            ->description('admin:settings.update')
+            ->causer(Auth::user()->username)
+            ->subject('system-settings')
+            ->performedBy(Auth::user())
+            ->save();
+
+        Notification::make()
+            ->success()
+            ->title(__('pages/admin/settings/settings.notifications.settings_updated'))
+            ->send();
+
+        $this->redirect(route('admin.settings', ['tab' => 'settings']), navigate: true);
+    }
+
+    public function mount(): void
     {
 
         /* Timezones */
@@ -56,52 +105,6 @@ class SystemSettings extends Component
         $this->projectVersionUrl = setting('project_version_url');
         $this->templateVersionUrl = setting('template_version_url');
         $this->iconUrl = setting('icon_url');
-    }
-
-    public function updateSystemSettings()
-    {
-
-        $this->validate([
-            'appName' => 'nullable',
-            'appUrl' => 'nullable|url',
-            'appLang' => 'nullable',
-            'appTimezone' => 'nullable',
-            'unsplashUtm' => 'nullable',
-            'unsplashApiKey' => 'nullable',
-            'projectVersionUrl' => 'nullable|url',
-            'templateVersionUrl' => 'nullable|url',
-            'iconUrl' => 'nullable|url'
-        ]);
-
-
-        $settings = [
-            'app_name' => $this->appName,
-            'app_url' => $this->appUrl,
-            'app_lang' => $this->appLang,
-            'app_timezone' => $this->appTimezone,
-            'unsplash_utm' => $this->unsplashUtm,
-            'unsplash_api_key' => $this->unsplashApiKey ? encrypt($this->unsplashApiKey) : null,
-            'project_version_url' => $this->projectVersionUrl,
-            'template_version_url' => $this->templateVersionUrl,
-            'icon_url' => $this->iconUrl,
-        ];
-
-        SettingsManager::updateSettings($settings);
-
-        activity()
-            ->logName('admin')
-            ->description('admin:settings.update')
-            ->causer(Auth::user()->username)
-            ->subject('system-settings')
-            ->performedBy(Auth::user())
-            ->save();
-
-        Notification::make()
-            ->success()
-            ->title(__('pages/admin/settings/settings.notifications.settings_updated'))
-            ->send();
-
-        $this->dispatch('refresh');
     }
 
     #[On('refresh')]

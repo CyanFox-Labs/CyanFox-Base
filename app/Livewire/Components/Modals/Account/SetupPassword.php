@@ -2,8 +2,9 @@
 
 namespace App\Livewire\Components\Modals\Account;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\UserManager;
-use App\Models\Session;
+use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,25 +13,37 @@ use LivewireUI\Modal\ModalComponent;
 
 class SetupPassword extends ModalComponent
 {
-
     public $user;
+
     public $newPassword;
+
     public $passwordConfirmation;
 
-    public function setupPassword() {
+    public function setupPassword(): void
+    {
         $this->validate([
             'newPassword' => 'required|max:255|same:passwordConfirmation',
             'passwordConfirmation' => 'required',
         ]);
 
-        $this->user->update([
-            'password' => Hash::make($this->newPassword),
-        ]);
+        try {
+            $this->user->update([
+                'password' => Hash::make($this->newPassword),
+            ]);
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
+
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
 
         UserManager::getUser($this->user)->getSessionManager()->revokeOtherSessions();
 
-        activity()
-            ->logName('account')
+        ActivityLogManager::logName('account')
             ->description('account:password.setup')
             ->causer($this->user->username)
             ->subject($this->user->username)
@@ -46,7 +59,7 @@ class SetupPassword extends ModalComponent
         $this->dispatch('refresh');
     }
 
-    public function mount()
+    public function mount(): void
     {
         $this->user = Auth::user();
     }

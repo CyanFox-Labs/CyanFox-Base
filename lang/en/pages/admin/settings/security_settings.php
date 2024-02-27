@@ -22,7 +22,7 @@ return [
         '17' => '>= 17 Characters',
         '18' => '>= 18 Characters',
         '19' => '>= 19 Characters',
-        '20' => '>= 20 Characters'
+        '20' => '>= 20 Characters',
     ],
 
     'password_require_numbers' => 'Password Require Numbers',

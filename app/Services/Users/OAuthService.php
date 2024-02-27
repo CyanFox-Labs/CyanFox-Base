@@ -24,14 +24,14 @@ class OAuthService
             $user = User::where('github_id', $githubUser->id)->first();
 
             if (!$user) {
-                $user = new User();
+                $user = new User;
                 $user->github_id = $githubUser->id;
                 $user->username = $githubUser->name;
 
                 try {
                     $user->save();
                 } catch (Exception) {
-                    $user->username = $githubUser->name . '_' . Str::random(5);
+                    $user->username = $githubUser->name.'_'.Str::random(5);
                     $user->save();
                 }
             }
@@ -43,7 +43,6 @@ class OAuthService
             return redirect()->route('auth.login');
         }
     }
-
 
     public function handleGoogleCallback(): RedirectResponse
     {
@@ -53,14 +52,14 @@ class OAuthService
             $user = User::where('google_id', $googleUser->id)->first();
 
             if (!$user) {
-                $user = new User();
+                $user = new User;
                 $user->google_id = $googleUser->id;
                 $user->username = $googleUser->name;
 
                 try {
                     $user->save();
                 } catch (Exception) {
-                    $user->username = $googleUser->name . '_' . Str::random(5);
+                    $user->username = $googleUser->name.'_'.Str::random(5);
                     $user->save();
                 }
             }
@@ -73,7 +72,6 @@ class OAuthService
         }
     }
 
-
     public function handleDiscordCallback(): RedirectResponse
     {
         try {
@@ -82,16 +80,16 @@ class OAuthService
             $user = User::where('discord_id', $discordUser->id)->first();
 
             if (!$user) {
-                $user = new User();
+                $user = new User;
                 $user->discord_id = $discordUser->id;
                 $user->username = $discordUser->name;
 
-                Storage::disk('public')->put('avatars/' . $discordUser->id . '.png', file_get_contents($discordUser->avatar));
+                Storage::disk('public')->put('avatars/'.$discordUser->id.'.png', file_get_contents($discordUser->avatar));
 
                 try {
                     $user->save();
                 } catch (Exception) {
-                    $user->username = $discordUser->name . '_' . Str::random(5);
+                    $user->username = $discordUser->name.'_'.Str::random(5);
                     $user->save();
                 }
             }

@@ -11,12 +11,12 @@ class Password implements ValidationRule
     /**
      * Run the validation rule.
      *
-     * @param \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString $fail
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $rules = [
-            'min:' . setting('security_password_minimum_length'),
+            'min:'.setting('security_password_minimum_length'),
         ];
 
         $messages = ['min' => __('validation.size.string', ['attribute' => $attribute, 'size' => setting('security_password_minimum_length')])];
@@ -45,7 +45,7 @@ class Password implements ValidationRule
 
         if ($validator->fails()) {
             $errors = $validator->errors()->getMessages();
-            foreach ($errors[$attribute] as $error){
+            foreach ($errors[$attribute] as $error) {
                 $fail($error);
             }
         }

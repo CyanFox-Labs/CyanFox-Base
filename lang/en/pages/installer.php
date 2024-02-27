@@ -17,8 +17,8 @@ return [
             ],
             'error' => [
                 'title' => 'Connection failed',
-            ]
-        ]
+            ],
+        ],
     ],
 
     'system' => [
@@ -50,7 +50,7 @@ return [
             'hints' => [
                 'title' => 'You can use the following variables: {username}, {firstName}, {lastName}, {password}, {loginLink}, {appName}',
                 'subject' => 'You can use the following variables: {username}, {firstName}, {lastName}, {password}, {loginLink}, {appName}',
-                'content' => 'You can use the following variables: {username}, {firstName}, {lastName}, {password}, {loginLink}, {appName}'
+                'content' => 'You can use the following variables: {username}, {firstName}, {lastName}, {password}, {loginLink}, {appName}',
             ],
         ],
 
@@ -62,7 +62,7 @@ return [
             'hints' => [
                 'title' => 'You can use the following variables: {username}, {firstName}, {lastName}, {ipAddress}, {userAgent}',
                 'subject' => 'You can use the following variables: {username}, {firstName}, {lastName}, {ipAddress}, {userAgent}',
-                'content' => 'You can use the following variables: {username}, {firstName}, {lastName}, {ipAddress}, {userAgent}'
+                'content' => 'You can use the following variables: {username}, {firstName}, {lastName}, {ipAddress}, {userAgent}',
             ],
         ],
 
@@ -73,7 +73,7 @@ return [
             'hints' => [
                 'title' => 'You can use the following variables: {username}, {firstName}, {lastName}',
                 'subject' => 'You can use the following variables: {username}, {firstName}, {lastName}',
-                'content' => 'You can use the following variables: {username}, {firstName}, {lastName}, {loginLink}'
+                'content' => 'You can use the following variables: {username}, {firstName}, {lastName}, {loginLink}',
             ],
         ],
     ],

@@ -2,12 +2,14 @@
 
 namespace App\Livewire\Auth;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\UserManager;
 use App\Facades\Utils\UnsplashManager;
 use App\Models\User;
 use App\Rules\Password;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
+use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -26,32 +28,24 @@ class Register extends Component
     public $user;
 
     public $firstName;
+
     public $lastName;
+
     public $username;
+
     public $email;
+
     public $password;
+
     public $passwordConfirmation;
 
     public $rateLimitTime;
-    public $captcha;
 
+    public $captcha;
 
     public $language;
 
-    public function mount()
-    {
-        $unsplash = UnsplashManager::returnBackground();
-
-        $this->unsplash = $unsplash;
-
-        if ($unsplash['error'] != null) {
-            $this->dispatch('logger', ['type' => 'error', 'message' => $unsplash['error']]);
-        }
-
-        $this->language = Request::cookie('language');
-    }
-
-    public function changeLanguage($language)
+    public function changeLanguage($language): void
     {
         cookie()->queue(cookie()->forget('language'));
         cookie()->queue(cookie()->forever('language', $language));
@@ -64,18 +58,20 @@ class Register extends Component
         $this->dispatch('refresh');
     }
 
-    public function setRateLimit()
+    public function setRateLimit(): bool
     {
         try {
             $this->rateLimit(10);
         } catch (TooManyRequestsException $exception) {
             $this->rateLimitTime = $exception->secondsUntilAvailable;
+
             return true;
         }
+
         return false;
     }
 
-    public function register()
+    public function register(): void
     {
         $this->validate([
             'firstName' => 'required|max:255',
@@ -95,23 +91,33 @@ class Register extends Component
 
             if ($validator->fails()) {
                 throw ValidationException::withMessages([
-                    'captcha' => __('validation.custom.invalid_captcha')
+                    'captcha' => __('validation.custom.invalid_captcha'),
                 ]);
             }
         }
 
-        $user = User::create([
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'username' => $this->username,
-            'email' => $this->email,
-            'password' => Hash::make($this->password),
-        ]);
+        try {
+            $user = User::create([
+                'first_name' => $this->firstName,
+                'last_name' => $this->lastName,
+                'username' => $this->username,
+                'email' => $this->email,
+                'password' => Hash::make($this->password),
+            ]);
 
-        UserManager::getUser($user)->getTwoFactorManager()->generateTwoFactorSecret();
+            UserManager::getUser($user)->getTwoFactorManager()->generateTwoFactorSecret();
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
 
-        activity()
-            ->logName('auth')
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
+
+        ActivityLogManager::logName('auth')
             ->description('auth:register.success')
             ->causer($user->username)
             ->subject($user->username)
@@ -128,11 +134,24 @@ class Register extends Component
         $this->redirect(route('home'));
     }
 
+    public function mount(): void
+    {
+        $unsplash = UnsplashManager::returnBackground();
+
+        $this->unsplash = $unsplash;
+
+        if ($unsplash['error'] != null) {
+            $this->dispatch('logger', ['type' => 'error', 'message' => $unsplash['error']]);
+        }
+
+        $this->language = Request::cookie('language');
+    }
+
     #[On('refresh')]
     public function render()
     {
         return view('livewire.auth.register')->layout('components.layouts.guest', [
-            'title' => __('navigation/titles.register')
+            'title' => __('navigation/titles.register'),
         ]);
     }
 }

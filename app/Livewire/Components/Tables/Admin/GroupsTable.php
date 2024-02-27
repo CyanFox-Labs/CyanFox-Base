@@ -17,7 +17,7 @@ class GroupsTable extends DataTableComponent
         $this->setPrimaryKey('id');
 
         $this->setConfigurableAreas([
-            'toolbar-left-start' => 'components.tables.admin.create-group'
+            'toolbar-left-start' => 'components.tables.admin.create-group',
         ]);
     }
 
@@ -42,12 +42,11 @@ class GroupsTable extends DataTableComponent
 
                     if ($row->name !== 'Super Admin') {
                         return
-                            '<a href="' . route('admin.groups.update', ['groupId' => $row->id]) . '" wire:navigate><i class="icon-pen font-semibold text-lg text-blue-600 px-2"></i></a>' .
+                            '<a href="'.route('admin.groups.update', ['groupId' => $row->id]).'" wire:navigate><i class="icon-pen font-semibold text-lg text-blue-600 px-2"></i></a>'.
                             '<i wire:click="$dispatch(`openModal`, { component: `components.modals.admin.groups.delete-group`,
-                        arguments: { groupId: `' . $row->id . '` } })" class="icon-trash font-semibold text-lg text-red-600 cursor-pointer"></i>';
+                        arguments: { groupId: `'.$row->id.'` } })" class="icon-trash font-semibold text-lg text-red-600 cursor-pointer"></i>';
                     }
 
-                    return null;
                 })
                 ->html(),
         ];

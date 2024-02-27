@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckLanguage
@@ -16,24 +18,24 @@ class CheckLanguage
     public function handle(Request $request, Closure $next): Response
     {
 
-        if (auth()->user()) {
-            if (auth()->user()->language) {
-                app()->setLocale(auth()->user()->language);
-                return $next($request);
-            }
+        if (Auth::check() && Auth::user()->language) {
+            App::setLocale(Auth::user()->language);
+
+            return $next($request);
         }
 
         $language = $request->cookie('language');
 
         if ($language) {
-            app()->setLocale($language);
+            App::setLocale($language);
+
             return $next($request);
-        }else{
-            app()->setLocale(config('app.locale'));
+        } else {
+            App::setLocale(setting('app_lang'));
             $response = $next($request);
 
             if ($response instanceof \Illuminate\Http\Response) {
-                $response->withCookie(cookie()->forever('language', config('app.locale')));
+                $response->withCookie(cookie()->forever('language', setting('app_lang')));
             }
 
             return $response;

@@ -3,8 +3,6 @@
 namespace Tests\Feature\Livewire\Components\Modals\Admin\Groups;
 
 use App\Livewire\Components\Modals\Admin\Groups\DeleteGroup;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Tests\TestCase;
 

@@ -2,29 +2,30 @@
 
 namespace App\Livewire\Components\Tables\Account;
 
+use App\Facades\UserManager;
+use App\Models\Session;
 use Carbon\Carbon;
 use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Jenssegers\Agent\Agent;
 use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\Session;
 
 class SessionsTable extends DataTableComponent
 {
-
     #[On('refresh')]
     public function builder(): Builder
     {
-        return Session::query()->where('user_id', auth()->user()->id);
+        return Session::query()->where('user_id', Auth::user()->id);
     }
 
     public function configure(): void
     {
         $this->setPrimaryKey('id');
         $this->setConfigurableAreas([
-            'toolbar-left-start' => 'components.tables.account.logout-other-devices'
+            'toolbar-left-start' => 'components.tables.account.logout-other-devices',
         ]);
     }
 
@@ -46,12 +47,12 @@ class SessionsTable extends DataTableComponent
                     $agent->setUserAgent($userAgent);
 
                     if ($agent->isDesktop()) {
-                        return '<i class="icon-monitor"></i> ' . __('pages/account/profile.sessions.device_types.desktop');
-                    } else if ($agent->isPhone()) {
-                        return ($agent->isPhone() ? '<i class="icon-smartphone"></i> ' . __('pages/account/profile.sessions.device_types.phone') :
-                            '<i class="icon-tablet"></i> ' . __('pages/account/profile.sessions.device_types.tablet'));
+                        return '<i class="icon-monitor"></i> '.__('pages/account/profile.sessions.device_types.desktop');
+                    } elseif ($agent->isPhone()) {
+                        return $agent->isPhone() ? '<i class="icon-smartphone"></i> '.__('pages/account/profile.sessions.device_types.phone') :
+                            '<i class="icon-tablet"></i> '.__('pages/account/profile.sessions.device_types.tablet');
                     } else {
-                        return '<i class="icon-monitor-smartphone text-lg"></i> ' . __('pages/account/profile.sessions.device_types.unknown');
+                        return '<i class="icon-monitor-smartphone text-lg"></i> '.__('pages/account/profile.sessions.device_types.unknown');
                     }
                 })->html(),
             Column::make(__('pages/account/profile.sessions.table.last_activity'), 'last_activity')
@@ -63,9 +64,10 @@ class SessionsTable extends DataTableComponent
             Column::make('Action')
                 ->label(function ($row) {
                     if ($row->id !== session()->getId()) {
-                        return '<i wire:click="logout(`' . $row->id . '`)" class="icon-log-out font-semibold text-lg text-orange-600 cursor-pointer"></i>';
+                        return '<i wire:click="logout(`'.$row->id.'`)" class="icon-log-out font-semibold text-lg text-orange-600 cursor-pointer"></i>';
                     }
-                    return '<span class="badge badge-success">' . __('pages/account/profile.sessions.current_session') . '</span>';
+
+                    return '<span class="badge badge-success">'.__('pages/account/profile.sessions.current_session').'</span>';
                 })
                 ->html(),
         ];
@@ -73,13 +75,7 @@ class SessionsTable extends DataTableComponent
 
     public function logout($id)
     {
-        $session = Session::where('id', $id)->first();
-
-        if ($session === null) {
-            return;
-        }
-
-        $session->delete();
+        UserManager::getUser(Auth::user())->getSessionManager()->deleteSession($id);
 
         Notification::make()
             ->title(__('pages/account/profile.notifications.session_logged_out'))

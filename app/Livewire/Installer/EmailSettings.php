@@ -2,12 +2,11 @@
 
 namespace App\Livewire\Installer;
 
-use App\Models\Setting;
+use App\Facades\SettingsManager;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
-use Filament\Notifications\Notification;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -18,16 +17,23 @@ class EmailSettings extends Component implements HasForms
     public $tab;
 
     public $welcomeEmailTitle;
+
     public $welcomeEmailSubject;
+
     public ?array $welcomeEmailData = [];
 
     public $enableLoginEmail = true;
+
     public $loginEmailTitle;
+
     public $loginEmailSubject;
+
     public ?array $loginEmailData = [];
 
     public $forgotPasswordEmailTitle;
+
     public $forgotPasswordEmailSubject;
+
     public ?array $forgotPasswordEmailData = [];
 
     protected function getForms(): array
@@ -81,7 +87,7 @@ class EmailSettings extends Component implements HasForms
             ->statePath('forgotPasswordEmailData');
     }
 
-    public function saveEmailSettings()
+    public function saveEmailSettings(): void
     {
         $this->validate([
             'welcomeEmailTitle' => 'required|string',
@@ -106,15 +112,12 @@ class EmailSettings extends Component implements HasForms
             'emails_forgot_password_content' => $this->forgotPasswordEmailData['forgotPasswordEmailContent'],
         ];
 
-        foreach ($settings as $key => $value) {
-            Setting::where('key', $key)->update(['value' => $value]);
-        }
+        SettingsManager::updateSettings($settings);
 
         $this->dispatch('changeStep', 'createUser');
     }
 
-
-    public function mount()
+    public function mount(): void
     {
         if (!in_array($this->tab, ['welcome', 'login', 'forgotPassword'])) {
             $this->tab = 'welcome';

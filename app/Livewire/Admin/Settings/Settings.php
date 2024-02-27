@@ -8,7 +8,6 @@ use Livewire\Component;
 
 class Settings extends Component
 {
-
     #[Url]
     public $tab = 'system';
 

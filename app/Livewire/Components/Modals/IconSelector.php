@@ -8,12 +8,14 @@ use LivewireUI\Modal\ModalComponent;
 class IconSelector extends ModalComponent
 {
     public $icons;
+
     public $search;
+
     private $data;
 
-    function setIcon($icon)
+    public function setIcon($icon): void
     {
-        if(!in_array($icon, $this->icons)) {
+        if (!in_array($icon, $this->icons)) {
             return;
         }
 
@@ -21,15 +23,16 @@ class IconSelector extends ModalComponent
         $this->dispatch('updateIcon', $icon);
     }
 
-    function getIcons(): array
+    public function getIcons(): array
     {
         $icons = array_keys($this->data);
-        return array_map(function($icon) {
-            return 'icon-' . $icon;
+
+        return array_map(function ($icon) {
+            return 'icon-'.$icon;
         }, $icons);
     }
 
-    function searchIcon(): array
+    public function searchIcon(): array
     {
         $results = [];
         $searchTerm = $this->search;
@@ -39,24 +42,26 @@ class IconSelector extends ModalComponent
         $searchTerm = str_replace(' ', '-', strtolower($searchTerm));
 
         foreach ($this->data as $icon => $categories) {
-            if(strpos($icon, $searchTerm) !== false) {
-                $results[] = 'icon-' . $icon;
+            if (strpos($icon, $searchTerm) !== false) {
+                $results[] = 'icon-'.$icon;
+
                 continue;
             }
 
             foreach ($categories as $category) {
-                if(strpos($category, $searchTerm) !== false) {
-                    $results[] = 'icon-' . $icon;
+                if (strpos($category, $searchTerm) !== false) {
+                    $results[] = 'icon-'.$icon;
                     break;
                 }
             }
         }
 
         $this->icons = $results;
+
         return $results;
     }
 
-    public function mount()
+    public function mount(): void
     {
         $strJsonFileContents = file_get_contents(setting('icon_url'));
         $this->data = json_decode($strJsonFileContents, true);

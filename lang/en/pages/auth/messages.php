@@ -12,6 +12,6 @@ return [
     ],
 
     'notifications' => [
-        'language_changed' => 'Language changed successfully.'
-    ]
+        'language_changed' => 'Language changed successfully.',
+    ],
 ];

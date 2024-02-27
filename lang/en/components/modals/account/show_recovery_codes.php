@@ -11,6 +11,6 @@ return [
 
     'buttons' => [
         'regenerate' => 'Regenerate',
-        'download' => 'Download'
-    ]
+        'download' => 'Download',
+    ],
 ];

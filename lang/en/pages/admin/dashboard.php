@@ -14,7 +14,7 @@ return [
     'no_new_project_version_available' => 'No new project version available',
 
     'buttons' => [
-        'check_for_updates' => 'Check for updates'
+        'check_for_updates' => 'Check for updates',
     ],
 
 ];

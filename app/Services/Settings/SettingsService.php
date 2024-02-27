@@ -7,8 +7,7 @@ use Exception;
 
 class SettingsService
 {
-
-    public function getSetting(string $key, bool $isEncrypted): ?string
+    public function getSetting(string $key, bool $isEncrypted = false): ?string
     {
         $setting = Setting::where('key', $key)->first();
 
@@ -19,7 +18,7 @@ class SettingsService
         if ($isEncrypted) {
             try {
                 return decrypt($setting->value);
-            }catch (Exception) {
+            } catch (Exception) {
                 return $setting->value;
             }
         }
@@ -31,12 +30,12 @@ class SettingsService
         };
     }
 
-    public function setSetting(string $key, string $value = null, bool $isEncrypted = false): Setting
+    public function setSetting(string $key, ?string $value = null, bool $isEncrypted = false): Setting
     {
         $setting = Setting::where('key', $key)->first();
 
         if ($setting == null) {
-            $setting = new Setting();
+            $setting = new Setting;
             $setting->key = $key;
             if ($value != null) {
                 $setting->value = ($isEncrypted) ? encrypt($value) : $value;

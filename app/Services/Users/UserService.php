@@ -4,16 +4,9 @@ namespace App\Services\Users;
 
 use App\Models\User;
 use App\Services\Users\Auth\AuthUserService;
-use Illuminate\Support\Collection;
 
 class UserService
 {
-    public function getAllUsers(): Collection
-    {
-        return User::all();
-    }
-
-
     public function findUser(int $userId): ?User
     {
         return User::find($userId);
@@ -27,6 +20,11 @@ class UserService
     public function findUserByEmail(string $email): ?User
     {
         return User::where('email', $email)->first();
+    }
+
+    public function getOAuthManager(): OAuthService
+    {
+        return new OAuthService();
     }
 
     public function getUser(User $user): AuthUserService

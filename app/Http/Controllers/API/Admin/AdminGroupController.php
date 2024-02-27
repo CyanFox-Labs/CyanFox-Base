@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\API\Admin;
 
+use App\Facades\GroupManager;
 use App\Http\Controllers\Controller;
-use Exception;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Knuckles\Scribe\Attributes\Authenticated;
 use Knuckles\Scribe\Attributes\BodyParam;
@@ -11,20 +13,19 @@ use Knuckles\Scribe\Attributes\Group;
 use Knuckles\Scribe\Attributes\Subgroup;
 use Spatie\Permission\Models\Role;
 
-#[Group("Admin", "Admin Management")]
-#[Subgroup("Groups", "Manage Groups")]
+#[Group('Admin', 'Admin Management')]
+#[Subgroup('Groups', 'Manage Groups')]
 #[Authenticated]
 class AdminGroupController extends Controller
 {
-
-    public function getAllGroups()
+    public function getAllGroups(): Collection
     {
         return Role::all();
     }
 
-    public function getGroup($userId)
+    public function getGroup(int $groupId): Role|JsonResponse
     {
-        $group = Role::find($userId);
+        $group = GroupManager::findGroup($groupId);
 
         if (!$group) {
             return response()->json([
@@ -35,29 +36,21 @@ class AdminGroupController extends Controller
         return $group;
     }
 
-    #[BodyParam("name", description: "Name of the group", example: "Super Admin")]
-    #[BodyParam("guard_name", description: "Guard name of the group", example: "web")]
-    #[BodyParam("permissions", description: "Permissions of the group", example: ['create user'])]
-    public function createGroup(Request $request)
+    #[BodyParam('name', description: 'Name of the group', example: 'Super Admin')]
+    #[BodyParam('guard_name', description: 'Guard name of the group', example: 'web')]
+    #[BodyParam('permissions', description: 'Permissions of the group', example: ['create user'])]
+    public function createGroup(Request $request): Role
     {
         $this->validate($request, [
-            'name' => 'required|string',
+            'name' => 'required|string|unique:roles,name',
             'guard_name' => 'required|string',
             'permissions' => 'nullable|array',
         ]);
 
-        $group = new Role();
-        $group->name = $request->input('name');
-        $group->guard_name = $request->input('guard_name');
-
-        try {
-            $group->save();
-        } catch (Exception $e) {
-            return response()->json([
-                'message' => 'Failed to create group',
-                'error' => $e->getMessage(),
-            ], 500);
-        }
+        $group = Role::create([
+            'name' => $request->input('name'),
+            'guard_name' => $request->input('guard_name'),
+        ]);
 
         if ($request->input('permissions')) {
             $group->syncPermissions($request->input('permissions'));
@@ -66,12 +59,12 @@ class AdminGroupController extends Controller
         return $group;
     }
 
-    #[BodyParam("name", description: "Name of the group", example: "Super Admin")]
-    #[BodyParam("guard_name", description: "Guard name of the group", example: "web")]
-    #[BodyParam("permissions", description: "Permissions of the group", example: ['create user'])]
-    public function updateGroup(Request $request, $userId)
+    #[BodyParam('name', description: 'Name of the group', example: 'Super Admin')]
+    #[BodyParam('guard_name', description: 'Guard name of the group', example: 'web')]
+    #[BodyParam('permissions', description: 'Permissions of the group', example: ['create user'])]
+    public function updateGroup(Request $request, int $groupId): Role|JsonResponse
     {
-        $group = Role::find($userId);
+        $group = GroupManager::findGroup($groupId);
 
         if (!$group) {
             return response()->json([
@@ -80,22 +73,15 @@ class AdminGroupController extends Controller
         }
 
         $this->validate($request, [
-            'name' => 'required|string',
+            'name' => 'required|string|unique:roles,name,'.$group->id,
             'guard_name' => 'required|string',
             'permissions' => 'nullable|array',
         ]);
 
-        $group->name = $request->input('name');
-        $group->guard_name = $request->input('guard_name');
-
-        try {
-            $group->save();
-        } catch (Exception $e) {
-            return response()->json([
-                'message' => 'Failed to update group',
-                'error' => $e->getMessage(),
-            ], 500);
-        }
+        $group->update([
+            'name' => $request->input('name'),
+            'guard_name' => $request->input('guard_name'),
+        ]);
 
         if ($request->input('permissions')) {
             $group->syncPermissions($request->input('permissions'));
@@ -104,18 +90,20 @@ class AdminGroupController extends Controller
         return $group;
     }
 
-    public function deleteGroup($userId)
+    public function deleteGroup(int $groupId): JsonResponse
     {
-        $group = Role::find($userId);
+        $group = GroupManager::findGroup($groupId);
+
         if (!$group) {
             return response()->json([
-                'message' => 'Group not found'
+                'message' => 'Group not found',
             ], 404);
         }
 
         $group->delete();
+
         return response()->json([
-            'message' => 'Group deleted'
+            'message' => 'Group deleted',
         ]);
     }
 }

@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Console\Command;
 use Jackiedo\DotenvEditor\Facades\DotenvEditor;
 use PDO;
+
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\password;
 use function Laravel\Prompts\text;
@@ -29,7 +30,7 @@ class DatabaseSettings extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $host = text('Database Host', config('database.connections.mysql.host'), config('database.connections.mysql.host'), required: true);
         $port = text('Database Port', config('database.connections.mysql.port'), config('database.connections.mysql.port'), required: true);
@@ -58,7 +59,7 @@ class DatabaseSettings extends Command
         if ($migrate) {
             try {
                 $this->call('migrate');
-            }catch (Exception $e) {
+            } catch (Exception $e) {
                 $this->warn('Database migration failed.');
                 $this->warn($e->getMessage());
             }
@@ -73,13 +74,14 @@ class DatabaseSettings extends Command
 
     }
 
-    public function testConnection($host, $port, $database, $username, $password)
+    public function testConnection(string $host, int $port, string $database, string $username, string $password): bool
     {
         try {
             $connection = new PDO("mysql:host={$host};port={$port};dbname={$database}", $username, $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception) {
             return false;
         }
 

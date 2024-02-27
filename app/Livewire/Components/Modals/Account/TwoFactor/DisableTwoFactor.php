@@ -2,63 +2,65 @@
 
 namespace App\Livewire\Components\Modals\Account\TwoFactor;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\UserManager;
 use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 
 class DisableTwoFactor extends ModalComponent
 {
-
     public $password;
+
     public $user;
 
-    function disableTwoFactor()
+    public function disableTwoFactor(): void
     {
-        if (!Auth::validate(['email' => $this->user->email, 'password' => $this->password])) {
-            throw ValidationException::withMessages([
-                'password' => __('validation.current_password')
-            ]);
-        }
+        if (Hash::make($this->password, $this->user->password)) {
+            try {
+                UserManager::getUser($this->user)->getTwoFactorManager()->generateTwoFactorSecret();
+                UserManager::getUser($this->user)->getTwoFactorManager()->generateRecoveryCodes();
 
-        try {
-            UserManager::getUser($this->user)->getTwoFactorManager()->generateTwoFactorSecret();
-            UserManager::getUser($this->user)->getTwoFactorManager()->generateRecoveryCodes();
+                $this->user->update([
+                    'two_factor_enabled' => false,
+                ]);
+            } catch (Exception $e) {
+                Notification::make()
+                    ->title(__('messages.notifications.something_went_wrong'))
+                    ->danger()
+                    ->send();
 
-            $this->user->update([
-                'two_factor_enabled' => false
-            ]);
-        }catch (Exception $e) {
+                $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+                return;
+            }
+
+            ActivityLogManager::logName('account')
+                ->description('account:two_factor.disable')
+                ->causer($this->user->username)
+                ->subject($this->user->username)
+                ->performedBy($this->user)
+                ->save();
+
             Notification::make()
-                ->title(__('messages.notifications.something_went_wrong'))
-                ->danger()
+                ->title(__('components/modals/account/disable_two_factor.notifications.two_factor_disabled'))
+                ->success()
                 ->send();
 
-            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
-            return;
+            $this->closeModal();
+            $this->dispatch('refresh');
+        } else {
+            throw ValidationException::withMessages([
+                'password' => __('validation.current_password'),
+            ]);
         }
-
-        activity()
-            ->logName('account')
-            ->description('account:two_factor.disable')
-            ->causer($this->user->username)
-            ->subject($this->user->username)
-            ->performedBy($this->user)
-            ->save();
-
-        Notification::make()
-            ->title(__('components/modals/account/disable_two_factor.notifications.two_factor_disabled'))
-            ->success()
-            ->send();
-
-        $this->closeModal();
-        $this->dispatch('refresh');
     }
 
-    public function mount()
+    public function mount(): void
     {
         $this->user = Auth::user();
     }

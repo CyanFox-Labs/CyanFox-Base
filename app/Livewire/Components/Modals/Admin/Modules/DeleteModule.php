@@ -2,18 +2,19 @@
 
 namespace App\Livewire\Components\Modals\Admin\Modules;
 
+use App\Facades\ActivityLogManager;
 use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 use Nwidart\Modules\Facades\Module;
 
 class DeleteModule extends ModalComponent
 {
-
     public $moduleName;
 
-    public function deleteModule()
+    public function deleteModule(): void
     {
 
         try {
@@ -26,15 +27,15 @@ class DeleteModule extends ModalComponent
                 ->send();
 
             $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
             return;
         }
 
-        activity()
-            ->logName('admin')
-            ->logMessage('admin:modules.delete')
-            ->causer(auth()->user()->username)
+        ActivityLogManager::logName('account')
+            ->description('admin:modules.delete')
+            ->causer(Auth::user()->username)
             ->subject($module->getName())
-            ->performedBy(auth()->user()->id)
+            ->performedBy(Auth::user())
             ->save();
 
         Notification::make()

@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Admin\Groups;
 
+use App\Facades\ActivityLogManager;
+use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -12,27 +14,39 @@ use Spatie\Permission\Models\Role;
 class CreateGroup extends Component
 {
     public $name;
+
     public $guardName = 'web';
 
     public $permissions = [];
+
     public $selectedPermissions = [];
 
-    public function createGroup()
+    public function createGroup(): void
     {
         $this->validate([
             'name' => 'required|string|unique:roles,name',
             'guardName' => 'required|string',
         ]);
 
-        $group = Role::create([
-            'name' => $this->name,
-            'guard_name' => $this->guardName,
-        ]);
+        try {
+            $group = Role::create([
+                'name' => $this->name,
+                'guard_name' => $this->guardName,
+            ]);
 
-        $group->syncPermissions($this->selectedPermissions);
+            $group->syncPermissions($this->selectedPermissions);
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
 
-        activity()
-            ->logName('admin')
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
+
+        ActivityLogManager::logName('admin')
             ->description('admin:groups.create')
             ->causer(Auth::user()->username)
             ->subject($group->name)
@@ -47,7 +61,7 @@ class CreateGroup extends Component
         $this->redirect(route('admin.groups'), navigate: true);
     }
 
-    public function mount()
+    public function mount(): void
     {
         $this->permissions = Permission::all()->pluck('name', 'name')->toArray();
     }

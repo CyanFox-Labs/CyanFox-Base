@@ -17,5 +17,4 @@ class Utils extends Facade
     {
         return UtilsService::class;
     }
-
 }

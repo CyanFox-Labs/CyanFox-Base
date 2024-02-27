@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Admin\Users;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\UserManager;
 use App\Models\User;
 use App\Rules\Password;
+use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,25 +18,35 @@ use Spatie\Permission\Models\Role;
 
 class CreateUser extends Component
 {
-
     public $firstName;
+
     public $lastName;
+
     public $username;
+
     public $email;
+
     public $password;
+
     public $passwordConfirmation;
+
     public $forceChangePassword = false;
+
     public $forceActivateTwoFactor = false;
+
     public $disabled = false;
+
     public $sendWelcomeEmail = false;
 
-
     public $groups = [];
+
     public $permissions = [];
+
     public $selectedGroups = [];
+
     public $selectedPermissions = [];
 
-    public function createUser()
+    public function createUser(): void
     {
         $this->validate([
             'firstName' => 'required|max:255',
@@ -51,20 +63,31 @@ class CreateUser extends Component
             'disabled' => 'nullable|boolean',
         ]);
 
-        $user = User::create([
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'username' => $this->username,
-            'email' => $this->email,
-            'password' => Hash::make($this->password),
-            'force_change_password' => $this->forceChangePassword,
-            'force_activate_two_factor' => $this->forceActivateTwoFactor,
-            'disabled' => $this->disabled,
-        ]);
+        try {
+            $user = User::create([
+                'first_name' => $this->firstName,
+                'last_name' => $this->lastName,
+                'username' => $this->username,
+                'email' => $this->email,
+                'password' => Hash::make($this->password),
+                'force_change_password' => $this->forceChangePassword,
+                'force_activate_two_factor' => $this->forceActivateTwoFactor,
+                'disabled' => $this->disabled,
+            ]);
 
-        $user->syncRoles($this->selectedGroups);
-        $user->syncPermissions($this->selectedPermissions);
-        UserManager::getUser($user)->getTwoFactorManager()->generateTwoFactorSecret();
+            $user->syncRoles($this->selectedGroups);
+            $user->syncPermissions($this->selectedPermissions);
+            UserManager::getUser($user)->getTwoFactorManager()->generateTwoFactorSecret();
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
+
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
 
         if ($this->sendWelcomeEmail) {
             $placeholders = ['username' => $this->username,
@@ -73,7 +96,7 @@ class CreateUser extends Component
                 'appName' => setting('app_name'),
                 'loginLink' => route('auth.login')];
 
-            Mail::send('emails.welcome', $placeholders, function ($message) use ($user, $placeholders) {
+            Mail::send('emails.welcome', $placeholders, function ($message) use ($user) {
                 $message->to($user->email, str_replace(
                     ['{username}', '{firstName}', '{lastName}', '{password}', '{appName}'],
                     [$this->username, $this->firstName, $this->lastName, $this->password, setting('app_name')],
@@ -88,8 +111,7 @@ class CreateUser extends Component
             });
         }
 
-        activity()
-            ->logName('admin')
+        ActivityLogManager::logName('admin')
             ->description('admin:users.create')
             ->causer(Auth::user()->username)
             ->subject($user->username)
@@ -104,7 +126,7 @@ class CreateUser extends Component
         $this->redirect(route('admin.users'), navigate: true);
     }
 
-    public function mount()
+    public function mount(): void
     {
         $this->groups = Role::all()->pluck('name', 'name')->toArray();
         $this->permissions = Permission::all()->pluck('name', 'name')->toArray();

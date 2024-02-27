@@ -49,7 +49,7 @@ return [
             'catppuccin_macchiato' => 'Catppuccin Macchiato',
             'catppuccin_mocha' => 'Catppuccin Mocha',
             'cyanfox_dark' => 'CyanFox Dark',
-            'cyanfox_light' => 'CyanFox Light'
+            'cyanfox_light' => 'CyanFox Light',
         ],
     ],
 
@@ -62,7 +62,7 @@ return [
             'disable_two_factor' => 'Disable Two-Factor Authentication',
             'show_recovery_codes' => 'Show Recovery Codes',
             'setup_password' => 'Setup Password',
-        ]
+        ],
     ],
 
     'account_details' => [
@@ -126,5 +126,5 @@ return [
             'causer' => 'Causer',
             'ip_address' => 'IP Address',
         ],
-    ]
+    ],
 ];

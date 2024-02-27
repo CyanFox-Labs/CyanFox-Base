@@ -2,23 +2,27 @@
 
 namespace App\Livewire\Installer;
 
-use Artisan;
 use Exception;
+use Illuminate\Support\Facades\Artisan;
 use Jackiedo\DotenvEditor\Facades\DotenvEditor;
 use Livewire\Component;
 use PDO;
 
 class DatabaseSettings extends Component
 {
-
     public $alert;
+
     public $host;
+
     public $port;
+
     public $database;
+
     public $username;
+
     public $password;
 
-    public function testConnection()
+    public function testConnection(): bool
     {
         try {
             $connection = new PDO("mysql:host={$this->host};port={$this->port};dbname={$this->database}", $this->username, $this->password);
@@ -29,19 +33,21 @@ class DatabaseSettings extends Component
                 'type' => 'success',
                 'message' => __('pages/installer.database.alerts.success.message'),
             ];
+
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->alert = [
                 'title' => __('pages/installer.database.alerts.error.title'),
                 'type' => 'error',
                 'message' => $e->getMessage(),
             ];
+
             return false;
         }
 
     }
 
-    public function saveDatabaseSettings()
+    public function saveDatabaseSettings(): void
     {
         $this->validate([
             'host' => 'required',
@@ -62,10 +68,10 @@ class DatabaseSettings extends Component
         DotenvEditor::setKey('DB_PASSWORD', $this->password);
         DotenvEditor::save();
 
-
         try {
             Artisan::call('migrate', ['--force' => true]);
-        }catch (Exception) {}
+        } catch (Exception) {
+        }
 
         $this->dispatch('changeStep', 'system');
 

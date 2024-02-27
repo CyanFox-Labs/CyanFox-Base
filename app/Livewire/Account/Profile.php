@@ -2,9 +2,10 @@
 
 namespace App\Livewire\Account;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\UserManager;
-use App\Models\Session;
 use App\Rules\Password;
+use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,68 +16,55 @@ use Livewire\Component;
 
 class Profile extends Component
 {
-
     #[Url]
     public $tab = 'overview';
 
     public $themes = [];
+
     public $theme;
+
     public $language;
+
     public $user;
 
     public $firstName;
+
     public $lastName;
+
     public $email;
+
     public $username;
 
     public $currentPassword;
+
     public $newPassword;
+
     public $passwordConfirmation;
 
-    public function mount()
-    {
-        if (!in_array($this->tab, ['overview', 'sessions', 'apiKeys', 'activity'])) {
-            $this->tab = 'overview';
-        }
-
-
-        /* Language and Theme */
-        $themeIds = ['dark', 'light', 'cupcake', 'bumblebee', 'emerald', 'corporate', 'synthwave', 'retro',
-            'valentine', 'halloween', 'garden', 'forest', 'lofi', 'pastel', 'fantasy', 'wireframe', 'black',
-            'luxury', 'dracula', 'cmyk', 'autumn', 'business', 'acid', 'lemonade', 'night', 'coffee', 'winter',
-            'dim', 'nord', 'sunset', 'catppuccin_latte', 'catppuccin_frappee', 'catppuccin_macchiato',
-            'catppuccin_mocha', 'cyanfox_dark', 'cyanfox_light'
-        ];
-
-        foreach ($themeIds as $themeId) {
-            $this->themes[] = ['id' => $themeId, 'name' => __('pages/account/profile.language_and_theme.themes.' . $themeId)];
-        }
-
-        $this->user = Auth::user();
-
-        $this->theme = $this->user->theme;
-        $this->language = $this->user->language;
-
-        $this->firstName = $this->user->first_name;
-        $this->lastName = $this->user->last_name;
-        $this->email = $this->user->email;
-        $this->username = $this->user->username;
-    }
-
-    public function updateLanguageAndTheme()
+    public function updateLanguageAndTheme(): void
     {
         $this->validate([
             'language' => ['required', 'string'],
             'theme' => ['required', 'string'],
         ]);
 
-        $this->user->update([
-            'language' => $this->language,
-            'theme' => $this->theme,
-        ]);
+        try {
+            $this->user->update([
+                'language' => $this->language,
+                'theme' => $this->theme,
+            ]);
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
 
-        activity()
-            ->logName('account')
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
+
+        ActivityLogManager::logName('account')
             ->description('account:profile.update')
             ->causer($this->user->username)
             ->subject($this->user->username)
@@ -91,25 +79,34 @@ class Profile extends Component
         $this->redirect(route('account.profile'));
     }
 
-
-    public function updateProfileInformations()
+    public function updateProfileInformations(): void
     {
         $this->validate([
             'firstName' => 'required|max:255',
             'lastName' => 'required|max:255',
-            'username' => 'required|max:255|unique:users,username,' . auth()->user()->getAuthIdentifier() . ',id',
-            'email' => 'required|max:255|email|unique:users,email,' . auth()->user()->getAuthIdentifier() . ',id'
+            'username' => 'required|max:255|unique:users,username,'.auth()->user()->getAuthIdentifier().',id',
+            'email' => 'required|max:255|email|unique:users,email,'.auth()->user()->getAuthIdentifier().',id',
         ]);
 
-        $this->user->update([
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'username' => $this->username,
-            'email' => $this->email,
-        ]);
+        try {
+            $this->user->update([
+                'first_name' => $this->firstName,
+                'last_name' => $this->lastName,
+                'username' => $this->username,
+                'email' => $this->email,
+            ]);
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
 
-        activity()
-            ->logName('account')
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
+
+        ActivityLogManager::logName('account')
             ->description('account:profile.update')
             ->causer($this->user->username)
             ->subject($this->user->username)
@@ -121,10 +118,10 @@ class Profile extends Component
             ->success()
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('account.profile'), navigate: true);
     }
 
-    public function updatePassword()
+    public function updatePassword(): void
     {
 
         $this->validate([
@@ -133,21 +130,30 @@ class Profile extends Component
             'passwordConfirmation' => 'required',
         ]);
 
-        if (!Hash::check($this->currentPassword, auth()->user()->password)) {
+        if (!Hash::check($this->currentPassword, $this->user->password)) {
             throw ValidationException::withMessages([
                 'currentPassword' => __('validation.current_password'),
             ]);
         }
 
-        $this->user->update([
-            'password' => Hash::make($this->newPassword),
-        ]);
+        try {
+            $this->user->update([
+                'password' => Hash::make($this->newPassword),
+            ]);
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
 
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
 
         UserManager::getUser($this->user)->getSessionManager()->revokeOtherSessions();
 
-        activity()
-            ->logName('account')
+        ActivityLogManager::logName('account')
             ->description('account:profile.update')
             ->causer($this->user->username)
             ->subject($this->user->username)
@@ -159,10 +165,36 @@ class Profile extends Component
             ->success()
             ->send();
 
-        $this->currentPassword = '';
-        $this->newPassword = '';
-        $this->passwordConfirmation = '';
-        $this->dispatch('refresh');
+        $this->redirect(route('account.profile'), navigate: true);
+    }
+
+    public function mount(): void
+    {
+        if (!in_array($this->tab, ['overview', 'sessions', 'apiKeys', 'activity'])) {
+            $this->tab = 'overview';
+        }
+
+        /* Language and Theme */
+        $themeIds = ['dark', 'light', 'cupcake', 'bumblebee', 'emerald', 'corporate', 'synthwave', 'retro',
+            'valentine', 'halloween', 'garden', 'forest', 'lofi', 'pastel', 'fantasy', 'wireframe', 'black',
+            'luxury', 'dracula', 'cmyk', 'autumn', 'business', 'acid', 'lemonade', 'night', 'coffee', 'winter',
+            'dim', 'nord', 'sunset', 'catppuccin_latte', 'catppuccin_frappee', 'catppuccin_macchiato',
+            'catppuccin_mocha', 'cyanfox_dark', 'cyanfox_light',
+        ];
+
+        foreach ($themeIds as $themeId) {
+            $this->themes[] = ['id' => $themeId, 'name' => __('pages/account/profile.language_and_theme.themes.'.$themeId)];
+        }
+
+        $this->user = Auth::user();
+
+        $this->theme = $this->user->theme;
+        $this->language = $this->user->language;
+
+        $this->firstName = $this->user->first_name;
+        $this->lastName = $this->user->last_name;
+        $this->email = $this->user->email;
+        $this->username = $this->user->username;
     }
 
     #[On('refresh')]

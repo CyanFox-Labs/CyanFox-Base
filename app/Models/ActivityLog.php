@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ActivityLog extends Model
 {
-
     public $table = 'activity_log';
+
     public $timestamps = true;
 
     protected $fillable = [
@@ -22,7 +21,6 @@ class ActivityLog extends Model
         'original_values',
         'new_values',
     ];
-
 
     public function performedBy(): BelongsTo
     {

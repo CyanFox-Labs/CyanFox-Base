@@ -13,7 +13,6 @@ class AuthUserSessionService
         $this->user = $user;
     }
 
-
     public function findSession(string $sessionId)
     {
         return Session::find($sessionId);
@@ -31,7 +30,7 @@ class AuthUserSessionService
 
     public function deleteSession(string $sessionId)
     {
-        return Session::where('id', $sessionId)->delete();
+        return Session::where('id', $sessionId)->where('user_id', $this->user->id)->delete();
     }
 
     public function revokeOtherSessions()

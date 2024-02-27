@@ -2,14 +2,12 @@
 
 namespace App\Console\Commands\Admin\Groups;
 
-use App\Models\User;
+use App\Facades\GroupManager;
 use Illuminate\Console\Command;
-use Spatie\Permission\Exceptions\RoleDoesNotExist;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use function Laravel\Prompts\confirm;
+
 use function Laravel\Prompts\multiselect;
-use function Laravel\Prompts\password;
 use function Laravel\Prompts\text;
 
 class CreateGroupCommand extends Command
@@ -24,7 +22,7 @@ class CreateGroupCommand extends Command
         $name = text(
             'What is the groups\'s name?',
             required: true,
-            validate: fn($name) => Role::where('name', $name)->exists() ? 'Name already in use.' : null
+            validate: fn ($name) => GroupManager::findGroupByName($name) ? 'Name already in use.' : null
         );
         $guardName = text(
             'What is the group\'s guard name?',
@@ -39,7 +37,7 @@ class CreateGroupCommand extends Command
 
         $role = Role::create([
             'name' => $name,
-            'guard_name' => $guardName
+            'guard_name' => $guardName,
         ]);
 
         $role->syncPermissions($permissions);

@@ -2,13 +2,8 @@
 
 namespace App\Console\Commands\Admin\Groups;
 
-use App\Models\User;
+use App\Facades\GroupManager;
 use Illuminate\Console\Command;
-use Spatie\Permission\Exceptions\RoleDoesNotExist;
-use Spatie\Permission\Models\Role;
-use function Laravel\Prompts\confirm;
-use function Laravel\Prompts\password;
-use function Laravel\Prompts\text;
 
 class DeleteGroupCommand extends Command
 {
@@ -19,8 +14,7 @@ class DeleteGroupCommand extends Command
     public function handle(): void
     {
 
-
-        $group = Role::where('name', $this->argument('name'))->first();
+        $group = GroupManager::findGroupByName($this->argument('name'));
         $group->delete();
 
         $this->info('Group deleted successfully.');

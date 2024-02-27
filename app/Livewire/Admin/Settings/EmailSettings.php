@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Settings;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\SettingsManager;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -19,16 +20,23 @@ class EmailSettings extends Component implements HasForms
     public $tab;
 
     public $welcomeEmailTitle;
+
     public $welcomeEmailSubject;
+
     public ?array $welcomeEmailData = [];
 
     public $enableLoginEmail = true;
+
     public $loginEmailTitle;
+
     public $loginEmailSubject;
+
     public ?array $loginEmailData = [];
 
     public $forgotPasswordEmailTitle;
+
     public $forgotPasswordEmailSubject;
+
     public ?array $forgotPasswordEmailData = [];
 
     protected function getForms(): array
@@ -82,7 +90,7 @@ class EmailSettings extends Component implements HasForms
             ->statePath('forgotPasswordEmailData');
     }
 
-    public function updateEmailSettings()
+    public function updateEmailSettings(): void
     {
         $this->validate([
             'welcomeEmailTitle' => 'required|string',
@@ -109,8 +117,7 @@ class EmailSettings extends Component implements HasForms
 
         SettingsManager::updateSettings($settings);
 
-        activity()
-            ->logName('admin')
+        ActivityLogManager::logName('admin')
             ->description('admin:settings.update')
             ->causer(Auth::user()->username)
             ->subject('email-settings')
@@ -122,11 +129,10 @@ class EmailSettings extends Component implements HasForms
             ->title(__('pages/admin/settings/settings.notifications.settings_updated'))
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('admin.settings', ['tab' => 'emails']), navigate: true);
     }
 
-
-    public function mount()
+    public function mount(): void
     {
         if (!in_array($this->tab, ['welcome', 'login', 'forgotPassword'])) {
             $this->tab = 'welcome';

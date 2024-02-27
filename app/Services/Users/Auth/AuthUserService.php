@@ -2,7 +2,6 @@
 
 namespace App\Services\Users\Auth;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -41,9 +40,9 @@ class AuthUserService
             return $this->user->custom_avatar_url;
         }
 
-        $filePath = 'avatars/' . $this->user->id . '.png';
+        $filePath = 'avatars/'.$this->user->id.'.png';
         if (Storage::disk('public')->exists($filePath)) {
-            return asset('storage/' . $filePath) . '?v=' . md5_file(storage_path('app/public/' . $filePath));
+            return asset('storage/'.$filePath).'?v='.md5_file(storage_path('app/public/'.$filePath));
         }
 
         return str_replace('{username}', urlencode($this->user->username), setting('profile_default_avatar_url'));
@@ -67,7 +66,7 @@ class AuthUserService
             'catppuccin_frappee',
             'catppuccin_macchiato',
             'catppuccin_mocha',
-            'cyanfox_dark'
+            'cyanfox_dark',
         ];
         if (in_array($this->user->theme, $darkThemes)) {
             return 'dark';
@@ -91,5 +90,4 @@ class AuthUserService
     {
         return new AuthUserTwoFactorService($this->user);
     }
-
 }

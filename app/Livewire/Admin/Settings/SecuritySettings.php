@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Admin\Settings;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\SettingsManager;
-use App\Models\Setting;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -11,15 +11,19 @@ use Livewire\Component;
 
 class SecuritySettings extends Component
 {
-
     public $passwordMinimumLength = 1;
+
     public $passwordMinimumLengthOptions;
+
     public $passwordRequireNumbers = false;
+
     public $passwordRequireSpecialCharacters = false;
+
     public $passwordRequireUppercase = false;
+
     public $passwordRequireLowercase = false;
 
-    public function updateSecuritySettings()
+    public function updateSecuritySettings(): void
     {
 
         $this->validate([
@@ -40,8 +44,7 @@ class SecuritySettings extends Component
 
         SettingsManager::updateSettings($settings);
 
-        activity()
-            ->logName('admin')
+        ActivityLogManager::logName('admin')
             ->description('admin:settings.update')
             ->causer(Auth::user()->username)
             ->subject('security-settings')
@@ -53,14 +56,14 @@ class SecuritySettings extends Component
             ->title(__('pages/admin/settings/settings.notifications.settings_updated'))
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('admin.settings', ['tab' => 'security']), navigate: true);
     }
 
-    public function mount()
+    public function mount(): void
     {
         foreach (range(1, 20) as $number) {
             $this->passwordMinimumLengthOptions[$number] = ['id' => $number,
-                'name' => __('pages/admin/settings/security_settings.password_minimum_length_options.' . $number)];
+                'name' => __('pages/admin/settings/security_settings.password_minimum_length_options.'.$number)];
         }
 
         $this->passwordMinimumLength = setting('security_password_minimum_length');

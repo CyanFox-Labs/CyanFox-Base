@@ -9,7 +9,7 @@ return [
     'footer' => [
         'page' => 'Page',
         'version' => 'Version',
-        'made_with_love' => 'Made with <i class="bx bxs-heart text-red-600"></i> by <a href="https://github.com/CyanFox-Projects" class="link z-10">CyanFox Team</a>',
+        'made_with_love' => 'Made with <i class="bi bi-suit-heart-fill text-red-600"></i> by <a href="https://github.com/CyanFox-Projects" class="link z-10">CyanFox Team</a>',
     ],
 
     'languages' => [
@@ -51,5 +51,5 @@ return [
     ],
 
     'captcha' => 'Captcha',
-    'password' => 'Password'
+    'password' => 'Password',
 ];

@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Admin\Settings;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\SettingsManager;
-use App\Models\Setting;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -11,69 +11,47 @@ use Livewire\Component;
 
 class AuthSettings extends Component
 {
-
     public $tab;
+
     public $options;
 
     public $enableAuth;
+
     public $enableCaptcha;
+
     public $enableForgotPassword;
+
     public $enableRegistration;
+
     public $enableOAuth;
+
     public $enableLocalLogin;
 
-
     public $enableGoogleOAuth;
+
     public $googleClientId;
+
     public $googleClientSecret;
+
     public $googleRedirectUrl;
 
     public $enableGithubOAuth;
+
     public $githubClientId;
+
     public $githubClientSecret;
+
     public $githubRedirectUrl;
 
     public $enableDiscordOAuth;
+
     public $discordClientId;
+
     public $discordClientSecret;
+
     public $discordRedirectUrl;
 
-    public function mount()
-    {
-        $this->options = [
-            ['id' => '1', 'name' => __('messages.yes')],
-            ['id' => '0', 'name' => __('messages.no')]
-        ];
-
-
-        if (!in_array($this->tab, ['google', 'github', 'discord'])) {
-            $this->tab = 'google';
-        }
-
-        $this->enableAuth = setting('auth_enable');
-        $this->enableCaptcha = setting('auth_enable_captcha');
-        $this->enableForgotPassword = setting('auth_enable_forgot_password');
-        $this->enableRegistration = setting('auth_enable_register');
-        $this->enableOAuth = setting('auth_enable_oauth');
-        $this->enableLocalLogin = setting('auth_enable_local_login');
-
-        $this->enableGoogleOAuth = setting('oauth_enable_google') ? 1 : 0;
-        $this->googleClientId = setting('oauth_google_client_id');
-        $this->googleClientSecret = setting('oauth_google_client_secret', true);
-        $this->googleRedirectUrl = setting('oauth_google_redirect');
-
-        $this->enableGithubOAuth = setting('oauth_enable_github') ? 1 : 0;
-        $this->githubClientId = setting('oauth_github_client_id');
-        $this->githubClientSecret = setting('oauth_github_client_secret', true);
-        $this->githubRedirectUrl = setting('oauth_github_redirect');
-
-        $this->enableDiscordOAuth = setting('oauth_enable_discord') ? 1 : 0;
-        $this->discordClientId = setting('oauth_discord_client_id');
-        $this->discordClientSecret = setting('oauth_discord_client_secret', true);
-        $this->discordRedirectUrl = setting('oauth_discord_redirect');
-    }
-
-    public function updateAuthSettings()
+    public function updateAuthSettings(): void
     {
         $this->validate([
             'enableAuth' => 'nullable|boolean',
@@ -119,8 +97,7 @@ class AuthSettings extends Component
 
         SettingsManager::updateSettings($settings);
 
-        activity()
-            ->logName('admin')
+        ActivityLogManager::logName('admin')
             ->description('admin:settings.update')
             ->causer(Auth::user()->username)
             ->subject('auth-settings')
@@ -132,7 +109,41 @@ class AuthSettings extends Component
             ->title(__('pages/admin/settings/settings.notifications.settings_updated'))
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('admin.settings', ['tab' => 'auth']), navigate: true);
+    }
+
+    public function mount(): void
+    {
+        $this->options = [
+            ['id' => '1', 'name' => __('messages.yes')],
+            ['id' => '0', 'name' => __('messages.no')],
+        ];
+
+        if (!in_array($this->tab, ['google', 'github', 'discord'])) {
+            $this->tab = 'google';
+        }
+
+        $this->enableAuth = setting('auth_enable');
+        $this->enableCaptcha = setting('auth_enable_captcha');
+        $this->enableForgotPassword = setting('auth_enable_forgot_password');
+        $this->enableRegistration = setting('auth_enable_register');
+        $this->enableOAuth = setting('auth_enable_oauth');
+        $this->enableLocalLogin = setting('auth_enable_local_login');
+
+        $this->enableGoogleOAuth = setting('oauth_enable_google') ? 1 : 0;
+        $this->googleClientId = setting('oauth_google_client_id');
+        $this->googleClientSecret = setting('oauth_google_client_secret', true);
+        $this->googleRedirectUrl = setting('oauth_google_redirect');
+
+        $this->enableGithubOAuth = setting('oauth_enable_github') ? 1 : 0;
+        $this->githubClientId = setting('oauth_github_client_id');
+        $this->githubClientSecret = setting('oauth_github_client_secret', true);
+        $this->githubRedirectUrl = setting('oauth_github_redirect');
+
+        $this->enableDiscordOAuth = setting('oauth_enable_discord') ? 1 : 0;
+        $this->discordClientId = setting('oauth_discord_client_id');
+        $this->discordClientSecret = setting('oauth_discord_client_secret', true);
+        $this->discordRedirectUrl = setting('oauth_discord_redirect');
     }
 
     #[On('refresh')]

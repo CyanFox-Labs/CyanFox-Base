@@ -48,6 +48,7 @@ if (setting('auth_enable')) {
 
         Route::get('logout', function () {
             auth()->logout();
+
             return redirect()->route('auth.login');
         })->name('auth.logout')->middleware('auth');
     });

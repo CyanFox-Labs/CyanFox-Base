@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Components\Modals\Account;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\UserManager;
-use App\Models\Session;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -11,16 +11,14 @@ use LivewireUI\Modal\ModalComponent;
 
 class LogoutOtherDevices extends ModalComponent
 {
-
     public $user;
 
-    public function logoutOtherDevices()
+    public function logoutOtherDevices(): void
     {
 
         UserManager::getUser($this->user)->getSessionManager()->revokeOtherSessions();
 
-        activity()
-            ->logName('account')
+        ActivityLogManager::logName('account')
             ->description('account:sessions.logout_all')
             ->causer($this->user->username)
             ->subject($this->user->username)
@@ -36,7 +34,7 @@ class LogoutOtherDevices extends ModalComponent
         $this->dispatch('refresh');
     }
 
-    public function mount()
+    public function mount(): void
     {
         $this->user = Auth::user();
     }

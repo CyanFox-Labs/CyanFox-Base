@@ -59,6 +59,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
             if ($user->hasRole('Super Admin')) {
                 return true;
             }
+
             return false;
         });
     }

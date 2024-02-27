@@ -14,12 +14,12 @@ class UnsplashService
             $utmSource = self::getUTM();
 
             $imagePath = $imageData[0]['urls']['regular'];
-            $photoLink = $imageData[0]['links']['html'] . $utmSource;
+            $photoLink = $imageData[0]['links']['html'].$utmSource;
             $authorName = $imageData[0]['user']['name'];
-            $authorLink = $imageData[0]['user']['links']['html'] . $utmSource;
+            $authorLink = $imageData[0]['user']['links']['html'].$utmSource;
             $error = null;
 
-            $css = "background-image: url('" . $imagePath . "');
+            $css = "background-image: url('".$imagePath."');
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center;
@@ -28,8 +28,8 @@ class UnsplashService
                     filter: blur(5px);
                     opacity: 0.5";
         } catch (Exception $e) {
-            $css = "background: rgb(2,0,36);
-                    background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);";
+            $css = 'background: rgb(2,0,36);
+                    background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);';
 
             $error = $e->getMessage();
             $photoLink = null;
@@ -42,7 +42,7 @@ class UnsplashService
             'error' => $error,
             'photo' => $photoLink,
             'author' => $authorName,
-            'authorURL' => $authorLink
+            'authorURL' => $authorLink,
         ];
     }
 
@@ -58,13 +58,14 @@ class UnsplashService
             $api_key = config('template.unsplash.api_key');
         }
 
-        $client = new Client();
+        $client = new Client;
 
         $headers = [
-            "Authorization" => "Client-ID $api_key"
+            'Authorization' => "Client-ID $api_key",
         ];
 
         $response = $client->request('GET', 'https://api.unsplash.com/photos/random?count=1&query=landscape,beautiful', ['headers' => $headers]);
-        return json_decode((string)$response->getBody(), true);
+
+        return json_decode((string) $response->getBody(), true);
     }
 }

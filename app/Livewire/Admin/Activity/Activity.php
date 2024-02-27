@@ -7,7 +7,6 @@ use Livewire\Component;
 
 class Activity extends Component
 {
-
     #[On('refresh')]
     public function render()
     {

@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands\Installer;
 
-use App\Models\Setting;
+use App\Facades\SettingsManager;
 use Illuminate\Console\Command;
+
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\suggest;
@@ -28,11 +29,11 @@ class SystemSettings extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         $appName = text('Application Name', setting('app_name'), setting('app_name'), required: true);
         $appUrl = text('Application URL', setting('app_url'), setting('app_url'), required: true);
-        $appLanguage = select('Application Language',  ['en' => 'English', 'de' => 'German'], required: true);
+        $appLanguage = select('Application Language', ['en' => 'English', 'de' => 'German'], required: true);
         $appTimezone = suggest('Application Timezone', timezone_identifiers_list(), required: true);
         $unsplashAPIKey = text('Unsplash API Key', setting('unsplash_api_key', true), setting('unsplash_api_key', true));
         $unsplashUTM = text('Unsplash UTM', setting('unsplash_utm'), setting('unsplash_utm'));
@@ -53,9 +54,7 @@ class SystemSettings extends Command
             'app_installed' => 1,
         ];
 
-        foreach ($settings as $key => $value) {
-            Setting::where('key', $key)->update(['value' => $value]);
-        }
+        SettingsManager::updateSettings($settings);
 
         $this->info('System settings saved.');
 

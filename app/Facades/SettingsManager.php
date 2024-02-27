@@ -7,7 +7,7 @@ use App\Services\Settings\SettingsService;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static string getSetting(string $key, bool $isEncrypted)
+ * @method static string getSetting(string $key, bool $isEncrypted = false)
  * @method static Setting setSetting(string $key, string $value = null, bool $isEncrypted = false)
  * @method static Setting updateSetting(string $key, string $value = null, bool $isEncrypted = false)
  * @method static void updateSettings(array $settings)
@@ -19,5 +19,4 @@ class SettingsManager extends Facade
     {
         return SettingsService::class;
     }
-
 }

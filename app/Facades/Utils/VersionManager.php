@@ -20,5 +20,4 @@ class VersionManager extends Facade
     {
         return VersionService::class;
     }
-
 }

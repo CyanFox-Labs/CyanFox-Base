@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Blade;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class SpotlightServiceProvider extends ServiceProvider
@@ -34,9 +34,8 @@ class SpotlightServiceProvider extends ServiceProvider
                 'route' => 'auth.logout',
                 'icon' => Blade::render('<i class="icon-log-out text-3xl"></i>'),
                 'admin' => false,
-            ]
+            ],
         ]);
-
 
         /* Admin */
         app('spotlight.values')->add([
@@ -60,7 +59,7 @@ class SpotlightServiceProvider extends ServiceProvider
                 'route' => 'admin.activity',
                 'icon' => Blade::render('<i class="icon-eye text-3xl"></i>'),
                 'admin' => false,
-            ]
+            ],
         ]);
 
         /* Admin - Users */
@@ -78,7 +77,7 @@ class SpotlightServiceProvider extends ServiceProvider
                 'route' => 'admin.users',
                 'icon' => Blade::render('<i class="icon-users text-3xl"></i>'),
                 'admin' => false,
-            ]
+            ],
         ]);
 
         /* Admin - Groups */
@@ -96,7 +95,7 @@ class SpotlightServiceProvider extends ServiceProvider
                 'route' => 'admin.groups',
                 'icon' => Blade::render('<i class="icon-shield text-3xl"></i>'),
                 'admin' => false,
-            ]
+            ],
         ]);
     }
 }

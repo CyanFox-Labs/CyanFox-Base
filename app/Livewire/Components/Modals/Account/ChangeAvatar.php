@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components\Modals\Account;
 
+use App\Facades\ActivityLogManager;
 use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
@@ -15,10 +16,12 @@ class ChangeAvatar extends ModalComponent
     use WithFileUploads;
 
     public $avatar;
+
     public $customAvatarUrl;
+
     public $user;
 
-    public function updateAvatar()
+    public function updateAvatar(): void
     {
         $this->validate([
             'avatar' => 'nullable|image|max:5000',
@@ -31,8 +34,7 @@ class ChangeAvatar extends ModalComponent
                 'custom_avatar_url' => $this->customAvatarUrl,
             ]);
 
-            activity()
-                ->logName('account')
+            ActivityLogManager::logName('account')
                 ->description('account:avatar.update')
                 ->causer($this->user->username)
                 ->subject($this->user->username)
@@ -46,6 +48,7 @@ class ChangeAvatar extends ModalComponent
 
             $this->closeModal();
             $this->redirect(route('account.profile'), navigate: true);
+
             return;
         }
 
@@ -56,12 +59,12 @@ class ChangeAvatar extends ModalComponent
                 ->send();
 
             $this->redirect(route('account.profile'), navigate: true);
+
             return;
         }
 
-
         try {
-            $this->avatar->storeAs('public/avatars', $this->user->id . '.png');
+            $this->avatar->storeAs('public/avatars', $this->user->id.'.png');
         } catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.notifications.something_went_wrong'))
@@ -69,11 +72,11 @@ class ChangeAvatar extends ModalComponent
                 ->send();
 
             $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
             return;
         }
 
-        activity()
-            ->logName('account')
+        ActivityLogManager::logName('account')
             ->description('account:avatar.update')
             ->causer($this->user->username)
             ->subject($this->user->username)
@@ -88,16 +91,26 @@ class ChangeAvatar extends ModalComponent
         $this->redirect(route('account.profile'), navigate: true);
     }
 
-    public function resetAvatar()
+    public function resetAvatar(): void
     {
-        Storage::disk('public')->delete('avatars/' . $this->user->id . '.png');
+        Storage::disk('public')->delete('avatars/'.$this->user->id.'.png');
 
-        $this->user->update([
-            'custom_avatar_url' => null,
-        ]);
+        try {
+            $this->user->update([
+                'custom_avatar_url' => null,
+            ]);
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
 
-        activity()
-            ->logName('account')
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
+
+        ActivityLogManager::logName('account')
             ->description('account:avatar.reset')
             ->causer($this->user->username)
             ->subject($this->user->username)
@@ -112,11 +125,9 @@ class ChangeAvatar extends ModalComponent
         $this->redirect(route('account.profile'), navigate: true);
     }
 
-    public function mount()
+    public function mount(): void
     {
-        if (!setting('profile_enable_change_avatar')) {
-            abort(403);
-        }
+        $this->authorize('canUpdateAvatar');
 
         $this->user = Auth::user();
         $this->customAvatarUrl = $this->user->custom_avatar_url;

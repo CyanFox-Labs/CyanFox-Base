@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components\Modals\Admin\Users;
 
+use App\Facades\ActivityLogManager;
 use App\Models\User;
 use Exception;
 use Filament\Notifications\Notification;
@@ -14,25 +15,25 @@ class DeleteUser extends ModalComponent
 {
     public $userId;
 
-    public function deleteUser()
+    public function deleteUser(): void
     {
 
         try {
             $user = User::findOrFail($this->userId);
-            Storage::disk('public')->delete('avatars/' . $user->id . '.png');
+            Storage::disk('public')->delete('avatars/'.$user->id.'.png');
             $user->delete();
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.notifications.something_went_wrong'))
                 ->danger()
                 ->send();
 
             $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
             return;
         }
 
-        activity()
-            ->logName('admin')
+        ActivityLogManager::logName('admin')
             ->description('admin:users.delete')
             ->causer(Auth::user()->username)
             ->subject($user->username)

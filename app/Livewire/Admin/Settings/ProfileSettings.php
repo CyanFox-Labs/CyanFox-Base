@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Admin\Settings;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\SettingsManager;
-use App\Models\Setting;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -11,14 +11,15 @@ use Livewire\Component;
 
 class ProfileSettings extends Component
 {
-
     public $options;
 
     public $defaultAvatarUrl;
+
     public $enableChangeAvatar;
+
     public $enableDeleteAccount;
 
-    public function updateProfileSettings()
+    public function updateProfileSettings(): void
     {
         $this->validate([
             'defaultAvatarUrl' => 'required',
@@ -34,8 +35,7 @@ class ProfileSettings extends Component
 
         SettingsManager::updateSettings($settings);
 
-        activity()
-            ->logName('admin')
+        ActivityLogManager::logName('admin')
             ->description('admin:settings.update')
             ->causer(Auth::user()->username)
             ->subject('profile-settings')
@@ -47,14 +47,14 @@ class ProfileSettings extends Component
             ->title(__('pages/admin/settings/settings.notifications.settings_updated'))
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('admin.settings', ['tab' => 'profile']), navigate: true);
     }
 
-    public function mount()
+    public function mount(): void
     {
         $this->options = [
             ['id' => '1', 'name' => __('messages.yes')],
-            ['id' => '0', 'name' => __('messages.no')]
+            ['id' => '0', 'name' => __('messages.no')],
         ];
 
         $this->defaultAvatarUrl = setting('profile_default_avatar_url');

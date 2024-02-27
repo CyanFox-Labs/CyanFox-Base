@@ -2,13 +2,16 @@
 
 namespace App\Livewire\Auth;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\Utils\UnsplashManager;
 use App\Models\User;
 use App\Rules\Password;
 use Carbon\Carbon;
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
+use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
@@ -19,80 +22,27 @@ use Livewire\Component;
 
 class ForgotPassword extends Component
 {
-
     use WithRateLimiting;
 
     public $unsplash;
 
     public $user;
 
-
     public $email;
+
     public $resetToken;
+
     public $password;
+
     public $passwordConfirmation;
 
     public $rateLimitTime;
 
-
     public $language;
+
     public $captcha;
 
-    public function mount()
-    {
-
-        if ($this->resetToken !== null) {
-            $user = User::where('password_reset_token', $this->resetToken)->first();
-
-            if ($user == null) {
-                activity()
-                    ->logName('auth')
-                    ->description('auth:forgot_password.failed')
-                    ->causer(request()->ip())
-                    ->save();
-
-                Notification::make()
-                    ->title(__('pages/auth/forgot_password.notifications.password_reset_link_invalid'))
-                    ->danger()
-                    ->send();
-
-                $this->redirect(route('auth.forgot-password', ''), navigate: true);
-                return;
-            }
-
-            $expirationDate = Carbon::parse($user->password_reset_expiration);
-
-            if ($expirationDate->isPast()) {
-                activity()
-                    ->logName('auth')
-                    ->description('auth:forgot_password.failed')
-                    ->causer(request()->ip())
-                    ->subject($user->username)
-                    ->performedBy($user)
-                    ->save();
-
-                Notification::make()
-                    ->title(__('pages/auth/forgot_password.notifications.password_reset_link_expired'))
-                    ->danger()
-                    ->send();
-
-                $this->redirect(route('auth.forgot-password', ''), navigate: true);
-                return;
-            }
-        }
-
-        $unsplash = UnsplashManager::returnBackground();
-
-        $this->unsplash = $unsplash;
-
-        if ($unsplash['error'] != null) {
-            $this->dispatch('logger', ['type' => 'error', 'message' => $unsplash['error']]);
-        }
-
-        $this->language = Request::cookie('language');
-    }
-
-    public function changeLanguage($language)
+    public function changeLanguage($language): void
     {
         cookie()->queue(cookie()->forget('language'));
         cookie()->queue(cookie()->forever('language', $language));
@@ -105,21 +55,24 @@ class ForgotPassword extends Component
         $this->dispatch('refresh');
     }
 
-    public function setRateLimit()
+    public function setRateLimit(): bool
     {
         try {
             $this->rateLimit(10);
         } catch (TooManyRequestsException $exception) {
             $this->rateLimitTime = $exception->secondsUntilAvailable;
+
             return true;
         }
+
         return false;
     }
 
-    public function checkIfUserExits($email)
+    public function checkIfUserExits($email): void
     {
         if ($email == null || $email == '') {
             $this->resetErrorBag('email');
+
             return;
         }
 
@@ -137,7 +90,7 @@ class ForgotPassword extends Component
         $this->resetErrorBag('email');
     }
 
-    public function resetPassword()
+    public function resetPassword(): void
     {
         $this->validate([
             'password' => ['required', 'max:255', 'same:passwordConfirmation', new Password],
@@ -146,12 +99,10 @@ class ForgotPassword extends Component
 
         $user = User::where('password_reset_token', $this->resetToken)->first();
 
-
         $expirationDate = Carbon::parse($user->password_reset_expiration);
 
         if ($expirationDate->isPast()) {
-            activity()
-                ->logName('auth')
+            ActivityLogManager::logName('auth')
                 ->description('auth:forgot_password.failed')
                 ->causer(request()->ip())
                 ->subject($user->username)
@@ -165,13 +116,14 @@ class ForgotPassword extends Component
 
             $this->redirect(route('auth.forgot-password', ''), navigate: true);
         } else {
-            $user->password = bcrypt($this->password);
-            $user->password_reset_token = null;
-            $user->password_reset_expiration = null;
-            $user->save();
 
-            activity()
-                ->logName('auth')
+            $user->update([
+                'password_reset_token' => null,
+                'password_reset_expiration' => null,
+                'password' => Hash::make($this->password),
+            ]);
+
+            ActivityLogManager::logName('auth')
                 ->description('auth:forgot_password.success')
                 ->causer($user->username)
                 ->subject($user->username)
@@ -187,7 +139,7 @@ class ForgotPassword extends Component
         }
     }
 
-    public function sendResetLink()
+    public function sendResetLink(): void
     {
         if ($this->setRateLimit()) {
             return;
@@ -208,14 +160,26 @@ class ForgotPassword extends Component
 
             if ($validator->fails()) {
                 throw ValidationException::withMessages([
-                    'captcha' => __('validation.custom.invalid_captcha')
+                    'captcha' => __('validation.custom.invalid_captcha'),
                 ]);
             }
         }
 
-        $this->user->password_reset_token = Str::random(32);
-        $this->user->password_reset_expiration = Carbon::now()->addHours(24);
-        $this->user->save();
+        try {
+            $this->user->update([
+                'password_reset_token' => Str::random(32),
+                'password_reset_expiration' => Carbon::now()->addHours(24),
+            ]);
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
+
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
 
         $placeholders = ['username' => $this->user->username,
             'firstName' => $this->user->first_name, 'lastName' => $this->user->last_name,
@@ -224,7 +188,7 @@ class ForgotPassword extends Component
 
         $user = $this->user;
 
-        Mail::send('emails.forgot-password', $placeholders, function ($message) use ($user, $placeholders) {
+        Mail::send('emails.forgot-password', $placeholders, function ($message) use ($user) {
             $message->to($user->email, str_replace(
                 ['{username}', '{firstName}', '{lastName}'],
                 [$user->username, $user->first_name, $user->last_name],
@@ -244,6 +208,60 @@ class ForgotPassword extends Component
             ->send();
 
         $this->redirect(route('auth.forgot-password', ''), navigate: true);
+    }
+
+    public function mount(): void
+    {
+
+        if ($this->resetToken !== null) {
+            $user = User::where('password_reset_token', $this->resetToken)->first();
+
+            if ($user == null) {
+                ActivityLogManager::logName('auth')
+                    ->description('auth:forgot_password.failed')
+                    ->causer(request()->ip())
+                    ->save();
+
+                Notification::make()
+                    ->title(__('pages/auth/forgot_password.notifications.password_reset_link_invalid'))
+                    ->danger()
+                    ->send();
+
+                $this->redirect(route('auth.forgot-password', ''), navigate: true);
+
+                return;
+            }
+
+            $expirationDate = Carbon::parse($user->password_reset_expiration);
+
+            if ($expirationDate->isPast()) {
+                ActivityLogManager::logName('auth')
+                    ->description('auth:forgot_password.failed')
+                    ->causer(request()->ip())
+                    ->subject($user->username)
+                    ->performedBy($user)
+                    ->save();
+
+                Notification::make()
+                    ->title(__('pages/auth/forgot_password.notifications.password_reset_link_expired'))
+                    ->danger()
+                    ->send();
+
+                $this->redirect(route('auth.forgot-password', ''), navigate: true);
+
+                return;
+            }
+        }
+
+        $unsplash = UnsplashManager::returnBackground();
+
+        $this->unsplash = $unsplash;
+
+        if ($unsplash['error'] != null) {
+            $this->dispatch('logger', ['type' => 'error', 'message' => $unsplash['error']]);
+        }
+
+        $this->language = Request::cookie('language');
     }
 
     #[On('refresh')]

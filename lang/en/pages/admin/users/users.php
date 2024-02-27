@@ -16,6 +16,6 @@ return [
     ],
 
     'buttons' => [
-        'create_user' => 'Create user'
+        'create_user' => 'Create user',
     ],
 ];

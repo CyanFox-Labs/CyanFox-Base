@@ -2,14 +2,11 @@
 
 namespace App\Console\Commands\Admin\Groups;
 
-use App\Models\User;
+use App\Facades\GroupManager;
 use Illuminate\Console\Command;
-use Spatie\Permission\Exceptions\RoleDoesNotExist;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-use function Laravel\Prompts\confirm;
+
 use function Laravel\Prompts\multiselect;
-use function Laravel\Prompts\password;
 use function Laravel\Prompts\text;
 
 class UpdateGroupCommand extends Command
@@ -36,10 +33,11 @@ class UpdateGroupCommand extends Command
             options: Permission::all()->pluck('name')->toArray(),
         );
 
-        $role = Role::where('name', $this->argument('name'))->first();
-        $role->name = $name;
-        $role->guard_name = $guardName;
-        $role->save();
+        $role = GroupManager::findGroupByName($this->argument('name'));
+        $role->update([
+            'name' => $name,
+            'guard_name' => $guardName,
+        ]);
 
         $role->syncPermissions($permissions);
 

@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Account;
 
-use App\Helpers\UnsplashHelper;
-use App\Models\Session;
+use App\Facades\ActivityLogManager;
+use App\Facades\UserManager;
+use App\Facades\Utils\UnsplashManager;
 use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
@@ -16,21 +18,24 @@ class ForceActivateTwoFactor extends Component
 {
     #[Url]
     public $redirect;
+
     public $unsplash;
 
     public $twoFactorCode;
+
     public $password;
 
-    public function activateTwoFactor()
+    public $user;
+
+    public function activateTwoFactor(): void
     {
 
-        if (!Hash::check($this->password, auth()->user()->password)) {
-            activity()
-                ->logName('account')
-                ->logMessage('account:force.activate_two_factor.failed')
-                ->causer(auth()->user()->username)
-                ->subject(auth()->user()->username)
-                ->performedBy(auth()->user()->id)
+        if (!Hash::check($this->password, $this->user->password)) {
+            ActivityLogManager::logName('account')
+                ->description('account:force.activate_two_factor.failed')
+                ->causer($this->user->username)
+                ->subject($this->user->username)
+                ->performedBy($this->user)
                 ->save();
 
             throw ValidationException::withMessages([
@@ -38,45 +43,44 @@ class ForceActivateTwoFactor extends Component
             ]);
         }
 
-        if(!auth()->user()->checkTwoFactorCode($this->twoFactorCode, false)) {
-            activity()
-                ->logName('account')
-                ->logMessage('account:force.activate_two_factor.failed')
-                ->causer(auth()->user()->username)
-                ->subject(auth()->user()->username)
-                ->performedBy(auth()->user()->id)
+        if (!UserManager::getUser($this->user)->getTwoFactorManager()->checkTwoFactorCode($this->twoFactorCode, false)) {
+            ActivityLogManager::logName('account')
+                ->description('account:force.activate_two_factor.failed')
+                ->causer($this->user->username)
+                ->subject($this->user->username)
+                ->performedBy($this->user)
                 ->save();
 
             throw ValidationException::withMessages([
-                'twoFactorCode' => __('validation.custom.invalid_two_factor_code')
+                'twoFactorCode' => __('validation.custom.invalid_two_factor_code'),
             ]);
         }
 
         try {
-            auth()->user()->update([
+            $this->user->update([
                 'two_factor_enabled' => true,
                 'force_activate_two_factor' => false,
             ]);
 
-            auth()->user()->generateRecoveryCodes();
-        }catch (Exception $e) {
+            UserManager::getUser($this->user)->getTwoFactorManager()->generateRecoveryCodes();
+        } catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.notifications.something_went_wrong'))
                 ->danger()
                 ->send();
 
             $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
             return;
         }
 
-        Session::logoutOtherDevices();
+        UserManager::getUser($this->user)->getSessionManager()->revokeOtherSessions();
 
-        activity()
-            ->logName('account')
-            ->logMessage('account:force.activate_two_factor.success')
-            ->causer(auth()->user()->username)
-            ->subject(auth()->user()->username)
-            ->performedBy(auth()->user()->id)
+        ActivityLogManager::logName('account')
+            ->description('account:force.activate_two_factor.success')
+            ->causer($this->user->username)
+            ->subject($this->user->username)
+            ->performedBy($this->user)
             ->save();
 
         Notification::make()
@@ -85,21 +89,25 @@ class ForceActivateTwoFactor extends Component
             ->send();
 
         if ($this->redirect) {
-            return redirect()->to($this->redirect);
+            $this->redirect($this->redirect, navigate: true);
+
+            return;
         }
 
         $this->redirect(route('home'), navigate: true);
     }
 
-    public function mount()
+    public function mount(): void
     {
-        $unsplash = UnsplashHelper::returnBackground();
+        $unsplash = UnsplashManager::returnBackground();
 
         $this->unsplash = $unsplash;
 
         if ($unsplash['error'] != null) {
             $this->dispatch('logger', ['type' => 'error', 'message' => $unsplash['error']]);
         }
+
+        $this->user = Auth::user();
     }
 
     #[On('refresh')]

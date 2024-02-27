@@ -16,5 +16,4 @@ class UnsplashManager extends Facade
     {
         return UnsplashService::class;
     }
-
 }

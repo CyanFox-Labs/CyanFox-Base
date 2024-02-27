@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 class Spotlight
 {
-
     public static function getFormattedValues(bool $admin)
     {
         $allValues = collect(app('spotlight.values')->getAll());
@@ -34,7 +33,7 @@ class Spotlight
         $allValues = collect(array_merge(self::getFormattedValues(false), self::getFormattedValues(true)));
 
         return $allValues->filter(function ($item) use ($search) {
-            return str_contains(strtolower($item['name']) . strtolower($item['description']), $search);
+            return str_contains(strtolower($item['name']).strtolower($item['description']), $search);
         })->values();
     }
 
@@ -48,7 +47,6 @@ class Spotlight
 
         $values = self::getFormattedValues(false);
 
-        return collect(array_merge($values, $adminValues))->filter(fn(array $item) => str($item['name'] . $item['description'])->contains($search, true));
+        return collect(array_merge($values, $adminValues))->filter(fn (array $item) => str($item['name'].$item['description'])->contains($search, true));
     }
-
 }

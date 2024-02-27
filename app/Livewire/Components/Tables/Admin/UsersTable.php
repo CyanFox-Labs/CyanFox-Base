@@ -3,10 +3,10 @@
 namespace App\Livewire\Components\Tables\Admin;
 
 use App\Facades\UserManager;
+use App\Models\User;
 use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
-use App\Models\User;
 use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ImageColumn;
 
@@ -19,7 +19,7 @@ class UsersTable extends DataTableComponent
     {
         $this->setPrimaryKey('id');
         $this->setConfigurableAreas([
-            'toolbar-left-start' => 'components.tables.admin.create-user'
+            'toolbar-left-start' => 'components.tables.admin.create-user',
         ]);
     }
 
@@ -32,11 +32,12 @@ class UsersTable extends DataTableComponent
             ImageColumn::make(__('pages/admin/users/users.table.avatar'))
                 ->location(function ($row) {
                     $user = User::find($row->id);
+
                     return UserManager::getUser($user)->getAvatarURL();
                 })
                 ->attributes(function () {
                     return [
-                        'class' => 'rounded-full h-7 w-7'
+                        'class' => 'rounded-full h-7 w-7',
                     ];
                 }),
             Column::make(__('pages/admin/users/users.table.username'), 'username')
@@ -67,12 +68,13 @@ class UsersTable extends DataTableComponent
                 ->label(function ($row) {
 
                     if ($row->id === auth()->user()->id) {
-                        return '<a href="' . route('admin.users.update', ['userId' => $row->id]) . '" wire:navigate><i class="icon-pen font-semibold text-lg text-blue-600 px-2"></i></a>';
+                        return '<a href="'.route('admin.users.update', ['userId' => $row->id]).'" wire:navigate><i class="icon-pen font-semibold text-lg text-blue-600 px-2"></i></a>';
                     }
+
                     return
-                        '<a href="' . route('admin.users.update', ['userId' => $row->id]) . '" wire:navigate><i class="icon-pen font-semibold text-lg text-blue-600 px-2"></i></a>' .
+                        '<a href="'.route('admin.users.update', ['userId' => $row->id]).'" wire:navigate><i class="icon-pen font-semibold text-lg text-blue-600 px-2"></i></a>'.
                         '<i wire:click="$dispatch(`openModal`, { component: `components.modals.admin.users.delete-user`,
-                        arguments: { userId: `' . $row->id . '` } })" class="icon-trash font-semibold text-lg text-red-600 cursor-pointer"></i>';
+                        arguments: { userId: `'.$row->id.'` } })" class="icon-trash font-semibold text-lg text-red-600 cursor-pointer"></i>';
                 })
                 ->html(),
         ];

@@ -3,84 +3,83 @@
 namespace App\Http\Controllers\API\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Knuckles\Scribe\Attributes\Authenticated;
 use Knuckles\Scribe\Attributes\Group;
 use Knuckles\Scribe\Attributes\Subgroup;
-use Module;
+use Nwidart\Modules\Facades\Module;
 
-#[Group("Admin", "Admin Management")]
-#[Subgroup("Modules", "Manage Modules")]
+#[Group('Admin', 'Admin Management')]
+#[Subgroup('Modules', 'Manage Modules')]
 #[Authenticated]
 class AdminModuleAPIController extends Controller
 {
-
-    public function getAllModules()
+    public function getAllModules(): array
     {
         return Module::all();
     }
 
-    public function getModule($moduleName)
+    public function getModule(string $moduleName): \Nwidart\Modules\Module|JsonResponse
     {
-        $module = Module::findOrFail($moduleName);
+        $module = Module::find($moduleName);
 
         if (!$module) {
             return response()->json([
-                'message' => 'Module not found'
+                'message' => 'Module not found',
             ], 404);
         }
 
         return $module;
     }
 
-    public function enableModule($moduleName)
+    public function enableModule(string $moduleName): JsonResponse
     {
-        $module = Module::findOrFail($moduleName);
+        $module = Module::find($moduleName);
 
         if (!$module) {
             return response()->json([
-                'message' => 'Module not found'
+                'message' => 'Module not found',
             ], 404);
         }
 
         $module->enable();
 
         return response()->json([
-            'message' => 'Module enabled successfully'
+            'message' => 'Module enabled successfully',
         ]);
     }
 
-    public function disableModule($moduleName)
+    public function disableModule(string $moduleName): JsonResponse
     {
-        $module = Module::findOrFail($moduleName);
+        $module = Module::find($moduleName);
 
         if (!$module) {
             return response()->json([
-                'message' => 'Module not found'
+                'message' => 'Module not found',
             ], 404);
         }
 
         $module->disable();
 
         return response()->json([
-            'message' => 'Module disabled successfully'
+            'message' => 'Module disabled successfully',
         ]);
     }
 
-    public function deleteModule($moduleName)
+    public function deleteModule(string $moduleName): JsonResponse
     {
-        $module = Module::findOrFail($moduleName);
+        $module = Module::find($moduleName);
 
         if (!$module) {
             return response()->json([
-                'message' => 'Module not found'
+                'message' => 'Module not found',
             ], 404);
         }
 
         $module->delete();
 
         return response()->json([
-            'message' => 'Module deleted successfully'
+            'message' => 'Module deleted successfully',
         ]);
     }
-
 }

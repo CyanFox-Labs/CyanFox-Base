@@ -14,7 +14,7 @@ return [
 
         'notifications' => [
             'api_key_created' => 'API key created successfully!',
-        ]
+        ],
     ],
 
     'delete_api_key' => [
@@ -23,6 +23,6 @@ return [
 
         'notifications' => [
             'api_key_deleted' => 'API key deleted successfully!',
-        ]
-    ]
+        ],
+    ],
 ];

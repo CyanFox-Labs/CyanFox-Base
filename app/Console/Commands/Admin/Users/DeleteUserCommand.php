@@ -2,13 +2,8 @@
 
 namespace App\Console\Commands\Admin\Users;
 
-use App\Models\User;
+use App\Facades\UserManager;
 use Illuminate\Console\Command;
-use Spatie\Permission\Exceptions\RoleDoesNotExist;
-use Spatie\Permission\Models\Role;
-use function Laravel\Prompts\confirm;
-use function Laravel\Prompts\password;
-use function Laravel\Prompts\text;
 
 class DeleteUserCommand extends Command
 {
@@ -19,8 +14,7 @@ class DeleteUserCommand extends Command
     public function handle(): void
     {
 
-
-        $user = User::where('username', $this->argument('username'))->first();
+        $user = UserManager::findUserByUsername($this->argument('username'));
         $user->delete();
 
         $this->info('User deleted successfully.');

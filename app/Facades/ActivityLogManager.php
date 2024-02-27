@@ -20,5 +20,4 @@ class ActivityLogManager extends Facade
     {
         return ActivityLogService::class;
     }
-
 }

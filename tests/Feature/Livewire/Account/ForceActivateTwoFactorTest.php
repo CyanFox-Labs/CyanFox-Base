@@ -3,8 +3,6 @@
 namespace Tests\Feature\Livewire\Account;
 
 use App\Livewire\Account\ForceActivateTwoFactor;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Tests\TestCase;
 

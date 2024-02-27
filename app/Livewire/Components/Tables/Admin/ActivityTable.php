@@ -10,7 +10,6 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class ActivityTable extends DataTableComponent
 {
-
     #[On('refresh')]
     public function builder(): Builder
     {
@@ -46,7 +45,7 @@ class ActivityTable extends DataTableComponent
             Column::make(__('messages.table.created_at'), 'created_at')
                 ->sortable(),
             Column::make(__('messages.table.updated_at'), 'updated_at')
-                ->sortable()
+                ->sortable(),
         ];
     }
 }

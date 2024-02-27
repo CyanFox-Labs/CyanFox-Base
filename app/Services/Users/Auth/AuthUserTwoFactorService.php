@@ -9,14 +9,12 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AuthUserTwoFactorService
 {
-
     private $user;
 
     public function __construct($user)
     {
         $this->user = $user;
     }
-
 
     public function isTwoFactorEnabled(): bool
     {
@@ -25,7 +23,7 @@ class AuthUserTwoFactorService
 
     public function generateTwoFactorSecret(): void
     {
-        $twoFactor = new Google2FA();
+        $twoFactor = new Google2FA;
         $this->user->two_factor_secret = encrypt($twoFactor->generateSecretKey());
         $this->user->save();
     }
@@ -60,20 +58,23 @@ class AuthUserTwoFactorService
             foreach ($recoveryCodes as $recoveryCode) {
                 if (decrypt($recoveryCode->code) == $key) {
                     $recoveryCode->delete();
+
                     return true;
                 }
             }
         }
 
-        $twoFactor = new Google2FA();
+        $twoFactor = new Google2FA;
         $twoFactorSecret = decrypt($this->user->two_factor_secret);
+
         return $twoFactor->verifyKey($twoFactorSecret, $key);
     }
 
     public function getTwoFactorImage(): string
     {
-        $twoFactor = new Google2FA();
+        $twoFactor = new Google2FA;
         $QRCode = $twoFactor->getQRCodeUrl(config('app.name'), $this->user->email, decrypt($this->user->two_factor_secret));
+
         return base64_encode(QrCode::format('svg')->size(200)->generate($QRCode));
     }
 }

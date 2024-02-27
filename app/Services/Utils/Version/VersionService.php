@@ -6,10 +6,11 @@ use Exception;
 
 class VersionService
 {
-
     public function getCurrentTemplateVersion(): string
     {
-        if (config('app.env') == 'testing') return true;
+        if (config('app.env') == 'testing') {
+            return true;
+        }
         $file = base_path('version.json');
         $data = json_decode(file_get_contents($file), true);
 
@@ -22,7 +23,9 @@ class VersionService
 
     public function getCurrentProjectVersion(): string
     {
-        if (config('app.env') == 'testing') return true;
+        if (config('app.env') == 'testing') {
+            return true;
+        }
         $file = base_path('version.json');
         $data = json_decode(file_get_contents($file), true);
 
@@ -35,23 +38,31 @@ class VersionService
 
     public function isDevVersion(): bool
     {
-        if (config('app.env') == 'testing') return true;
+        if (config('app.env') == 'testing') {
+            return true;
+        }
         $file = base_path('version.json');
         $data = json_decode(file_get_contents($file), true);
 
         return $data['version']['dev'] ?? false;
     }
 
-    public function getRemoteTemplateVersion(): string | bool
+    public function getRemoteTemplateVersion(): string|bool
     {
-        if (config('app.env') == 'testing') return true;
-        if (setting('template_version_url') == null) return true;
+        if (config('app.env') == 'testing') {
+            return true;
+        }
+        if (setting('template_version_url') == null) {
+            return true;
+        }
 
         try {
             $url = setting('template_version_url');
             $data = json_decode(file_get_contents($url), true);
 
-            if ($data['version']['template'] == null) return true;
+            if ($data['version']['template'] == null) {
+                return true;
+            }
 
             return $data['version']['template'];
         } catch (Exception) {
@@ -59,16 +70,22 @@ class VersionService
         }
     }
 
-    public function getRemoteProjectVersion(): string | bool
+    public function getRemoteProjectVersion(): string|bool
     {
-        if (config('app.env') == 'testing') return true;
-        if (setting('project_version_url') == null) return true;
+        if (config('app.env') == 'testing') {
+            return true;
+        }
+        if (setting('project_version_url') == null) {
+            return true;
+        }
 
         try {
             $url = setting('project_version_url');
             $data = json_decode(file_get_contents($url), true);
 
-            if ($data['version']['project'] == null) return true;
+            if ($data['version']['project'] == null) {
+                return true;
+            }
 
             return $data['version']['project'];
         } catch (Exception) {
@@ -82,7 +99,9 @@ class VersionService
         $remoteVersion = self::getRemoteTemplateVersion();
 
         if ($currentVersion == null || $remoteVersion == null
-            || $currentVersion == 'N/A' || $remoteVersion == 'N/A') return true;
+            || $currentVersion == 'N/A' || $remoteVersion == 'N/A') {
+            return true;
+        }
 
         return $currentVersion == $remoteVersion;
     }
@@ -93,9 +112,10 @@ class VersionService
         $remoteVersion = self::getRemoteProjectVersion();
 
         if ($currentVersion == null || $remoteVersion == null
-            || $currentVersion == 'N/A' || $remoteVersion == 'N/A') return true;
+            || $currentVersion == 'N/A' || $remoteVersion == 'N/A') {
+            return true;
+        }
 
         return $currentVersion == $remoteVersion;
     }
-
 }

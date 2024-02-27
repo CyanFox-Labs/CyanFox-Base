@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Components\Modals\Admin\Groups;
 
+use App\Facades\ActivityLogManager;
 use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
@@ -13,23 +14,23 @@ class DeleteGroup extends ModalComponent
 {
     public $groupId;
 
-    public function deleteGroup()
+    public function deleteGroup(): void
     {
         try {
             $group = Role::findOrFail($this->groupId);
             $group->delete();
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             Notification::make()
                 ->title(__('messages.notifications.something_went_wrong'))
                 ->danger()
                 ->send();
 
             $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
             return;
         }
 
-        activity()
-            ->logName('admin')
+        ActivityLogManager::logName('admin')
             ->description('admin:groups.delete')
             ->causer(Auth::user()->username)
             ->subject($group->name)

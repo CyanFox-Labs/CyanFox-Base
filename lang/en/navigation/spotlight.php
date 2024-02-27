@@ -45,5 +45,5 @@ return [
             'title' => 'Logout',
             'description' => 'Logout from your account',
         ],
-    ]
+    ],
 ];

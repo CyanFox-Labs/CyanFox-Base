@@ -2,16 +2,12 @@
 
 namespace App\Livewire\Installer;
 
-use App\Helpers\UnsplashHelper;
-use App\Models\Setting;
+use App\Facades\SettingsManager;
+use App\Facades\UserManager;
 use App\Models\User;
 use App\Rules\Password;
-use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
+use Exception;
 use Filament\Notifications\Notification;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
@@ -20,13 +16,18 @@ use Spatie\Permission\Models\Role;
 class CreateUser extends Component
 {
     public $firstName;
+
     public $lastName;
+
     public $username;
+
     public $email;
+
     public $password;
+
     public $passwordConfirmation;
 
-    public function registerUser()
+    public function registerUser(): void
     {
         $this->validate([
             'firstName' => 'required|max:255',
@@ -37,25 +38,37 @@ class CreateUser extends Component
             'passwordConfirmation' => 'required',
         ]);
 
-        $user = User::create([
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-            'username' => $this->username,
-            'email' => $this->email,
-            'password' => bcrypt($this->password),
-        ]);
+        try {
+            $user = User::create([
+                'first_name' => $this->firstName,
+                'last_name' => $this->lastName,
+                'username' => $this->username,
+                'email' => $this->email,
+                'password' => bcrypt($this->password),
+            ]);
 
-        $user->generateTwoFactorSecret();
+            UserManager::getUser($user)->getTwoFactorManager()->generateTwoFactorSecret();
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
+
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
 
         try {
             $user->assignRole('Super Admin');
         } catch (RoleDoesNotExist) {
             $role = Role::create(['name' => 'Super Admin']);
             $user->assignRole($role);
+
             return;
         }
 
-        Setting::where('key', 'app_installed')->update(['value' => 1]);
+        SettingsManager::updateSetting('app_installed', 1);
 
         $this->redirect(route('home'));
     }

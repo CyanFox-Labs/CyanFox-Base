@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Components\Modals\Account\APIKeys;
 
+use App\Facades\ActivityLogManager;
 use App\Facades\UserManager;
+use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use LivewireUI\Modal\ModalComponent;
@@ -10,19 +12,31 @@ use LivewireUI\Modal\ModalComponent;
 class CreateAPIKey extends ModalComponent
 {
     public $name;
+
     public $plainTextToken;
+
     public $user;
 
-    public function createAPIKey()
+    public function createAPIKey(): void
     {
         $this->validate([
-            'name' => 'required|unique:personal_access_tokens,name'
+            'name' => 'required|unique:personal_access_tokens,name',
         ]);
 
-        $this->plainTextToken = UserManager::getUser($this->user)->getAPIKeyManager()->createAPIKey($this->name);
+        try {
+            $this->plainTextToken = UserManager::getUser($this->user)->getAPIKeyManager()->createAPIKey($this->name);
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
 
-        activity()
-            ->logName('account')
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
+
+        ActivityLogManager::logName('account')
             ->description('account:api_keys.create')
             ->causer($this->user->username)
             ->subject($this->user->username)
@@ -35,13 +49,13 @@ class CreateAPIKey extends ModalComponent
             ->send();
     }
 
-    public function close()
+    public function close(): void
     {
         $this->closeModal();
         $this->dispatch('refresh');
     }
 
-    public function mount()
+    public function mount(): void
     {
         $this->user = Auth::user();
     }
