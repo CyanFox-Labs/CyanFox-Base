@@ -51,11 +51,11 @@ class Login extends Component
         cookie()->queue(cookie()->forever('language', $language));
 
         Notification::make()
-            ->title(__('pages/auth/messages.notifications.language_changed'))
+            ->title(__('messages.notifications.language_updated'))
             ->success()
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('auth.login'), navigate: true);
     }
 
     public function setRateLimit(): bool
@@ -85,7 +85,7 @@ class Login extends Component
         if ($this->user == null) {
             $this->user = false;
             throw ValidationException::withMessages([
-                'username' => __('pages/auth/login.user_not_found'),
+                'username' => __('auth.user_not_found'),
             ]);
         }
         $this->resetErrorBag('username');
@@ -114,7 +114,7 @@ class Login extends Component
             if ($this->user->disabled) {
                 Auth::logout();
                 throw ValidationException::withMessages([
-                    'username' => __('pages/auth/login.user_disabled'),
+                    'username' => __('auth.login.user_disabled'),
                 ]);
             }
 
@@ -130,13 +130,14 @@ class Login extends Component
                     ->save();
 
             } else {
+                Auth::login($this->user, $this->rememberMe);
+
                 if (setting('emails_login_enabled')) {
                     $this->sendMail($this->user);
                 }
 
                 if ($this->redirect) {
                     $this->redirect($this->redirect);
-
                     return;
                 }
 
@@ -147,7 +148,6 @@ class Login extends Component
                     ->performedBy($this->user)
                     ->save();
 
-                Auth::login($this->user, $this->rememberMe);
                 $this->redirect(route('home'));
             }
         } else {
@@ -176,6 +176,7 @@ class Login extends Component
 
         if (UserManager::getUser($this->user)->getTwoFactorManager()->checkTwoFactorCode($this->twoFactorCode)) {
 
+            Auth::login($this->user, $this->rememberMe);
             if (setting('emails_login_enabled')) {
                 $this->sendMail($this->user);
             }
@@ -193,7 +194,6 @@ class Login extends Component
                 ->performedBy($this->user)
                 ->save();
 
-            Auth::login($this->user, $this->rememberMe);
             $this->redirect(route('home'));
         }
 
@@ -252,8 +252,6 @@ class Login extends Component
     #[On('refresh')]
     public function render()
     {
-        return view('livewire.auth.login')->layout('components.layouts.guest', [
-            'title' => __('navigation/titles.login'),
-        ]);
+        return view('livewire.auth.login')->layout('components.layouts.guest', ['title' => __('auth.login.tab_title')]);
     }
 }

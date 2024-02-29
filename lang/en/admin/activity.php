@@ -1,7 +1,9 @@
 <?php
 
 return [
+    'tab_title' => 'Admin • Activity',
     'title' => 'Activity',
+
     'table' => [
         'log_name' => 'Log Name',
         'description' => 'Description',

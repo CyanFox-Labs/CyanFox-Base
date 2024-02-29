@@ -29,7 +29,7 @@ class UsersTable extends DataTableComponent
             Column::make(__('messages.table.id'), 'id')
                 ->searchable()
                 ->sortable(),
-            ImageColumn::make(__('pages/admin/users/users.table.avatar'))
+            ImageColumn::make(__('admin/users.list.table.avatar'))
                 ->location(function ($row) {
                     $user = User::find($row->id);
 
@@ -40,25 +40,25 @@ class UsersTable extends DataTableComponent
                         'class' => 'rounded-full h-7 w-7',
                     ];
                 }),
-            Column::make(__('pages/admin/users/users.table.username'), 'username')
+            Column::make(__('messages.username'), 'username')
                 ->searchable()
                 ->sortable(),
-            Column::make(__('pages/admin/users/users.table.first_name'), 'first_name')
+            Column::make(__('messages.first_name'), 'first_name')
                 ->searchable()
                 ->sortable(),
-            Column::make(__('pages/admin/users/users.table.last_name'), 'last_name')
+            Column::make(__('messages.last_name'), 'last_name')
                 ->searchable()
                 ->sortable(),
-            Column::make(__('pages/admin/users/users.table.email'), 'email')
+            Column::make(__('messages.email'), 'email')
                 ->searchable()
                 ->sortable(),
-            BooleanColumn::make(__('pages/admin/users/users.table.two_factor_enabled'), 'two_factor_enabled')
+            BooleanColumn::make(__('admin/users.list.table.two_factor_enabled'), 'two_factor_enabled')
                 ->sortable(),
-            BooleanColumn::make(__('pages/admin/users/users.table.force_change_password'), 'force_change_password')
+            BooleanColumn::make(__('admin/users.list.force_change_password'), 'force_change_password')
                 ->sortable(),
-            BooleanColumn::make(__('pages/admin/users/users.table.force_activate_two_factor'), 'force_activate_two_factor')
+            BooleanColumn::make(__('admin/users.list.force_activate_two_factor'), 'force_activate_two_factor')
                 ->sortable(),
-            BooleanColumn::make(__('pages/admin/users/users.table.disabled'), 'disabled')
+            BooleanColumn::make(__('admin/users.list.disabled'), 'disabled')
                 ->sortable(),
             Column::make(__('messages.table.created_at'), 'created_at')
                 ->sortable(),

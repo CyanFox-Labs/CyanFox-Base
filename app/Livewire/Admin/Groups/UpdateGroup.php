@@ -58,7 +58,7 @@ class UpdateGroup extends Component
             ->save();
 
         Notification::make()
-            ->title(__('pages/admin/groups/update_group.notifications.group_updated'))
+            ->title(__('admin/groups.update.notifications.group_updated'))
             ->success()
             ->send();
 
@@ -83,6 +83,7 @@ class UpdateGroup extends Component
     #[On('refresh')]
     public function render()
     {
-        return view('livewire.admin.groups.update-group')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.groups.update_group', ['group' => $this->group->name])]);
+        return view('livewire.admin.groups.update-group')
+            ->layout('components.layouts.admin', ['title' => __('admin/groups.update.tab_title', ['group' => $this->group->name])]);
     }
 }

@@ -71,7 +71,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Add discord as socialite provider
 - [x] Add Laravel pulse to admin dashboard
 - [x] Code cleanup
-- [ ] Translation renewal
+- [x] Translation renewal
 - [ ] Rewrite Modal system and add Modal API
 - [ ] German translation
 - [ ] Add tests

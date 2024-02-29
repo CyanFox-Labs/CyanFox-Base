@@ -20,41 +20,50 @@ class UpdateUserCommand extends Command
 
     public function handle(): void
     {
+        $user = UserManager::findUserByUsername($this->argument('username'));
 
         $username = text(
             'What is the user\'s username?',
+            default: $user->username,
             required: true,
         );
         $firstName = text(
             'What is the user\'s first name?',
+            default: $user->first_name,
             required: true
         );
         $lastName = text(
             'What is the user\'s last name?',
+            default: $user->last_name,
             required: true
         );
         $email = text(
             'What is the user\'s email?',
+            default: $user->email,
             required: true,
             validate: fn ($email) => (filter_var($email, FILTER_VALIDATE_EMAIL) !== false ?
                 null
                 : 'Invalid email.')
         );
         $password = password(
-            'What is your password?'
+            'What is your password? (Leave empty to keep the current password)'
         );
         $superAdmin = confirm(
             'Do you want to make this user a super admin?',
-            default: false
+            default: $user->hasRole('Super Admin')
+        );
+        $disabled = confirm(
+            'Do you want to disable this user?',
+            default: $user->disabled === '1'
         );
 
-        $user = UserManager::findUserByUsername($this->argument('username'));
         $user->update([
             'username' => $username,
             'first_name' => $firstName,
             'last_name' => $lastName,
             'email' => $email,
             'password' => $password ? Hash::make($password) : $user->password,
+            'disabled' => $disabled ? '1' : '0',
         ]);
 
         if ($superAdmin) {

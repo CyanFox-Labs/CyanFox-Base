@@ -15,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        User::class => UserPolicy::class,
+        //
     ];
 
     /**
@@ -26,5 +26,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('viewPulse', function (User $user) {
             return $user->hasRole('Super Admin');
         });
+
+        Gate::define('canDeleteAccount', [UserPolicy::class, 'canDeleteAccount']);
+        Gate::define('canUpdateAvatar', [UserPolicy::class, 'canUpdateAvatar']);
     }
 }

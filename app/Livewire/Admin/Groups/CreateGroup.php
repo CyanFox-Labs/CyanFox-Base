@@ -54,7 +54,7 @@ class CreateGroup extends Component
             ->save();
 
         Notification::make()
-            ->title(__('pages/admin/groups/create_group.notifications.group_created'))
+            ->title(__('admin/groups.create.notifications.group_created'))
             ->success()
             ->send();
 
@@ -69,6 +69,7 @@ class CreateGroup extends Component
     #[On('refresh')]
     public function render()
     {
-        return view('livewire.admin.groups.create-group')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.groups.create_group')]);
+        return view('livewire.admin.groups.create-group')
+            ->layout('components.layouts.admin', ['title' => __('admin/groups.create.tab_title')]);
     }
 }

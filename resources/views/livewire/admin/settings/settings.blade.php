@@ -1,32 +1,32 @@
 <div>
 
-    <span class="font-bold text-xl">{{ __('pages/admin/settings/settings.title') }}</span>
+    <span class="font-bold text-xl">{{ __('admin/settings.title') }}</span>
     <div class="divider"></div>
 
     <div role="tablist" class="tabs tabs-boxed my-4">
         <a role="tab" class="tab @if($tab == 'system') tab-active @endif"
            wire:click="$set('tab', 'system')"><i class="icon-wrench pr-2"></i>
-            <span class="md:block hidden">{{ __('pages/admin/settings/settings.tabs.system') }}</span>
+            <span class="md:block hidden">{{ __('admin/settings.tabs.system') }}</span>
         </a>
 
         <a role="tab" class="tab @if($tab == 'auth') tab-active @endif"
            wire:click="$set('tab', 'auth')"><i class="icon-key-round pr-2"></i>
-            <span class="md:block hidden">{{ __('pages/admin/settings/settings.tabs.auth') }}</span>
+            <span class="md:block hidden">{{ __('admin/settings.tabs.auth') }}</span>
         </a>
 
         <a role="tab" class="tab @if($tab == 'emails') tab-active @endif"
            wire:click="$set('tab', 'emails')"><i class="icon-mail pr-2"></i>
-            <span class="md:block hidden">{{ __('pages/admin/settings/settings.tabs.emails') }}</span>
+            <span class="md:block hidden">{{ __('admin/settings.tabs.emails') }}</span>
         </a>
 
         <a role="tab" class="tab @if($tab == 'profile') tab-active @endif"
            wire:click="$set('tab', 'profile')"><i class="icon-user pr-2"></i>
-            <span class="md:block hidden">{{ __('pages/admin/settings/settings.tabs.profile') }}</span>
+            <span class="md:block hidden">{{ __('admin/settings.tabs.profile') }}</span>
         </a>
 
         <a role="tab" class="tab @if($tab == 'security') tab-active @endif"
            wire:click="$set('tab', 'security')"><i class="icon-lock-keyhole pr-2"></i>
-            <span class="md:block hidden">{{ __('pages/admin/settings/settings.tabs.security') }}</span>
+            <span class="md:block hidden">{{ __('admin/settings.tabs.security') }}</span>
         </a>
     </div>
 

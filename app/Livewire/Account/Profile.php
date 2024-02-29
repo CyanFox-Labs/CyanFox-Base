@@ -72,7 +72,7 @@ class Profile extends Component
             ->save();
 
         Notification::make()
-            ->title(__('pages/account/profile.notifications.language_and_theme_updated'))
+            ->title(__('account/profile.language_and_theme.notifications.language_and_theme_updated'))
             ->success()
             ->send();
 
@@ -114,7 +114,7 @@ class Profile extends Component
             ->save();
 
         Notification::make()
-            ->title(__('pages/account/profile.notifications.profile_informations_updated'))
+            ->title(__('account/profile.overview.notifications.profile_informations_updated'))
             ->success()
             ->send();
 
@@ -161,7 +161,7 @@ class Profile extends Component
             ->save();
 
         Notification::make()
-            ->title(__('pages/account/profile.notifications.password_updated'))
+            ->title(__('account/profile.overview.notifications.password_updated'))
             ->success()
             ->send();
 
@@ -183,7 +183,7 @@ class Profile extends Component
         ];
 
         foreach ($themeIds as $themeId) {
-            $this->themes[] = ['id' => $themeId, 'name' => __('pages/account/profile.language_and_theme.themes.'.$themeId)];
+            $this->themes[] = ['id' => $themeId, 'name' => __('account/profile.language_and_theme.themes.'.$themeId)];
         }
 
         $this->user = Auth::user();
@@ -201,6 +201,6 @@ class Profile extends Component
     public function render()
     {
         return view('livewire.account.profile')
-            ->layout('components.layouts.app', ['title' => __('navigation/titles.profile')]);
+            ->layout('components.layouts.app', ['title' => __('account/profile.tab_title')]);
     }
 }

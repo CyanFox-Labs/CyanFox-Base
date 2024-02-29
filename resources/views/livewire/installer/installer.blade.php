@@ -14,18 +14,17 @@
                     <label>
                         <select class="select select-bordered" wire:blur="changeLanguage($event.target.value)"
                                 wire:model="language">
-                            <option disabled selected>Language</option>
-                            <option value="en">{{ __('messages.languages.english') }}</option>
-                            <option value="de">{{ __('messages.languages.german') }}</option>
+                            <option value="en">{{ __('messages.languages.en') }}</option>
+                            <option value="de">{{ __('messages.languages.de') }}</option>
                         </select>
                     </label>
                 </div>
 
                 <div role="tablist" class="tabs tabs-boxed mb-5">
-                    <a role="tab" class="cursor-default tab @if($step == 'database') tab-active @endif">{{ __('pages/installer.tabs.database') }}</a>
-                    <a role="tab" class="cursor-default tab @if($step == 'system') tab-active @endif">{{ __('pages/installer.tabs.system') }}</a>
-                    <a role="tab" class="cursor-default tab @if($step == 'email') tab-active @endif">{{ __('pages/installer.tabs.email') }}</a>
-                    <a role="tab" class="cursor-default tab @if($step == 'createUser') tab-active @endif">{{ __('pages/installer.tabs.create_user') }}</a>
+                    <a role="tab" class="cursor-default tab @if($step == 'database') tab-active @endif">{{ __('installer.tabs.database') }}</a>
+                    <a role="tab" class="cursor-default tab @if($step == 'system') tab-active @endif">{{ __('installer.tabs.system') }}</a>
+                    <a role="tab" class="cursor-default tab @if($step == 'email') tab-active @endif">{{ __('installer.tabs.email') }}</a>
+                    <a role="tab" class="cursor-default tab @if($step == 'createUser') tab-active @endif">{{ __('installer.tabs.create_user') }}</a>
                 </div>
 
                 @if($step == 'database')
@@ -50,7 +49,7 @@
     @if($unsplash['error'] == null)
         <div class="pl-6 pb-4 text-white">
             <span class="text-sm" id="credits" wire:ignore><a id="photo"
-                                                              href="{{ $unsplash['photo'] }}/{{ config('template.unsplash.utm') }}">{{ __('pages/auth/messages.photo') }}</a>, <a
+                                                              href="{{ $unsplash['photo'] }}/{{ config('template.unsplash.utm') }}">{{ __('messages.photo') }}</a>, <a
                     id="author"
                     href="{{ $unsplash['authorURL'] }}/{{ config('template.unsplash.utm') }}">{{ $unsplash['author'] }}</a>, <a
                     href="https://unsplash.com/{{ config('template.unsplash.utm') }}">Unsplash</a></span>

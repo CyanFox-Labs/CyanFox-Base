@@ -95,7 +95,7 @@ class UpdateUser extends Component
             ->save();
 
         Notification::make()
-            ->title(__('pages/admin/users/update_user.notifications.user_updated'))
+            ->title(__('admin/users.update.notifications.user_updated'))
             ->success()
             ->send();
 
@@ -128,6 +128,7 @@ class UpdateUser extends Component
     #[On('refresh')]
     public function render()
     {
-        return view('livewire.admin.users.update-user')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.users.update_user', ['user' => $this->user->username])]);
+        return view('livewire.admin.users.update-user')
+            ->layout('components.layouts.admin', ['title' => __('admin/users.update.tab_title', ['user' => $this->user->username])]);
     }
 }

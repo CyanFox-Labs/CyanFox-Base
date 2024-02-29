@@ -50,7 +50,7 @@ return [
     |
     */
 
-    'lazy_placeholder' => 'components.custom.loader',
+    'lazy_placeholder' => null,
 
     /*
     |---------------------------------------------------------------------------

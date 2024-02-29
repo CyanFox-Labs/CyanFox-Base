@@ -48,11 +48,11 @@ class ForgotPassword extends Component
         cookie()->queue(cookie()->forever('language', $language));
 
         Notification::make()
-            ->title(__('pages/auth/messages.notifications.language_changed'))
+            ->title(__('messages.notifications.language_updated'))
             ->success()
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('auth.forgot-password', ''), navigate: true);
     }
 
     public function setRateLimit(): bool
@@ -84,7 +84,7 @@ class ForgotPassword extends Component
         if ($this->user == null) {
             $this->user = false;
             throw ValidationException::withMessages([
-                'email' => __('pages/auth/forgot_password.user_not_found'),
+                'email' => __('auth.user_not_found'),
             ]);
         }
         $this->resetErrorBag('email');
@@ -110,7 +110,7 @@ class ForgotPassword extends Component
                 ->save();
 
             Notification::make()
-                ->title(__('pages/auth/forgot_password.notifications.password_reset_link_expired'))
+                ->title(__('auth.forgot_password.notifications.reset_link_expired'))
                 ->danger()
                 ->send();
 
@@ -131,7 +131,7 @@ class ForgotPassword extends Component
                 ->save();
 
             Notification::make()
-                ->title(__('pages/auth/forgot_password.notifications.password_resetted'))
+                ->title(__('auth.forgot_password.notifications.password_reset'))
                 ->success()
                 ->send();
 
@@ -188,22 +188,22 @@ class ForgotPassword extends Component
 
         $user = $this->user;
 
-        Mail::send('emails.forgot-password', $placeholders, function ($message) use ($user) {
+        Mail::send('emails.forgot-password', $placeholders, function ($message) use ($user, $placeholders) {
             $message->to($user->email, str_replace(
-                ['{username}', '{firstName}', '{lastName}'],
-                [$user->username, $user->first_name, $user->last_name],
+                ['{username}', '{firstName}', '{lastName}', '{resetLink}'],
+                [$user->username, $user->first_name, $user->last_name, $placeholders['resetLink']],
                 setting('emails_forgot_password_title')
             ))
                 ->subject(str_replace(
-                    ['{username}', '{firstName}', '{lastName}'],
-                    [$user->username, $user->first_name, $user->last_name],
+                    ['{username}', '{firstName}', '{lastName}', '{resetLink}'],
+                    [$user->username, $user->first_name, $user->last_name, $placeholders['resetLink']],
                     setting('emails_forgot_password_subject')
                 ));
             $message->from(config('mail.from.address'), config('mail.from.name'));
         });
 
         Notification::make()
-            ->title(__('pages/auth/forgot_password.notifications.password_reset_link_sent'))
+            ->title(__('auth.forgot_password.notifications.reset_link_sent'))
             ->success()
             ->send();
 
@@ -223,7 +223,7 @@ class ForgotPassword extends Component
                     ->save();
 
                 Notification::make()
-                    ->title(__('pages/auth/forgot_password.notifications.password_reset_link_invalid'))
+                    ->title(__('auth.forgot_password.notifications.reset_link_invalid'))
                     ->danger()
                     ->send();
 
@@ -243,7 +243,7 @@ class ForgotPassword extends Component
                     ->save();
 
                 Notification::make()
-                    ->title(__('pages/auth/forgot_password.notifications.password_reset_link_expired'))
+                    ->title(__('auth.forgot_password.notifications.reset_link_expired'))
                     ->danger()
                     ->send();
 
@@ -267,8 +267,7 @@ class ForgotPassword extends Component
     #[On('refresh')]
     public function render()
     {
-        return view('livewire.auth.forgot-password')->layout('components.layouts.guest', [
-            'title' => __('navigation/titles.forgot-password'),
-        ]);
+        return view('livewire.auth.forgot-password')
+            ->layout('components.layouts.guest', ['title' => __('auth.forgot_password.tab_title')]);
     }
 }

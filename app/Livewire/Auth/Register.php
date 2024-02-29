@@ -51,11 +51,11 @@ class Register extends Component
         cookie()->queue(cookie()->forever('language', $language));
 
         Notification::make()
-            ->title(__('pages/auth/messages.notifications.language_changed'))
+            ->title(__('messages.notifications.language_updated'))
             ->success()
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('auth.register'), navigate: true);
     }
 
     public function setRateLimit(): bool
@@ -125,7 +125,7 @@ class Register extends Component
             ->save();
 
         Notification::make()
-            ->title(__('pages/auth/register.notifications.registered'))
+            ->title(__('auth.register.notifications.registered'))
             ->success()
             ->send();
 
@@ -150,8 +150,6 @@ class Register extends Component
     #[On('refresh')]
     public function render()
     {
-        return view('livewire.auth.register')->layout('components.layouts.guest', [
-            'title' => __('navigation/titles.register'),
-        ]);
+        return view('livewire.auth.register')->layout('components.layouts.guest', ['title' => __('auth.register.tab_title')]);
     }
 }

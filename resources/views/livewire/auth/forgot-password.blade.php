@@ -12,9 +12,8 @@
                     <label>
                         <select class="select select-bordered" wire:blur="changeLanguage($event.target.value)"
                                 wire:model="language">
-                            <option disabled selected>Language</option>
-                            <option value="en">{{ __('messages.languages.english') }}</option>
-                            <option value="de">{{ __('messages.languages.german') }}</option>
+                            <option value="en">{{ __('messages.languages.en') }}</option>
+                            <option value="de">{{ __('messages.languages.de') }}</option>
                         </select>
                     </label>
                 </div>
@@ -35,7 +34,7 @@
                 @if ($rateLimitTime > 1)
                     <div wire:poll.1s="setRateLimit">
                         <x-alert icon="o-exclamation-triangle"
-                                 class="alert-error">{{ __('pages/auth/login.rate_limit', ['seconds' => $rateLimitTime]) }}
+                                 class="alert-error">{{ __('auth.rate_limit', ['seconds' => $rateLimitTime]) }}
                         </x-alert>
                     </div>
                 @endif
@@ -43,7 +42,7 @@
                 @if($resetToken == null)
                     <x-form wire:submit="sendResetLink">
                         @csrf
-                        <x-input label="{{ __('pages/auth/messages.email') }}"
+                        <x-input label="{{ __('messages.email') }}"
                                  class="input-bordered w-full"
                                  wire:model="email"
                                  wire:blur="checkIfUserExits($event.target.value)" required/>
@@ -64,18 +63,18 @@
 
                         <x-button type="submit"
                                   class="btn btn-primary w-full" spinner="sendResetLink">
-                            {{ __('pages/auth/forgot_password.buttons.send_reset_link') }}
+                            {{ __('auth.forgot_password.buttons.send_reset_link') }}
                         </x-button>
                     </x-form>
                 @else
                     <x-form wire:submit="resetPassword">
                         @csrf
-                        <x-input label="{{ __('pages/auth/messages.password') }}"
+                        <x-input label="{{ __('messages.password') }}"
                                  type="password"
                                  class="input-bordered w-full" wire:model="password"
                                  required/>
 
-                        <x-input label="{{ __('pages/auth/forgot_password.confirm_password') }}"
+                        <x-input label="{{ __('messages.confirm_password') }}"
                                  type="password"
                                  class="input-bordered w-full" wire:model="passwordConfirmation"
                                  required/>
@@ -84,21 +83,21 @@
 
                         <x-button type="submit"
                                   class="btn btn-primary w-full" spinner="resetPassword">
-                            {{ __('pages/auth/forgot_password.buttons.reset_password') }}
+                            {{ __('auth.forgot_password.buttons.reset_password') }}
                         </x-button>
                     </x-form>
                 @endif
 
                 <a href="{{ route('auth.login') }}"
                    class="btn btn-neutral mt-3 w-full"
-                   wire:navigate>{{ __('pages/auth/messages.buttons.back_to_login') }}</a>
+                   wire:navigate>{{ __('auth.buttons.back_to_login') }}</a>
             </div>
         </div>
     </div>
     @if($unsplash['error'] == null)
         <div class="pl-6 pb-4 text-white">
             <span class="text-sm" id="credits" wire:ignore><a id="photo"
-                                                              href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('pages/auth/messages.photo') }}</a>, <a
+                                                              href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('messages.photo') }}</a>, <a
                     id="author"
                     href="{{ $unsplash['authorURL'] }}/{{ setting('unsplash_utm') }}">{{ $unsplash['author'] }}</a>, <a
                     href="https://unsplash.com/{{ setting('unsplash_utm') }}">Unsplash</a></span>

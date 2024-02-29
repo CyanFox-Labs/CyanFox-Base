@@ -12,11 +12,11 @@ class Home extends Component
     {
         if (setting('auth_enable')) {
             return view('livewire.home')
-                ->layout('components.layouts.app', ['title' => __('navigation/titles.home')]);
+                ->layout('components.layouts.app', ['title' => __('account/home.tab_title')]);
 
         }
 
         return view('livewire.home')
-            ->layout('components.layouts.guest', ['title' => __('navigation/titles.home')]);
+            ->layout('components.layouts.guest', ['title' => __('account/home.tab_title')]);
     }
 }

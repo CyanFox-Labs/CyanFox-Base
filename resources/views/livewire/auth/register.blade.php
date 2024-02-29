@@ -12,9 +12,8 @@
                     <label>
                         <select class="select select-bordered" wire:blur="changeLanguage($event.target.value)"
                                 wire:model="language">
-                            <option disabled selected>Language</option>
-                            <option value="en">{{ __('messages.languages.english') }}</option>
-                            <option value="de">{{ __('messages.languages.german') }}</option>
+                            <option value="en">{{ __('messages.languages.en') }}</option>
+                            <option value="de">{{ __('messages.languages.de') }}</option>
                         </select>
                     </label>
                 </div>
@@ -22,7 +21,7 @@
                 @if ($rateLimitTime > 1)
                     <div wire:poll.1s="setRateLimit">
                         <x-alert icon="o-exclamation-triangle"
-                                 class="alert-error">{{ __('pages/auth/login.rate_limit', ['seconds' => $rateLimitTime]) }}
+                                 class="alert-error">{{ __('auth.rate_limit', ['seconds' => $rateLimitTime]) }}
                         </x-alert>
                     </div>
                 @endif
@@ -30,31 +29,31 @@
                 <x-form wire:submit="register">
                     @csrf
                     <div class="grid sm:grid-cols-2 grid-cols-1 gap-4">
-                        <x-input label="{{ __('pages/auth/register.first_name') }}"
+                        <x-input label="{{ __('messages.first_name') }}"
                                  class="input-bordered w-full"
                                  wire:model="firstName" required/>
 
-                        <x-input label="{{ __('pages/auth/register.last_name') }}"
+                        <x-input label="{{ __('messages.last_name') }}"
                                  class="input-bordered w-full"
                                  wire:model="lastName" required/>
 
 
-                        <x-input label="{{ __('pages/auth/messages.username') }}"
+                        <x-input label="{{ __('messages.username') }}"
                                  class="input-bordered w-full"
                                  wire:model="username" required/>
 
-                        <x-input label="{{ __('pages/auth/messages.email') }}"
+                        <x-input label="{{ __('messages.email') }}"
                                  type="email"
                                  class="input-bordered w-full"
                                  wire:model="email" required/>
 
 
-                        <x-input label="{{ __('pages/auth/messages.password') }}"
+                        <x-input label="{{ __('messages.password') }}"
                                  type="password"
                                  class="input-bordered w-full"
                                  wire:model="password" required/>
 
-                        <x-input label="{{ __('pages/auth/register.confirm_password') }}"
+                        <x-input label="{{ __('messages.confirm_password') }}"
                                  type="password"
                                  class="input-bordered w-full"
                                  wire:model="passwordConfirmation" required/>
@@ -76,19 +75,19 @@
 
                     <x-button type="submit"
                               class="btn btn-primary w-full" spinner="register">
-                        {{ __('pages/auth/register.buttons.register') }}
+                        {{ __('auth.register.buttons.register') }}
                     </x-button>
 
                 </x-form>
 
-                <a href="{{ route('auth.login') }}" class="btn btn-neutral mt-3 w-full" wire:navigate>{{ __('pages/auth/messages.buttons.back_to_login') }}</a>
+                <a href="{{ route('auth.login') }}" class="btn btn-neutral mt-3 w-full" wire:navigate>{{ __('auth.buttons.back_to_login') }}</a>
             </div>
         </div>
     </div>
     @if($unsplash['error'] == null)
         <div class="pl-6 pb-4 text-white">
             <span class="text-sm" id="credits" wire:ignore><a id="photo"
-                                                              href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('pages/auth/messages.photo') }}</a>, <a
+                                                              href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('messages.photo') }}</a>, <a
                     id="author" href="{{ $unsplash['authorURL'] }}/{{ setting('unsplash_utm') }}">{{ $unsplash['author'] }}</a>, <a
                     href="https://unsplash.com/{{ setting('unsplash_utm') }}">Unsplash</a></span>
         </div>

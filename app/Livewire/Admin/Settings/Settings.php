@@ -21,6 +21,7 @@ class Settings extends Component
     #[On('refresh')]
     public function render()
     {
-        return view('livewire.admin.settings.settings')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.settings.settings')]);
+        return view('livewire.admin.settings.settings')
+            ->layout('components.layouts.admin', ['title' => __('admin/settings.tab_title')]);
     }
 }

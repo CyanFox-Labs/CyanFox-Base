@@ -26,7 +26,7 @@ class LogoutOtherDevices extends ModalComponent
             ->save();
 
         Notification::make()
-            ->title(__('components/modals/account/sessions.notifications.logged_out_other_devices'))
+            ->title(__('account/profile.modals.logout_other_devices.notifications.other_devices_logged_out'))
             ->success()
             ->send();
 

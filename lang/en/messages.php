@@ -1,34 +1,26 @@
 <?php
 
 return [
-    'or' => 'or',
+    'username' => 'Username',
+    'password' => 'Password',
+    'current_password' => 'Current Password',
+    'new_password' => 'New Password',
+    'confirm_password' => 'Confirm Password',
+    'email' => 'Email',
+    'first_name' => 'First Name',
+    'last_name' => 'Last Name',
+    'captcha' => 'Captcha',
+    'two_factor_code' => 'Two Factor Code',
+
     'yes' => 'Yes',
     'no' => 'No',
+    'or' => 'or',
     'search' => 'Search',
+    'photo' => 'Photo',
 
-    'footer' => [
-        'page' => 'Page',
-        'version' => 'Version',
-        'made_with_love' => 'Made with <i class="bi bi-suit-heart-fill text-red-600"></i> by <a href="https://github.com/CyanFox-Projects" class="link z-10">CyanFox Team</a>',
-    ],
-
-    'languages' => [
-        'english' => 'English',
-        'german' => 'German',
-    ],
-
-    'buttons' => [
-        'update' => 'Update',
-        'save' => 'Save',
-        'cancel' => 'Cancel',
-        'show' => 'Show',
-        'delete' => 'Delete',
-        'confirm' => 'Confirm',
-        'close' => 'Close',
-        'back' => 'Back',
-        'activate' => 'Activate',
-        'disable' => 'Disable',
-        'reset' => 'Reset',
+    'notifications' => [
+        'something_went_wrong' => 'Something went wrong. Check the console for more information.',
+        'language_updated' => 'Language updated successfully.',
     ],
 
     'image_upload' => [
@@ -38,18 +30,22 @@ return [
         ],
     ],
 
+    'languages' => [
+        'en' => 'English',
+        'de' => 'German',
+    ],
+
+    'buttons' => [
+        'back' => 'Back',
+        'cancel' => 'Cancel',
+        'save' => 'Save',
+    ],
+
     'table' => [
         'id' => 'ID',
         'actions' => 'Actions',
-        'created_at' => 'Created at',
-        'updated_at' => 'Updated at',
-        'deleted_at' => 'Deleted at',
+        'created_at' => 'Created At',
+        'updated_at' => 'Updated At',
+        'deleted_at' => 'Deleted At',
     ],
-
-    'notifications' => [
-        'something_went_wrong' => 'Something went wrong. Check the console for more information.',
-    ],
-
-    'captcha' => 'Captcha',
-    'password' => 'Password',
 ];

@@ -1,11 +1,11 @@
 <div>
-    <span class="font-bold text-xl">{{ __('pages/admin/modules/modules.title') }}</span>
+    <span class="font-bold text-xl">{{ __('admin/modules.title') }}</span>
     <div class="divider"></div>
     @if(count($modules) === 0)
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body">
                 <div class="text-2xl font-semibold text-center">
-                    {{ __('pages/admin/modules/modules.no_modules') }}
+                    {{ __('admin/modules.no_modules') }}
                 </div>
             </div>
         </div>
@@ -21,11 +21,11 @@
                     <div class="text-center">
                         @if($module['enabled'])
                             <div class="badge badge-success">
-                                Enabled
+                                {{ __('admin/modules.enabled') }}
                             </div>
                         @else
                             <div class="badge badge-error">
-                                Disabled
+                                {{ __('admin/modules.disabled') }}
                             </div>
                         @endif
                     </div>

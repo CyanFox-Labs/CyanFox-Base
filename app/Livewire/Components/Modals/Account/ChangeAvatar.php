@@ -42,7 +42,7 @@ class ChangeAvatar extends ModalComponent
                 ->save();
 
             Notification::make()
-                ->title(__('components/modals/account/change_avatar.notifications.avatar_updated'))
+                ->title(__('account/profile.modals.change_avatar.notifications.avatar_updated'))
                 ->success()
                 ->send();
 
@@ -54,7 +54,7 @@ class ChangeAvatar extends ModalComponent
 
         if (!$this->avatar) {
             Notification::make()
-                ->title(__('components/modals/account/change_avatar.notifications.avatar_updated'))
+                ->title(__('account/profile.modals.change_avatar.notifications.avatar_updated'))
                 ->success()
                 ->send();
 
@@ -84,7 +84,7 @@ class ChangeAvatar extends ModalComponent
             ->save();
 
         Notification::make()
-            ->title(__('components/modals/account/change_avatar.notifications.avatar_updated'))
+            ->title(__('account/profile.modals.change_avatar.notifications.avatar_updated'))
             ->success()
             ->send();
 
@@ -118,7 +118,7 @@ class ChangeAvatar extends ModalComponent
             ->save();
 
         Notification::make()
-            ->title(__('components/modals/account/change_avatar.notifications.avatar_reset'))
+            ->title(__('account/profile.modals.change_avatar.notifications.avatar_reset'))
             ->success()
             ->send();
 

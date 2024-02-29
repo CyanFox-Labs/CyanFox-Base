@@ -39,7 +39,7 @@ class DeleteModule extends ModalComponent
             ->save();
 
         Notification::make()
-            ->title(__('components/modals/admin/delete_module.notifications.module_deleted'))
+            ->title(__('admin/modules.modals.delete_module.notifications.module_deleted'))
             ->success()
             ->send();
 

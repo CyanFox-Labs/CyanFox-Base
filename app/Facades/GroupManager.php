@@ -2,6 +2,7 @@
 
 namespace App\Facades;
 
+use App\Services\Groups\GroupService;
 use Illuminate\Support\Facades\Facade;
 use Spatie\Permission\Models\Role;
 
@@ -14,6 +15,6 @@ class GroupManager extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return PermissionService::class;
+        return GroupService::class;
     }
 }

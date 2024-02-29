@@ -55,7 +55,7 @@ class DeleteAccount extends ModalComponent
                 ->save();
 
             Notification::make()
-                ->title(__('components/modals/account/delete_account.notifications.account_deleted'))
+                ->title(__('account/profile.modals.delete_account.notifications.account_deleted'))
                 ->success()
                 ->send();
 

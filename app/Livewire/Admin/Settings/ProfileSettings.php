@@ -44,7 +44,7 @@ class ProfileSettings extends Component
 
         Notification::make()
             ->success()
-            ->title(__('pages/admin/settings/settings.notifications.settings_updated'))
+            ->title(__('admin/settings.notifications.settings_updated'))
             ->send();
 
         $this->redirect(route('admin.settings', ['tab' => 'profile']), navigate: true);

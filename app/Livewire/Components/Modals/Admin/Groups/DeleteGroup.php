@@ -38,7 +38,7 @@ class DeleteGroup extends ModalComponent
             ->save();
 
         Notification::make()
-            ->title(__('components/modals/admin/delete_group.notifications.group_deleted'))
+            ->title(__('admin/groups.modals.delete_group.notifications.group_deleted'))
             ->success()
             ->send();
 

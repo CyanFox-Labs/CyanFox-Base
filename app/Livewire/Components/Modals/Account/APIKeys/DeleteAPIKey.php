@@ -32,7 +32,7 @@ class DeleteAPIKey extends ModalComponent
         }
 
         Notification::make()
-            ->title(__('components/modals/account/api_keys.delete_api_key.notifications.api_key_deleted'))
+            ->title(__('account/profile.modals.delete_api_key.notifications.api_key_deleted'))
             ->success()
             ->send();
 

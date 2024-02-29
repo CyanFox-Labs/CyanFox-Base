@@ -50,7 +50,7 @@ class EmailSettings extends Component implements HasForms
         return $form
             ->schema([
                 MarkdownEditor::make('welcomeEmailContent')
-                    ->name(__('pages/admin/settings/email_settings.welcome.content'))
+                    ->name(__('installer.email.welcome.welcome_content'))
                     ->disableToolbarButtons([
                         'attachFiles',
                     ])
@@ -64,7 +64,7 @@ class EmailSettings extends Component implements HasForms
         return $form
             ->schema([
                 MarkdownEditor::make('loginEmailContent')
-                    ->name(__('pages/admin/settings/email_settings.login.content'))
+                    ->name(__('installer.email.login.login_content'))
                     ->disableToolbarButtons([
                         'attachFiles',
                     ])
@@ -78,7 +78,7 @@ class EmailSettings extends Component implements HasForms
         return $form
             ->schema([
                 MarkdownEditor::make('forgotPasswordEmailContent')
-                    ->name(__('pages/admin/settings/email_settings.forgot_password.content'))
+                    ->name(__('installer.email.forgot_password.forgot_password_content'))
                     ->disableToolbarButtons([
                         'attachFiles',
                     ])

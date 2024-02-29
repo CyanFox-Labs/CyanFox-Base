@@ -29,15 +29,15 @@ class DatabaseSettings extends Component
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $this->alert = [
-                'title' => __('pages/installer.database.alerts.success.title'),
+                'title' => __('installer.database.alerts.success.title'),
                 'type' => 'success',
-                'message' => __('pages/installer.database.alerts.success.message'),
+                'message' => __('installer.database.alerts.success.message'),
             ];
 
             return true;
         } catch (Exception $e) {
             $this->alert = [
-                'title' => __('pages/installer.database.alerts.error.title'),
+                'title' => __('installer.database.alerts.error.title'),
                 'type' => 'error',
                 'message' => $e->getMessage(),
             ];

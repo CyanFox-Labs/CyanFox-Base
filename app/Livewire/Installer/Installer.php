@@ -4,7 +4,6 @@ namespace App\Livewire\Installer;
 
 use App\Facades\Utils\UnsplashManager;
 use Filament\Notifications\Notification;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
@@ -20,11 +19,11 @@ class Installer extends Component
     public $step = 'database';
 
     #[On('changeStep')]
-    public function changeStep($step): RedirectResponse
+    public function changeStep($step): void
     {
         $this->step = $step;
 
-        return redirect()->route('install', ['step' => $step]);
+        $this->redirect(route('install', ['step' => $step]), navigate: true);
     }
 
     public function changeLanguage($language): void
@@ -33,11 +32,11 @@ class Installer extends Component
         cookie()->queue(cookie()->forever('language', $language));
 
         Notification::make()
-            ->title(__('pages/auth/messages.notifications.language_changed'))
+            ->title(__('messages.notifications.language_updated'))
             ->success()
             ->send();
 
-        $this->dispatch('refresh');
+        $this->redirect(route('install', ['step' => $this->step]), navigate: true);
     }
 
     public function mount(): void
@@ -61,6 +60,6 @@ class Installer extends Component
     public function render()
     {
         return view('livewire.installer.installer')
-            ->layout('components.layouts.guest', ['title' => __('navigation/titles.install')]);
+            ->layout('components.layouts.guest', ['title' => __('installer.tab_title')]);
     }
 }

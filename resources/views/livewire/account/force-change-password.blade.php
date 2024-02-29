@@ -12,17 +12,17 @@
                 <x-form class="" wire:submit="changePassword">
                     @csrf
 
-                    <x-input label="{{ __('pages/account/force_change_password.current_password') }}"
+                    <x-input label="{{ __('messages.current_password') }}"
                              type="password"
                              class="input-bordered w-full" wire:model="currentPassword" required/>
 
 
                     <div class="grid lg:grid-cols-2 gap-4 mt-4">
-                        <x-input label="{{ __('pages/account/force_change_password.new_password') }}"
+                        <x-input label="{{ __('messages.new_password') }}"
                                  type="password"
                                  class="input-bordered w-full" wire:model="newPassword" required/>
 
-                        <x-input label="{{ __('pages/account/force_change_password.confirm_new_password') }}"
+                        <x-input label="{{ __('messages.confirm_password') }}"
                                  type="password"
                                  class="input-bordered w-full" wire:model="newPasswordConfirmation" required/>
                     </div>
@@ -32,7 +32,7 @@
                     <div class="flex">
                         <x-button type="submit"
                                   class="flex-1 mr-2 btn btn-primary" spinner="changePassword">
-                            {{ __('messages.buttons.update') }}
+                            {{ __('account/force_activate.force_change_password.buttons.change_password') }}
                         </x-button>
                     </div>
                 </x-form>
@@ -42,7 +42,7 @@
     @if($unsplash['error'] == null)
         <div class="pl-6 pb-4 text-white">
             <span class="text-sm" id="credits" wire:ignore><a id="photo"
-                                                              href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('pages/auth/messages.photo') }}</a>, <a
+                                                              href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('messages.photo') }}</a>, <a
                     id="author"
                     href="{{ $unsplash['authorURL'] }}/{{ setting('unsplash_utm') }}">{{ $unsplash['author'] }}</a>, <a
                     href="https://unsplash.com/{{ setting('unsplash_utm') }}">Unsplash</a></span>

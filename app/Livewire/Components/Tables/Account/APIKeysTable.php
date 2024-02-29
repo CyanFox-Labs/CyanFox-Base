@@ -31,10 +31,10 @@ class APIKeysTable extends DataTableComponent
             Column::make(__('messages.table.id'), 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make(__('pages/account/profile.api_keys.table.name'), 'name')
+            Column::make(__('account/profile.api_keys.table.name'), 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make(__('pages/account/profile.api_keys.table.last_used_at'), 'last_used_at')
+            Column::make(__('account/profile.api_keys.table.last_used'), 'last_used_at')
                 ->sortable(),
             Column::make(__('messages.table.created_at'), 'created_at')
                 ->sortable(),

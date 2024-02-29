@@ -19,7 +19,7 @@ class CheckIfUserIsDisabled
         if (Auth::check() && Auth::user()->disabled === 1) {
             Auth::logout();
 
-            session()->flash('error', __('pages/auth/login.user_disabled'));
+            session()->flash('error', __('auth.login.user_disabled'));
 
             if ($request->fullUrl() === route('home')) {
                 return redirect()->route('auth.login');

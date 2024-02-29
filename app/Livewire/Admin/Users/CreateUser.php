@@ -119,7 +119,7 @@ class CreateUser extends Component
             ->save();
 
         Notification::make()
-            ->title(__('pages/admin/users/create_user.notifications.user_created'))
+            ->title(__('admin/users.create.notifications.user_created'))
             ->success()
             ->send();
 
@@ -135,6 +135,7 @@ class CreateUser extends Component
     #[On('refresh')]
     public function render()
     {
-        return view('livewire.admin.users.create-user')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.users.create_user')]);
+        return view('livewire.admin.users.create-user')
+            ->layout('components.layouts.admin', ['title' => __('admin/users.create.tab_title')]);
     }
 }

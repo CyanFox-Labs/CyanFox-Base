@@ -53,7 +53,7 @@ class EmailSettings extends Component implements HasForms
         return $form
             ->schema([
                 MarkdownEditor::make('welcomeEmailContent')
-                    ->name(__('pages/admin/settings/email_settings.welcome.content'))
+                    ->name(__('admin/settings.emails.welcome.welcome_content'))
                     ->disableToolbarButtons([
                         'attachFiles',
                     ])
@@ -67,7 +67,7 @@ class EmailSettings extends Component implements HasForms
         return $form
             ->schema([
                 MarkdownEditor::make('loginEmailContent')
-                    ->name(__('pages/admin/settings/email_settings.login.content'))
+                    ->name(__('admin/settings.emails.login.login_content'))
                     ->disableToolbarButtons([
                         'attachFiles',
                     ])
@@ -81,7 +81,7 @@ class EmailSettings extends Component implements HasForms
         return $form
             ->schema([
                 MarkdownEditor::make('forgotPasswordEmailContent')
-                    ->name(__('pages/admin/settings/email_settings.forgot_password.content'))
+                    ->name(__('admin/settings.emails.forgot_password.forgot_password_content'))
                     ->disableToolbarButtons([
                         'attachFiles',
                     ])
@@ -126,7 +126,7 @@ class EmailSettings extends Component implements HasForms
 
         Notification::make()
             ->success()
-            ->title(__('pages/admin/settings/settings.notifications.settings_updated'))
+            ->title(__('admin/settings.notifications.settings_updated'))
             ->send();
 
         $this->redirect(route('admin.settings', ['tab' => 'emails']), navigate: true);

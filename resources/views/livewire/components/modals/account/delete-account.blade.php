@@ -1,8 +1,8 @@
 <x-modal class="modal-bottom sm:modal-middle">
 
     <div class="text-center">
-        <h2 class="text-2xl font-bold mb-4">{{ __('components/modals/account/delete_account.title') }}</h2>
-        <p class="mb-3">{!! __('components/modals/account/delete_account.description') !!}</p>
+        <h2 class="text-2xl font-bold mb-4">{{ __('account/profile.modals.delete_account.title') }}</h2>
+        <p class="mb-3">{!! __('account/profile.modals.delete_account.description') !!}</p>
     </div>
 
     <x-form wire:submit="deleteAccount">
@@ -15,7 +15,7 @@
                          wire:model="password" required/>
 
                 @if(auth()->user()->two_factor_enabled)
-                    <x-input label="{{ __('components/modals/account/delete_account.two_factor_code') }}"
+                    <x-input label="{{ __('messages.two_factor_code') }}"
                              type="number" class="input input-bordered"
                              wire:model="twoFactorCode" required/>
                 @endif
@@ -31,7 +31,7 @@
 
             <x-button class="btn btn-error flex-grow"
                       type="submit" spinner="deleteAccount">
-                {{ __('messages.buttons.delete') }}
+                {{ __('account/profile.modals.delete_account.buttons.delete_account') }}
             </x-button>
         </div>
     </x-form>

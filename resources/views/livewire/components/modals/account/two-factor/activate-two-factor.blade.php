@@ -15,7 +15,7 @@
                          type="password" class="input input-bordered"
                          wire:model="password" required/>
 
-                <x-input label="{{ __('components/modals/account/activate_two_factor.two_factor_code') }}"
+                <x-input label="{{ __('messages.two_factor_code') }}"
                          class="input input-bordered"
                          wire:model="twoFactorCode" required/>
             </div>
@@ -30,7 +30,7 @@
 
             <x-button class="btn btn-success flex-grow"
                       type="submit" spinner="activateTwoFactor">
-                {{ __('messages.buttons.activate') }}
+                {{ __('account/profile.modals.activate_two_factor.buttons.activate_two_factor') }}
             </x-button>
         </div>
     </x-form>

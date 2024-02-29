@@ -37,7 +37,7 @@ class ActivateTwoFactor extends ModalComponent
                     'two_factor_enabled' => true,
                 ]);
 
-                UserManager::getUser($this->user)->getTwoFactorManager()->generateTwoFactorSecret();
+                UserManager::getUser($this->user)->getTwoFactorManager()->generateRecoveryCodes();
             } catch (Exception $e) {
                 Notification::make()
                     ->title(__('messages.notifications.something_went_wrong'))
@@ -59,7 +59,7 @@ class ActivateTwoFactor extends ModalComponent
                 ->save();
 
             Notification::make()
-                ->title(__('components/modals/account/activate_two_factor.notifications.two_factor_enabled'))
+                ->title(__('account/profile.modals.activate_two_factor.notifications.two_factor_activated'))
                 ->success()
                 ->send();
 

@@ -2,8 +2,8 @@
 
     @if($recoveryCodes == null)
         <div class="text-center">
-            <h2 class="text-2xl font-bold mb-4">{{ __('components/modals/account/show_recovery_codes.auth.title') }}</h2>
-            <p class="mb-3">{{ __('components/modals/account/show_recovery_codes.auth.description') }}</p>
+            <h2 class="text-2xl font-bold mb-4">{{ __('account/profile.modals.show_recovery_codes.auth.title') }}</h2>
+            <p class="mb-3">{{ __('account/profile.modals.show_recovery_codes.auth.description') }}</p>
         </div>
 
         <x-form wire:submit="showRecoveryCodes">
@@ -24,13 +24,13 @@
                         wire:click="$dispatch('closeModal')">{{ __('messages.buttons.cancel') }}</button>
                 <x-button class="btn btn-success flex-grow"
                           type="submit"
-                          spinner="showRecoveryKeys">{{ __('messages.buttons.show') }}</x-button>
+                          spinner="showRecoveryKeys">{{ __('account/profile.modals.show_recovery_codes.auth.buttons.show_recovery_codes') }}</x-button>
             </div>
         </x-form>
     @else
         <div class="text-center mb-3">
-            <h2 class="text-2xl font-bold mb-4">{{ __('components/modals/account/show_recovery_codes.title') }}</h2>
-            <p class="mb-3">{{ __('components/modals/account/show_recovery_codes.description') }}</p>
+            <h2 class="text-2xl font-bold mb-4">{{ __('account/profile.modals.show_recovery_codes.title') }}</h2>
+            <p class="mb-3">{{ __('account/profile.modals.show_recovery_codes.description') }}</p>
 
             @foreach($recoveryCodes as $recoveryCode)
                 <p class="mb-3">{{ $recoveryCode }}</p>
@@ -47,11 +47,11 @@
                     wire:click="$dispatch('closeModal')">{{ __('messages.buttons.cancel') }}</button>
             <x-button class="btn btn-warning flex-grow"
                       type="button" wire:click="regenerateRecoveryCodes"
-                      spinner>{{ __('components/modals/account/show_recovery_codes.buttons.regenerate') }}</x-button>
+                      spinner>{{ __('account/profile.modals.show_recovery_codes.buttons.regenerate_recovery_codes') }}</x-button>
             <x-button class="btn btn-success flex-grow"
                       type="button"
                       wire:click="downloadRecoveryCodes"
-                      spinner>{{ __('components/modals/account/show_recovery_codes.buttons.download') }}</x-button>
+                      spinner>{{ __('account/profile.modals.show_recovery_codes.buttons.download_recovery_codes') }}</x-button>
         </div>
     @endif
 </x-modal>

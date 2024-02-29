@@ -75,7 +75,7 @@ class ForceChangePassword extends Component
 
         Notification::make()
             ->success()
-            ->title(__('pages/account/force_change_password.notifications.password_changed'))
+            ->title(__('account/force_activate.force_change_password.notifications.password_changed'))
             ->send();
 
         if ($this->redirect) {
@@ -84,7 +84,7 @@ class ForceChangePassword extends Component
             return;
         }
 
-        $this->redirect(route('home'), navigate: true);
+        $this->redirect(route('home'));
     }
 
     public function mount(): void
@@ -103,6 +103,7 @@ class ForceChangePassword extends Component
     #[On('refresh')]
     public function render()
     {
-        return view('livewire.account.force-change-password')->layout('components.layouts.guest', ['title' => __('navigation/titles.force_change_password')]);
+        return view('livewire.account.force-change-password')
+            ->layout('components.layouts.guest', ['title' => __('account/force_activate.force_change_password.tab_title')]);
     }
 }

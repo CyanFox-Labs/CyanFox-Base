@@ -41,7 +41,7 @@ class DeleteUser extends ModalComponent
             ->save();
 
         Notification::make()
-            ->title(__('components/modals/admin/delete_user.notifications.user_deleted'))
+            ->title(__('admin/users.modals.delete_user.notifications.user_deleted'))
             ->success()
             ->send();
 

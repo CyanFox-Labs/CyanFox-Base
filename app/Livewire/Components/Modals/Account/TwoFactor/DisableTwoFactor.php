@@ -20,7 +20,7 @@ class DisableTwoFactor extends ModalComponent
 
     public function disableTwoFactor(): void
     {
-        if (Hash::make($this->password, $this->user->password)) {
+        if (Hash::check($this->password, $this->user->password)) {
             try {
                 UserManager::getUser($this->user)->getTwoFactorManager()->generateTwoFactorSecret();
                 UserManager::getUser($this->user)->getTwoFactorManager()->generateRecoveryCodes();
@@ -47,7 +47,7 @@ class DisableTwoFactor extends ModalComponent
                 ->save();
 
             Notification::make()
-                ->title(__('components/modals/account/disable_two_factor.notifications.two_factor_disabled'))
+                ->title(__('account/profile.modals.disable_two_factor.notifications.two_factor_disabled'))
                 ->success()
                 ->send();
 

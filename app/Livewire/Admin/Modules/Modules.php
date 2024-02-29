@@ -40,7 +40,7 @@ class Modules extends Component
             ->save();
 
         Notification::make()
-            ->title(__('pages/admin/modules/modules.notifications.module_disabled'))
+            ->title(__('admin/modules.notifications.module_disabled'))
             ->success()
             ->send();
 
@@ -72,39 +72,7 @@ class Modules extends Component
             ->save();
 
         Notification::make()
-            ->title(__('pages/admin/modules/modules.notifications.module_enabled'))
-            ->success()
-            ->send();
-
-        $this->redirect(route('admin.modules'), navigate: true);
-    }
-
-    public function deleteModule($name): void
-    {
-        try {
-            $module = Module::find($name);
-
-            $module->delete();
-        } catch (Exception $e) {
-            Notification::make()
-                ->title(__('messages.notifications.something_went_wrong'))
-                ->danger()
-                ->send();
-
-            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
-
-            return;
-        }
-
-        ActivityLogManager::logName('admin')
-            ->description('admin:modules.delete')
-            ->causer(Auth::user()->username)
-            ->subject($name)
-            ->performedBy(Auth::user())
-            ->save();
-
-        Notification::make()
-            ->title(__('pages/admin/modules/modules.notifications.module_deleted'))
+            ->title(__('admin/modules.notifications.module_enabled'))
             ->success()
             ->send();
 
@@ -129,6 +97,7 @@ class Modules extends Component
     {
         $this->mount();
 
-        return view('livewire.admin.modules.modules')->layout('components.layouts.admin', ['title' => __('navigation/titles.admin.modules.modules')]);
+        return view('livewire.admin.modules.modules')
+            ->layout('components.layouts.admin', ['title' => __('admin/modules.tab_title')]);
     }
 }

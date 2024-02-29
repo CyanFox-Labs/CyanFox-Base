@@ -21,7 +21,7 @@ class ShowRecoveryCodes extends ModalComponent
 
     public function showRecoveryCodes(): void
     {
-        if (Hash::make($this->password, $this->user->password)) {
+        if (Hash::check($this->password, $this->user->password)) {
             $this->recoveryCodes = UserManager::getUser($this->user)->getTwoFactorManager()->generateRecoveryCodes();
 
             ActivityLogManager::logName('account')

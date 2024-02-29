@@ -51,7 +51,7 @@ class SetupPassword extends ModalComponent
             ->save();
 
         Notification::make()
-            ->title(__('components/modals/account/setup_password.notifications.password_updated'))
+            ->title(__('account/profile.modals.setup_password.notifications.password_setup'))
             ->success()
             ->send();
 

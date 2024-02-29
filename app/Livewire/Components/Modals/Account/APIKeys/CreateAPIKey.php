@@ -44,7 +44,7 @@ class CreateAPIKey extends ModalComponent
             ->save();
 
         Notification::make()
-            ->title(__('components/modals/account/api_keys.create_api_key.notifications.api_key_created'))
+            ->title(__('account/profile.modals.create_api_key.notifications.api_key_created'))
             ->success()
             ->send();
     }

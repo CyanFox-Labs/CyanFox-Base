@@ -34,28 +34,28 @@ class SessionsTable extends DataTableComponent
         return [
             Column::make(__('messages.table.id'), 'id')
                 ->hideIf(true),
-            Column::make(__('pages/account/profile.sessions.table.ip_address'), 'ip_address')
+            Column::make(__('account/profile.sessions.table.ip_address'), 'ip_address')
                 ->searchable()
                 ->sortable(),
-            Column::make(__('pages/account/profile.sessions.table.user_agent'), 'user_agent')
+            Column::make(__('account/profile.sessions.table.user_agent'), 'user_agent')
                 ->searchable()
                 ->sortable(),
-            Column::make(__('pages/account/profile.sessions.table.device'), 'user_agent')
+            Column::make(__('account/profile.sessions.table.device'), 'user_agent')
                 ->sortable()
                 ->format(function ($userAgent) {
                     $agent = new Agent;
                     $agent->setUserAgent($userAgent);
 
                     if ($agent->isDesktop()) {
-                        return '<i class="icon-monitor"></i> '.__('pages/account/profile.sessions.device_types.desktop');
+                        return '<i class="icon-monitor"></i> '.__('account/profile.sessions.device_types.desktop');
                     } elseif ($agent->isPhone()) {
-                        return $agent->isPhone() ? '<i class="icon-smartphone"></i> '.__('pages/account/profile.sessions.device_types.phone') :
-                            '<i class="icon-tablet"></i> '.__('pages/account/profile.sessions.device_types.tablet');
+                        return $agent->isPhone() ? '<i class="icon-smartphone"></i> '.__('account/profile.sessions.device_types.phone') :
+                            '<i class="icon-tablet"></i> '.__('account/profile.sessions.device_types.tablet');
                     } else {
-                        return '<i class="icon-monitor-smartphone text-lg"></i> '.__('pages/account/profile.sessions.device_types.unknown');
+                        return '<i class="icon-monitor-smartphone text-lg"></i> '.__('account/profile.sessions.device_types.unknown');
                     }
                 })->html(),
-            Column::make(__('pages/account/profile.sessions.table.last_activity'), 'last_activity')
+            Column::make(__('account/profile.sessions.table.last_activity'), 'last_activity')
                 ->sortable()
                 ->format(function ($lastActivity) {
                     return Carbon::createFromTimestamp($lastActivity)->diffForHumans();
@@ -67,7 +67,7 @@ class SessionsTable extends DataTableComponent
                         return '<i wire:click="logout(`'.$row->id.'`)" class="icon-log-out font-semibold text-lg text-orange-600 cursor-pointer"></i>';
                     }
 
-                    return '<span class="badge badge-success">'.__('pages/account/profile.sessions.current_session').'</span>';
+                    return '<span class="badge badge-success">'.__('account/profile.sessions.current_session').'</span>';
                 })
                 ->html(),
         ];

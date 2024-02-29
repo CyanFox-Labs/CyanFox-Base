@@ -28,19 +28,19 @@ class ActivityTable extends DataTableComponent
             Column::make(__('messages.table.id'), 'id')
                 ->sortable()
                 ->searchable(),
-            Column::make(__('pages/account/profile.activity.table.log_name'), 'log_name')
+            Column::make(__('account/profile.activity.table.log_name'), 'log_name')
                 ->sortable()
                 ->searchable(),
-            Column::make(__('pages/account/profile.activity.table.description'), 'description')
+            Column::make(__('account/profile.activity.table.description'), 'description')
                 ->sortable()
                 ->searchable(),
-            Column::make(__('pages/account/profile.activity.table.subject'), 'subject')
+            Column::make(__('account/profile.activity.table.subject'), 'subject')
                 ->sortable()
                 ->searchable(),
-            Column::make(__('pages/account/profile.activity.table.causer'), 'causer')
+            Column::make(__('account/profile.activity.table.causer'), 'causer')
                 ->sortable()
                 ->searchable(),
-            Column::make(__('pages/account/profile.activity.table.ip_address'), 'ip_address')
+            Column::make(__('account/profile.activity.table.ip_address'), 'ip_address')
                 ->sortable()
                 ->searchable(),
             Column::make(__('messages.table.created_at'), 'created_at')

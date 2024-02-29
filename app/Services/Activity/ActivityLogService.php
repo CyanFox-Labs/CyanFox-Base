@@ -64,13 +64,13 @@ class ActivityLogService
 
     public function save(): void
     {
-        ActivityLog::create([
-            'log_name' => $this->logName ?? 'system',
-            'description' => $this->description ?? null,
-            'performed_by' => $this->performedBy->id ?? null,
-            'subject' => $this->subject ?? null,
-            'causer' => $this->causer ?? Auth::user()->username,
-            'ip_address' => $this->ipAddress ?? request()->ip(),
-        ]);
+        $activityLog = new ActivityLog();
+        $activityLog->log_name = $this->logName ?? 'system';
+        $activityLog->description = $this->description;
+        $activityLog->performed_by = $this->performedBy->id ?? Auth::user()->id;
+        $activityLog->subject = $this->subject ?? null;
+        $activityLog->causer = $this->causer ?? Auth::user()->username;
+        $activityLog->ip_address = $this->ipAddress ?? request()->ip();
+        $activityLog->save();
     }
 }

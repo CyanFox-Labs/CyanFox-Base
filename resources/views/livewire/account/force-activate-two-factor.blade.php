@@ -13,7 +13,7 @@
                     <div class="md:flex justify-center mb-3">
 
                         <div class="flex flex-col items-center mr-4">
-                            <img src="data:image/svg+xml;base64,{{ auth()->user()->getTwoFactorImage() }}" alt="Two Factor Image"
+                            <img src="data:image/svg+xml;base64,{{ user()->getUser(auth()->user())->getTwoFactorManager()->getTwoFactorImage() }}" alt="Two Factor Image"
                                  class="border-4 border-white mb-2">
                             <p>{{ decrypt(auth()->user()->two_factor_secret) }}</p>
                         </div>
@@ -23,7 +23,7 @@
                                      type="password" class="input-bordered"
                                      wire:model="password" required/>
 
-                            <x-input label="{{ __('pages/account/force_activate_two_factor.two_factor_code') }}"
+                            <x-input label="{{ __('messages.two_factor_code') }}"
                                      class="input-bordered"
                                      wire:model="twoFactorCode" required/>
                         </div>
@@ -38,7 +38,7 @@
 
                         <x-button class="btn btn-success flex-grow"
                                   type="submit" spinner="activateTwoFactor">
-                            {{ __('messages.buttons.activate') }}
+                            {{ __('account/force_activate.force_activate_two_factor.buttons.activate_two_factor') }}
                         </x-button>
                     </div>
                 </x-form>
@@ -48,7 +48,7 @@
     @if($unsplash['error'] == null)
         <div class="pl-6 pb-4 text-white">
             <span class="text-sm" id="credits" wire:ignore><a id="photo"
-                                                              href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('pages/auth/messages.photo') }}</a>, <a
+                                                              href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('messages.photo') }}</a>, <a
                     id="author" href="{{ $unsplash['authorURL'] }}/{{ setting('unsplash_utm') }}">{{ $unsplash['author'] }}</a>, <a
                     href="https://unsplash.com/{{ setting('unsplash_utm') }}">Unsplash</a></span>
         </div>

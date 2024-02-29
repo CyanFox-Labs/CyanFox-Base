@@ -3,22 +3,22 @@
     <div role="tablist" class="tabs tabs-boxed mb-4">
         <a role="tab" class="tab @if($tab == 'overview') tab-active @endif"
            wire:click="$set('tab', 'overview')"><i class="icon-home pr-2"></i>
-            <span class="md:block hidden">{{ __('pages/account/profile.tabs.overview') }}</span>
+            <span class="md:block hidden">{{ __('account/profile.tabs.overview') }}</span>
         </a>
 
         <a role="tab" class="tab @if($tab == 'sessions') tab-active @endif"
            wire:click="$set('tab', 'sessions')"><i class="icon-monitor-dot pr-2"></i>
-            <span class="md:block hidden">{{ __('pages/account/profile.tabs.sessions') }}</span>
+            <span class="md:block hidden">{{ __('account/profile.tabs.sessions') }}</span>
         </a>
 
         <a role="tab" class="tab @if($tab == 'apiKeys') tab-active @endif"
            wire:click="$set('tab', 'apiKeys')"><i class="icon-key-round pr-2"></i>
-            <span class="md:block hidden">{{ __('pages/account/profile.tabs.api_keys') }}</span>
+            <span class="md:block hidden">{{ __('account/profile.tabs.api_keys') }}</span>
         </a>
 
         <a role="tab" class="tab @if($tab == 'activity') tab-active @endif"
            wire:click="$set('tab', 'activity')"><i class="icon-eye pr-2"></i>
-            <span class="md:block hidden">{{ __('pages/account/profile.tabs.activity') }}</span>
+            <span class="md:block hidden">{{ __('account/profile.tabs.activity') }}</span>
         </a>
     </div>
 
@@ -55,17 +55,17 @@
                 <div class="card bg-base-100 shadow-xl">
                     <div class="card-body">
                         <span
-                            class="font-bold text-xl">{{ __('pages/account/profile.language_and_theme.title') }}</span>
+                            class="font-bold text-xl">{{ __('account/profile.language_and_theme.title') }}</span>
                         <div class="divider"></div>
 
-                        <x-select label="{{ __('pages/account/profile.language_and_theme.select_language') }}"
+                        <x-select label="{{ __('account/profile.language_and_theme.select_language') }}"
                                   wire:model="language"
                                   class="select select-bordered"
                                   :options="
-                                      [['id' => 'en', 'name' => __('messages.languages.english')],
-                                      ['id' => 'de', 'name' => __('messages.languages.german')]]"></x-select>
+                                      [['id' => 'en', 'name' => __('messages.languages.en')],
+                                      ['id' => 'de', 'name' => __('messages.languages.de')]]"></x-select>
 
-                        <x-select label="{{ __('pages/account/profile.language_and_theme.select_theme') }}"
+                        <x-select label="{{ __('account/profile.language_and_theme.select_theme') }}"
                                   wire:model="theme"
                                   class="select select-bordered"
                                   :options="$themes"></x-select>
@@ -75,7 +75,7 @@
                             <x-button type="submit"
                                       wire:click="updateLanguageAndTheme"
                                       class="btn btn-primary" spinner>
-                                {{ __('messages.buttons.update') }}
+                                {{ __('account/profile.buttons.update_profile') }}
                             </x-button>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                 <div class="card bg-base-100 shadow-xl">
                     <div class="card-body">
                         <span
-                            class="font-bold text-xl">{{ __('pages/account/profile.actions.title') }}</span>
+                            class="font-bold text-xl">{{ __('account/profile.actions.title') }}</span>
                         <div class="divider"></div>
                         <div class="grid sm:grid-cols-2 grid-cols-1 gap-2">
 
@@ -92,18 +92,18 @@
                                 <button type="button"
                                         wire:click="$dispatch('openModal', { component: 'components.modals.account.two-factor.show-recovery-codes' })"
                                         class="btn btn-accent">
-                                    {{ __('pages/account/profile.actions.buttons.show_recovery_codes') }}
+                                    {{ __('account/profile.actions.buttons.show_recovery_codes') }}
                                 </button>
                                 <button type="button"
                                         wire:click="$dispatch('openModal', { component: 'components.modals.account.two-factor.disable-two-factor' })"
                                         class="btn btn-error">
-                                    {{ __('pages/account/profile.actions.buttons.disable_two_factor') }}
+                                    {{ __('account/profile.actions.buttons.disable_two_factor') }}
                                 </button>
                             @elseif(!auth()->user()->password == null)
                                 <button type="button"
                                         wire:click="$dispatch('openModal', { component: 'components.modals.account.two-factor.activate-two-factor' })"
                                         class="btn btn-success">
-                                    {{ __('pages/account/profile.actions.buttons.activate_two_factor') }}
+                                    {{ __('account/profile.actions.buttons.activate_two_factor') }}
                                 </button>
                             @endif
 
@@ -112,7 +112,7 @@
                                 <button type="button"
                                         wire:click="$dispatch('openModal', { component: 'components.modals.account.setup-password' })"
                                         class="btn btn-success">
-                                    {{ __('pages/account/profile.actions.buttons.setup_password') }}
+                                    {{ __('account/profile.actions.buttons.setup_password') }}
                                 </button>
 
                             @endif
@@ -121,7 +121,7 @@
                                 <button type="button"
                                         wire:click="$dispatch('openModal', { component: 'components.modals.account.delete-account' })"
                                         class="btn btn-error">
-                                    {{ __('pages/account/profile.actions.buttons.delete_account') }}
+                                    {{ __('account/profile.actions.buttons.delete_account') }}
                                 </button>
                             @endif
                         </div>
@@ -137,25 +137,25 @@
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <div class="form-control w-full">
-                                        <x-input label="{{ __('pages/account/profile.account_details.first_name') }}"
+                                        <x-input label="{{ __('messages.first_name') }}"
                                                  class="input input-bordered w-full" wire:model="firstName"/>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="form-control w-full">
-                                        <x-input label="{{ __('pages/account/profile.account_details.last_name') }}"
+                                        <x-input label="{{ __('messages.last_name') }}"
                                                  class="input input-bordered w-full" wire:model="lastName"/>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="form-control w-full">
-                                        <x-input label="{{ __('pages/account/profile.account_details.username') }}"
+                                        <x-input label="{{ __('messages.username') }}"
                                                  class="input input-bordered w-full" wire:model="username"/>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="form-control w-full">
-                                        <x-input label="{{ __('pages/account/profile.account_details.email') }}"
+                                        <x-input label="{{ __('messages.email') }}"
                                                  type="email"
                                                  class="input input-bordered w-full" wire:model="email"/>
                                     </div>
@@ -165,7 +165,7 @@
                             <div class="col-span-1 flex gap-2 sm:flex-row flex-col">
                                 <x-button type="submit"
                                           class="btn btn-primary" spinner="updateProfileInformations">
-                                    {{ __('messages.buttons.update') }}
+                                    {{ __('account/profile.buttons.update_profile') }}
                                 </x-button>
                             </div>
                         </x-form>
@@ -180,7 +180,7 @@
                                     <div class="w-full">
                                         <div class="form-control w-full">
                                             <x-input
-                                                label="{{ __('pages/account/profile.account_details.current_password') }}"
+                                                label="{{ __('messages.current_password') }}"
                                                 type="password"
                                                 class="input input-bordered w-full" wire:model="currentPassword"/>
                                         </div>
@@ -189,7 +189,7 @@
                                         <div>
                                             <div class="form-control w-full">
                                                 <x-input
-                                                    label="{{ __('pages/account/profile.account_details.new_password') }}"
+                                                    label="{{ __('messages.new_password') }}"
                                                     type="password"
                                                     class="input input-bordered w-full" wire:model="newPassword"/>
                                             </div>
@@ -197,7 +197,7 @@
                                         <div>
                                             <div class="form-control w-full">
                                                 <x-input
-                                                    label="{{ __('pages/account/profile.account_details.confirm_new_password') }}"
+                                                    label="{{ __('messages.confirm_password') }}"
                                                     type="password"
                                                     class="input input-bordered w-full"
                                                     wire:model="passwordConfirmation"/>
@@ -207,7 +207,7 @@
                                     <div class="divider"></div>
                                     <div class="col-span-1 flex gap-2 sm:flex-row flex-col">
                                         <x-button type="submit" class="btn btn-primary" spinner="updatePassword">
-                                            {{ __('messages.buttons.update') }}
+                                            {{ __('account/profile.buttons.update_profile') }}
                                         </x-button>
                                     </div>
                                 </x-form>
@@ -233,7 +233,7 @@
     @if($tab == 'sessions')
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body">
-                <span class="font-bold text-xl">{{ __('pages/account/profile.sessions.title') }}</span>
+                <span class="font-bold text-xl">{{ __('account/profile.sessions.title') }}</span>
                 <div class="divider"></div>
                 <livewire:components.tables.account.sessions-table/>
             </div>
@@ -243,7 +243,7 @@
     @if($tab == 'apiKeys')
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body">
-                <span class="font-bold text-xl">{{ __('pages/account/profile.api_keys.title') }}</span>
+                <span class="font-bold text-xl">{{ __('account/profile.api_keys.title') }}</span>
                 <div class="divider"></div>
                 <livewire:components.tables.account.a-p-i-keys-table/>
             </div>
@@ -253,7 +253,7 @@
     @if($tab == 'activity')
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body">
-                <span class="font-bold text-xl">{{ __('pages/account/profile.activity.title') }}</span>
+                <span class="font-bold text-xl">{{ __('account/profile.activity.title') }}</span>
                 <div class="divider"></div>
                 <livewire:components.tables.account.activity-table/>
             </div>

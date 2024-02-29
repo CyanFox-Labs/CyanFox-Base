@@ -14,7 +14,7 @@
                         <a class="flex items-center w-full h-12 rounded hover:bg-base-300 {{ request()->routeIs('home') ? 'bg-base-300' : '' }}"
                            href="{{ route('home') }}" wire:navigate>
                             <i class="icon-home"></i>
-                            <span class="ml-2 text-sm font-medium">{{ __('navigation/navigation.home') }}</span>
+                            <span class="ml-2 text-sm font-medium">{{ __('navigation.sidebar.home') }}</span>
                         </a>
 
                         @forelse (app('integrate.views')->getAll() as $moduleComponent)
@@ -50,12 +50,12 @@
                      class="w-9 h-9 rounded-3xl mr-6">
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a href="{{ route('account.profile') }}" wire:navigate><i
-                                class='icon-user'></i> {{ __('navigation/navigation.profile') }}</a>
+                                class='icon-user'></i> {{ __('navigation.sidebar.profile') }}</a>
                     </li>
 
                     @hasrole('Super Admin')
                     <li><a href="{{ route('admin.dashboard') }}" wire:navigate><i
-                                class='icon-settings'></i> {{ __('navigation/navigation.admin.admin') }}</a></li>
+                                class='icon-settings'></i> {{ __('navigation.sidebar.admin_dashboard') }}</a></li>
                     <div class="divider"></div>
                     @endhasrole
 
@@ -69,7 +69,7 @@
                     @endforelse
 
                     <li><a href="{{ route('auth.logout') }}"><i
-                                class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
+                                class='icon-log-out'></i> {{ __('navigation.sidebar.logout') }}</a></li>
                 </ul>
             </div>
         </div>
@@ -106,12 +106,12 @@
                      class="w-9 h-9 rounded-3xl mr-6">
                 <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a href="{{ route('account.profile') }}" wire:navigate><i
-                                class='icon-user'></i> {{ __('navigation/navigation.profile') }}</a>
+                                class='icon-user'></i> {{ __('navigation.sidebar.profile') }}</a>
                     </li>
 
                     @hasrole('Super Admin')
                     <li><a href="{{ route('admin.dashboard') }}" wire:navigate><i
-                                class='icon-settings'></i> {{ __('navigation/navigation.admin.admin') }}</a></li>
+                                class='icon-settings'></i> {{ __('navigation.sidebar.admin_dashboard') }}</a></li>
                     <div class="divider"></div>
                     @endhasrole
 
@@ -125,7 +125,7 @@
                     @endforelse
 
                     <li><a href="{{ route('auth.logout') }}"><i
-                                class='icon-log-out'></i> {{ __('navigation/navigation.logout') }}</a></li>
+                                class='icon-log-out'></i> {{ __('navigation.sidebar.logout') }}</a></li>
                 </ul>
             </div>
         </div>
@@ -150,7 +150,7 @@
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('home') ? 'bg-base-300' : '' }}"
                    href="{{ route('home') }}" wire:navigate>
                     <i class="icon-home"></i>
-                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.home') }}</span>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation.sidebar.home') }}</span>
                 </a>
 
                 @forelse (app('integrate.views')->getAll() as $moduleComponent)
@@ -168,20 +168,20 @@
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('account.profile') ? 'bg-base-300' : '' }}"
                    href="{{ route('account.profile') }}" wire:navigate>
                     <i class="icon-user"></i>
-                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.profile') }}</span>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation.sidebar.profile') }}</span>
                 </a>
                 @hasrole('Super Admin')
                 <a class="flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300"
                    href="{{ route('admin.dashboard') }}" wire:navigate>
                     <i class="icon-settings"></i>
                     <span
-                        class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.admin.admin') }}</span>
+                        class="ml-2 text-sm font-medium text-hidden">{{ __('navigation.sidebar.admin_dashboard') }}</span>
                 </a>
                 @endhasrole
                 <a class="relative flex items-center w-full h-12 px-3.5 mt-2 rounded hover:bg-base-300 {{ request()->routeIs('logout') ? 'bg-base-300' : '' }}"
                    href="{{ route('auth.logout') }}">
                     <i class="icon-log-out"></i>
-                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation/navigation.logout') }}</span>
+                    <span class="ml-2 text-sm font-medium text-hidden">{{ __('navigation.sidebar.logout') }}</span>
                 </a>
             </div>
         </div>

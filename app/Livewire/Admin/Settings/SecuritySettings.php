@@ -53,7 +53,7 @@ class SecuritySettings extends Component
 
         Notification::make()
             ->success()
-            ->title(__('pages/admin/settings/settings.notifications.settings_updated'))
+            ->title(__('admin/settings.notifications.settings_updated'))
             ->send();
 
         $this->redirect(route('admin.settings', ['tab' => 'security']), navigate: true);
@@ -61,9 +61,9 @@ class SecuritySettings extends Component
 
     public function mount(): void
     {
-        foreach (range(1, 20) as $number) {
+        foreach (range(4, 20) as $number) {
             $this->passwordMinimumLengthOptions[$number] = ['id' => $number,
-                'name' => __('pages/admin/settings/security_settings.password_minimum_length_options.'.$number)];
+                'name' => __('admin/settings.security.password_minimum_length_option', ['length' => $number])];
         }
 
         $this->passwordMinimumLength = setting('security_password_minimum_length');

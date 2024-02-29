@@ -27,10 +27,10 @@ class GroupsTable extends DataTableComponent
             Column::make(__('messages.table.id'), 'id')
                 ->searchable()
                 ->sortable(),
-            Column::make(__('pages/admin/groups/groups.table.name'), 'name')
+            Column::make(__('admin/groups.list.table.name'), 'name')
                 ->searchable()
                 ->sortable(),
-            Column::make(__('pages/admin/groups/groups.table.guard_name'), 'guard_name')
+            Column::make(__('admin/groups.list.table.guard_name'), 'guard_name')
                 ->searchable()
                 ->sortable(),
             Column::make(__('messages.table.created_at'), 'created_at')
@@ -46,6 +46,8 @@ class GroupsTable extends DataTableComponent
                             '<i wire:click="$dispatch(`openModal`, { component: `components.modals.admin.groups.delete-group`,
                         arguments: { groupId: `'.$row->id.'` } })" class="icon-trash font-semibold text-lg text-red-600 cursor-pointer"></i>';
                     }
+
+                    return '';
 
                 })
                 ->html(),

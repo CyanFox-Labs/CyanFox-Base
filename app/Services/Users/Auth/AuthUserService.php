@@ -16,12 +16,12 @@ class AuthUserService
 
     public function getGroups(): array
     {
-        return $this->user->groups->pluck('name')->toArray();
+        return $this->user->getRoleNames()->toArray();
     }
 
     public function getPermissions(): array
     {
-        return $this->user->getAllPermissions()->pluck('name')->toArray();
+        return $this->user->getAllPermissions()->toArray();
     }
 
     public function regenerateRememberToken(): string
