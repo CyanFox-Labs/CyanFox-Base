@@ -37,7 +37,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [x] User management
     - [x] Role management
     - [x] Module management
-      - [ ] Download modules or install from zip
+        - [ ] Download modules or install from zip
     - [x] Settings
         - [x] System settings
         - [x] Auth settings
@@ -48,7 +48,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
     - [x] Notifications
 - [x] Force change password
 - [x] Force activate Two-factor authentication
-- [x] Notifications (types: info, warning, update, error / danger | with dismiss option | where: home, notifications tab)
+- [x] Notifications (types: info, warning, update, error / danger | with dismiss option | where: home, notifications
+  tab)
 - [x] User notifications
 - [x] Switch to navbar if the device is too small
 - [x] Re-render page on update / modal close
@@ -72,8 +73,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Add Laravel pulse to admin dashboard
 - [x] Code cleanup
 - [x] Translation renewal
-- [ ] Rewrite Modal system and add Modal API
-- [ ] German translation
+- [x] German translation
 - [ ] Add tests
 - [ ] Add V1 -> V2 migration command -> For v1 projects
 - [ ] Code comments

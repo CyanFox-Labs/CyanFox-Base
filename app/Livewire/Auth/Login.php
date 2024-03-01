@@ -47,6 +47,9 @@ class Login extends Component
 
     public function changeLanguage($language): void
     {
+        if ($language == Request::cookie('language')) {
+            return;
+        }
         cookie()->queue(cookie()->forget('language'));
         cookie()->queue(cookie()->forever('language', $language));
 

@@ -82,8 +82,8 @@
 
         <div class="card bg-base-100 shadow-xl">
             <div class="card-body flex justify-center align-middle text-center">
-                <a href="/pulse"><i class="icon-heart-pulse text-9xl"></i></a>
-                <a href="/pulse">{{ __('admin/dashboard.navigation.pulse') }}</a>
+                <a href="/pulse" target="_blank"><i class="icon-heart-pulse text-9xl"></i></a>
+                <a href="/pulse" target="_blank">{{ __('admin/dashboard.navigation.pulse') }}</a>
             </div>
         </div>
 

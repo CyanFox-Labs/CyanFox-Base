@@ -23,6 +23,7 @@ return [
     ],
 
     'spotlight' => [
+        'nothing_found' => 'Nothing found',
         'admin' => [
             'users' => [
                 'create' => [

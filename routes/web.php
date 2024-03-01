@@ -59,7 +59,7 @@ if (setting('auth_enable')) {
     });
 }
 
-Route::group(['middleware' => ['auth', 'disabled', 'force_change']], function () {
+Route::group(['middleware' => ['auth', 'disabled', 'force_change', 'language']], function () {
     Route::get('/', Home::class)->name('home');
 
     if (setting('auth_enable')) {

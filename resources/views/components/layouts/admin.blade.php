@@ -29,6 +29,7 @@
 
 <x-spotlight
     shortcut="ctrl.e"
+    no-results-text="{{ __('navigation.spotlight.nothing_found') }}"
 />
 
 @filamentScripts

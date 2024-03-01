@@ -32,7 +32,7 @@ return [
         ],
         'delete_api_key' => [
             'title' => 'Delete API Key',
-            'description' => 'Are you sure you want to delete this API key? This action cannot be undone.',
+            'description' => 'Are you sure you want to delete this API key?',
 
             'notifications' => [
                 'api_key_deleted' => 'API key deleted successfully.',

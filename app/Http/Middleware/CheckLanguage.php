@@ -17,8 +17,7 @@ class CheckLanguage
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        if (Auth::check() && Auth::user()->language) {
+        if (isset(Auth::user()->language)) {
             App::setLocale(Auth::user()->language);
 
             return $next($request);
