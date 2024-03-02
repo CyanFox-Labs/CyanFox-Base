@@ -29,7 +29,7 @@ jobs:
         run: |
           cp .env.testing .env
           docker-compose -f docker-compose.test.yml up -d
-          docker exec app composer update
-          docker exec app npm install
-          docker exec app npm run build
-          docker exec app php artisan test --env=testing
+          docker exec laravel.test composer update
+          docker exec laravel.test npm install
+          docker exec laravel.test npm run build
+          docker exec laravel.test php artisan test --coverage --min=80 --env=testing
