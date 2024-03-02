@@ -23,7 +23,7 @@ class DeleteAccount extends ModalComponent
 
     public function deleteAccount(): void
     {
-        if (Hash::make($this->password, $this->user->password)) {
+        if (Hash::check($this->password, $this->user->password)) {
             if (UserManager::getUser($this->user)->getTwoFactorManager()->isTwoFactorEnabled()) {
                 if (!UserManager::getUser($this->user)->getTwoFactorManager()->checkTwoFactorCode($this->twoFactorCode, false)) {
                     throw ValidationException::withMessages([

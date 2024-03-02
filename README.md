@@ -74,12 +74,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Code cleanup
 - [x] Translation renewal
 - [x] German translation
-- [ ] Add tests
+- [x] Add tests
 - [ ] Add V1 -> V2 migration command -> For v1 projects
 - [ ] Code comments
-- [ ] Documentation (Wiki)
 - [ ] Add Readme (Screenshots, Links etc.)
 - [ ] Release v2.0.0
+- [ ] Documentation (Wiki)
 
 ## Modules
 

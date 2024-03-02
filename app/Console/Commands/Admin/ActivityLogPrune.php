@@ -37,6 +37,6 @@ class ActivityLogPrune extends Command
 
         $totalAfter = ActivityLog::count();
 
-        $this->info('Activity log has been pruned. Total records deleted: ' . ($totalBefore - $totalAfter));
+        $this->info('Activity log has been pruned. Total records deleted: '.($totalBefore - $totalAfter));
     }
 }

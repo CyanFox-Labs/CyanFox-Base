@@ -46,7 +46,7 @@ class UnsplashService
         ];
     }
 
-    public function getUTM(): string
+    public function getUTM(): ?string
     {
         return setting('unsplash_utm');
     }

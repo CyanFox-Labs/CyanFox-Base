@@ -141,6 +141,7 @@ class Login extends Component
 
                 if ($this->redirect) {
                     $this->redirect($this->redirect);
+
                     return;
                 }
 

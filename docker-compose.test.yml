@@ -10,3 +10,11 @@ services:
     volumes:
       - ./:/var/www
 
+  # MySQL
+  mysql:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: testing
+      MYSQL_USER: sail
+      MYSQL_PASSWORD: password

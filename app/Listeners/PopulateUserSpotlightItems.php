@@ -11,7 +11,6 @@ class PopulateUserSpotlightItems
     /**
      * Handle the event.
      *
-     * @param  Authenticated  $event
      * @return void
      */
     public function handle(Authenticated $event)

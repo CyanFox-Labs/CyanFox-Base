@@ -9,25 +9,29 @@ class SettingsService
 {
     public function getSetting(string $key, bool $isEncrypted = false): ?string
     {
-        $setting = Setting::where('key', $key)->first();
+        try {
+            $setting = Setting::where('key', $key)->first();
 
-        if ($setting == null) {
-            $setting = $this->setSetting($key, $isEncrypted);
-        }
-
-        if ($isEncrypted) {
-            try {
-                return decrypt($setting->value);
-            } catch (Exception) {
-                return $setting->value;
+            if ($setting == null) {
+                $setting = $this->setSetting($key, $isEncrypted);
             }
-        }
 
-        return match ($setting->value) {
-            'true', 1 => true,
-            'false', 0 => false,
-            default => $setting->value,
-        };
+            if ($isEncrypted) {
+                try {
+                    return decrypt($setting->value);
+                } catch (Exception) {
+                    return $setting->value;
+                }
+            }
+
+            return match ($setting->value) {
+                'true', 1 => true,
+                'false', 0 => false,
+                default => $setting->value,
+            };
+        } catch (Exception) {
+            return null;
+        }
     }
 
     public function setSetting(string $key, ?string $value = null, bool $isEncrypted = false): Setting

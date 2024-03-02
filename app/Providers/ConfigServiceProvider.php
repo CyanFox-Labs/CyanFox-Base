@@ -38,8 +38,10 @@ class ConfigServiceProvider extends ServiceProvider
 
         ];
 
-        foreach ($configValues as $key => $value) {
-            Config::set($key, $value);
+        if (!config('app.dont_use_database') || config('app.env') != 'testing') {
+            foreach ($configValues as $key => $value) {
+                Config::set($key, $value);
+            }
         }
     }
 }

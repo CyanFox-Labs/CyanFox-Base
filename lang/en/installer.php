@@ -34,7 +34,7 @@ return [
 
         'buttons' => [
             'test_connection' => 'Test Connection',
-        ]
+        ],
     ],
 
     'system' => [

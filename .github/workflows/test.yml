@@ -32,4 +32,4 @@ jobs:
           docker exec app composer update
           docker exec app npm install
           docker exec app npm run build
-          docker exec app php artisan test
+          docker exec app php artisan test --env=testing

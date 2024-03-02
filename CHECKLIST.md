@@ -2,10 +2,9 @@
 - [ ] Tests
 - [ ] Settings in admin panel
 - [ ] Default values in .env.example
-- [ ] Skeletons
 - [ ] Localization
 - [ ] Rest API endpoints
 - [ ] Version change
-- [ ] Code cleanup
 - [ ] Code refactoring
+- [ ] Code cleanup
 - [ ] Code comments

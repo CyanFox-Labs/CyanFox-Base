@@ -4,6 +4,7 @@ namespace App\Livewire\Components\Modals\Account\TwoFactor;
 
 use App\Facades\ActivityLogManager;
 use App\Facades\UserManager;
+use App\Models\UserRecoveryCode;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -22,7 +23,11 @@ class ShowRecoveryCodes extends ModalComponent
     public function showRecoveryCodes(): void
     {
         if (Hash::check($this->password, $this->user->password)) {
-            $this->recoveryCodes = UserManager::getUser($this->user)->getTwoFactorManager()->generateRecoveryCodes();
+            $this->recoveryCodes = UserRecoveryCode::where('user_id', $this->user->id)->get()->pluck('code')->toArray();
+            if (empty($this->recoveryCodes)) {
+                $this->recoveryCodes = UserManager::getUser($this->user)->getTwoFactorManager()->generateRecoveryCodes();
+            }
+            $this->recoveryCodes = array_map('decrypt', $this->recoveryCodes);
 
             ActivityLogManager::logName('account')
                 ->description('account:two_factor.recovery_codes.show')
