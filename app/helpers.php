@@ -2,7 +2,7 @@
 
 use App\Facades\SettingsManager;
 use App\Services\Activity\ActivityLogService;
-use App\Services\Groups\PermissionService;
+use App\Services\Groups\GroupService;
 use App\Services\Modules\ModuleService;
 use App\Services\Settings\SettingsService;
 use App\Services\Users\UserService;
@@ -39,9 +39,9 @@ if (!function_exists('activity')) {
 }
 
 if (!function_exists('group')) {
-    function group(): PermissionService
+    function group(): GroupService
     {
-        return new PermissionService;
+        return new GroupService;
     }
 }
 

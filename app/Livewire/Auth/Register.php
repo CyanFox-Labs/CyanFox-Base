@@ -11,7 +11,6 @@ use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use DanHarrin\LivewireRateLimiting\WithRateLimiting;
 use Exception;
 use Filament\Notifications\Notification;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
@@ -133,9 +132,7 @@ class Register extends Component
             ->success()
             ->send();
 
-        Auth::login($user);
-
-        $this->redirect(route('home'));
+        $this->redirect(route('auth.login'), navigate: true);
     }
 
     public function mount(): void
