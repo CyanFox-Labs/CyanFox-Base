@@ -1,0 +1,79 @@
+## Todo
+
+- [x] Login
+    - [x] Send notification if the user is logged in from a new device
+- [x] Logout
+- [x] Two-factor authentication in login
+- [x] Register
+- [x] OAuth (Google, GitHub, etc.)
+- [x] Forgot password
+- [ ] Profile
+    - [x] Image upload
+    - [x] Change basic information
+    - [x] Change password
+    - [x] Change Theme
+    - [x] Change Language
+    - [x] Manage Sessions
+    - [x] Activate Two-factor authentication
+    - [x] Show recovery codes
+    - [x] Disable Two-factor authentication
+    - [x] Setup password
+    - [x] Delete account
+    - [x] API Keys
+        - [ ] API Permissions
+    - [x] Activity Log
+    - [ ] OPTIONAL: Passkeys
+- [ ] Admin Page
+    - [x] User management
+    - [x] Role management
+    - [x] Module management
+        - [ ] Download modules or install from zip
+    - [x] Settings
+        - [x] System settings
+        - [x] Auth settings
+        - [x] Email settings
+        - [x] Profile settings
+        - [x] Security settings
+    - [x] Activity log
+    - [x] Notifications
+- [x] Force change password
+- [x] Force activate Two-factor authentication
+- [x] Notifications (types: info, warning, update, error / danger | with dismiss option | where: home, notifications
+  tab)
+- [x] User notifications
+- [x] Switch to navbar if the device is too small
+- [x] Re-render page on update / modal close
+- [x] Developer API (With e.g integration in existing views) (For modules)
+- [x] Move not necessary functions to modules
+- [x] Update spotlight values from db to app('spotlight')
+- [x] Auth system disable functionality
+- [x] API Documentation
+- [x] Add Spotlight values
+- [x] Better error pages
+- [x] Installer (Web & CLI)
+- [x] Custom Avatar URL
+- [x] Activity logging
+- [x] Add default values to .env.example
+- [x] Add custom avatar url to api
+- [x] Add github workflow and dependabot config
+- [x] Docker support
+- [x] Add commands
+- [x] Code refactoring
+- [x] Add discord as socialite provider
+- [x] Add Laravel pulse to admin dashboard
+- [x] Code cleanup
+- [x] Translation renewal
+- [x] German translation
+- [x] Add tests
+- [x] Code comments
+- [x] Add Readme (Screenshots, Links etc.)
+- [x] Release v2.0.0
+- [ ] Add V1 -> V2 migration command -> For v1 projects
+- [ ] Documentation (Wiki)
+
+## Modules
+
+- [ ] Actions
+    - [ ] Clear cache
+    - [ ] Clear views
+    - [ ] Clear activity log

@@ -1,6 +1,6 @@
 {
     "version": {
-        "dev": true,
+        "dev": false,
         "template": "2.0.0"
     }
 }

@@ -39,6 +39,7 @@ return [
         'back' => 'Back',
         'cancel' => 'Cancel',
         'save' => 'Save',
+        'close' => 'Close',
     ],
 
     'table' => [
