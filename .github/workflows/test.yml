@@ -25,15 +25,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Composer
-        run: |
-          curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
-      - name: Composer Install & Update
-        run: |
-          composer install
-          composer update
-
       - name: Test
         run: |
           cp .env.testing .env
