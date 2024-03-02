@@ -76,7 +76,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] German translation
 - [x] Add tests
 - [ ] Add V1 -> V2 migration command -> For v1 projects
-- [ ] Code comments
+- [x] Code comments
 - [ ] Add Readme (Screenshots, Links etc.)
 - [ ] Release v2.0.0
 - [ ] Documentation (Wiki)

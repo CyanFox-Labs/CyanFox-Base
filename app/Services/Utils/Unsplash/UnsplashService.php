@@ -7,6 +7,21 @@ use GuzzleHttp\Client;
 
 class UnsplashService
 {
+    /**
+     * Returns an array containing background-related information.
+     *
+     * This method attempts to retrieve a random image from Unsplash API and generates the necessary CSS styles
+     * for displaying the image as a background. If successful, the array will contain the following keys:
+     * - "css": The CSS styles for the background.
+     * - "error": Set to null if no errors occurred, otherwise contains the error message.
+     * - "photo": The link to the Unsplash photo page, with the UTM source appended.
+     * - "author": The name of the photo's author.
+     * - "authorURL": The link to the author's Unsplash profile, with the UTM source appended.
+     * If an exception is caught during the process, the "error" key will contain the exception message,
+     * and the other keys will be set to null.
+     *
+     * @return array An array containing background-related information.
+     */
     public function returnBackground(): array
     {
         try {
@@ -46,11 +61,21 @@ class UnsplashService
         ];
     }
 
+    /**
+     * Retrieves the value of the UTM setting.
+     *
+     * @return string|null The value of the UTM setting, or null if it is not set.
+     */
     public function getUTM(): ?string
     {
         return setting('unsplash_utm');
     }
 
+    /**
+     * Fetches a random image from the Unsplash API.
+     *
+     * @return array An array containing the random image details
+     */
     public function getRandomUnsplashImage(): array
     {
         $api_key = setting('unsplash_api_key', true);

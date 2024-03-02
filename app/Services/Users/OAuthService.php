@@ -12,11 +12,22 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class OAuthService
 {
+    /**
+     * Redirect the user to the authentication page of the specified provider.
+     *
+     * @param string $provider The name of the social provider.
+     * @return RedirectResponse The redirect response.
+     */
     public function redirectToProvider(string $provider): RedirectResponse
     {
         return Socialite::driver($provider)->redirect();
     }
 
+    /**
+     * Handle the callback from GitHub authentication.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function handleGitHubCallback(): RedirectResponse
     {
         try {
@@ -44,6 +55,11 @@ class OAuthService
         }
     }
 
+    /**
+     * Handle the Google callback.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function handleGoogleCallback(): RedirectResponse
     {
         try {
@@ -72,6 +88,11 @@ class OAuthService
         }
     }
 
+    /**
+     * Handles the callback from Discord authentication.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function handleDiscordCallback(): RedirectResponse
     {
         try {

@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class Spotlight
 {
+    /**
+     * Gets the formatted values based on the provided admin flag.
+     *
+     * @param bool $admin The flag indicating whether to filter based on admin role or not.
+     * @return array The formatted values as an array.
+     */
     public static function getFormattedValues(bool $admin)
     {
         $allValues = collect(app('spotlight.values')->getAll());
@@ -23,6 +29,12 @@ class Spotlight
         })->values()->toArray();
     }
 
+    /**
+     * Searches for values based on the provided search term.
+     *
+     * @param \Illuminate\Http\Request $request The HTTP request object.
+     * @return array The filtered and formatted values.
+     */
     public function search(Request $request)
     {
         if (!auth()->user()) {
@@ -37,6 +49,12 @@ class Spotlight
         })->values();
     }
 
+    /**
+     * Perform actions based on given search string
+     *
+     * @param string $search The search string to filter the actions
+     * @return Illuminate\Support\Collection The filtered actions
+     */
     public function actions(string $search = '')
     {
         $adminValues = [];
