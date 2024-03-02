@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class Spotlight
 {
@@ -32,7 +33,7 @@ class Spotlight
     /**
      * Searches for values based on the provided search term.
      *
-     * @param  \Illuminate\Http\Request  $request  The HTTP request object.
+     * @param Request $request  The HTTP request object.
      * @return array The filtered and formatted values.
      */
     public function search(Request $request)
@@ -53,7 +54,7 @@ class Spotlight
      * Perform actions based on given search string
      *
      * @param  string  $search  The search string to filter the actions
-     * @return Illuminate\Support\Collection The filtered actions
+     * @return Collection The filtered actions
      */
     public function actions(string $search = '')
     {
