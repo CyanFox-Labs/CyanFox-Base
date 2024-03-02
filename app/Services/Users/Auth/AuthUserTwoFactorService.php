@@ -21,7 +21,7 @@ class AuthUserTwoFactorService
      *
      * Initializes the object and assigns the provided user.
      *
-     * @param mixed $user The user to be assigned to the object.
+     * @param  mixed  $user  The user to be assigned to the object.
      * @return void
      */
     public function __construct($user)
@@ -44,8 +44,6 @@ class AuthUserTwoFactorService
      *
      * This method generates a secret key using the Google2FA library and assigns it to the current user's
      * two-factor secret property. The secret key is then encrypted and saved to the user model.
-     *
-     * @return void
      */
     public function generateTwoFactorSecret(): void
     {
@@ -82,9 +80,8 @@ class AuthUserTwoFactorService
     /**
      * Check if the provided two-factor code is valid for the user.
      *
-     * @param string $key The two-factor code to check.
-     * @param bool $checkRecovery (optional) Specifies whether to check for recovery codes as well. Defaults to true.
-     *
+     * @param  string  $key  The two-factor code to check.
+     * @param  bool  $checkRecovery  (optional) Specifies whether to check for recovery codes as well. Defaults to true.
      * @return bool Returns true if the provided code is valid, false otherwise.
      */
     public function checkTwoFactorCode(string $key, bool $checkRecovery = true): bool

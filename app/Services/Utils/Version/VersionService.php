@@ -102,8 +102,8 @@ class VersionService
      * to 'testing', it will always return a boolean true.
      *
      * @return string|bool The version of the remote project as a string if available,
-     *                    otherwise a boolean true if the application environment is 'testing'
-     *                    or if the project version URL is not set or unavailable.
+     *                     otherwise a boolean true if the application environment is 'testing'
+     *                     or if the project version URL is not set or unavailable.
      */
     public function getRemoteProjectVersion(): string|bool
     {

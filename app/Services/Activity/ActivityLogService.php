@@ -16,7 +16,7 @@ class ActivityLogService
     private $logName;
 
     /**
-     * @var string $description The description of the code
+     * @var string The description of the code
      */
     private $description;
 
@@ -37,19 +37,19 @@ class ActivityLogService
     /**
      * Represents the object responsible for causing an action or event.
      *
-     * @var object|null $causer The object responsible for causing the action.
+     * @var object|null The object responsible for causing the action.
      */
     private $causer;
 
     /**
-     * @var string $ipAddress The IP address of the user.
+     * @var string The IP address of the user.
      */
     private $ipAddress;
 
     /**
      * Sets the log name.
      *
-     * @param string $name The name to set for the log.
+     * @param  string  $name  The name to set for the log.
      * @return $this Returns the instance of the class itself.
      */
     public function logName(string $name): self
@@ -62,7 +62,7 @@ class ActivityLogService
     /**
      * Set the description of the object.
      *
-     * @param string $description The description to be set.
+     * @param  string  $description  The description to be set.
      * @return self Returns the instance of the object after setting the description.
      */
     public function description(string $description): self
@@ -75,7 +75,7 @@ class ActivityLogService
     /**
      * Set the user who performed the action.
      *
-     * @param User $performedBy The user who performed the action.
+     * @param  User  $performedBy  The user who performed the action.
      * @return $this
      */
     public function performedBy(User $performedBy): self
@@ -88,8 +88,7 @@ class ActivityLogService
     /**
      * Set the subject of the object.
      *
-     * @param string $subject The new subject to set.
-     * @return self
+     * @param  string  $subject  The new subject to set.
      */
     public function subject(string $subject): self
     {
@@ -101,8 +100,7 @@ class ActivityLogService
     /**
      * Sets the causer of the action.
      *
-     * @param string $causer The causer of the action.
-     *
+     * @param  string  $causer  The causer of the action.
      * @return self The current instance of the class.
      */
     public function causer(string $causer): self
@@ -115,7 +113,7 @@ class ActivityLogService
     /**
      * Sets the IP address.
      *
-     * @param string $ipAddress The IP address to set.
+     * @param  string  $ipAddress  The IP address to set.
      * @return self Returns the instance of the class for method chaining.
      */
     public function ipAddress(string $ipAddress): self
@@ -135,8 +133,6 @@ class ActivityLogService
      * If the causer is not set, it defaults to the current authenticated user's username.
      * If the IP address is not set, it defaults to the IP address from the current request.
      * Finally, it saves the activity log to the database.
-     *
-     * @return void
      */
     public function save(): void
     {

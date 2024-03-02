@@ -9,7 +9,7 @@ class Spotlight
     /**
      * Gets the formatted values based on the provided admin flag.
      *
-     * @param bool $admin The flag indicating whether to filter based on admin role or not.
+     * @param  bool  $admin  The flag indicating whether to filter based on admin role or not.
      * @return array The formatted values as an array.
      */
     public static function getFormattedValues(bool $admin)
@@ -32,7 +32,7 @@ class Spotlight
     /**
      * Searches for values based on the provided search term.
      *
-     * @param \Illuminate\Http\Request $request The HTTP request object.
+     * @param  \Illuminate\Http\Request  $request  The HTTP request object.
      * @return array The filtered and formatted values.
      */
     public function search(Request $request)
@@ -52,7 +52,7 @@ class Spotlight
     /**
      * Perform actions based on given search string
      *
-     * @param string $search The search string to filter the actions
+     * @param  string  $search  The search string to filter the actions
      * @return Illuminate\Support\Collection The filtered actions
      */
     public function actions(string $search = '')

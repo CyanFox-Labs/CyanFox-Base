@@ -15,7 +15,7 @@ class OAuthService
     /**
      * Redirect the user to the authentication page of the specified provider.
      *
-     * @param string $provider The name of the social provider.
+     * @param  string  $provider  The name of the social provider.
      * @return RedirectResponse The redirect response.
      */
     public function redirectToProvider(string $provider): RedirectResponse

@@ -11,6 +11,7 @@ class AuthUserSessionService
 {
     /**
      * This variable represents the user object.
+     *
      * @var User
      */
     private $user;
@@ -18,7 +19,7 @@ class AuthUserSessionService
     /**
      * Constructor method for initializing the user.
      *
-     * @param mixed $user The user object or user identifier.
+     * @param  mixed  $user  The user object or user identifier.
      */
     public function __construct($user)
     {
@@ -28,8 +29,7 @@ class AuthUserSessionService
     /**
      * Finds a session based on the given session ID.
      *
-     * @param string $sessionId The session ID to search for.
-     *
+     * @param  string  $sessionId  The session ID to search for.
      * @return Session|null The found session object. Returns null if the session is not found.
      */
     public function findSession(string $sessionId): ?Session
@@ -60,8 +60,7 @@ class AuthUserSessionService
     /**
      * Deletes a session for the current user.
      *
-     * @param string $sessionId The ID of the session to be deleted.
-     * @return bool
+     * @param  string  $sessionId  The ID of the session to be deleted.
      */
     public function deleteSession(string $sessionId): bool
     {
@@ -73,8 +72,6 @@ class AuthUserSessionService
      *
      * This method revokes all sessions except the current one for the user.
      * It finds all sessions related to the user and deletes them from the database.
-     *
-     * @return void
      */
     public function revokeOtherSessions(): void
     {

@@ -12,10 +12,9 @@ class AuthUserAPIKeyService
     private $user;
 
     /**
-     *
      * Initializes a new instance of the class.
      *
-     * @param mixed $user The user object or data to be assigned to the class property.
+     * @param  mixed  $user  The user object or data to be assigned to the class property.
      * @return void
      */
     public function __construct($user)
@@ -24,10 +23,9 @@ class AuthUserAPIKeyService
     }
 
     /**
-     *
      * Generates a new API key for the given name.
      *
-     * @param string $name The name of the API key.
+     * @param  string  $name  The name of the API key.
      * @return string The generated API key.
      */
     public function createAPIKey(string $name): string
@@ -36,11 +34,9 @@ class AuthUserAPIKeyService
     }
 
     /**
-     *
      * Deletes an API key based on the given ID.
      *
-     * @param int $id The ID of the API key to be deleted.
-     * @return void
+     * @param  int  $id  The ID of the API key to be deleted.
      */
     public function deleteAPIKey(int $id): void
     {
