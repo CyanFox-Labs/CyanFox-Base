@@ -58,7 +58,7 @@ class UsersTable extends DataTableComponent
                 ->sortable(),
             BooleanColumn::make(__('admin/users.list.table.force_activate_two_factor'), 'force_activate_two_factor')
                 ->sortable(),
-            BooleanColumn::make(__('admin/users.list.disabled'), 'disabled')
+            BooleanColumn::make(__('admin/users.list.table.disabled'), 'disabled')
                 ->sortable(),
             Column::make(__('messages.table.created_at'), 'created_at')
                 ->sortable(),
