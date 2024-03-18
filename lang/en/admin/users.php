@@ -30,6 +30,9 @@ return [
         'table' => [
             'avatar' => 'Avatar',
             'two_factor_enabled' => 'Two Factor Enabled',
+            'force_change_password' => 'Force Change Password',
+            'force_activate_two_factor' => 'Force Activate Two Factor',
+            'disabled' => 'Disabled',
         ],
     ],
     'create' => [
