@@ -4050,16 +4050,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.4.6",
+            "version": "v3.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "7e7d638183b34fb61621455891869f5abfd55a82"
+                "reference": "c65b3f0798ab2c9338213ede3588c3cdf4e6fcc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/7e7d638183b34fb61621455891869f5abfd55a82",
-                "reference": "7e7d638183b34fb61621455891869f5abfd55a82",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/c65b3f0798ab2c9338213ede3588c3cdf4e6fcc0",
+                "reference": "c65b3f0798ab2c9338213ede3588c3cdf4e6fcc0",
                 "shasum": ""
             },
             "require": {
@@ -4113,7 +4113,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.4.6"
+                "source": "https://github.com/livewire/livewire/tree/v3.4.9"
             },
             "funding": [
                 {
@@ -4121,7 +4121,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-20T14:04:25+00:00"
+            "time": "2024-03-14T14:03:32+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -4265,20 +4265,20 @@
         },
         {
             "name": "mhmiton/laravel-modules-livewire",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mhmiton/laravel-modules-livewire.git",
-                "reference": "0466f40384e21e4632a4121585aa20d4201fa189"
+                "reference": "4f4e97f541c29c66da5f4133f56a7652b1b24e0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mhmiton/laravel-modules-livewire/zipball/0466f40384e21e4632a4121585aa20d4201fa189",
-                "reference": "0466f40384e21e4632a4121585aa20d4201fa189",
+                "url": "https://api.github.com/repos/mhmiton/laravel-modules-livewire/zipball/4f4e97f541c29c66da5f4133f56a7652b1b24e0a",
+                "reference": "4f4e97f541c29c66da5f4133f56a7652b1b24e0a",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^10.0",
+                "laravel/framework": "^10.0|^11.0",
                 "livewire/livewire": "^3.0",
                 "php": ">=8.1"
             },
@@ -4322,9 +4322,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mhmiton/laravel-modules-livewire/issues",
-                "source": "https://github.com/mhmiton/laravel-modules-livewire/tree/v2.2.0"
+                "source": "https://github.com/mhmiton/laravel-modules-livewire/tree/v2.3.0"
             },
-            "time": "2023-11-18T16:33:22+00:00"
+            "time": "2024-03-12T18:04:29+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
