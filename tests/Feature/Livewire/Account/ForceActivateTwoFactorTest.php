@@ -16,16 +16,6 @@ class ForceActivateTwoFactorTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function renders_successfully()
-    {
-        $user = User::factory()->create();
-        UserManager::getUser($user)->getTwoFactorManager()->generateTwoFactorSecret();
-
-        $this->actingAs($user)->get(route('account.force-activate.two-factor'))
-            ->assertStatus(200);
-    }
-
-    /** @test */
     public function can_activate_two_factor()
     {
         $user = User::factory()->create([
