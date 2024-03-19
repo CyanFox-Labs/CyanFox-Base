@@ -21,23 +21,18 @@ class RegisterTest extends TestCase
     /** @test */
     public function can_register(): void
     {
-
-        $password = fake()->password(8);
-        $username = fake()->userName;
-        $email = fake()->email;
-
         Livewire::test(Register::class)
-            ->set('firstName', fake()->firstName)
-            ->set('lastName', fake()->lastName)
-            ->set('username', $username)
-            ->set('email', $email)
-            ->set('password', $password)
-            ->set('passwordConfirmation', $password)
+            ->set('firstName', 'TestUser')
+            ->set('lastName', 'TestUser')
+            ->set('username', 'testuser')
+            ->set('email', 'test@local.host')
+            ->set('password', 'kXqz=k^zwu7d^;UrMPNF')
+            ->set('passwordConfirmation', 'kXqz=k^zwu7d^;UrMPNF')
             ->call('register');
 
         $this->assertDatabaseHas('users', [
-            'username' => $username,
-            'email' => $email,
+            'username' => 'testuser',
+            'email' => 'test@local.host',
         ]);
     }
 }

@@ -20,6 +20,10 @@ class DisableTwoFactor extends ModalComponent
 
     public function disableTwoFactor(): void
     {
+        $this->validate([
+            'password' => 'required',
+        ]);
+
         if (Hash::check($this->password, $this->user->password)) {
             try {
                 UserManager::getUser($this->user)->getTwoFactorManager()->generateTwoFactorSecret();

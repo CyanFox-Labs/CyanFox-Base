@@ -1,0 +1,39 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - v2
+      - develop
+  pull_request:
+    branches:
+      - master
+      - v2
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      docker:
+        image: docker:stable-dind
+        options: --privileged
+        env:
+          DOCKER_DRIVER: overlay2
+          DOCKER_HOST: tcp://localhost:2375
+          DOCKER_TLS_CERTDIR: ""
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Test
+        run: |
+          cp .env.testing .env
+
+          curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+          /usr/local/bin/composer update --ignore-platform-req=ext-gd --ignore-platform-req=ext-intl --ignore-platform-req=ext-iconv
+
+          ./vendor/bin/sail up -d
+          ./vendor/bin/sail composer update
+          ./vendor/bin/sail npm install
+          ./vendor/bin/sail npm run build
+          ./vendor/bin/sail test --env=testing

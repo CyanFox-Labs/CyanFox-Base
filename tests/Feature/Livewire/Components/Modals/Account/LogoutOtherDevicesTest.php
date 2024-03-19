@@ -6,6 +6,7 @@ use App\Livewire\Components\Modals\Account\LogoutOtherDevices;
 use App\Models\Session;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -26,7 +27,7 @@ class LogoutOtherDevicesTest extends TestCase
     public function can_user_logout_other_devices(): void
     {
         $user = User::factory()->create();
-        $uuid = fake()->uuid;
+        $uuid = Str::uuid();
         Session::factory()->create([
             'user_id' => $user->id,
             'id' => $uuid,

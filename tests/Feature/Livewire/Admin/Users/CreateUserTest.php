@@ -30,16 +30,14 @@ class CreateUserTest extends TestCase
         $group = Role::create(['name' => 'Super Admin']);
         $user->assignRole($group);
 
-        $password = fake()->password(20);
-
         Livewire::actingAs($user)
             ->test(CreateUser::class)
             ->set('username', 'test')
-            ->set('firstName', fake()->firstName)
-            ->set('lastName', fake()->lastName)
+            ->set('firstName', 'TestUser')
+            ->set('lastName', 'TestUser')
             ->set('email', 'test@local.host')
-            ->set('password', $password)
-            ->set('passwordConfirmation', $password)
+            ->set('password', 'kXqz=k^zwu7d^;UrMPNF')
+            ->set('passwordConfirmation', 'kXqz=k^zwu7d^;UrMPNF')
             ->call('createUser');
 
         $this->assertDatabaseHas('users', [

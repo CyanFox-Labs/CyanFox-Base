@@ -32,15 +32,14 @@ class ForceChangePasswordTest extends TestCase
         ]);
         UserManager::getUser($user)->getTwoFactorManager()->generateTwoFactorSecret();
 
-        $newPassword = fake()->password(8);
         Livewire::actingAs($user)
             ->test(ForceChangePassword::class)
             ->set('currentPassword', 'password')
-            ->set('newPassword', $newPassword)
-            ->set('newPasswordConfirmation', $newPassword)
+            ->set('newPassword', 'kXqz=k^zwu7d^;UrMPNF')
+            ->set('newPasswordConfirmation', 'kXqz=k^zwu7d^;UrMPNF')
             ->call('changePassword');
 
-        $this->assertTrue(Hash::check($newPassword, $user->fresh()->password));
+        $this->assertTrue(Hash::check('kXqz=k^zwu7d^;UrMPNF', $user->fresh()->password));
 
     }
 }

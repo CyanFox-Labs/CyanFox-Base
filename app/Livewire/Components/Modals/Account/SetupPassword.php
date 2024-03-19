@@ -4,6 +4,7 @@ namespace App\Livewire\Components\Modals\Account;
 
 use App\Facades\ActivityLogManager;
 use App\Facades\UserManager;
+use App\Rules\Password;
 use Exception;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class SetupPassword extends ModalComponent
     public function setupPassword(): void
     {
         $this->validate([
-            'newPassword' => 'required|max:255|same:passwordConfirmation',
+            'newPassword' => ['required', 'max:255', 'same:passwordConfirmation', new Password],
             'passwordConfirmation' => 'required',
         ]);
 

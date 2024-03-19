@@ -35,14 +35,13 @@ class ForgotPasswordTest extends TestCase
             'password_reset_token' => 'token',
             'password_reset_expiration' => now()->addHour(),
         ]);
-        $password = fake()->password(8);
 
         Livewire::test(ForgotPassword::class)
-            ->set('password', $password)
-            ->set('passwordConfirmation', $password)
+            ->set('password', 'kXqz=k^zwu7d^;UrMPNF')
+            ->set('passwordConfirmation', 'kXqz=k^zwu7d^;UrMPNF')
             ->set('resetToken', 'token')
             ->call('resetPassword');
 
-        $this->assertTrue(Hash::check($password, $user->fresh()->password));
+        $this->assertTrue(Hash::check('kXqz=k^zwu7d^;UrMPNF', $user->fresh()->password));
     }
 }

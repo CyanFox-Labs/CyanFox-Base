@@ -29,6 +29,10 @@ class ForceActivateTwoFactor extends Component
 
     public function activateTwoFactor(): void
     {
+        $this->validate([
+            'twoFactorCode' => 'required',
+            'password' => 'required',
+        ]);
 
         if (!Hash::check($this->password, $this->user->password)) {
             ActivityLogManager::logName('account')

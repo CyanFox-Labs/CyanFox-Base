@@ -22,6 +22,10 @@ class ActivateTwoFactor extends ModalComponent
 
     public function activateTwoFactor(): void
     {
+        $this->validate([
+            'twoFactorCode' => 'required',
+            'password' => 'required',
+        ]);
 
         if (Hash::check($this->password, $this->user->password)) {
             if (UserManager::getUser($this->user)->getTwoFactorManager()->isTwoFactorEnabled()) {

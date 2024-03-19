@@ -29,14 +29,12 @@ class SetupPasswordTest extends TestCase
             'password' => null,
         ]);
 
-        $password = fake()->password(8);
-
         Livewire::actingAs($user)
             ->test(SetupPassword::class)
-            ->set('newPassword', $password)
-            ->set('passwordConfirmation', $password)
+            ->set('newPassword', 'kXqz=k^zwu7d^;UrMPNF')
+            ->set('passwordConfirmation', 'kXqz=k^zwu7d^;UrMPNF')
             ->call('setupPassword');
 
-        $this->assertTrue(Hash::check($password, $user->fresh()->password));
+        $this->assertTrue(Hash::check('kXqz=k^zwu7d^;UrMPNF', $user->fresh()->password));
     }
 }

@@ -36,13 +36,10 @@ class ProfileTest extends TestCase
     /** @test */
     public function can_update_profile()
     {
-        $userPassword = fake()->password(8);
         $user = User::factory()->create([
-            'password' => Hash::make($userPassword),
+            'password' => 'password',
         ]);
         UserManager::getUser($user)->getTwoFactorManager()->generateTwoFactorSecret();
-
-        $newPassword = fake()->password(8);
 
         Livewire::actingAs($user)
             ->test(Profile::class)
@@ -52,9 +49,9 @@ class ProfileTest extends TestCase
             ->set('email', 'test@local.host')
             ->set('theme', 'dark')
             ->set('language', 'de')
-            ->set('currentPassword', $userPassword)
-            ->set('password', $newPassword)
-            ->set('passwordConfirmation', $newPassword)
+            ->set('currentPassword', 'password')
+            ->set('password', 'kXqz=k^zwu7d^;UrMPNF')
+            ->set('passwordConfirmation', 'kXqz=k^zwu7d^;UrMPNF')
             ->call('updateProfileInformations')
             ->call('updatePassword')
             ->call('updateLanguageAndTheme');
