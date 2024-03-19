@@ -33,7 +33,7 @@ class Spotlight
     /**
      * Searches for values based on the provided search term.
      *
-     * @param Request $request  The HTTP request object.
+     * @param  Request  $request  The HTTP request object.
      * @return array The filtered and formatted values.
      */
     public function search(Request $request)

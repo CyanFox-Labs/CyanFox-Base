@@ -18,7 +18,7 @@ class AuthUserService
     /**
      * Constructs a new instance of the class.
      *
-     * @param  $user User user object to be assigned to the $user property.
+     * @param  $user  User user object to be assigned to the $user property.
      * @return void
      */
     public function __construct($user)

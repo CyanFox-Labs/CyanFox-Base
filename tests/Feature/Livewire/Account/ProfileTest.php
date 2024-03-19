@@ -6,7 +6,6 @@ use App\Facades\UserManager;
 use App\Livewire\Account\Profile;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Hash;
 use Livewire\Livewire;
 use Tests\TestCase;
 
