@@ -2,7 +2,7 @@
 
 ## Documentation
 
-You can find the documentation [here](https://docs.cyanfox.de/docs/laravel-template).
+You can find the documentation [here](https://docs.cyanfox.de/docs/laravel-template/v2).
 
 ## Support
 You can get support on the [Cyanfox Discord](https://discord.cyanfox.de).
