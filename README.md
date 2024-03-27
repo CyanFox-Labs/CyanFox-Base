@@ -5,7 +5,7 @@
 You can find the documentation [here](https://docs.cyanfox.de/docs/laravel-template). (Work in progress)
 
 ## Support
-You can get support on the [Cyanfox Discord](https://discord.cyanfox.de).
+You can get support on the [CyanFox Discord](https://discord.cyanfox.de).
 
 ## License
 
