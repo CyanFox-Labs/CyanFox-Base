@@ -7,7 +7,7 @@ on:
       - develop
   pull_request:
     branches:
-      - master
+      - develop
       - v2
 
 jobs:
@@ -25,10 +25,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
       - name: Test
         run: |
           cp .env.testing .env
-
           curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           /usr/local/bin/composer update --ignore-platform-req=ext-gd --ignore-platform-req=ext-intl --ignore-platform-req=ext-iconv
 
