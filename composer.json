@@ -97,7 +97,7 @@
     "repositories": {
         "robsontenorio/mary": {
             "type": "vcs",
-            "url": "https://github.com/RealZone22/MaryUI.git",
+            "url": "https://github.com/CyanFox-Projects/MaryUI.git",
             "options": {
                 "symlink": true
             }
