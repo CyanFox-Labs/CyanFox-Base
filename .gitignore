@@ -15,7 +15,7 @@ auth.json
 npm-debug.log
 yarn-error.log
 modules_statuses.json
-/modules/**
+/modules
 /.scribe
 /.fleet
 /.idea
