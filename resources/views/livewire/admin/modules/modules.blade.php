@@ -1,5 +1,9 @@
 <div>
-    <span class="font-bold text-xl">{{ __('admin/modules.title') }}</span>
+    <div class="flex md:justify-between md:flex-row flex-col">
+        <span class="font-bold text-xl">{{ __('admin/modules.title') }}</span>
+        <button wire:click="$dispatch('openModal', { component: 'components.modals.admin.modules.install-module' })"
+                class="btn btn-primary">{{ __('admin/modules.buttons.install_module') }}</button>
+    </div>
     <div class="divider"></div>
     @if(count($modules) === 0)
         <div class="card bg-base-100 shadow-xl">
@@ -39,6 +43,13 @@
                         </div>
 
                         <div>
+                            <x-button
+                                wire:click="runMigrations('{{ $module['name'] }}')"
+                                tooltip-bottom="{{ __('admin/modules.tooltip.run_migrations') }}"
+                                class="btn btn-ghost" spinner>
+                                <i class="icon-database text-lg text-blue-600"></i>
+                            </x-button>
+
                             <button
                                     wire:click="$dispatch('openModal', { component: 'components.modals.admin.modules.delete-module', arguments: { moduleName: '{{ $module['name'] }}' }})"
                                     class="btn btn-ghost">
@@ -46,13 +57,17 @@
                             </button>
 
                             @if($module['enabled'])
-                                <button wire:click="disableModule('{{ $module['name'] }}')" class="btn btn-ghost">
+                                <x-button wire:click="disableModule('{{ $module['name'] }}')"
+                                          tooltip-bottom="{{ __('admin/modules.tooltip.disable_module') }}"
+                                          class="btn btn-ghost" spinner>
                                     <i class="icon-ban text-lg text-yellow-600"></i>
-                                </button>
+                                </x-button>
                             @else
-                                <button wire:click="enableModule('{{ $module['name'] }}')" class="btn btn-ghost">
+                                <x-button wire:click="enableModule('{{ $module['name'] }}')"
+                                          tooltip-bottom="{{ __('admin/modules.tooltip.enable_module') }}"
+                                          class="btn btn-ghost" spinner>
                                     <i class="icon-check text-lg text-green-600"></i>
-                                </button>
+                                </x-button>
                             @endif
                         </div>
                     </div>

@@ -7,9 +7,20 @@ return [
     'enabled' => 'Enabled',
     'disabled' => 'Disabled',
 
+    'tooltip' => [
+        'disable_module' => 'Disable Module',
+        'enable_module' => 'Enable Module',
+        'run_migrations' => 'Run Database Migrations',
+    ],
+
     'notifications' => [
         'module_enabled' => 'Module enabled successfully.',
         'module_disabled' => 'Module disabled successfully.',
+        'migrations_ran' => 'Database migrations ran successfully.',
+    ],
+
+    'buttons' => [
+        'install_module' => 'Install Module',
     ],
 
     'modals' => [
@@ -22,6 +33,18 @@ return [
             ],
             'buttons' => [
                 'delete_module' => 'Delete Module',
+            ],
+        ],
+        'install_module' => [
+            'title' => 'Install Module',
+            'description' => 'Select a module to install.',
+            'module' => 'Module',
+
+            'notifications' => [
+                'module_installed' => 'Module installed successfully.',
+            ],
+            'buttons' => [
+                'install_module' => 'Install Module',
             ],
         ],
     ],

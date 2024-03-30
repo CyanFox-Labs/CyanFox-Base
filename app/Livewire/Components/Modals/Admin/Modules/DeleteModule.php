@@ -44,7 +44,7 @@ class DeleteModule extends ModalComponent
             ->send();
 
         $this->closeModal();
-        $this->dispatch('refresh');
+        $this->redirect(route('admin.modules'), navigate: true);
     }
 
     #[On('refresh')]

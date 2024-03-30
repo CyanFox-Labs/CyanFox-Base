@@ -8,7 +8,6 @@
     - [ ] Module management
         - [ ] Download modules or install from zip
 - [ ] Add V1 -> V2 migration command -> For v1 projects
-- [ ] Documentation (Wiki)
 
 ## Modules
 

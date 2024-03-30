@@ -2,7 +2,9 @@
 
 namespace App\Services\Modules;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
+use ZipArchive;
 
 class ModuleService
 {
@@ -34,5 +36,31 @@ class ModuleService
         }
 
         return null;
+    }
+
+    /**
+     * Install a module from a zip file.
+     *
+     * @param  string  $path  The path to the zip file.
+     * @return bool Returns true if the module is successfully installed, false otherwise.
+     */
+    public function installModule(string $path): bool
+    {
+        $destinationPath = base_path('modules');
+
+        $zip = new ZipArchive;
+        $zipStatus = $zip->open(storage_path($path));
+
+        if ($zipStatus === true) {
+
+            $zip->extractTo($destinationPath);
+            $zip->close();
+
+            File::deleteDirectory(storage_path('app/temp'));
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }

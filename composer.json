@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.2",
         "ext-pdo": "*",
+        "ext-zip": "*",
         "danharrin/livewire-rate-limiting": "^1.2",
         "filament/notifications": "^3.2.1",
         "guzzlehttp/guzzle": "^7.2",
@@ -24,6 +25,7 @@
         "livewire/livewire": "^3.3",
         "mews/captcha": "^3.3",
         "mhmiton/laravel-modules-livewire": "^2.2",
+        "nscreed/laravel-migration-paths": "^1.2",
         "nwidart/laravel-modules": "^11.0",
         "pragmarx/google2fa-laravel": "^2.1",
         "rappasoft/laravel-livewire-tables": "^3.2",

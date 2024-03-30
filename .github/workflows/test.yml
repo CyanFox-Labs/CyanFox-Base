@@ -3,10 +3,12 @@ name: Test
 on:
   push:
     branches:
-      - v2
+      - master
       - develop
+      - v2
   pull_request:
     branches:
+      - master
       - develop
       - v2
 

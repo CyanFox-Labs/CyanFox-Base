@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0001123959efc0df627b427d930f2309",
+    "content-hash": "7b229b6d2f040289fe79da80205803ac",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4795,6 +4795,58 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.0.2"
             },
             "time": "2024-03-05T20:51:40+00:00"
+        },
+        {
+            "name": "nscreed/laravel-migration-paths",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nscreed/laravel-migration-paths.git",
+                "reference": "637cbdf75959b8bbaf830add72902edb39606697"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nscreed/laravel-migration-paths/zipball/637cbdf75959b8bbaf830add72902edb39606697",
+                "reference": "637cbdf75959b8bbaf830add72902edb39606697",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": ">=5.5",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NsCreed\\MigrationPath\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NsCreed\\MigrationPath\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Faisal Islam",
+                    "email": "faisal.islam70@gmail.com"
+                }
+            ],
+            "description": "Custom migration paths for Laravel project.",
+            "keywords": [
+                "laravel",
+                "migrations"
+            ],
+            "support": {
+                "issues": "https://github.com/nscreed/laravel-migration-paths/issues",
+                "source": "https://github.com/nscreed/laravel-migration-paths/tree/1.2.0"
+            },
+            "time": "2021-02-09T21:03:17+00:00"
         },
         {
             "name": "nunomaduro/termwind",
@@ -13014,7 +13066,8 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-zip": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"

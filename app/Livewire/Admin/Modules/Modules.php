@@ -6,6 +6,7 @@ use App\Facades\ActivityLogManager;
 use App\Facades\ModuleManager;
 use Exception;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -77,6 +78,37 @@ class Modules extends Component
             ->send();
 
         $this->redirect(route('admin.modules'), navigate: true);
+    }
+
+    public function runMigrations($name)
+    {
+        try {
+            Artisan::call('module:migrate', ['module' => $name]);
+        } catch (Exception $e) {
+            Notification::make()
+                ->title(__('messages.notifications.something_went_wrong'))
+                ->danger()
+                ->send();
+
+            $this->dispatch('logger', ['type' => 'error', 'message' => $e->getMessage()]);
+
+            return;
+        }
+
+        ActivityLogManager::logName('admin')
+            ->description('admin:modules.run_migrations')
+            ->causer(Auth::user()->username)
+            ->subject($name)
+            ->performedBy(Auth::user())
+            ->save();
+
+        Notification::make()
+            ->title(__('admin/modules.notifications.migrations_ran'))
+            ->success()
+            ->send();
+
+        $this->redirect(route('admin.modules'), navigate: true);
+
     }
 
     public function mount(): void
