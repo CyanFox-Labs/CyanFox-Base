@@ -11,7 +11,7 @@
         </a>
 
         <a role="tab" class="tab @if($tab == 'forgotPassword') tab-active @endif"
-           wire:click="$set('tab', 'forgotPassword')"><i class="icon-help-circle pr-2"></i>
+           wire:click="$set('tab', 'forgotPassword')"><i class="icon-circle-help pr-2"></i>
             <span class="md:block hidden">{{ __('installer.email.tabs.forgot_password') }}</span>
         </a>
     </div>

@@ -34,17 +34,17 @@ return [
             'buttons' => [
                 'delete_module' => 'Modul löschen',
             ],
-            'install_module' => [
-                'title' => 'Modul installieren',
-                'description' => 'Bitte wähle eine zip-Datei aus, um das Modul zu installieren.',
-                'module' => 'Modul',
+        ],
+        'install_module' => [
+            'title' => 'Modul installieren',
+            'description' => 'Bitte wähle eine zip-Datei aus, um das Modul zu installieren.',
+            'module' => 'Modul',
 
-                'notifications' => [
-                    'module_installed' => 'Modul erfolgreich installiert',
-                ],
-                'buttons' => [
-                    'install_module' => 'Modul installieren',
-                ],
+            'notifications' => [
+                'module_installed' => 'Modul erfolgreich installiert',
+            ],
+            'buttons' => [
+                'install_module' => 'Modul installieren',
             ],
         ],
     ],
