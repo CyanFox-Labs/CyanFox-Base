@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b229b6d2f040289fe79da80205803ac",
+    "content-hash": "8994dbd18e173f6b378a42d1e3d62764",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -4260,21 +4260,22 @@
         },
         {
             "name": "mhmiton/laravel-modules-livewire",
-            "version": "v2.3.0",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mhmiton/laravel-modules-livewire.git",
-                "reference": "4f4e97f541c29c66da5f4133f56a7652b1b24e0a"
+                "reference": "8e33fda90fec07207f28ca48d4bc453146ae5e93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mhmiton/laravel-modules-livewire/zipball/4f4e97f541c29c66da5f4133f56a7652b1b24e0a",
-                "reference": "4f4e97f541c29c66da5f4133f56a7652b1b24e0a",
+                "url": "https://api.github.com/repos/mhmiton/laravel-modules-livewire/zipball/8e33fda90fec07207f28ca48d4bc453146ae5e93",
+                "reference": "8e33fda90fec07207f28ca48d4bc453146ae5e93",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^10.0|^11.0",
                 "livewire/livewire": "^3.0",
+                "nwidart/laravel-modules": ">=11.0",
                 "php": ">=8.1"
             },
             "type": "library",
@@ -4317,9 +4318,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mhmiton/laravel-modules-livewire/issues",
-                "source": "https://github.com/mhmiton/laravel-modules-livewire/tree/v2.3.0"
+                "source": "https://github.com/mhmiton/laravel-modules-livewire/tree/v3.0.0"
             },
-            "time": "2024-03-12T18:04:29+00:00"
+            "time": "2024-03-24T00:11:35+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -4486,16 +4487,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "3.2.2",
+            "version": "3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "2d69b6de67e2a3c0652d0c9dfcfda8b4563c4cee"
+                "reference": "4d599a6e2351d6b6bf21737accdfe1a4ce3fdbb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/2d69b6de67e2a3c0652d0c9dfcfda8b4563c4cee",
-                "reference": "2d69b6de67e2a3c0652d0c9dfcfda8b4563c4cee",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4d599a6e2351d6b6bf21737accdfe1a4ce3fdbb1",
+                "reference": "4d599a6e2351d6b6bf21737accdfe1a4ce3fdbb1",
                 "shasum": ""
             },
             "require": {
@@ -4588,7 +4589,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-28T12:59:49+00:00"
+            "time": "2024-03-30T18:22:00+00:00"
         },
         {
             "name": "nette/schema",
