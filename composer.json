@@ -24,7 +24,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.3",
         "mews/captcha": "^3.3",
-        "mhmiton/laravel-modules-livewire": "^2.2",
+        "mhmiton/laravel-modules-livewire": "^3.0",
         "nscreed/laravel-migration-paths": "^1.2",
         "nwidart/laravel-modules": "^11.0",
         "pragmarx/google2fa-laravel": "^2.1",
