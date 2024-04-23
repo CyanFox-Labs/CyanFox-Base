@@ -193,4 +193,12 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+
+    /*
+     * Application Installed
+     *
+     * This value determines if the application has been installed or not.
+     * If the application has not been installed, the installer will be shown under /install
+     */
+    'installed' => env('APP_INSTALLED', false),
 ];

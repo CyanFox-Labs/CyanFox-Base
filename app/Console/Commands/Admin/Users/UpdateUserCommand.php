@@ -22,6 +22,11 @@ class UpdateUserCommand extends Command
     {
         $user = UserManager::findUserByUsername($this->argument('username'));
 
+        if (!$user) {
+            $this->error('User not found.');
+            return;
+        }
+
         $username = text(
             'What is the user\'s username?',
             default: $user->username,
@@ -74,8 +79,6 @@ class UpdateUserCommand extends Command
                 $role = Role::create(['name' => 'Super Admin']);
                 $this->info('Role created successfully.');
                 $user->assignRole($role);
-
-                return;
             }
         } else {
             $user->removeRole('Super Admin');

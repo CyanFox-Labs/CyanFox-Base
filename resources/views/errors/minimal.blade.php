@@ -41,11 +41,11 @@
                     @if(auth()->user())
                         <a href="{{ route('home')  }}"
                            class="btn btn-info flex-grow"
-                           wire:navigate>{{ __('navigation/navigation.home') }}</a>
+                           wire:navigate>{{ __('errors.buttons.home') }}</a>
                     @else
                         <a href="{{ route('auth.login') }}"
                            class="btn btn-info flex-grow"
-                           wire:navigate>{{ __('navigation/titles.login') }}</a>
+                           wire:navigate>{{ __('errors.buttons.login') }}</a>
                     @endif
                 </div>
             </div>

@@ -67,8 +67,6 @@ class CreateUserCommand extends Command
                 $role = Role::create(['name' => 'Super Admin']);
                 $this->info('Role created successfully.');
                 $user->assignRole($role);
-
-                return;
             }
         }
 

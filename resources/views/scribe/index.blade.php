@@ -26,7 +26,7 @@
             var useCsrf = Boolean();
             var csrfUrl = "/sanctum/csrf-cookie";
         </script>
-        <script src="{{ asset("/vendor/scribe/js/tryitout-4.30.0.js") }}"></script>
+        <script src="{{ asset("/vendor/scribe/js/tryitout-4.35.0.js") }}"></script>
         <style>
             .code-editor, .response-content {
                 color: whitesmoke;
@@ -690,32 +690,13 @@
                                                                                     </div>
 
                                                                             </div>
-                                                            </div>
-                                            </div>
-                                    <div class="expandable">
-                        <div title="Unsplash" id="toc-item-unsplash"
-                             class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-4 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none">
-                            <a href="#unsplash"
-                               class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0">Unsplash</a>
-                                                            <div class="sl-flex sl-items-center sl-text-xs expansion-chevrons">
-                                    <svg aria-hidden="true" focusable="false" data-prefix="fas"
-                                         data-icon="chevron-right"
-                                         class="svg-inline--fa fa-chevron-right fa-fw sl-icon sl-text-muted"
-                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                                        <path fill="currentColor"
-                                              d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"></path>
-                                    </svg>
-                                </div>
-                                                    </div>
-
-                                                    <div class="children" style="display: none;">
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
-                                             id="toc-item-unsplash-GETapi-v1-unsplash-random">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/v1/unsplash/random">
+                                             id="toc-item-endpoints-GETapi-v1-unsplash-random">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Fetches a random image from the Unsplash API.">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
-                                                   href="#unsplash-GETapi-v1-unsplash-random">
-                                                    GET api/v1/unsplash/random
+                                                   href="#endpoints-GETapi-v1-unsplash-random">
+                                                    Fetches a random image from the Unsplash API.
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -723,42 +704,11 @@
                                                                             </div>
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
-                                             id="toc-item-unsplash-GETapi-v1-unsplash-utm">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/v1/unsplash/utm">
+                                             id="toc-item-endpoints-GETapi-v1-unsplash-utm">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Retrieves the value of the UTM setting.">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
-                                                   href="#unsplash-GETapi-v1-unsplash-utm">
-                                                    GET api/v1/unsplash/utm
-                                                </a>
-                                            </div>
-                                                                                    </div>
-
-                                                                            </div>
-                                                            </div>
-                                            </div>
-                                    <div class="expandable">
-                        <div title="Version" id="toc-item-version"
-                             class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-4 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none">
-                            <a href="#version"
-                               class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0">Version</a>
-                                                            <div class="sl-flex sl-items-center sl-text-xs expansion-chevrons">
-                                    <svg aria-hidden="true" focusable="false" data-prefix="fas"
-                                         data-icon="chevron-right"
-                                         class="svg-inline--fa fa-chevron-right fa-fw sl-icon sl-text-muted"
-                                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                                        <path fill="currentColor"
-                                              d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"></path>
-                                    </svg>
-                                </div>
-                                                    </div>
-
-                                                    <div class="children" style="display: none;">
-                                                                    <div class="expandable">
-                                        <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
-                                             id="toc-item-version-GETapi-v1-version-dev">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/v1/version/dev">
-                                                <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
-                                                   href="#version-GETapi-v1-version-dev">
-                                                    GET api/v1/version/dev
+                                                   href="#endpoints-GETapi-v1-unsplash-utm">
+                                                    Retrieves the value of the UTM setting.
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -766,11 +716,11 @@
                                                                             </div>
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
-                                             id="toc-item-version-GETapi-v1-version-template">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/v1/version/template">
+                                             id="toc-item-endpoints-GETapi-v1-version-dev">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Determines if the current version is a development version.">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
-                                                   href="#version-GETapi-v1-version-template">
-                                                    GET api/v1/version/template
+                                                   href="#endpoints-GETapi-v1-version-dev">
+                                                    Determines if the current version is a development version.
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -778,11 +728,11 @@
                                                                             </div>
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
-                                             id="toc-item-version-GETapi-v1-version-project">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/v1/version/project">
+                                             id="toc-item-endpoints-GETapi-v1-version-template">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Retrieves the current version of the template.">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
-                                                   href="#version-GETapi-v1-version-project">
-                                                    GET api/v1/version/project
+                                                   href="#endpoints-GETapi-v1-version-template">
+                                                    Retrieves the current version of the template.
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -790,11 +740,11 @@
                                                                             </div>
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
-                                             id="toc-item-version-GETapi-v1-version-remote-template">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/v1/version/remote/template">
+                                             id="toc-item-endpoints-GETapi-v1-version-project">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Retrieves the current project version.">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
-                                                   href="#version-GETapi-v1-version-remote-template">
-                                                    GET api/v1/version/remote/template
+                                                   href="#endpoints-GETapi-v1-version-project">
+                                                    Retrieves the current project version.
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -802,11 +752,23 @@
                                                                             </div>
                                                                     <div class="expandable">
                                         <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
-                                             id="toc-item-version-GETapi-v1-version-remote-project">
-                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="GET api/v1/version/remote/project">
+                                             id="toc-item-endpoints-GETapi-v1-version-remote-template">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Retrieves the remote template version.">
                                                 <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
-                                                   href="#version-GETapi-v1-version-remote-project">
-                                                    GET api/v1/version/remote/project
+                                                   href="#endpoints-GETapi-v1-version-remote-template">
+                                                    Retrieves the remote template version.
+                                                </a>
+                                            </div>
+                                                                                    </div>
+
+                                                                            </div>
+                                                                    <div class="expandable">
+                                        <div class="sl-flex sl-items-center sl-h-md sl-pr-4 sl-pl-8 sl-bg-canvas-100 hover:sl-bg-canvas-200 sl-cursor-pointer sl-select-none"
+                                             id="toc-item-endpoints-GETapi-v1-version-remote-project">
+                                            <div class="sl-flex-1 sl-items-center sl-truncate sl-mr-1.5 sl-p-0" title="Retrieves the version of the remote project.">
+                                                <a class="ElementsTableOfContentsItem sl-block sl-no-underline"
+                                                   href="#endpoints-GETapi-v1-version-remote-project">
+                                                    Retrieves the version of the remote project.
                                                 </a>
                                             </div>
                                                                                     </div>
@@ -818,7 +780,7 @@
 
         </div>
         <div class="sl-flex sl-items-center sl-px-4 sl-py-3 sl-border-t">
-            Last updated: February 20, 2024
+            Last updated: April 23, 2024
         </div>
 
         <div class="sl-flex sl-items-center sl-px-4 sl-py-3 sl-border-t">
@@ -1157,7 +1119,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/account" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -1168,7 +1130,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/account"
 );
@@ -1188,7 +1150,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/account';
 $response = $client-&gt;get(
@@ -1208,7 +1170,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -1581,7 +1543,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/account/activity" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -1592,7 +1554,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/account/activity"
 );
@@ -1612,7 +1574,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/account/activity';
 $response = $client-&gt;get(
@@ -1632,7 +1594,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -2005,7 +1967,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/account/permissions" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -2016,7 +1978,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/account/permissions"
 );
@@ -2036,7 +1998,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/account/permissions';
 $response = $client-&gt;get(
@@ -2056,7 +2018,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -2429,7 +2391,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/account/groups" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -2440,7 +2402,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/account/groups"
 );
@@ -2460,7 +2422,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/account/groups';
 $response = $client-&gt;get(
@@ -2480,7 +2442,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -2853,7 +2815,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/account/avatar" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -2864,7 +2826,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/account/avatar"
 );
@@ -2884,7 +2846,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/account/avatar';
 $response = $client-&gt;get(
@@ -2904,7 +2866,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -3277,7 +3239,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request DELETE \
     "http://0.0.0.0/api/v1/account" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -3288,7 +3250,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/account"
 );
@@ -3308,7 +3270,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/account';
 $response = $client-&gt;delete(
@@ -3328,7 +3290,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -3878,7 +3840,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request POST \
     "http://0.0.0.0/api/v1/account" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -3900,7 +3862,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/account"
 );
@@ -3932,7 +3894,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/account';
 $response = $client-&gt;post(
@@ -3962,7 +3924,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -4290,7 +4252,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/admin/activity" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -4301,7 +4263,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/admin/activity"
 );
@@ -4321,7 +4283,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/admin/activity';
 $response = $client-&gt;get(
@@ -4341,7 +4303,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -4714,7 +4676,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/admin/admins" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -4725,7 +4687,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/admin/admins"
 );
@@ -4745,7 +4707,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/admin/admins';
 $response = $client-&gt;get(
@@ -4765,7 +4727,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -4976,7 +4938,7 @@ response.json()</code></pre>                                        </div>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        dolor
+                        optio
                     </div>
                 </div>
             </div>
@@ -5109,7 +5071,7 @@ response.json()</code></pre>                                        </div>
                                         <input aria-label="userId" name="userId"
                                                id="urlparam-GETapi-v1-admin-users--userId--userId"
                                                placeholder=""
-                                               value="dolor" data-component="url"
+                                               value="optio" data-component="url"
                                                class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
                                     </div>
                                 </div>
@@ -5205,9 +5167,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
-    --get "http://0.0.0.0/api/v1/admin/users/dolor" \
+    --get "http://0.0.0.0/api/v1/admin/users/optio" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -5216,9 +5178,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://0.0.0.0/api/v1/admin/users/dolor"
+    "http://0.0.0.0/api/v1/admin/users/optio"
 );
 
 const headers = {
@@ -5236,9 +5198,9 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://0.0.0.0/api/v1/admin/users/dolor';
+$url = 'http://0.0.0.0/api/v1/admin/users/optio';
 $response = $client-&gt;get(
     $url,
     [
@@ -5256,11 +5218,11 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
-url = 'http://0.0.0.0/api/v1/admin/users/dolor'
+url = 'http://0.0.0.0/api/v1/admin/users/optio'
 headers = {
   'Authorization': 'Bearer {YOUR_API_KEY}',
   'Content-Type': 'application/json',
@@ -5460,7 +5422,7 @@ response.json()</code></pre>                                        </div>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        blanditiis
+                        ad
                     </div>
                 </div>
             </div>
@@ -5824,7 +5786,7 @@ response.json()</code></pre>                                        </div>
                                         <input aria-label="userId" name="userId"
                                                id="urlparam-POSTapi-v1-admin-users--userId--userId"
                                                placeholder=""
-                                               value="blanditiis" data-component="url"
+                                               value="ad" data-component="url"
                                                class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
                                     </div>
                                 </div>
@@ -5955,9 +5917,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request POST \
-    "http://0.0.0.0/api/v1/admin/users/blanditiis" \
+    "http://0.0.0.0/api/v1/admin/users/ad" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -5978,9 +5940,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://0.0.0.0/api/v1/admin/users/blanditiis"
+    "http://0.0.0.0/api/v1/admin/users/ad"
 );
 
 const headers = {
@@ -6011,9 +5973,9 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://0.0.0.0/api/v1/admin/users/blanditiis';
+$url = 'http://0.0.0.0/api/v1/admin/users/ad';
 $response = $client-&gt;post(
     $url,
     [
@@ -6042,11 +6004,11 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
-url = 'http://0.0.0.0/api/v1/admin/users/blanditiis'
+url = 'http://0.0.0.0/api/v1/admin/users/ad'
 payload = {
     "first_name": "John",
     "last_name": "Doe",
@@ -6194,7 +6156,7 @@ response.json()</code></pre>                                        </div>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        sed
+                        ut
                     </div>
                 </div>
             </div>
@@ -6327,7 +6289,7 @@ response.json()</code></pre>                                        </div>
                                         <input aria-label="userId" name="userId"
                                                id="urlparam-DELETEapi-v1-admin-users--userId--userId"
                                                placeholder=""
-                                               value="sed" data-component="url"
+                                               value="ut" data-component="url"
                                                class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
                                     </div>
                                 </div>
@@ -6423,9 +6385,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request DELETE \
-    "http://0.0.0.0/api/v1/admin/users/sed" \
+    "http://0.0.0.0/api/v1/admin/users/ut" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -6434,9 +6396,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://0.0.0.0/api/v1/admin/users/sed"
+    "http://0.0.0.0/api/v1/admin/users/ut"
 );
 
 const headers = {
@@ -6454,9 +6416,9 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://0.0.0.0/api/v1/admin/users/sed';
+$url = 'http://0.0.0.0/api/v1/admin/users/ut';
 $response = $client-&gt;delete(
     $url,
     [
@@ -6474,11 +6436,11 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
-url = 'http://0.0.0.0/api/v1/admin/users/sed'
+url = 'http://0.0.0.0/api/v1/admin/users/ut'
 headers = {
   'Authorization': 'Bearer {YOUR_API_KEY}',
   'Content-Type': 'application/json',
@@ -7064,7 +7026,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request POST \
     "http://0.0.0.0/api/v1/admin/users" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -7091,7 +7053,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/admin/users"
 );
@@ -7128,7 +7090,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/admin/users';
 $response = $client-&gt;post(
@@ -7163,7 +7125,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -7488,7 +7450,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/admin/users" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -7499,7 +7461,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/admin/users"
 );
@@ -7519,7 +7481,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/admin/users';
 $response = $client-&gt;get(
@@ -7539,7 +7501,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -7750,7 +7712,7 @@ response.json()</code></pre>                                        </div>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        vel
+                        vitae
                     </div>
                 </div>
             </div>
@@ -7883,7 +7845,7 @@ response.json()</code></pre>                                        </div>
                                         <input aria-label="groupId" name="groupId"
                                                id="urlparam-GETapi-v1-admin-groups--groupId--groupId"
                                                placeholder=""
-                                               value="vel" data-component="url"
+                                               value="vitae" data-component="url"
                                                class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
                                     </div>
                                 </div>
@@ -7979,9 +7941,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
-    --get "http://0.0.0.0/api/v1/admin/groups/vel" \
+    --get "http://0.0.0.0/api/v1/admin/groups/vitae" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -7990,9 +7952,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://0.0.0.0/api/v1/admin/groups/vel"
+    "http://0.0.0.0/api/v1/admin/groups/vitae"
 );
 
 const headers = {
@@ -8010,9 +7972,9 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://0.0.0.0/api/v1/admin/groups/vel';
+$url = 'http://0.0.0.0/api/v1/admin/groups/vitae';
 $response = $client-&gt;get(
     $url,
     [
@@ -8030,11 +7992,11 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
-url = 'http://0.0.0.0/api/v1/admin/groups/vel'
+url = 'http://0.0.0.0/api/v1/admin/groups/vitae'
 headers = {
   'Authorization': 'Bearer {YOUR_API_KEY}',
   'Content-Type': 'application/json',
@@ -8234,7 +8196,7 @@ response.json()</code></pre>                                        </div>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        atque
+                        vel
                     </div>
                 </div>
             </div>
@@ -8454,7 +8416,7 @@ response.json()</code></pre>                                        </div>
                                         <input aria-label="groupId" name="groupId"
                                                id="urlparam-POSTapi-v1-admin-groups--groupId--groupId"
                                                placeholder=""
-                                               value="atque" data-component="url"
+                                               value="vel" data-component="url"
                                                class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
                                     </div>
                                 </div>
@@ -8581,9 +8543,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request POST \
-    "http://0.0.0.0/api/v1/admin/groups/atque" \
+    "http://0.0.0.0/api/v1/admin/groups/vel" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -8600,9 +8562,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://0.0.0.0/api/v1/admin/groups/atque"
+    "http://0.0.0.0/api/v1/admin/groups/vel"
 );
 
 const headers = {
@@ -8629,9 +8591,9 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://0.0.0.0/api/v1/admin/groups/atque';
+$url = 'http://0.0.0.0/api/v1/admin/groups/vel';
 $response = $client-&gt;post(
     $url,
     [
@@ -8656,11 +8618,11 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
-url = 'http://0.0.0.0/api/v1/admin/groups/atque'
+url = 'http://0.0.0.0/api/v1/admin/groups/vel'
 payload = {
     "name": "Super Admin",
     "guard_name": "web",
@@ -8804,7 +8766,7 @@ response.json()</code></pre>                                        </div>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        et
+                        necessitatibus
                     </div>
                 </div>
             </div>
@@ -8937,7 +8899,7 @@ response.json()</code></pre>                                        </div>
                                         <input aria-label="groupId" name="groupId"
                                                id="urlparam-DELETEapi-v1-admin-groups--groupId--groupId"
                                                placeholder=""
-                                               value="et" data-component="url"
+                                               value="necessitatibus" data-component="url"
                                                class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
                                     </div>
                                 </div>
@@ -9033,9 +8995,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request DELETE \
-    "http://0.0.0.0/api/v1/admin/groups/et" \
+    "http://0.0.0.0/api/v1/admin/groups/necessitatibus" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -9044,9 +9006,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://0.0.0.0/api/v1/admin/groups/et"
+    "http://0.0.0.0/api/v1/admin/groups/necessitatibus"
 );
 
 const headers = {
@@ -9064,9 +9026,9 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://0.0.0.0/api/v1/admin/groups/et';
+$url = 'http://0.0.0.0/api/v1/admin/groups/necessitatibus';
 $response = $client-&gt;delete(
     $url,
     [
@@ -9084,11 +9046,11 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
-url = 'http://0.0.0.0/api/v1/admin/groups/et'
+url = 'http://0.0.0.0/api/v1/admin/groups/necessitatibus'
 headers = {
   'Authorization': 'Bearer {YOUR_API_KEY}',
   'Content-Type': 'application/json',
@@ -9512,7 +9474,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request POST \
     "http://0.0.0.0/api/v1/admin/groups" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -9531,7 +9493,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/admin/groups"
 );
@@ -9560,7 +9522,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/admin/groups';
 $response = $client-&gt;post(
@@ -9587,7 +9549,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -9904,7 +9866,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/admin/groups" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -9915,7 +9877,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/admin/groups"
 );
@@ -9935,7 +9897,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/admin/groups';
 $response = $client-&gt;get(
@@ -9955,7 +9917,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -10335,7 +10297,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/admin/settings" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -10346,7 +10308,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/admin/settings"
 );
@@ -10366,7 +10328,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/admin/settings';
 $response = $client-&gt;get(
@@ -10386,7 +10348,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -10590,7 +10552,7 @@ response.json()</code></pre>                                        </div>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        17
+                        1
                     </div>
                 </div>
             </div>
@@ -10723,7 +10685,7 @@ response.json()</code></pre>                                        </div>
                                         <input aria-label="key" name="key"
                                                id="urlparam-GETapi-v1-admin-settings--key--key"
                                                placeholder=""
-                                               value="17" data-component="url"
+                                               value="1" data-component="url"
                                                class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
                                     </div>
                                 </div>
@@ -10819,9 +10781,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
-    --get "http://0.0.0.0/api/v1/admin/settings/17" \
+    --get "http://0.0.0.0/api/v1/admin/settings/1" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -10830,9 +10792,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://0.0.0.0/api/v1/admin/settings/17"
+    "http://0.0.0.0/api/v1/admin/settings/1"
 );
 
 const headers = {
@@ -10850,9 +10812,9 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://0.0.0.0/api/v1/admin/settings/17';
+$url = 'http://0.0.0.0/api/v1/admin/settings/1';
 $response = $client-&gt;get(
     $url,
     [
@@ -10870,11 +10832,11 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
-url = 'http://0.0.0.0/api/v1/admin/settings/17'
+url = 'http://0.0.0.0/api/v1/admin/settings/1'
 headers = {
   'Authorization': 'Bearer {YOUR_API_KEY}',
   'Content-Type': 'application/json',
@@ -11337,7 +11299,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request POST \
     "http://0.0.0.0/api/v1/admin/settings/update/multiple" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -11359,7 +11321,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/admin/settings/update/multiple"
 );
@@ -11391,7 +11353,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/admin/settings/update/multiple';
 $response = $client-&gt;post(
@@ -11421,7 +11383,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -11829,7 +11791,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request POST \
     "http://0.0.0.0/api/v1/admin/settings/update/single" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -11845,7 +11807,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/admin/settings/update/single"
 );
@@ -11871,7 +11833,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/admin/settings/update/single';
 $response = $client-&gt;post(
@@ -11895,7 +11857,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -12216,7 +12178,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/admin/modules" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
@@ -12227,7 +12189,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/admin/modules"
 );
@@ -12247,7 +12209,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/admin/modules';
 $response = $client-&gt;get(
@@ -12267,7 +12229,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -12471,7 +12433,7 @@ response.json()</code></pre>                                        </div>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        assumenda
+                        iste
                     </div>
                 </div>
             </div>
@@ -12604,7 +12566,7 @@ response.json()</code></pre>                                        </div>
                                         <input aria-label="moduleName" name="moduleName"
                                                id="urlparam-GETapi-v1-admin-modules--moduleName--moduleName"
                                                placeholder=""
-                                               value="assumenda" data-component="url"
+                                               value="iste" data-component="url"
                                                class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
                                     </div>
                                 </div>
@@ -12700,9 +12662,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
-    --get "http://0.0.0.0/api/v1/admin/modules/assumenda" \
+    --get "http://0.0.0.0/api/v1/admin/modules/iste" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -12711,9 +12673,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://0.0.0.0/api/v1/admin/modules/assumenda"
+    "http://0.0.0.0/api/v1/admin/modules/iste"
 );
 
 const headers = {
@@ -12731,9 +12693,9 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://0.0.0.0/api/v1/admin/modules/assumenda';
+$url = 'http://0.0.0.0/api/v1/admin/modules/iste';
 $response = $client-&gt;get(
     $url,
     [
@@ -12751,11 +12713,11 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
-url = 'http://0.0.0.0/api/v1/admin/modules/assumenda'
+url = 'http://0.0.0.0/api/v1/admin/modules/iste'
 headers = {
   'Authorization': 'Bearer {YOUR_API_KEY}',
   'Content-Type': 'application/json',
@@ -12955,7 +12917,7 @@ response.json()</code></pre>                                        </div>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        ut
+                        sed
                     </div>
                 </div>
             </div>
@@ -13088,7 +13050,7 @@ response.json()</code></pre>                                        </div>
                                         <input aria-label="moduleName" name="moduleName"
                                                id="urlparam-POSTapi-v1-admin-modules--moduleName--enable-moduleName"
                                                placeholder=""
-                                               value="ut" data-component="url"
+                                               value="sed" data-component="url"
                                                class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
                                     </div>
                                 </div>
@@ -13184,9 +13146,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request POST \
-    "http://0.0.0.0/api/v1/admin/modules/ut/enable" \
+    "http://0.0.0.0/api/v1/admin/modules/sed/enable" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -13195,9 +13157,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://0.0.0.0/api/v1/admin/modules/ut/enable"
+    "http://0.0.0.0/api/v1/admin/modules/sed/enable"
 );
 
 const headers = {
@@ -13215,9 +13177,9 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://0.0.0.0/api/v1/admin/modules/ut/enable';
+$url = 'http://0.0.0.0/api/v1/admin/modules/sed/enable';
 $response = $client-&gt;post(
     $url,
     [
@@ -13235,11 +13197,11 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
-url = 'http://0.0.0.0/api/v1/admin/modules/ut/enable'
+url = 'http://0.0.0.0/api/v1/admin/modules/sed/enable'
 headers = {
   'Authorization': 'Bearer {YOUR_API_KEY}',
   'Content-Type': 'application/json',
@@ -13376,7 +13338,7 @@ response.json()</code></pre>                                        </div>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        hic
+                        quia
                     </div>
                 </div>
             </div>
@@ -13509,7 +13471,7 @@ response.json()</code></pre>                                        </div>
                                         <input aria-label="moduleName" name="moduleName"
                                                id="urlparam-POSTapi-v1-admin-modules--moduleName--disable-moduleName"
                                                placeholder=""
-                                               value="hic" data-component="url"
+                                               value="quia" data-component="url"
                                                class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
                                     </div>
                                 </div>
@@ -13605,9 +13567,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request POST \
-    "http://0.0.0.0/api/v1/admin/modules/hic/disable" \
+    "http://0.0.0.0/api/v1/admin/modules/quia/disable" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -13616,9 +13578,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://0.0.0.0/api/v1/admin/modules/hic/disable"
+    "http://0.0.0.0/api/v1/admin/modules/quia/disable"
 );
 
 const headers = {
@@ -13636,9 +13598,9 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://0.0.0.0/api/v1/admin/modules/hic/disable';
+$url = 'http://0.0.0.0/api/v1/admin/modules/quia/disable';
 $response = $client-&gt;post(
     $url,
     [
@@ -13656,11 +13618,11 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
-url = 'http://0.0.0.0/api/v1/admin/modules/hic/disable'
+url = 'http://0.0.0.0/api/v1/admin/modules/quia/disable'
 headers = {
   'Authorization': 'Bearer {YOUR_API_KEY}',
   'Content-Type': 'application/json',
@@ -13797,7 +13759,7 @@ response.json()</code></pre>                                        </div>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        saepe
+                        assumenda
                     </div>
                 </div>
             </div>
@@ -13930,7 +13892,7 @@ response.json()</code></pre>                                        </div>
                                         <input aria-label="moduleName" name="moduleName"
                                                id="urlparam-DELETEapi-v1-admin-modules--moduleName--moduleName"
                                                placeholder=""
-                                               value="saepe" data-component="url"
+                                               value="assumenda" data-component="url"
                                                class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
                                     </div>
                                 </div>
@@ -14026,9 +13988,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request DELETE \
-    "http://0.0.0.0/api/v1/admin/modules/saepe" \
+    "http://0.0.0.0/api/v1/admin/modules/assumenda" \
     --header "Authorization: Bearer {YOUR_API_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
@@ -14037,9 +13999,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://0.0.0.0/api/v1/admin/modules/saepe"
+    "http://0.0.0.0/api/v1/admin/modules/assumenda"
 );
 
 const headers = {
@@ -14057,9 +14019,9 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://0.0.0.0/api/v1/admin/modules/saepe';
+$url = 'http://0.0.0.0/api/v1/admin/modules/assumenda';
 $response = $client-&gt;delete(
     $url,
     [
@@ -14077,11 +14039,11 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
-url = 'http://0.0.0.0/api/v1/admin/modules/saepe'
+url = 'http://0.0.0.0/api/v1/admin/modules/assumenda'
 headers = {
   'Authorization': 'Bearer {YOUR_API_KEY}',
   'Content-Type': 'application/json',
@@ -14204,7 +14166,7 @@ response.json()</code></pre>                                        </div>
                 <span>Example:</span> <!-- <span> important for spacing -->
                 <div class="sl-flex sl-flex-1 sl-flex-wrap" style="gap: 4px;">
                     <div class="sl-max-w-full sl-break-all sl-px-1 sl-bg-canvas-tint sl-text-muted sl-rounded sl-border">
-                        dicta
+                        neque
                     </div>
                 </div>
             </div>
@@ -14301,7 +14263,7 @@ response.json()</code></pre>                                        </div>
                                         <input aria-label="errorCode" name="errorCode"
                                                id="urlparam-GETapi-v1-errors--errorCode--errorCode"
                                                placeholder=""
-                                               value="dicta" data-component="url"
+                                               value="neque" data-component="url"
                                                class="sl-relative sl-w-full sl-h-md sl-text-base sl-pr-2.5 sl-pl-2.5 sl-rounded sl-border-transparent hover:sl-border-input focus:sl-border-primary sl-border">
                                     </div>
                                 </div>
@@ -14397,9 +14359,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
-    --get "http://0.0.0.0/api/v1/errors/dicta" \
+    --get "http://0.0.0.0/api/v1/errors/neque" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>                                        </div>
                                     </div>
@@ -14407,9 +14369,9 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
-    "http://0.0.0.0/api/v1/errors/dicta"
+    "http://0.0.0.0/api/v1/errors/neque"
 );
 
 const headers = {
@@ -14426,9 +14388,9 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://0.0.0.0/api/v1/errors/dicta';
+$url = 'http://0.0.0.0/api/v1/errors/neque';
 $response = $client-&gt;get(
     $url,
     [
@@ -14445,11 +14407,11 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
-url = 'http://0.0.0.0/api/v1/errors/dicta'
+url = 'http://0.0.0.0/api/v1/errors/neque'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -14533,21 +14495,13 @@ response.json()</code></pre>                                        </div>
     </div>
 </div>
 
-                <h1 id="unsplash"
-        class="sl-text-5xl sl-leading-tight sl-font-prose sl-text-heading"
-    >
-        Unsplash
-    </h1>
-
-    <p>Unsplash API</p>
-
-                                <div class="sl-stack sl-stack--vertical sl-stack--8 HttpOperation sl-flex sl-flex-col sl-items-stretch sl-w-full">
+                    <div class="sl-stack sl-stack--vertical sl-stack--8 HttpOperation sl-flex sl-flex-col sl-items-stretch sl-w-full">
     <div class="sl-stack sl-stack--vertical sl-stack--5 sl-flex sl-flex-col sl-items-stretch">
         <div class="sl-relative">
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
-                    id="unsplash-GETapi-v1-unsplash-random">
-                    GET api/v1/unsplash/random
+                    id="endpoints-GETapi-v1-unsplash-random">
+                    Fetches a random image from the Unsplash API.
                 </h2>
             </div>
         </div>
@@ -14772,7 +14726,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/unsplash/random" \
     --header "Content-Type: application/json" \
@@ -14782,7 +14736,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/unsplash/random"
 );
@@ -14801,7 +14755,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/unsplash/random';
 $response = $client-&gt;get(
@@ -14820,7 +14774,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -14847,7 +14801,7 @@ response.json()</code></pre>                                        </div>
                                                         class="example-response-GETapi-v1-unsplash-random-toggle sl-text-base"
                                                         aria-label="Response sample"
                                                         onchange="switchExampleResponse('GETapi-v1-unsplash-random', event.target.value);">
-                                                                                                            <option value="0">200</option>
+                                                                                                            <option value="0">500</option>
                                                                                                     </select></div>
                                         </div>
                                     </div>
@@ -14897,105 +14851,602 @@ response.json()</code></pre>                                        </div>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
-                                                       class="language-json sl-overflow-x-auto sl-overflow-y-auto">[
-    {
-        &quot;id&quot;: &quot;zlV1Ksvifvs&quot;,
-        &quot;slug&quot;: &quot;black-painted-house-in-the-middle-of-the-trees-zlV1Ksvifvs&quot;,
-        &quot;created_at&quot;: &quot;2016-05-07T20:15:15Z&quot;,
-        &quot;updated_at&quot;: &quot;2024-02-20T01:05:53Z&quot;,
-        &quot;promoted_at&quot;: &quot;2016-05-07T20:15:15Z&quot;,
-        &quot;width&quot;: 7914,
-        &quot;height&quot;: 5279,
-        &quot;color&quot;: &quot;#f3f3f3&quot;,
-        &quot;blur_hash&quot;: &quot;LzK207D%Rjs._4R*WCof-;ofWXj[&quot;,
-        &quot;description&quot;: &quot;(contact me for the full resoluton image)&quot;,
-        &quot;alt_description&quot;: &quot;black painted house in the middle of the trees&quot;,
-        &quot;breadcrumbs&quot;: [],
-        &quot;urls&quot;: {
-            &quot;raw&quot;: &quot;https://images.unsplash.com/photo-1462651567147-aa679fd1cfaf?ixid=M3w1MDAxMDV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDg0NDUwMTV8&amp;ixlib=rb-4.0.3&quot;,
-            &quot;full&quot;: &quot;https://images.unsplash.com/photo-1462651567147-aa679fd1cfaf?crop=entropy&amp;cs=srgb&amp;fm=jpg&amp;ixid=M3w1MDAxMDV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDg0NDUwMTV8&amp;ixlib=rb-4.0.3&amp;q=85&quot;,
-            &quot;regular&quot;: &quot;https://images.unsplash.com/photo-1462651567147-aa679fd1cfaf?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w1MDAxMDV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDg0NDUwMTV8&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=1080&quot;,
-            &quot;small&quot;: &quot;https://images.unsplash.com/photo-1462651567147-aa679fd1cfaf?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w1MDAxMDV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDg0NDUwMTV8&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=400&quot;,
-            &quot;thumb&quot;: &quot;https://images.unsplash.com/photo-1462651567147-aa679fd1cfaf?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3w1MDAxMDV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDg0NDUwMTV8&amp;ixlib=rb-4.0.3&amp;q=80&amp;w=200&quot;,
-            &quot;small_s3&quot;: &quot;https://s3.us-west-2.amazonaws.com/images.unsplash.com/small/photo-1462651567147-aa679fd1cfaf&quot;
+                                                       class="language-json sl-overflow-x-auto sl-overflow-y-auto">{
+    &quot;message&quot;: &quot;Client error: `GET https://api.unsplash.com/photos/random?count=1&amp;query=landscape,beautiful` resulted in a `401 Unauthorized` response:\n{\&quot;errors\&quot;:[\&quot;OAuth error: The access token is invalid\&quot;]}\n&quot;,
+    &quot;exception&quot;: &quot;GuzzleHttp\\Exception\\ClientException&quot;,
+    &quot;file&quot;: &quot;/var/www/html/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php&quot;,
+    &quot;line&quot;: 113,
+    &quot;trace&quot;: [
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/guzzlehttp/guzzle/src/Middleware.php&quot;,
+            &quot;line&quot;: 72,
+            &quot;function&quot;: &quot;create&quot;,
+            &quot;class&quot;: &quot;GuzzleHttp\\Exception\\RequestException&quot;,
+            &quot;type&quot;: &quot;::&quot;
         },
-        &quot;links&quot;: {
-            &quot;self&quot;: &quot;https://api.unsplash.com/photos/black-painted-house-in-the-middle-of-the-trees-zlV1Ksvifvs&quot;,
-            &quot;html&quot;: &quot;https://unsplash.com/photos/black-painted-house-in-the-middle-of-the-trees-zlV1Ksvifvs&quot;,
-            &quot;download&quot;: &quot;https://unsplash.com/photos/zlV1Ksvifvs/download?ixid=M3w1MDAxMDV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDg0NDUwMTV8&quot;,
-            &quot;download_location&quot;: &quot;https://api.unsplash.com/photos/zlV1Ksvifvs/download?ixid=M3w1MDAxMDV8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MDg0NDUwMTV8&quot;
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/guzzlehttp/promises/src/Promise.php&quot;,
+            &quot;line&quot;: 209,
+            &quot;function&quot;: &quot;GuzzleHttp\\{closure}&quot;,
+            &quot;class&quot;: &quot;GuzzleHttp\\Middleware&quot;,
+            &quot;type&quot;: &quot;::&quot;
         },
-        &quot;likes&quot;: 1455,
-        &quot;liked_by_user&quot;: false,
-        &quot;current_user_collections&quot;: [],
-        &quot;sponsorship&quot;: null,
-        &quot;topic_submissions&quot;: {
-            &quot;on-the-lake&quot;: {
-                &quot;status&quot;: &quot;approved&quot;,
-                &quot;approved_on&quot;: &quot;2023-08-02T08:12:16Z&quot;
-            }
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/guzzlehttp/promises/src/Promise.php&quot;,
+            &quot;line&quot;: 158,
+            &quot;function&quot;: &quot;callHandler&quot;,
+            &quot;class&quot;: &quot;GuzzleHttp\\Promise\\Promise&quot;,
+            &quot;type&quot;: &quot;::&quot;
         },
-        &quot;user&quot;: {
-            &quot;id&quot;: &quot;BmB81FK0ANU&quot;,
-            &quot;updated_at&quot;: &quot;2023-12-27T04:06:01Z&quot;,
-            &quot;username&quot;: &quot;dinoreichmuth&quot;,
-            &quot;name&quot;: &quot;Dino Reichmuth&quot;,
-            &quot;first_name&quot;: &quot;Dino&quot;,
-            &quot;last_name&quot;: &quot;Reichmuth&quot;,
-            &quot;twitter_username&quot;: null,
-            &quot;portfolio_url&quot;: &quot;https://www.dino-reichmuth.com&quot;,
-            &quot;bio&quot;: &quot;I&#039;m a young filmmaker and photographer from Switzerland | If you like to work with the full resolution 300dpi pictures just contact me: dino@helvet.media&quot;,
-            &quot;location&quot;: &quot;Zug, Switzerland&quot;,
-            &quot;links&quot;: {
-                &quot;self&quot;: &quot;https://api.unsplash.com/users/dinoreichmuth&quot;,
-                &quot;html&quot;: &quot;https://unsplash.com/@dinoreichmuth&quot;,
-                &quot;photos&quot;: &quot;https://api.unsplash.com/users/dinoreichmuth/photos&quot;,
-                &quot;likes&quot;: &quot;https://api.unsplash.com/users/dinoreichmuth/likes&quot;,
-                &quot;portfolio&quot;: &quot;https://api.unsplash.com/users/dinoreichmuth/portfolio&quot;,
-                &quot;following&quot;: &quot;https://api.unsplash.com/users/dinoreichmuth/following&quot;,
-                &quot;followers&quot;: &quot;https://api.unsplash.com/users/dinoreichmuth/followers&quot;
-            },
-            &quot;profile_image&quot;: {
-                &quot;small&quot;: &quot;https://images.unsplash.com/profile-1484383054672-42803c2f84e7?ixlib=rb-4.0.3&amp;crop=faces&amp;fit=crop&amp;w=32&amp;h=32&quot;,
-                &quot;medium&quot;: &quot;https://images.unsplash.com/profile-1484383054672-42803c2f84e7?ixlib=rb-4.0.3&amp;crop=faces&amp;fit=crop&amp;w=64&amp;h=64&quot;,
-                &quot;large&quot;: &quot;https://images.unsplash.com/profile-1484383054672-42803c2f84e7?ixlib=rb-4.0.3&amp;crop=faces&amp;fit=crop&amp;w=128&amp;h=128&quot;
-            },
-            &quot;instagram_username&quot;: &quot;dino.reichmuth&quot;,
-            &quot;total_collections&quot;: 2,
-            &quot;total_likes&quot;: 98,
-            &quot;total_photos&quot;: 29,
-            &quot;total_promoted_photos&quot;: 21,
-            &quot;accepted_tos&quot;: false,
-            &quot;for_hire&quot;: true,
-            &quot;social&quot;: {
-                &quot;instagram_username&quot;: &quot;dino.reichmuth&quot;,
-                &quot;portfolio_url&quot;: &quot;https://www.dino-reichmuth.com&quot;,
-                &quot;twitter_username&quot;: null,
-                &quot;paypal_email&quot;: null
-            }
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/guzzlehttp/promises/src/TaskQueue.php&quot;,
+            &quot;line&quot;: 52,
+            &quot;function&quot;: &quot;GuzzleHttp\\Promise\\{closure}&quot;,
+            &quot;class&quot;: &quot;GuzzleHttp\\Promise\\Promise&quot;,
+            &quot;type&quot;: &quot;::&quot;
         },
-        &quot;exif&quot;: {
-            &quot;make&quot;: &quot;SONY&quot;,
-            &quot;model&quot;: &quot;ILCE-7RM2&quot;,
-            &quot;name&quot;: &quot;SONY, ILCE-7RM2&quot;,
-            &quot;exposure_time&quot;: &quot;1/80&quot;,
-            &quot;aperture&quot;: &quot;18.0&quot;,
-            &quot;focal_length&quot;: &quot;60.0&quot;,
-            &quot;iso&quot;: 100
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/guzzlehttp/promises/src/Promise.php&quot;,
+            &quot;line&quot;: 251,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;GuzzleHttp\\Promise\\TaskQueue&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
         },
-        &quot;location&quot;: {
-            &quot;name&quot;: &quot;Arnisee, Gurtnellen, Switzerland&quot;,
-            &quot;city&quot;: &quot;Gurtnellen&quot;,
-            &quot;country&quot;: &quot;Switzerland&quot;,
-            &quot;position&quot;: {
-                &quot;latitude&quot;: 46.7716847,
-                &quot;longitude&quot;: 8.64337209999997
-            }
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/guzzlehttp/promises/src/Promise.php&quot;,
+            &quot;line&quot;: 227,
+            &quot;function&quot;: &quot;invokeWaitFn&quot;,
+            &quot;class&quot;: &quot;GuzzleHttp\\Promise\\Promise&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
         },
-        &quot;views&quot;: 34973402,
-        &quot;downloads&quot;: 114757
-    }
-]</code></pre>
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/guzzlehttp/promises/src/Promise.php&quot;,
+            &quot;line&quot;: 272,
+            &quot;function&quot;: &quot;waitIfPending&quot;,
+            &quot;class&quot;: &quot;GuzzleHttp\\Promise\\Promise&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/guzzlehttp/promises/src/Promise.php&quot;,
+            &quot;line&quot;: 229,
+            &quot;function&quot;: &quot;invokeWaitList&quot;,
+            &quot;class&quot;: &quot;GuzzleHttp\\Promise\\Promise&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/guzzlehttp/promises/src/Promise.php&quot;,
+            &quot;line&quot;: 69,
+            &quot;function&quot;: &quot;waitIfPending&quot;,
+            &quot;class&quot;: &quot;GuzzleHttp\\Promise\\Promise&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/guzzlehttp/guzzle/src/Client.php&quot;,
+            &quot;line&quot;: 189,
+            &quot;function&quot;: &quot;wait&quot;,
+            &quot;class&quot;: &quot;GuzzleHttp\\Promise\\Promise&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/app/Services/Utils/Unsplash/UnsplashService.php&quot;,
+            &quot;line&quot;: 92,
+            &quot;function&quot;: &quot;request&quot;,
+            &quot;class&quot;: &quot;GuzzleHttp\\Client&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php&quot;,
+            &quot;line&quot;: 46,
+            &quot;function&quot;: &quot;getRandomUnsplashImage&quot;,
+            &quot;class&quot;: &quot;App\\Services\\Utils\\Unsplash\\UnsplashService&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 260,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 206,
+            &quot;function&quot;: &quot;runController&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 806,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 144,
+            &quot;function&quot;: &quot;Illuminate\\Routing\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/app/Http/Middleware/CheckIfUserIsDisabled.php&quot;,
+            &quot;line&quot;: 31,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;App\\Http\\Middleware\\CheckIfUserIsDisabled&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php&quot;,
+            &quot;line&quot;: 50,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\SubstituteBindings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 159,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 125,
+            &quot;function&quot;: &quot;handleRequest&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 87,
+            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 25,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 144,
+            &quot;function&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\{closure}&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 119,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 24,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/app/Http/Middleware/CheckLanguage.php&quot;,
+            &quot;line&quot;: 34,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;App\\Http\\Middleware\\CheckLanguage&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 119,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 805,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 784,
+            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 748,
+            &quot;function&quot;: &quot;runRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 737,
+            &quot;function&quot;: &quot;dispatchToRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 200,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 144,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php&quot;,
+            &quot;line&quot;: 19,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Livewire\\Features\\SupportDisablingBackButtonCache\\DisableBackButtonCacheMiddleware&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/app/Http/Middleware/CheckLanguage.php&quot;,
+            &quot;line&quot;: 34,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;App\\Http\\Middleware\\CheckLanguage&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php&quot;,
+            &quot;line&quot;: 31,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php&quot;,
+            &quot;line&quot;: 50,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php&quot;,
+            &quot;line&quot;: 27,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\ValidatePostSize&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php&quot;,
+            &quot;line&quot;: 110,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php&quot;,
+            &quot;line&quot;: 62,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\HandleCors&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php&quot;,
+            &quot;line&quot;: 57,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 183,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\TrustProxies&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 119,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 175,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 144,
+            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 300,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 288,
+            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 91,
+            &quot;function&quot;: &quot;makeApiCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 44,
+            &quot;function&quot;: &quot;makeResponseCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 236,
+            &quot;function&quot;: &quot;__invoke&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 163,
+            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 95,
+            &quot;function&quot;: &quot;fetchResponses&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 125,
+            &quot;function&quot;: &quot;processRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 72,
+            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 50,
+            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php&quot;,
+            &quot;line&quot;: 53,
+            &quot;function&quot;: &quot;get&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 36,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 93,
+            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;callBoundMethod&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 662,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 212,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/symfony/console/Command/Command.php&quot;,
+            &quot;line&quot;: 279,
+            &quot;function&quot;: &quot;execute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 181,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 1049,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 318,
+            &quot;function&quot;: &quot;doRunCommand&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 169,
+            &quot;function&quot;: &quot;doRun&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php&quot;,
+            &quot;line&quot;: 196,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/var/www/html/artisan&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        }
+    ]
+}</code></pre>
                                                                             </div>
                                 </div>
                                                     </div>
@@ -15008,8 +15459,8 @@ response.json()</code></pre>                                        </div>
         <div class="sl-relative">
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
-                    id="unsplash-GETapi-v1-unsplash-utm">
-                    GET api/v1/unsplash/utm
+                    id="endpoints-GETapi-v1-unsplash-utm">
+                    Retrieves the value of the UTM setting.
                 </h2>
             </div>
         </div>
@@ -15234,7 +15685,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/unsplash/utm" \
     --header "Content-Type: application/json" \
@@ -15244,7 +15695,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/unsplash/utm"
 );
@@ -15263,7 +15714,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/unsplash/utm';
 $response = $client-&gt;get(
@@ -15282,7 +15733,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -15356,7 +15807,7 @@ response.json()</code></pre>                                        </div>
                                                                                                                     access-control-allow-origin
                                                             : *
                                                                                                                     set-cookie
-                                                            : language=en; expires=Wed, 26 Mar 2025 16:03:35 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
+                                                            : language=en; expires=Wed, 28 May 2025 19:39:06 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
                                                          </code></pre>
                                             </details>
                                                                                                                                                                         
@@ -15369,21 +15820,13 @@ response.json()</code></pre>                                        </div>
     </div>
 </div>
 
-                <h1 id="version"
-        class="sl-text-5xl sl-leading-tight sl-font-prose sl-text-heading"
-    >
-        Version
-    </h1>
-
-    <p>System Version</p>
-
-                                <div class="sl-stack sl-stack--vertical sl-stack--8 HttpOperation sl-flex sl-flex-col sl-items-stretch sl-w-full">
+                    <div class="sl-stack sl-stack--vertical sl-stack--8 HttpOperation sl-flex sl-flex-col sl-items-stretch sl-w-full">
     <div class="sl-stack sl-stack--vertical sl-stack--5 sl-flex sl-flex-col sl-items-stretch">
         <div class="sl-relative">
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
-                    id="version-GETapi-v1-version-dev">
-                    GET api/v1/version/dev
+                    id="endpoints-GETapi-v1-version-dev">
+                    Determines if the current version is a development version.
                 </h2>
             </div>
         </div>
@@ -15608,7 +16051,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/version/dev" \
     --header "Content-Type: application/json" \
@@ -15618,7 +16061,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/version/dev"
 );
@@ -15637,7 +16080,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/version/dev';
 $response = $client-&gt;get(
@@ -15656,7 +16099,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -15730,12 +16173,12 @@ response.json()</code></pre>                                        </div>
                                                                                                                     access-control-allow-origin
                                                             : *
                                                                                                                     set-cookie
-                                                            : language=en; expires=Wed, 26 Mar 2025 16:03:35 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
+                                                            : language=en; expires=Wed, 28 May 2025 19:39:06 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
                                                          </code></pre>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
-                                                       class="language-json sl-overflow-x-auto sl-overflow-y-auto">1</code></pre>
+                                                       class="language-json sl-overflow-x-auto sl-overflow-y-auto"></code></pre>
                                                                             </div>
                                 </div>
                                                     </div>
@@ -15748,8 +16191,8 @@ response.json()</code></pre>                                        </div>
         <div class="sl-relative">
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
-                    id="version-GETapi-v1-version-template">
-                    GET api/v1/version/template
+                    id="endpoints-GETapi-v1-version-template">
+                    Retrieves the current version of the template.
                 </h2>
             </div>
         </div>
@@ -15974,7 +16417,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/version/template" \
     --header "Content-Type: application/json" \
@@ -15984,7 +16427,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/version/template"
 );
@@ -16003,7 +16446,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/version/template';
 $response = $client-&gt;get(
@@ -16022,7 +16465,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -16096,12 +16539,12 @@ response.json()</code></pre>                                        </div>
                                                                                                                     access-control-allow-origin
                                                             : *
                                                                                                                     set-cookie
-                                                            : language=en; expires=Wed, 26 Mar 2025 16:03:35 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
+                                                            : language=en; expires=Wed, 28 May 2025 19:39:06 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
                                                          </code></pre>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
-                                                       class="language-json sl-overflow-x-auto sl-overflow-y-auto">2.0.0</code></pre>
+                                                       class="language-json sl-overflow-x-auto sl-overflow-y-auto">2.1.4</code></pre>
                                                                             </div>
                                 </div>
                                                     </div>
@@ -16114,8 +16557,8 @@ response.json()</code></pre>                                        </div>
         <div class="sl-relative">
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
-                    id="version-GETapi-v1-version-project">
-                    GET api/v1/version/project
+                    id="endpoints-GETapi-v1-version-project">
+                    Retrieves the current project version.
                 </h2>
             </div>
         </div>
@@ -16340,7 +16783,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/version/project" \
     --header "Content-Type: application/json" \
@@ -16350,7 +16793,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/version/project"
 );
@@ -16369,7 +16812,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/version/project';
 $response = $client-&gt;get(
@@ -16388,7 +16831,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -16462,7 +16905,7 @@ response.json()</code></pre>                                        </div>
                                                                                                                     access-control-allow-origin
                                                             : *
                                                                                                                     set-cookie
-                                                            : language=en; expires=Wed, 26 Mar 2025 16:03:35 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
+                                                            : language=en; expires=Wed, 28 May 2025 19:39:06 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
                                                          </code></pre>
                                             </details>
                                                                                                                                                                         
@@ -16480,8 +16923,8 @@ response.json()</code></pre>                                        </div>
         <div class="sl-relative">
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
-                    id="version-GETapi-v1-version-remote-template">
-                    GET api/v1/version/remote/template
+                    id="endpoints-GETapi-v1-version-remote-template">
+                    Retrieves the remote template version.
                 </h2>
             </div>
         </div>
@@ -16504,7 +16947,8 @@ response.json()</code></pre>                                        </div>
                                     </div>
         </div>
 
-        
+        <p>Returns the version of the remote template if it is available. If the application environment is set to 'testing'
+or the URL for the template version is not configured, it will return a boolean value of <code>true</code>.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -16706,7 +17150,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/version/remote/template" \
     --header "Content-Type: application/json" \
@@ -16716,7 +17160,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/version/remote/template"
 );
@@ -16735,7 +17179,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/version/remote/template';
 $response = $client-&gt;get(
@@ -16754,7 +17198,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -16828,12 +17272,12 @@ response.json()</code></pre>                                        </div>
                                                                                                                     access-control-allow-origin
                                                             : *
                                                                                                                     set-cookie
-                                                            : language=en; expires=Wed, 26 Mar 2025 16:03:36 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
+                                                            : language=en; expires=Wed, 28 May 2025 19:39:06 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
                                                          </code></pre>
                                             </details>
                                                                                                                                                                         
                                             <pre><code style="max-height: 300px;"
-                                                       class="language-json sl-overflow-x-auto sl-overflow-y-auto">1</code></pre>
+                                                       class="language-json sl-overflow-x-auto sl-overflow-y-auto">2.1.3</code></pre>
                                                                             </div>
                                 </div>
                                                     </div>
@@ -16846,8 +17290,8 @@ response.json()</code></pre>                                        </div>
         <div class="sl-relative">
             <div class="sl-stack sl-stack--horizontal sl-stack--5 sl-flex sl-flex-row sl-items-center">
                 <h2 class="sl-text-3xl sl-leading-tight sl-font-prose sl-text-heading sl-mt-5 sl-mb-1"
-                    id="version-GETapi-v1-version-remote-project">
-                    GET api/v1/version/remote/project
+                    id="endpoints-GETapi-v1-version-remote-project">
+                    Retrieves the version of the remote project.
                 </h2>
             </div>
         </div>
@@ -16870,7 +17314,10 @@ response.json()</code></pre>                                        </div>
                                     </div>
         </div>
 
-        
+        <p>This method makes a request to the remote project version URL and retrieves
+the version of the project. It will return the project version as a string
+if a valid version value is obtained. If the application environment is set
+to 'testing', it will always return a boolean true.</p>
     </div>
     <div class="sl-flex">
         <div data-testid="two-column-left" class="sl-flex-1 sl-w-0">
@@ -17072,7 +17519,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-bash"
                                      style="">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-bash">curl --request GET \
     --get "http://0.0.0.0/api/v1/version/remote/project" \
     --header "Content-Type: application/json" \
@@ -17082,7 +17529,7 @@ You can check the Dev Tools console for debugging information.</p>
                                                             <div class="sl-bg-canvas-100 example-request example-request-javascript"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-javascript">const url = new URL(
     "http://0.0.0.0/api/v1/version/remote/project"
 );
@@ -17101,7 +17548,7 @@ fetch(url, {
                                                             <div class="sl-bg-canvas-100 example-request example-request-php"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $url = 'http://0.0.0.0/api/v1/version/remote/project';
 $response = $client-&gt;get(
@@ -17120,7 +17567,7 @@ print_r(json_decode((string) $body));</code></pre>                              
                                                             <div class="sl-bg-canvas-100 example-request example-request-python"
                                      style="display: none;">
                                     <div class="sl-px-0 sl-py-1">
-                                        <div style="max-height: 400px;" class="sl-rounded">
+                                        <div style="max-height: 400px;" class="sl-overflow-y-auto sl-rounded">
                                             <pre><code class="language-python">import requests
 import json
 
@@ -17194,7 +17641,7 @@ response.json()</code></pre>                                        </div>
                                                                                                                     access-control-allow-origin
                                                             : *
                                                                                                                     set-cookie
-                                                            : language=en; expires=Wed, 26 Mar 2025 16:03:36 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
+                                                            : language=en; expires=Wed, 28 May 2025 19:39:06 GMT; Max-Age=34560000; path=/; httponly; samesite=lax
                                                          </code></pre>
                                             </details>
                                                                                                                                                                         
