@@ -15,6 +15,12 @@ class DeleteGroupCommand extends Command
     {
 
         $group = GroupManager::findGroupByName($this->argument('name'));
+
+        if (!$group) {
+            $this->error('Group not found.');
+            return;
+        }
+
         $group->delete();
 
         $this->info('Group deleted successfully.');

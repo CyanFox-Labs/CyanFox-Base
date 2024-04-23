@@ -11,4 +11,9 @@ return [
     '429' => 'Too Many Requests',
     '500' => 'Server Error',
     '503' => 'Service Unavailable',
+
+    'buttons' => [
+        'login' => 'Login',
+        'home' => 'Home',
+    ],
 ];

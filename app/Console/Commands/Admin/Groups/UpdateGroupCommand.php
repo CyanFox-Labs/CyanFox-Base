@@ -17,6 +17,12 @@ class UpdateGroupCommand extends Command
 
     public function handle(): void
     {
+        $role = GroupManager::findGroupByName($this->argument('name'));
+
+        if (!$role) {
+            $this->error('Group not found.');
+            return;
+        }
 
         $name = text(
             'What is the groups\'s name?',
@@ -33,7 +39,6 @@ class UpdateGroupCommand extends Command
             options: Permission::all()->pluck('name')->toArray(),
         );
 
-        $role = GroupManager::findGroupByName($this->argument('name'));
         $role->update([
             'name' => $name,
             'guard_name' => $guardName,

@@ -15,6 +15,12 @@ class DeleteUserCommand extends Command
     {
 
         $user = UserManager::findUserByUsername($this->argument('username'));
+
+        if (!$user) {
+            $this->error('User not found.');
+            return;
+        }
+
         $user->delete();
 
         $this->info('User deleted successfully.');

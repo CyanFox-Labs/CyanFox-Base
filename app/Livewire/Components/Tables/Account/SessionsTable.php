@@ -78,7 +78,7 @@ class SessionsTable extends DataTableComponent
         UserManager::getUser(Auth::user())->getSessionManager()->deleteSession($id);
 
         Notification::make()
-            ->title(__('pages/account/profile.notifications.session_logged_out'))
+            ->title(__('account/profile.sessions.notifications.session_logged_out'))
             ->success()
             ->send();
     }
