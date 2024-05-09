@@ -6,6 +6,7 @@ use App\Facades\UserManager;
 use App\Livewire\Account\Profile;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -36,7 +37,7 @@ class ProfileTest extends TestCase
     public function can_update_profile()
     {
         $user = User::factory()->create([
-            'password' => 'password',
+            'password' => Hash::make('password'),
         ]);
         UserManager::getUser($user)->getTwoFactorManager()->generateTwoFactorSecret();
 
@@ -49,7 +50,7 @@ class ProfileTest extends TestCase
             ->set('theme', 'dark')
             ->set('language', 'de')
             ->set('currentPassword', 'password')
-            ->set('password', 'kXqz=k^zwu7d^;UrMPNF')
+            ->set('newPassword', 'kXqz=k^zwu7d^;UrMPNF')
             ->set('passwordConfirmation', 'kXqz=k^zwu7d^;UrMPNF')
             ->call('updateProfileInformations')
             ->call('updatePassword')
