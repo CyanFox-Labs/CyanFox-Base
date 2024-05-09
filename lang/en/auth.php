@@ -9,7 +9,10 @@ return [
     'login' => [
         'tab_title' => 'Login',
         'remember_me' => 'Remember Me',
-        'two_factor_or_recovery_code' => 'Two-Factor or Recovery Code',
+        'two_factor_code' => 'Two-Factor Code',
+        'recovery_code' => 'Recovery Code',
+        'try_recovery_code' => 'Try Recovery Code.',
+        'try_two_factor_code' => 'Try Two-Factor Code.',
         'user_disabled' => 'This user account is disabled.',
 
         'buttons' => [

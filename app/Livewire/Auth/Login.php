@@ -36,6 +36,7 @@ class Login extends Component
     public $password;
 
     public $twoFactorEnabled = false;
+    public $useRecoveryCode = false;
 
     public $twoFactorCode;
 

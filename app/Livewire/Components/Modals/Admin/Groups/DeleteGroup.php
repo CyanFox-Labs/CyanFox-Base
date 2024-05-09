@@ -18,6 +18,7 @@ class DeleteGroup extends ModalComponent
     {
         try {
             $group = Role::findOrFail($this->groupId);
+            $group->update(['guard_name' => 'web']);
             $group->delete();
         } catch (Exception $e) {
             Notification::make()

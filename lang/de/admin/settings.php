@@ -6,6 +6,7 @@ return [
 
     'buttons' => [
         'update_settings' => 'Einstellungen aktualisieren',
+        'reset_logo' => 'Logo zurücksetzen',
     ],
 
     'notifications' => [
@@ -30,6 +31,7 @@ return [
         'project_version_url' => 'Projekt Version URL',
         'template_version_url' => 'Template Version URL',
         'icon_url' => 'Icon URL',
+        'logo' => 'Logo',
     ],
 
     'auth' => [

@@ -30,7 +30,8 @@
                     <x-custom.multi-select label="{{ __('admin/users.groups') }}"
                                            wire:model="selectedGroups" :selected="$selectedGroups" :options="$groups"/>
                     <x-custom.multi-select label="{{ __('admin/users.permissions') }}"
-                                           wire:model="selectedPermissions" :selected="$selectedPermissions" :options="$permissions"/>
+                                           wire:model="selectedPermissions" :selected="$selectedPermissions"
+                                           :options="$permissions"/>
 
                     <div class="space-y-4">
                         <x-checkbox label="{{ __('admin/users.force_activate_two_factor') }}"

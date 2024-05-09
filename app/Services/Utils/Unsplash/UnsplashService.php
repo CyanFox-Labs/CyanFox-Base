@@ -29,12 +29,12 @@ class UnsplashService
             $utmSource = self::getUTM();
 
             $imagePath = $imageData[0]['urls']['regular'];
-            $photoLink = $imageData[0]['links']['html'].$utmSource;
+            $photoLink = $imageData[0]['links']['html'] . $utmSource;
             $authorName = $imageData[0]['user']['name'];
-            $authorLink = $imageData[0]['user']['links']['html'].$utmSource;
+            $authorLink = $imageData[0]['user']['links']['html'] . $utmSource;
             $error = null;
 
-            $css = "background-image: url('".$imagePath."');
+            $css = "background-image: url('" . $imagePath . "');
                     background-size: cover;
                     background-repeat: no-repeat;
                     background-position: center;

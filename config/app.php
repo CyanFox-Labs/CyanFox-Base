@@ -193,7 +193,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
-
     /*
      * Application Installed
      *
