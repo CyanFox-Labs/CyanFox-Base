@@ -18,6 +18,7 @@ class DeleteGroupCommand extends Command
 
         if (!$group) {
             $this->error('Group not found.');
+
             return;
         }
 

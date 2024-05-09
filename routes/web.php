@@ -45,7 +45,6 @@ if (setting('auth_enable')) {
         if (setting('oauth_enable_google')) {
             Route::get('google/callback', [OAuthService::class, 'handleGoogleCallback'])->name('auth.google.callback'); // Not tested yet
         }
-
         Route::get('logout', function () {
             auth()->logout();
 

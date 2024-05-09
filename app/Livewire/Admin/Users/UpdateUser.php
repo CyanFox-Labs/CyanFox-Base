@@ -62,6 +62,10 @@ class UpdateUser extends Component
             'disabled' => 'nullable|boolean',
         ]);
 
+        if ($this->user->two_factor_enabled) {
+            $this->forceActivateTwoFactor = false;
+        }
+
         try {
             $this->user->update([
                 'first_name' => $this->firstName,

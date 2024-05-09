@@ -18,6 +18,7 @@ class DeleteUserCommand extends Command
 
         if (!$user) {
             $this->error('User not found.');
+
             return;
         }
 

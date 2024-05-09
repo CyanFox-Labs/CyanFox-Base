@@ -4,10 +4,10 @@
         <p class="flex items-center justify-center mb-6 text-2xl font-semibold">
             <img class="w-32 h-32" src="{{ asset("img/Logo.svg") }}" alt="Logo">
             <span
-                    class="text-4xl font-bold brand-text text-white lg:block hidden">{{ setting('app_name') }}</span>
+                class="text-4xl font-bold brand-text text-white lg:block hidden">{{ setting('app_name') }}</span>
         </p>
         <div
-                class="card bg-base-200 @if(setting('auth_enable_oauth')) lg:w-1/3 @else lg:w-1/4 @endif sm:min-w-96 sm:w-1/8 w-auto">
+            class="card bg-base-200 @if(setting('auth_enable_oauth')) lg:w-1/3 @else lg:w-1/4 @endif sm:min-w-96 sm:w-1/8 w-auto">
             <div class="card-body">
                 <div class="flex justify-end">
                     <label>
@@ -23,9 +23,9 @@
                     <div class="rounded-3xl glass">
                         <div class="flex p-2 relative">
                             <img
-                                    src="{{ user()->getUser($user)->getAvatarURL() }}"
-                                    alt="Avatar"
-                                    class="rounded-full w-8 h-8 m-1">
+                                src="{{ user()->getUser($user)->getAvatarURL() }}"
+                                alt="Avatar"
+                                class="rounded-full w-8 h-8 m-1">
                             <p class="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">{{ $user->username }}</p>
                         </div>
 
@@ -51,9 +51,33 @@
                         <x-form class="space-y-4 md:space-y-6" wire:submit="checkTwoFactorCode">
                             @csrf
 
-                            <x-input label="{{ __('auth.login.two_factor_or_recovery_code') }}"
-                                     class="input-bordered w-full"
-                                     required="" wire:model="twoFactorCode"/>
+                            @if($useRecoveryCode)
+                                <x-input label="{{ __('auth.login.recovery_code') }}"
+                                         class="input-bordered w-full"
+                                         wire:model="twoFactorCode" required/>
+
+                                <span class="link select-none text-center" wire:click="$set('useRecoveryCode', false)">
+                                    {{ __('auth.login.try_two_factor_code') }}
+                                </span>
+                            @else
+                                <div class="flex justify-center">
+                                    <div>
+                                        <label for="twoFactorCode" class="pt-0 label label-text font-semibold">
+                                        <span>
+                                            {{ __('auth.login.two_factor_code') }}
+
+                                            <span class="text-error">*</span>
+                                        </span>
+                                        </label>
+                                        <x-pin id="twoFactorCode" wire:model="twoFactorCode" size="6"
+                                               class="input-bordered mt-0 font-medium"/>
+                                    </div>
+                                </div>
+
+                                <span class="link select-none text-center" wire:click="$set('useRecoveryCode', true)">
+                                    {{ __('auth.login.try_recovery_code') }}
+                                </span>
+                            @endif
 
                             <div>
                                 <x-button type="submit"
@@ -130,7 +154,7 @@
 
                     @if(setting('auth_enable_oauth') && !$twoFactorEnabled)
                         <div
-                                class="grid lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))] md:grid-cols-2 grid-cols-1 gap-4">
+                            class="grid lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))] md:grid-cols-2 grid-cols-1 gap-4">
 
                             @if(setting('oauth_enable_google'))
                                 <a href="{{ route('auth.redirect', 'google') }}"
@@ -157,9 +181,9 @@
         <div class="pl-6 pb-4 text-white">
             <span class="text-sm" id="credits" wire:ignore><a id="photo"
                                                               href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('messages.photo') }}</a>, <a
-                        id="author"
-                        href="{{ $unsplash['authorURL'] }}/{{ setting('unsplash_utm') }}">{{ $unsplash['author'] }}</a>, <a
-                        href="https://unsplash.com/{{ setting('unsplash_utm') }}">Unsplash</a></span>
+                    id="author"
+                    href="{{ $unsplash['authorURL'] }}/{{ setting('unsplash_utm') }}">{{ $unsplash['author'] }}</a>, <a
+                    href="https://unsplash.com/{{ setting('unsplash_utm') }}">Unsplash</a></span>
         </div>
     @endif
 </div>

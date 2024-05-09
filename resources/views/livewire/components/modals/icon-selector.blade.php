@@ -1,4 +1,4 @@
-<x-modal class="modal" size="w-11/12 max-w-5xl">
+<x-modal class="modal" box-class="w-11/12 max-w-5xl">
     <x-input label="{{ __('messages.search') }}"
              class="input input-bordered w-full" wire:model="search" wire:change="searchIcon"/>
 

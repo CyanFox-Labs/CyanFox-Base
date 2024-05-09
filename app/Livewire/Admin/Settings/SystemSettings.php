@@ -6,11 +6,15 @@ use App\Facades\ActivityLogManager;
 use App\Facades\SettingsManager;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class SystemSettings extends Component
 {
+    use WithFileUploads;
+
     public $timeZones = [];
 
     public $appName;
@@ -31,6 +35,8 @@ class SystemSettings extends Component
 
     public $iconUrl;
 
+    public $logo;
+
     public function updateSystemSettings(): void
     {
 
@@ -44,6 +50,7 @@ class SystemSettings extends Component
             'projectVersionUrl' => 'nullable|url',
             'templateVersionUrl' => 'nullable|url',
             'iconUrl' => 'nullable|url',
+            'logo' => 'nullable|image|max:1024',
         ]);
 
         $settings = [
@@ -57,6 +64,11 @@ class SystemSettings extends Component
             'template_version_url' => $this->templateVersionUrl,
             'icon_url' => $this->iconUrl,
         ];
+
+        if ($this->logo) {
+            $this->logo->storeAs('public', 'img/Logo.png');
+            $settings['logo_path'] = 'storage/img/Logo.png';
+        }
 
         SettingsManager::updateSettings($settings);
 
@@ -73,6 +85,23 @@ class SystemSettings extends Component
             ->send();
 
         $this->redirect(route('admin.settings', ['tab' => 'settings']), navigate: true);
+    }
+
+    public function resetLogo()
+    {
+        Storage::disk('public')->delete('img/Logo.png');
+
+        SettingsManager::updateSetting('logo_path', 'img/Logo.svg');
+
+        ActivityLogManager::logName('admin')
+            ->description('admin:settings.update')
+            ->causer(Auth::user()->username)
+            ->subject('system-settings')
+            ->performedBy(Auth::user())
+            ->save();
+
+        $this->redirect(route('admin.settings', ['tab' => 'settings']), navigate: true);
+
     }
 
     public function mount(): void

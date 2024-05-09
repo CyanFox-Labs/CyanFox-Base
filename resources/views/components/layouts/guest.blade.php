@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>@php echo !empty(setting('app_name')) ? setting('app_name') : config('app.name') @endphp | {{ $title ?? '' }}</title>
+    <title>@php echo !empty(setting('app_name')) ? setting('app_name') : config('app.name') @endphp
+        | {{ $title ?? '' }}</title>
 
-    <link rel="icon" type="image/svg" href="{{ asset('img/Logo.svg') }}">
+    <link rel="icon" href="{{ asset(setting('logo_path')) }}">
 
     @filamentStyles
     @vite('resources/css/app.css')

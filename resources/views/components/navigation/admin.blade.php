@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="navbar-center">
-            <img src="{{ asset('img/Logo.svg') }}" alt="Logo" class="w-16 h-16">
+            <img src="{{ asset(setting('logo_path')) }}" alt="Logo" class="w-16 h-16">
         </div>
         <div class="navbar-end">
 
@@ -168,7 +168,7 @@
          x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
 
         <div class="flex items-center justify-center w-full h-16 mt-2">
-            <img src="{{ asset('img/Logo.svg') }}" alt="Logo" class="w-16 h-16">
+            <img src="{{ asset(setting('logo_path')) }}" alt="Logo" class="w-16 h-16">
             <span class="ml-1 font-bold text-hidden">{{ setting('app_name') }}</span>
         </div>
 

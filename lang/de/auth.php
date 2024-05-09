@@ -9,7 +9,10 @@ return [
     'login' => [
         'tab_title' => 'Anmelden',
         'remember_me' => 'Angemeldet bleiben',
-        'two_factor_or_recovery_code' => '2 Faktor oder Wiederherstellungscode',
+        'two_factor_code' => '2-Faktor-Code',
+        'recovery_code' => 'Wiederherstellungscode',
+        'try_recovery_code' => 'Wiederherstellungscode versuchen.',
+        'try_two_factor_code' => '2-Faktor-Code versuchen.',
         'user_disabled' => 'Dieser Benutzer wurde deaktiviert.',
 
         'buttons' => [

@@ -170,7 +170,7 @@ return [
     */
 
     'custom' => [
-        'invalid_two_factor_code' => 'Der 2-Faktor-Code ist ungültig.',
+        'invalid_two_factor_code' => 'Der 2-Faktor oder Wiederherstellungscode ist ungültig.',
         'invalid_captcha' => 'Der Captcha-Code ist ungültig.',
     ],
 

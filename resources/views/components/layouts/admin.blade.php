@@ -11,7 +11,7 @@
 
     <title>{{ setting('app_name') }} | {{ $title ?? '' }}</title>
 
-    <link rel="icon" type="image/svg" href="{{ asset('img/Logo.svg') }}">
+    <link rel="icon" href="{{ asset(setting('logo_path')) }}">
 
     @filamentStyles
     @vite('resources/css/app.css')
@@ -28,8 +28,8 @@
 <x-navigation.footer/>
 
 <x-spotlight
-    shortcut="ctrl.e"
-    no-results-text="{{ __('navigation.spotlight.nothing_found') }}"
+        shortcut="ctrl.e"
+        no-results-text="{{ __('navigation.spotlight.nothing_found') }}"
 />
 
 @filamentScripts

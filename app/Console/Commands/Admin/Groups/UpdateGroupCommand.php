@@ -21,6 +21,7 @@ class UpdateGroupCommand extends Command
 
         if (!$role) {
             $this->error('Group not found.');
+
             return;
         }
 

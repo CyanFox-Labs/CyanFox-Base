@@ -37,7 +37,7 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::prefix('version')->group(function () {
-        Route::get('/dev', fn () => App\Facades\Utils\VersionManager::isDevVersion() ? "true" : "false");
+        Route::get('/dev', fn () => App\Facades\Utils\VersionManager::isDevVersion() ? 'true' : 'false');
         Route::get('/template', [VersionService::class, 'getCurrentTemplateVersion']);
         Route::get('/project', [VersionService::class, 'getCurrentProjectVersion']);
         Route::prefix('remote')->group(function () {
