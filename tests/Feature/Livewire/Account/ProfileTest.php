@@ -49,7 +49,7 @@ class ProfileTest extends TestCase
             ->set('theme', 'dark')
             ->set('language', 'de')
             ->set('currentPassword', 'password')
-            ->set('password', 'kXqz=k^zwu7d^;UrMPNF')
+            ->set('newPassword', 'kXqz=k^zwu7d^;UrMPNF')
             ->set('passwordConfirmation', 'kXqz=k^zwu7d^;UrMPNF')
             ->call('updateProfileInformations')
             ->call('updatePassword')
