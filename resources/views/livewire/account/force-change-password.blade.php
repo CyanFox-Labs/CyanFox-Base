@@ -42,9 +42,9 @@
     @if($unsplash['error'] == null)
         <div class="pl-6 pb-4 text-white">
             <span class="text-sm" id="credits" wire:ignore><a id="photo"
-                                                              href="{{ $unsplash['photo'] }}/{{ setting('unsplash_utm') }}">{{ __('messages.photo') }}</a>, <a
+                                                              href="{{ $unsplash['photo'] }}">{{ __('messages.photo') }}</a>, <a
                     id="author"
-                    href="{{ $unsplash['authorURL'] }}/{{ setting('unsplash_utm') }}">{{ $unsplash['author'] }}</a>, <a
+                    href="{{ $unsplash['authorURL'] }}">{{ $unsplash['author'] }}</a>, <a
                     href="https://unsplash.com/{{ setting('unsplash_utm') }}">Unsplash</a></span>
         </div>
     @endif
