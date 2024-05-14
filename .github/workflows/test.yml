@@ -41,7 +41,6 @@ jobs:
           /usr/local/bin/composer update --ignore-platform-req=ext-gd --ignore-platform-req=ext-intl --ignore-platform-req=ext-iconv
 
           ./vendor/bin/sail up -d
-          ./vendor/bin/sail composer update
           ./vendor/bin/sail npm install
           ./vendor/bin/sail npm run build
           ./vendor/bin/sail test --env=testing
