@@ -13,11 +13,15 @@
         "php": "^8.2",
         "ext-pdo": "*",
         "ext-zip": "*",
+        "danharrin/livewire-rate-limiting": "^1.3",
+        "filament/notifications": "^3.2",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
+        "mews/captcha": "^3.3",
         "mhmiton/laravel-modules-livewire": "^3.0",
         "nwidart/laravel-modules": "^11.0",
+        "openspout/openspout": "^4.24",
         "power-components/livewire-powergrid": "^5.7",
         "tallstackui/tallstackui": "^1.27"
     },
@@ -49,7 +53,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

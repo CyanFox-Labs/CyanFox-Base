@@ -29,6 +29,10 @@ class UnsplashService
             $imageData = self::getRandomUnsplashImage();
             $utmSource = self::getUTM();
 
+            if ($imageData == null) {
+                throw new Exception('Unsplash API key is not set.');
+            }
+
             $imagePath = $imageData[0]['urls']['regular'];
             $photoLink = $imageData[0]['links']['html'] . $utmSource;
             $authorName = $imageData[0]['user']['name'];
@@ -88,7 +92,7 @@ class UnsplashService
         $client = new Client;
 
         $headers = [
-            'Authorization' => "Client - ID $api_key",
+            'Authorization' => "Client-ID $api_key",
         ];
 
         $response = $client->request('GET', 'https://api.unsplash.com/photos/random?count=1&query=landscape,beautiful', ['headers' => $headers]);

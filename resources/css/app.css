@@ -1,5 +1,23 @@
 @import url('bootstrap-icons/font/bootstrap-icons.min.css');
 @import url('lucide-static/font/lucide.css');
+@import url('flatpickr/dist/flatpickr.min.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Filament */
+.fi-no-notification {
+    @apply dark:bg-dark-700 !important;
+    @apply bg-white !important;
+}
+
+.fi-input-wrp {
+    @apply dark:bg-dark-800 !important;
+    @apply bg-white !important;
+}
+
+/* PowerGrid Tables */
+#pg-footer {
+    @apply dark:bg-dark-700 !important;
+    @apply bg-white !important;
+}

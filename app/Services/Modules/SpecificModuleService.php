@@ -45,6 +45,34 @@ class SpecificModuleService
     }
 
     /**
+     * Check if the module is enabled.
+     *
+     * @return bool
+     */
+    public function isModuleEnabled()
+    {
+        if ($this->module === null) {
+            return false;
+        }
+
+        return Module::isEnabled($this->module->getName());
+    }
+
+    /**
+     * Check if the module is disabled.
+     *
+     * @return bool
+     */
+    public function isModuleDisabled()
+    {
+        if ($this->module === null) {
+            return false;
+        }
+
+        return Module::isDisabled($this->module->getName());
+    }
+
+    /**
      * Enable the module
      *
      * @return bool Returns true if the module was enabled successfully, false otherwise
@@ -111,11 +139,11 @@ class SpecificModuleService
     /**
      * Retrieve the author of a module.
      *
-     * @return string|null The author of the module, or null if not found.
+     * @return array|null The authors of the module, or null if not found.
      */
-    public function getAuthor(): ?string
+    public function getAuthor(): ?array
     {
-        return $this->module->get('author');
+        return $this->module->get('authors');
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Services\Utils\SettingsService;
 use App\Services\Utils\UnsplashService;
 use App\Services\Utils\VersionService;
 use App\Services\Utils\ViewIntegrationService;
+use Modules\AuthModule\Services\Users\UserService;
 
 if (!function_exists('version')) {
     function version(): VersionService
@@ -43,5 +44,12 @@ if (!function_exists('viewIntegration')) {
     function viewIntegration(): ViewIntegrationService
     {
         return app(ViewIntegrationService::class);
+    }
+}
+
+if (!function_exists('user')) {
+    function user(): UserService
+    {
+        return new UserService;
     }
 }

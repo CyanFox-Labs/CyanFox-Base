@@ -14,7 +14,7 @@ class LWComponent extends Component
         $this->dispatch('logger', ['type' => $level, 'message' => $message]);
     }
 
-    public function renderView($view, $title, $layout = 'components.layouts.app')
+    public function renderView($view, $title, $layout = 'components.layouts.guest')
     {
         return view($view)->layout($layout, ['title' => $title]);
     }

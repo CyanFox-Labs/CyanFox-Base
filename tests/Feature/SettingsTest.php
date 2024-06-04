@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Facades\Utils\SettingsManager;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 

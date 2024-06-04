@@ -1,20 +1,33 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="tallstackui_darkTheme()"
-      x-bind:class="{ 'dark bg-gray-700': darkTheme, 'bg-white': !darkTheme }">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark bg-gray-700">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>{{ $title ?? '' }}</title>
 
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+
     <tallstackui:script/>
+    @filamentStyles
+    @vite('resources/css/app.css')
     @livewireStyles
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireScripts
 </head>
 <body>
+@livewire('notifications')
+
 {{ $slot }}
 
-<x-dialog />
-@livewireScripts
+<x-toast/>
+<x-dialog/>
+
+@filamentScripts
+@vite('resources/js/app.js')
+<script src="{{ asset('js/logger.js') }}"></script>
 </body>
 </html>

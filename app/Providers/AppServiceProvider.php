@@ -24,7 +24,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         TallStackUi::personalize()
-            ->dialog()
-            ->block('background', 'fixed inset-0 dark:bg-gray-600 bg-gray-400 bg-opacity-75 transition-opacity');
+            ->card()
+            ->block('header.wrapper', 'dark:border-b-dark-600 border-b border-b-gray-100 p-4');
+
+        TallStackUi::personalize()
+            ->select('styled')
+            ->block('box.list.item.selected', 'font-semibold');
     }
 }

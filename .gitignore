@@ -5,7 +5,6 @@
 /public/storage
 /storage/*.key
 /vendor
-/modules
 .env
 .env.backup
 .env.production
@@ -20,3 +19,4 @@ modules_statuses.json
 /.fleet
 /.idea
 /.vscode
+/modules/
