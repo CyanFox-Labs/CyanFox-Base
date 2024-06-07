@@ -123,6 +123,7 @@ return [
         'numbers' => 'This field must contain at least one number.',
         'symbols' => 'This field must contain at least one symbol.',
         'uncompromised' => 'The given value has appeared in a data leak. Please choose a different value.',
+        'blacklist' => 'The given value is not allowed. Please choose a different value.',
     ],
     'present' => 'This field must be present.',
     'present_if' => 'This field must be present when :other is :value.',
@@ -173,9 +174,7 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
+        'invalid_captcha' => 'The captcha is invalid.',
     ],
 
     /*

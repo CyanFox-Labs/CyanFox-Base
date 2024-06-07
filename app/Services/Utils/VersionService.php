@@ -76,12 +76,12 @@ class VersionService
      */
     public function getRemoteTemplateVersion(): string
     {
-        if (setting('template_version_url') == null) {
+        if (setting('settings.versions.template_url') == null) {
             return 'N/A';
         }
 
         try {
-            $url = setting('template_version_url');
+            $url = setting('settings.versions.template_url');
             $data = json_decode(file_get_contents($url), true);
 
             if ($data['version']['template'] == null) {
@@ -106,12 +106,12 @@ class VersionService
      */
     public function getRemoteProjectVersion(): string
     {
-        if (setting('project_version_url') == null) {
+        if (setting('settings.versions.project_url') == null) {
             return 'N/A';
         }
 
         try {
-            $url = setting('project_version_url');
+            $url = setting('settings.versions.project_url');
             $data = json_decode(file_get_contents($url), true);
 
             if ($data['version']['project'] == null) {

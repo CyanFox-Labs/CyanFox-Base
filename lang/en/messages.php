@@ -6,6 +6,7 @@ return [
     'or' => 'or',
     'search' => 'Search',
     'photo' => 'Photo',
+    'captcha' => 'Captcha',
 
     'notifications' => [
         'something_went_wrong' => 'Something went wrong. Check the console for more information.',

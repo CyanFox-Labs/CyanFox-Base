@@ -32,13 +32,17 @@ class SettingsService
                 }
             }
 
+            if ($setting->value == null) {
+                return config($key);
+            }
+
             return match ($setting->value) {
                 'true', 1 => true,
                 'false', 0 => false,
                 default => $setting->value,
             };
         } catch (Exception) {
-            return null;
+            return config($key);
         }
     }
 
@@ -60,7 +64,7 @@ class SettingsService
             if ($value != null) {
                 $setting->value = ($isEncrypted) ? encrypt($value) : $value;
             } else {
-                $setting->value = ($isEncrypted) ? encrypt(env(strtoupper($key))) : env(strtoupper($key));
+                $setting->value = ($isEncrypted) ? encrypt(config($key)) : config($key);
             }
             $setting->save();
         }

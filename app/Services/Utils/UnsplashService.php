@@ -22,6 +22,7 @@ class UnsplashService
      * and the other keys will be set to null.
      *
      * @return array An array containing background-related information.
+     * @throws GuzzleException
      */
     public function returnBackground(): array
     {
@@ -48,7 +49,7 @@ class UnsplashService
                     filter: blur(5px);
                     opacity: 0.5";
         } catch (Exception $e) {
-            $css = setting('unsplash_fallback_css');
+            $css = setting('settings.unsplash.fallback_css');
 
             $error = $e->getMessage();
             $photoLink = null;
@@ -72,7 +73,7 @@ class UnsplashService
      */
     public function getUTM(): ?string
     {
-        return setting('unsplash_utm');
+        return setting('settings.unsplash.utm');
     }
 
     /**
@@ -84,7 +85,7 @@ class UnsplashService
      */
     public function getRandomUnsplashImage(): ?array
     {
-        $api_key = setting('unsplash_api_key', true);
+        $api_key = setting('settings.unsplash.api_key', true);
         if ($api_key == null || $api_key == '') {
             return null;
         }
