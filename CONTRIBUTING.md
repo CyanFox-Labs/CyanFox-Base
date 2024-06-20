@@ -12,8 +12,7 @@ Thank you for considering contributing to our project! We appreciate your intere
 3. [Style Guides](#style-guides)
     - [Code Style](#code-style)
     - [Commit Messages](#commit-messages)
-4. [Setting Up the Development Environment](#setting-up-the-development-environment)
-5. [Additional Resources](#additional-resources)
+4. [Additional Resources](#additional-resources)
 
 ## Code of Conduct
 
@@ -71,32 +70,6 @@ Write clear, concise commit messages. Follow these conventions:
 - **Start with a short summary** (50 characters or less).
 - **Include additional detail** in the body, if necessary.
 - **Use the imperative mood** (e.g., "Add feature" instead of "Added feature").
-
-## Setting Up the Development Environment
-
-To set up your development environment, follow these steps:
-
-1. **Clone the repository**:
-    ```sh
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
-    ```
-2. **Install dependencies**:
-    ```sh
-    composer install
-    npm install
-    ```
-3. **Run the project**:
-    ```sh
-    # We recommend using sail for Laravel projects
-    ./vendor/bin/sail up -d && ./vendor/bin/sail npm run dev
-    ```
-4. **Run tests** to ensure everything is working correctly:
-    ```sh
-   # We recommend using sail for Laravel projects
-    ./vendor/bin/sail test
-    ```
-
 ## Additional Resources
 
 - [Project Documentation](https://github.com/CyanFox-Projects/Laravel-Template/wiki)

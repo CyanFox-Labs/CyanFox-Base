@@ -27,11 +27,8 @@
     <a href="https://github.com/CyanFox-Projects/Laravel-Template/network/members" alt="Forks">
         <img src="https://img.shields.io/github/forks/CyanFox-Projects/Laravel-Template.svg?style=for-the-badge" />
     </a>
-    <a href="https://github.com/CyanFox-Projects/Laravel-Template/network/members" alt="Stars">
+    <a href="https://github.com/CyanFox-Projects/Laravel-Template/network/stargazers" alt="Stars">
         <img src="https://img.shields.io/github/stars/CyanFox-Projects/Laravel-Template.svg?style=for-the-badge" />
-    </a>
-    <a href="https://github.com/CyanFox-Projects/Laravel-Template/stargazers" alt="Issues">
-        <img src="https://img.shields.io/github/issues/CyanFox-Projects/Laravel-Template.svg?style=for-the-badge" />
     </a>
     <a href="https://github.com/CyanFox-Projects/Laravel-Template/issues" alt="Issues">
         <img src="https://img.shields.io/github/issues/CyanFox-Projects/Laravel-Template.svg?style=for-the-badge" />
@@ -39,10 +36,6 @@
 </div>
 
 <div align="center">
-
-## Changelog
-
-Please se [CHANGELOG](CHANGELOG) for more information what has changed recently.
 
 ## Security Vulnerabilities
 
@@ -54,5 +47,5 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
 </div>

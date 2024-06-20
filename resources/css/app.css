@@ -21,3 +21,15 @@
     @apply dark:bg-dark-700 !important;
     @apply bg-white !important;
 }
+
+#pg-header-export button {
+    @apply dark:bg-dark-700 !important;
+    @apply dark:ring-dark-600 !important;
+    @apply bg-white !important;
+}
+
+#pg-header-export div {
+    @apply dark:bg-dark-700 !important;
+    @apply bg-white !important;
+    @apply dark:ring-dark-600 !important;
+}
