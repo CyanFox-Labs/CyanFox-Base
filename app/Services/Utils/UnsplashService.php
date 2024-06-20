@@ -22,6 +22,7 @@ class UnsplashService
      * and the other keys will be set to null.
      *
      * @return array An array containing background-related information.
+     *
      * @throws GuzzleException
      */
     public function returnBackground(): array
