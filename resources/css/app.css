@@ -33,3 +33,19 @@
     @apply bg-white !important;
     @apply dark:ring-dark-600 !important;
 }
+
+[aria-label="Pagination Navigation"] div a {
+    @apply dark:bg-dark-700 !important;
+    @apply bg-white !important;
+}
+
+[aria-label="Pagination Navigation"] div span {
+    @apply dark:bg-dark-600 !important;
+    @apply bg-white !important;
+    @apply rounded-sm !important;
+}
+
+[aria-label="Pagination Navigation"] {
+    @apply border border-white rounded-md !important;
+    @apply dark:border-dark-600 !important;
+}
