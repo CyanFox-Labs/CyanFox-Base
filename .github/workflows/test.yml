@@ -3,11 +3,11 @@ name: Test
 on:
   push:
     branches:
-      - develop
+      - v3-develop
       - v3
   pull_request:
     branches:
-      - develop
+      - v3-develop
       - v3
   workflow_dispatch:
 
@@ -24,24 +24,29 @@ jobs:
           DOCKER_TLS_CERTDIR: ""
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
-          extensions: intl, gd, iconv, fileinfo
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          php-version: '8.2'
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          coverage: none
+
+      - name: Setup problem matchers
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Install dependencies
+        run: |
+          composer update --prefer-dist --no-interaction
+
+      - name: List Installed Dependencies
+        run: composer show -D
 
       - name: Test
         run: |
           cp .env.testing .env
-          curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-          /usr/local/bin/composer update
 
-          ./vendor/bin/sail up -d
-          ./vendor/bin/sail npm install
-          ./vendor/bin/sail npm run build
-          ./vendor/bin/sail artisan migrate
-          ./vendor/bin/sail test
+          php artisan test

@@ -29,7 +29,7 @@ class SpecificModuleService
      *
      * @return Module|null The module instance or null if not found.
      */
-    public function getModule(): ?Module
+    public function get(): ?Module
     {
         return $this->module;
     }
@@ -49,7 +49,7 @@ class SpecificModuleService
      *
      * @return bool
      */
-    public function isModuleEnabled()
+    public function isEnabled()
     {
         if ($this->module === null) {
             return false;
@@ -63,7 +63,7 @@ class SpecificModuleService
      *
      * @return bool
      */
-    public function isModuleDisabled()
+    public function isDisabled()
     {
         if ($this->module === null) {
             return false;
@@ -77,7 +77,7 @@ class SpecificModuleService
      *
      * @return bool Returns true if the module was enabled successfully, false otherwise
      */
-    public function enableModule(): bool
+    public function enable(): bool
     {
         $requirements = $this->getRequirements();
 
@@ -95,7 +95,7 @@ class SpecificModuleService
     /**
      * Disables a module.
      */
-    public function disableModule(): void
+    public function disable(): void
     {
         $this->module->disable();
     }
@@ -103,7 +103,7 @@ class SpecificModuleService
     /**
      * Delete the module.
      */
-    public function deleteModule(): void
+    public function delete(): void
     {
         $this->module->delete();
     }

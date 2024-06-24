@@ -1,33 +1,79 @@
 # Contribution Guidelines
 
-Please ensure your pull request adheres to the following guidelines:
+Thank you for considering contributing to our project! We appreciate your interest and support. To ensure a smooth and effective collaboration, please follow these guidelines.
 
-- Always make a new branch for your work.
-- Make sure your code has adequate comments explaining what your code is meant to do.
-- Make sure your code passes all tests.
-- Do not add any lib files in the PR.
-- Check your code for any conflicts with the main branch before creating a PR.
-- Make sure you use meaningful commit messages.
-- Do not leave unnecessary blank lines or spaces.
-- Do not commit any files that are not related to your task.
-- Do not copy and paste code. Understand the logic behind it and implement it.
-- Always pull the latest changes from the upstream/main before pushing anything to the main repository.
-- If you are tasked to work on a feature that someone else is already working on, try collaborating with them.
+## Table of Contents
 
-## Creating a Pull Request:
+1. [Code of Conduct](#code-of-conduct)
+2. [How Can I Contribute?](#how-can-i-contribute)
+    - [Reporting Bugs](#reporting-bugs)
+    - [Suggesting Enhancements](#suggesting-enhancements)
+    - [Submitting Pull Requests](#submitting-pull-requests)
+3. [Style Guides](#style-guides)
+    - [Code Style](#code-style)
+    - [Commit Messages](#commit-messages)
+4. [Additional Resources](#additional-resources)
 
-Please follow these steps to have your contribution considered by the maintainers:
+## Code of Conduct
 
-1. Follow all the instructions and rules mentioned above.
-2. Fork the project, clone your fork to your machine, and add this repository as an upstream.
-3. Pull the latest changes from upstream to your local.
-4. Create a new branch with a meaningful name.
-5. Add the files you changed with clear and concise comments explaining the changes.
-6. Commit your changes with a meaningful commit message.
-7. Push your changes to your fork.
-8. Create a pull request to the upstream repository.
-9. Give your pull request a meaningful title and a clear description about what your PR is for and why it should be merged into the main repository.
-10. Wait for the PR to be reviewed by the maintainers. Make changes to the PR if the maintaining team asks for them.
-11. After your PR is merged, remember to pull the latest changes from the original (upstream) repository to your local repository and delete your branch if it is no longer needed.
+Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
 
-Once your PR gets merged, you are officially a contributor!
+## How Can I Contribute?
+
+### Reporting Bugs
+
+If you find a bug, please create an issue and include the following details:
+
+- **Clear and descriptive title** for the issue.
+- **Steps to reproduce** the issue.
+- **Expected behavior** versus **actual behavior**.
+- **Screenshots** or **log files**, if applicable.
+- **Environment details**, such as browser, operating system, and relevant configurations.
+
+### Suggesting Enhancements
+
+We welcome feature requests! To suggest an enhancement, please follow these steps:
+
+1. **Check the issue tracker** to see if the feature has already been requested.
+2. **Open a new issue** and provide the following information:
+    - **Detailed description** of the proposed feature.
+    - **Rationale** and benefits of the feature.
+    - **Examples** or **mockups**, if possible.
+    - **Any additional context** that might help.
+
+### Submitting Pull Requests
+
+To submit a pull request, follow these steps:
+
+1. **Fork the repository** and clone it to your local machine.
+2. **Create a new branch** from `main` for your changes (use a descriptive name, e.g., `feature/add-new-feature` or `fix/issue-123`).
+3. **Make your changes**. Ensure your code adheres to the project's style guidelines.
+4. **Test your changes** thoroughly.
+5. **Commit your changes** with a clear and concise commit message.
+6. **Push your branch** to your forked repository.
+7. **Open a pull request** to the `main` branch of this repository. Provide a detailed description of your changes and link any related issues.
+
+## Style Guides
+
+### Code Style
+
+Please adhere to the coding style used in the project. This includes:
+
+- Descriptive variable and function names.
+- Comments where necessary to explain complex logic.
+- Following language-specific best practices.
+
+### Commit Messages
+
+Write clear, concise commit messages. Follow these conventions:
+
+- **Start with a short summary** (50 characters or less).
+- **Include additional detail** in the body, if necessary.
+- **Use the imperative mood** (e.g., "Add feature" instead of "Added feature").
+## Additional Resources
+
+- [Project Documentation](https://github.com/CyanFox-Projects/Laravel-Template/wiki)
+- [Issue Tracker](https://github.com/CyanFox-Projects/Laravel-Template/issues)
+- [Pull Request Template](.github/PULL_REQUEST_TEMPLATE.md)
+
+We are grateful for your contributions and look forward to collaborating with you!

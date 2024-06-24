@@ -3,6 +3,10 @@
 return [
     'name' => env('APP_NAME', 'Laravel'),
     'logo_path' => env('APP_LOGO_PATH', 'img/Logo.svg'),
+    'versions' => [
+        'template_url' => env('TEMPLATE_VERSION_URL', 'N/A'),
+        'project_url' => env('PROJECT_VERSION_URL', 'N/A'),
+    ],
     'unsplash' => [
         'api_key' => env('UNSPLASH_API_KEY'),
         'utm' => env('UNSPLASH_UTM', '?utm_source=APP_NAME&utm_medium=referral'),
