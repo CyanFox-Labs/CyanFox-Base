@@ -87,6 +87,8 @@ class SettingsService
         if ($setting != null) {
             $setting->value = ($isEncrypted) ? encrypt($value) : $value;
             $setting->save();
+        } else {
+            $setting = $this->setSetting($key, $value, $isEncrypted);
         }
 
         return $setting;
