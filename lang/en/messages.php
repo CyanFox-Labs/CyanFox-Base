@@ -20,6 +20,7 @@ return [
     ],
 
     'table' => [
+        'bulk_delete' => 'Bulk Delete (<span x-text="window.pgBulkActions.count(\':table\')"></span>)',
         'id' => 'ID',
         'actions' => 'Actions',
         'created_at' => 'Created At',

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 use Livewire\Component;
 use TallStackUi\Traits\Interactions;
 
@@ -11,6 +12,9 @@ class LWComponent extends Component
 
     public function log($message, $level = 'info')
     {
+        if ($message instanceof Exception) {
+            $message = $message->getMessage();
+        }
         $this->dispatch('logger', ['type' => $level, 'message' => $message]);
     }
 
