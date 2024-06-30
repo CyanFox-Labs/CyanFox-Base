@@ -3098,16 +3098,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.5.0",
+            "version": "v3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "72e900825c560f0e4e620185b26c5441a8914435"
+                "reference": "da044261bb5c5449397f18fda3409f14acf47c0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/72e900825c560f0e4e620185b26c5441a8914435",
-                "reference": "72e900825c560f0e4e620185b26c5441a8914435",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/da044261bb5c5449397f18fda3409f14acf47c0a",
+                "reference": "da044261bb5c5449397f18fda3409f14acf47c0a",
                 "shasum": ""
             },
             "require": {
@@ -3162,7 +3162,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.5.0"
+                "source": "https://github.com/livewire/livewire/tree/v3.5.1"
             },
             "funding": [
                 {
@@ -3170,7 +3170,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-21T13:39:04+00:00"
+            "time": "2024-06-18T11:10:42+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -7686,16 +7686,16 @@
         },
         {
             "name": "tallstackui/tallstackui",
-            "version": "v1.28.1",
+            "version": "v1.31.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tallstackui/tallstackui.git",
-                "reference": "fac7cf35234a5fe49c696046a592085c068f83f9"
+                "reference": "71a458c7f82f137d6d91e2b8bd9ddb1602676441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tallstackui/tallstackui/zipball/fac7cf35234a5fe49c696046a592085c068f83f9",
-                "reference": "fac7cf35234a5fe49c696046a592085c068f83f9",
+                "url": "https://api.github.com/repos/tallstackui/tallstackui/zipball/71a458c7f82f137d6d91e2b8bd9ddb1602676441",
+                "reference": "71a458c7f82f137d6d91e2b8bd9ddb1602676441",
                 "shasum": ""
             },
             "require": {
@@ -7739,7 +7739,7 @@
             "description": "TallStackUI is a powerful suite of Blade components that elevate your workflow of Livewire applications.",
             "support": {
                 "issues": "https://github.com/tallstackui/tallstackui/issues",
-                "source": "https://github.com/tallstackui/tallstackui/tree/v1.28.1"
+                "source": "https://github.com/tallstackui/tallstackui/tree/v1.31.3"
             },
             "funding": [
                 {
@@ -7747,7 +7747,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-06-06T21:13:26+00:00"
+            "time": "2024-06-28T00:18:15+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
