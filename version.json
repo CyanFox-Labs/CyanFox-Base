@@ -1,7 +1,7 @@
 {
     "version": {
-        "dev": true,
-        "template": "3.0.0",
-        "project": "3.0.0"
+        "dev": false,
+        "template": "3.0.0-beta",
+        "project": "3.0.0-beta"
     }
 }
