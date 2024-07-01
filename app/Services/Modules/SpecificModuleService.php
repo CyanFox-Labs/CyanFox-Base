@@ -183,6 +183,9 @@ class SpecificModuleService
      */
     public function getSettingsPage(): ?string
     {
+        if ($this->module === null) {
+            return null;
+        }
         if ($this->module->get('settings_page') !== null) {
             return route($this->module->get('settings_page'));
         }
