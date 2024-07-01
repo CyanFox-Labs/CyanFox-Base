@@ -4,10 +4,10 @@
     <img src="https://raw.githubusercontent.com/CyanFox-Projects/Data/main/Branding/Logos/Logo_Transparent.svg" alt="Logo" width="100" height="100">
   </a>
 
-<h3 align="center">Laravel-Template v3</h3>
+<h3 align="center">CyanFox-Base</h3>
 
   <p align="center">
-    Not really a template, but a foundation for your modules.
+    A modular extendable Base System based on Laravel 11
     <br />
     <a href="https://github.com/CyanFox-Projects/Laravel-Template/wiki"><strong>📖 Explore the docs »</strong></a>
     <br />
