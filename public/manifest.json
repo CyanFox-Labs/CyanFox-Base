@@ -1,0 +1,15 @@
+{
+    "name": "CyanFox",
+    "short_name": "CF",
+    "start_url": "/index.php",
+    "description": "",
+    "display": "fullscreen",
+    "icons": [
+        {
+            "src": "img/Logo.svg",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

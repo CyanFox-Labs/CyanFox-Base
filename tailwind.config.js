@@ -30,6 +30,11 @@ export default {
     theme: {
         extend: {
             colors: {
+                'pg-primary': {
+                    DEFAULT: '#1d232a',
+                    '700': '#1d232a',
+                    '800': '#1d232a',
+                },
                 'primary': {
                     DEFAULT: '#4E5BA6',
                     '50': '#F8F9FC',
