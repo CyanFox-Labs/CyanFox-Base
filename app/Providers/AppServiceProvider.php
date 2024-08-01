@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(ViewIntegrationService::class, function () {
-            return new ViewIntegrationService();
+            return new ViewIntegrationService;
         });
     }
 
