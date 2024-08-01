@@ -59,7 +59,7 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
             "@php artisan filament:upgrade",
-            "@php artisan tallstackui:setup-icon --force --ansi > /dev/null 2>&1"
+            "@php artisan cyanfox-base:setup-icons --force --ansi"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
