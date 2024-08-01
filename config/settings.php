@@ -21,5 +21,6 @@ return [
         'url' => env('TELEMETRY_URL'),
         'instance' => env('TELEMETRY_INSTANCE'),
     ],
+    'force_https' => env('FORCE_HTTPS', false),
     'disable_db_settings' => env('DISABLE_DB_SETTINGS', false),
 ];
