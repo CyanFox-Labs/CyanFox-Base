@@ -1,7 +1,7 @@
 {
-    "name": "cyanfox/laravel-template",
+    "name": "cyanfox/base",
     "type": "project",
-    "description": "A Laravel & Livewire template which is not really a template anymore.",
+    "description": "A modular extendable Base System based on Laravel 11",
     "keywords": [
         "cyanfox",
         "laravel",
