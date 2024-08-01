@@ -29,7 +29,7 @@ class SetupIconsCommand extends Command
     {
         $this->data = collect();
 
-        if (! extension_loaded('zip')) {
+        if (!extension_loaded('zip')) {
             $this->components->error('The PHP zip extension is not installed. Please, review the docs.');
 
             return;
@@ -60,7 +60,7 @@ class SetupIconsCommand extends Command
 
         $zip = new ZipArchive;
 
-        if (! $zip->open($file)) {
+        if (!$zip->open($file)) {
             return 'Failed to extract the .zip file.';
         }
 
@@ -116,15 +116,15 @@ class SetupIconsCommand extends Command
             return 'Wrong configuration file. Please, review the docs.';
         }
 
-        if (! in_array($type, array_keys(IconGuide::AVAILABLE))) {
+        if (!in_array($type, array_keys(IconGuide::AVAILABLE))) {
             return 'Unsupported icon type. Please, review the configuration file.';
         }
 
-        if (! in_array($style, IconGuide::AVAILABLE[$type])) {
+        if (!in_array($style, IconGuide::AVAILABLE[$type])) {
             return 'Unsupported icon style. Please, review the configuration file.';
         }
 
-        if (! $this->option('force') && is_dir(self::PATH.$type)) {
+        if (!$this->option('force') && is_dir(self::PATH.$type)) {
             $this->flush();
 
             return 'The icons selected ['.$type.'] are already installed.';
