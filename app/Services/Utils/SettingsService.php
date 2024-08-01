@@ -54,7 +54,7 @@ class SettingsService
      * @param  bool  $isEncrypted  Determines if the value should be encrypted. Defaults to false.
      * @return Setting The newly created or updated Setting object.
      */
-    public function setSetting(string $key, ?string $value = null, bool $isEncrypted = false): Setting
+    public function setSetting(string $key, ?string $value = null, bool $isEncrypted = false, bool $updateIfExists = false): Setting
     {
         $setting = Setting::where('key', $key)->first();
 
@@ -66,6 +66,9 @@ class SettingsService
             } else {
                 $setting->value = ($isEncrypted) ? encrypt(config($key)) : config($key);
             }
+            $setting->save();
+        } elseif ($updateIfExists) {
+            $setting->value = ($isEncrypted) ? encrypt($value) : $value;
             $setting->save();
         }
 

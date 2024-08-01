@@ -17,6 +17,8 @@ return [
         'cancel' => 'Abbrechen',
         'save' => 'Speichern',
         'close' => 'Schließen',
+        'create' => 'Erstellen',
+        'update' => 'Aktualisieren',
     ],
 
     'table' => [

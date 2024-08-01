@@ -16,5 +16,10 @@ return [
         'fallback_css' => env('UNSPLASH_FALLBACK_CSS',
             'background: rgb(2,0,36); background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);'),
     ],
+    'telemetry' => [
+        'enabled' => env('TELEMETRY_ENABLED', true),
+        'url' => env('TELEMETRY_URL'),
+        'instance' => env('TELEMETRY_INSTANCE'),
+    ],
     'disable_db_settings' => env('DISABLE_DB_SETTINGS', false),
 ];

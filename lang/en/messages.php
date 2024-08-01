@@ -17,6 +17,8 @@ return [
         'cancel' => 'Cancel',
         'save' => 'Save',
         'close' => 'Close',
+        'create' => 'Create',
+        'update' => 'Update',
     ],
 
     'table' => [
