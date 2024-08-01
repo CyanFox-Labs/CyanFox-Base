@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\Utils\ViewIntegrationService;
+use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Support\ServiceProvider;
 use TallStackUi\Facades\TallStackUi;
 
@@ -21,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(UrlGenerator $url): void
     {
         TallStackUi::personalize()
             ->card()
@@ -30,5 +31,9 @@ class AppServiceProvider extends ServiceProvider
         TallStackUi::personalize()
             ->select('styled')
             ->block('box.list.item.selected', 'font-semibold');
+
+        if (config('settings.force_https')) {
+            $url->forceScheme('https');
+        }
     }
 }
