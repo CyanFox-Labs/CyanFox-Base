@@ -9,4 +9,4 @@ services:
     volumes:
       - ./:/var/www
     ports:
-      - "9000:9000"
+      - "8000:80"

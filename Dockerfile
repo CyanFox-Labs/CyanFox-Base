@@ -51,3 +51,10 @@ RUN apk --no-cache add \
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 
 RUN docker-php-ext-install gd pdo_mysql
+
+COPY . /var/www
+WORKDIR /var/www
+
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+
+CMD ["sh", "-c", "php-fpm -D; nginx -g 'daemon off;'"]
