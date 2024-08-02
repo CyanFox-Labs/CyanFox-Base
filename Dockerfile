@@ -52,7 +52,7 @@ RUN apk --no-cache add \
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 
-RUN docker-php-ext-install gd pdo_mysql
+RUN docker-php-ext-install gd pdo_mysql zip
 
 WORKDIR /usr/src/app
 

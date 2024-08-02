@@ -19,6 +19,7 @@ return [
         'close' => 'Close',
         'create' => 'Create',
         'update' => 'Update',
+        'delete' => 'Delete',
     ],
 
     'table' => [
