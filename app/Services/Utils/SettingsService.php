@@ -67,7 +67,7 @@ class SettingsService
                 $setting->value = ($isEncrypted) ? encrypt(config($key)) : config($key);
             }
             $setting->save();
-        } else if ($updateIfExists) {
+        } elseif ($updateIfExists) {
             $setting->value = ($isEncrypted) ? encrypt($value) : $value;
             $setting->save();
         }
