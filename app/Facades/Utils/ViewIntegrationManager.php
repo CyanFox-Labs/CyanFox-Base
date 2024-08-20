@@ -4,13 +4,15 @@ namespace App\Facades\Utils;
 
 use App\Services\Utils\ViewIntegrationService;
 use Closure;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static add(string $name, ...$params)
- * @method static get(string $name = null)
- * @method static getAll(): array
- * @method static render(string $name, Closure $callback): ?string
+ * @method static void add(string $name, mixed ...$params)
+ * @method static void addView(string $name, string $view)
+ * @method static Collection get(?string $name = null)
+ * @method static array getAll()
+ * @method static ?string render(string $name, \Closure $callback)
  */
 class ViewIntegrationManager extends Facade
 {

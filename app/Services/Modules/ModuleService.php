@@ -14,7 +14,7 @@ class ModuleService
      * @param  string  $module  The module name.
      * @return SpecificModuleService The specific module service instance.
      */
-    public function getModule($module): SpecificModuleService
+    public function getModule(string $module): SpecificModuleService
     {
         return new SpecificModuleService($module);
     }

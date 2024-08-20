@@ -37,8 +37,8 @@ class SettingsService
             }
 
             return match ($setting->value) {
-                'true', 1 => true,
-                'false', 0 => false,
+                'true' => true,
+                'false' => false,
                 default => $setting->value,
             };
         } catch (Exception) {

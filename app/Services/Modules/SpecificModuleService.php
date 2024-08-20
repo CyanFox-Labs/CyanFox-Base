@@ -10,16 +10,16 @@ class SpecificModuleService
     /**
      * Represents a module in the Laravel application.
      *
-     * @var string
+     * @var \Nwidart\Modules\Module
      */
-    private $module;
+    private \Nwidart\Modules\Module $module;
 
     /**
      * Sets the module property by finding the module with the given ID
      *
-     * @param  int  $module  The ID of the module to be found
+     * @param  string  $module  The name of the module.
      */
-    public function __construct($module)
+    public function __construct(string $module)
     {
         $this->module = Module::find($module);
     }
@@ -27,9 +27,9 @@ class SpecificModuleService
     /**
      * Get the module.
      *
-     * @return Module|null The module instance or null if not found.
+     * @return \Nwidart\Modules\Module|null The module instance or null if not found.
      */
-    public function get(): ?Module
+    public function get(): ?\Nwidart\Modules\Module
     {
         return $this->module;
     }
@@ -41,7 +41,7 @@ class SpecificModuleService
      */
     public function getRequirements(): ?array
     {
-        return $this->module->get('requirements');
+        return $this->module->get('requirements') ?? [];
     }
 
     /**
@@ -49,12 +49,8 @@ class SpecificModuleService
      *
      * @return bool
      */
-    public function isEnabled()
+    public function isEnabled(): bool
     {
-        if ($this->module === null) {
-            return false;
-        }
-
         return Module::isEnabled($this->module->getName());
     }
 
@@ -63,12 +59,8 @@ class SpecificModuleService
      *
      * @return bool
      */
-    public function isDisabled()
+    public function isDisabled(): bool
     {
-        if ($this->module === null) {
-            return false;
-        }
-
         return Module::isDisabled($this->module->getName());
     }
 
@@ -183,9 +175,6 @@ class SpecificModuleService
      */
     public function getSettingsPage(): ?string
     {
-        if ($this->module === null) {
-            return null;
-        }
         if ($this->module->get('settings_page') !== null) {
             return route($this->module->get('settings_page'));
         }

@@ -25,7 +25,7 @@ class VersionCommand extends Command
      */
     public function handle()
     {
-        $this->info('Laravel version: ' . $this->laravel::VERSION);
+        $this->info('Laravel version: ' . $this->getLaravel()->version());
         $this->info('PHP version: ' . PHP_VERSION);
         $this->info('Template version: ' . version()->getCurrentTemplateVersion());
         $this->info('Project version: ' . version()->getCurrentProjectVersion());
