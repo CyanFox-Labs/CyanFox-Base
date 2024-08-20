@@ -9,8 +9,6 @@ class SpecificModuleService
 {
     /**
      * Represents a module in the Laravel application.
-     *
-     * @var \Nwidart\Modules\Module
      */
     private \Nwidart\Modules\Module $module;
 
@@ -46,8 +44,6 @@ class SpecificModuleService
 
     /**
      * Check if the module is enabled.
-     *
-     * @return bool
      */
     public function isEnabled(): bool
     {
@@ -56,8 +52,6 @@ class SpecificModuleService
 
     /**
      * Check if the module is disabled.
-     *
-     * @return bool
      */
     public function isDisabled(): bool
     {
