@@ -3,7 +3,6 @@
 namespace App\Facades\Utils;
 
 use App\Services\Utils\ViewIntegrationService;
-use Closure;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 
