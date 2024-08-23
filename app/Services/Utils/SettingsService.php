@@ -4,6 +4,7 @@ namespace App\Services\Utils;
 
 use App\Models\Setting;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class SettingsService
 {
@@ -51,10 +52,11 @@ class SettingsService
      *
      * @param  string  $key  The key of the setting.
      * @param  string|null  $value  The value of the setting. Defaults to null.
+     * @param  bool  $isLocked  Determines if the setting is locked and cannot be updated. Defaults to false.
      * @param  bool  $isEncrypted  Determines if the value should be encrypted. Defaults to false.
      * @return Setting The newly created or updated Setting object.
      */
-    public function setSetting(string $key, ?string $value = null, bool $isEncrypted = false, bool $updateIfExists = false): Setting
+    public function setSetting(string $key, ?string $value = null, bool $isLocked = false, bool $isEncrypted = false, bool $updateIfExists = false): Setting
     {
         $setting = Setting::where('key', $key)->first();
 
@@ -66,9 +68,16 @@ class SettingsService
             } else {
                 $setting->value = ($isEncrypted) ? encrypt(config($key)) : config($key);
             }
+            $setting->is_locked = $isLocked;
             $setting->save();
         } elseif ($updateIfExists) {
+            if ($setting->is_locked) {
+                Log::warning('Attempted to update locked setting: ' . $setting->key);
+
+                return $setting;
+            }
             $setting->value = ($isEncrypted) ? encrypt($value) : $value;
+            $setting->is_locked = $isLocked;
             $setting->save();
         }
 
@@ -80,15 +89,22 @@ class SettingsService
      *
      * @param  string  $key  The key of the setting to be updated.
      * @param  string|null  $value  The new value for the setting. If null, the value will not be updated.
+     * @param  bool  $isLocked  Determines whether the setting is locked and cannot be updated.
      * @param  bool  $isEncrypted  Determines whether the value needs to be encrypted before saving.
      * @return Setting The updated Setting object, or null if the setting with the given key does not exist.
      */
-    public function updateSetting(string $key, ?string $value, bool $isEncrypted = false): Setting
+    public function updateSetting(string $key, ?string $value, bool $isLocked = false, bool $isEncrypted = false): Setting
     {
         $setting = Setting::where('key', $key)->first();
 
         if ($setting != null) {
+            if ($setting->is_locked) {
+                Log::warning('Attempted to update locked setting: ' . $setting->key);
+
+                return $setting;
+            }
             $setting->value = ($isEncrypted) ? encrypt($value) : $value;
+            $setting->is_locked = $isLocked;
             $setting->save();
         } else {
             $setting = $this->setSetting($key, $value, $isEncrypted);

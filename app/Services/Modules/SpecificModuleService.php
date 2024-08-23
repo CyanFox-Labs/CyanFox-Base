@@ -3,6 +3,8 @@
 namespace App\Services\Modules;
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Nwidart\Modules\Facades\Module;
 
@@ -69,6 +71,9 @@ class SpecificModuleService
         $requirements = $this->getRequirements();
 
         foreach ($requirements as $requirement) {
+            if (!Module::find($requirement)) {
+                return false;
+            }
             if (!Module::isEnabled($requirement)) {
                 return false;
             }
@@ -124,11 +129,11 @@ class SpecificModuleService
     }
 
     /**
-     * Retrieve the author of a module.
+     * Retrieve the authors of a module.
      *
      * @return array|null The authors of the module, or null if not found.
      */
-    public function getAuthor(): ?array
+    public function getAuthors(): ?array
     {
         return $this->module->get('authors');
     }
@@ -172,6 +177,33 @@ class SpecificModuleService
     {
         if ($this->module->get('settings_page') !== null && Route::has($this->module->get('settings_page'))) {
             return route($this->module->get('settings_page'));
+        }
+
+        return null;
+    }
+
+    /**
+     * Get the remote version of the module.
+     *
+     * @return string|null The remote version of the module, or null if not set.
+     */
+    public function getRemoteVersion(): ?string
+    {
+        if ($this->module->get('remote_version') !== null) {
+            if (Cache::has($this->module->getName() . '_version')) {
+                return Cache::get($this->module->getName() . '_version');
+            }
+
+            $response = Http::get($this->module->get('remote_version'));
+            $response = json_decode($response->body(), true);
+
+            if (!isset($response['version'])) {
+                return null;
+            }
+
+            Cache::put($this->module->getName() . '_version', $response['version'], now()->addMinutes(60));
+
+            return $response['version'];
         }
 
         return null;

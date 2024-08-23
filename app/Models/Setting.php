@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Setting extends Model
 {
@@ -13,5 +14,20 @@ class Setting extends Model
     protected $fillable = [
         'key',
         'value',
+        'is_locked',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updating(function ($setting) {
+            if ($setting->isDirty('value') && $setting->is_locked) {
+                Log::warning('Attempted to update locked setting: ' . $setting->key);
+                return false;
+            }
+
+            return true;
+        });
+    }
 }

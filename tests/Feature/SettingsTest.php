@@ -48,9 +48,21 @@ class SettingsTest extends TestCase
     #[Test]
     public function can_update_encrypted_setting(): void
     {
-        SettingsManager::setSetting('test', 'value', true);
-        SettingsManager::updateSetting('test', 'new_value', true);
+        SettingsManager::setSetting('test', 'value', isEncrypted: true);
+        SettingsManager::updateSetting('test', 'new_value', isEncrypted: true);
         if (SettingsManager::getSetting('test', true) === 'new_value') {
+            $this->assertTrue(true);
+        } else {
+            $this->fail();
+        }
+    }
+
+    #[Test]
+    public function cannot_update_locked_setting(): void
+    {
+        SettingsManager::setSetting('test', 'value', isLocked: true);
+        SettingsManager::updateSetting('test', 'new_value');
+        if (SettingsManager::getSetting('test') === 'value') {
             $this->assertTrue(true);
         } else {
             $this->fail();

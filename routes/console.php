@@ -17,7 +17,7 @@ Schedule::call(function () {
         return;
     }
     if (!setting('settings.telemetry.instance')) {
-        SettingsManager::updateSetting('settings.telemetry.instance', Str::random(32));
+        SettingsManager::updateSetting('settings.telemetry.instance', Str::random(32), true);
     }
     Http::post(setting('settings.telemetry.url'), [
         'instance' => setting('settings.telemetry.instance'),
