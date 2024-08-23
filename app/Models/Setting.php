@@ -24,6 +24,7 @@ class Setting extends Model
         static::updating(function ($setting) {
             if ($setting->isDirty('value') && $setting->is_locked) {
                 Log::warning('Attempted to update locked setting: ' . $setting->key);
+
                 return false;
             }
 
