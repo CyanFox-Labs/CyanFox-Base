@@ -1,7 +1,5 @@
 # Laravel-Template
 
-# Laravel-Template
-
 > [!WARNING]
 > ## **V2 of the Laravel-Template will be discontinued on 31.12.2024. Please use [V3](https://github.com/CyanFox-Projects/Laravel-Template/tree/v3) instead**
 
