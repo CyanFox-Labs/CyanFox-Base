@@ -112,9 +112,9 @@ class SpecificModuleService
     /**
      * Get the version of the module.
      *
-     * @return string The version of the module.
+     * @return string|null The version of the module.
      */
-    public function getVersion(): string
+    public function getVersion(): ?string
     {
         return $this->module->get('version');
     }
