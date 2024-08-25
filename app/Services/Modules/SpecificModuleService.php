@@ -79,6 +79,7 @@ class SpecificModuleService
             }
         }
 
+        Artisan::call('migrate');
         $this->module->enable();
 
         return true;
