@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Nwidart\Modules\Facades\Module;
+use Symfony\Component\Process\Process;
 
 class SpecificModuleService
 {
@@ -78,6 +79,9 @@ class SpecificModuleService
                 return false;
             }
         }
+
+        $process = Process::fromShellCommandline('composer dump-autoload');
+        $process->run();
 
         Artisan::call('migrate');
         $this->module->enable();
