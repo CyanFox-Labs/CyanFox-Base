@@ -22,6 +22,9 @@ class Setting extends Model
         parent::boot();
 
         static::updating(function ($setting) {
+            if ($setting->isDirty('is_locked')) {
+                return true;
+            }
             if ($setting->isDirty('value') && $setting->is_locked) {
                 Log::warning('Attempted to update locked setting: ' . $setting->key);
 
