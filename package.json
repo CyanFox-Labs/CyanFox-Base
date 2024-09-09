@@ -19,7 +19,7 @@
     "dependencies": {
         "bootstrap-icons": "^1.11.3",
         "flatpickr": "^4.6.13",
-        "lucide-static": "^0.438.0",
+        "lucide-static": "^0.439.0",
         "tom-select": "^2.3.1"
     }
 }
