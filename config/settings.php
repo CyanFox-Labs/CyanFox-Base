@@ -17,7 +17,7 @@ return [
             'background: rgb(2,0,36); background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);'),
     ],
     'telemetry' => [
-        'enabled' => env('TELEMETRY_ENABLED', true),
+        'enabled' => env('TELEMETRY_ENABLED', false),
         'url' => env('TELEMETRY_URL'),
         'instance' => env('TELEMETRY_INSTANCE'),
     ],
