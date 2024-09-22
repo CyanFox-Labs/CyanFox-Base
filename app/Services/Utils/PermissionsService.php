@@ -35,9 +35,9 @@ class PermissionsService
         }
 
         if ($cacheDuration == 'forever') {
-            Cache::rememberForever($moduleName . '.permissions.set', fn() => true);
+            Cache::rememberForever($moduleName . '.permissions.set', fn () => true);
         } else {
-            Cache::remember($moduleName . '.permissions.set', $cacheDuration, fn() => true);
+            Cache::remember($moduleName . '.permissions.set', $cacheDuration, fn () => true);
         }
     }
 
@@ -65,9 +65,9 @@ class PermissionsService
         }
 
         if ($cacheDuration == 'forever') {
-            Cache::rememberForever($moduleName . '.groups.set', fn() => true);
+            Cache::rememberForever($moduleName . '.groups.set', fn () => true);
         } else {
-            Cache::remember($moduleName . '.groups.set', $cacheDuration, fn() => true);
+            Cache::remember($moduleName . '.groups.set', $cacheDuration, fn () => true);
         }
     }
 }

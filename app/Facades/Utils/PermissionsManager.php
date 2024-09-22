@@ -2,9 +2,7 @@
 
 namespace App\Facades\Utils;
 
-use App\Models\Setting;
 use App\Services\Utils\PermissionsService;
-use App\Services\Utils\SettingsService;
 use Illuminate\Support\Facades\Facade;
 
 /**
